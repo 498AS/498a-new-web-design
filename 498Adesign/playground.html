@@ -1146,8 +1146,9 @@
      HERO FULL-BLEED · video cubre 100vh
      ================================================================= -->
 <header class="hero-fullbleed">
-  <video class="hero-fullbleed__video" autoplay muted loop playsinline preload="auto">
-    <source src="assets/video/hero-loop.mp4" type="video/mp4">
+  <video class="hero-fullbleed__video" autoplay muted loop playsinline preload="auto"
+         data-src-desktop="assets/video/hero-loop.mp4"
+         data-src-mobile="assets/video/hero-loop-mobile.mp4">
   </video>
   <span class="hero-fullbleed__corner-tag">498A · Video · 2026</span>
 
@@ -1789,9 +1790,10 @@
 </footer>
 
 <!-- =================================================================
-     JS · IntersectionObserver para disparar persiana al entrar viewport
+     JS · IntersectionObserver para persiana · responsive video source
      ================================================================= -->
 <script>
+  // 1) Persiana animation on scroll
   (function () {
     var collections = document.querySelectorAll('.box-collection--persiana');
     if (!('IntersectionObserver' in window)) {
@@ -1807,6 +1809,22 @@
       });
     }, { threshold: 0.18, rootMargin: '0px 0px -60px 0px' });
     collections.forEach(function (el) { obs.observe(el); });
+  })();
+
+  // 2) Responsive video source · ahorro de banda en móvil
+  //    Carga mobile (2 MB) en pantallas ≤ 900 px · desktop 2K (11 MB) en grandes
+  (function () {
+    var videos = document.querySelectorAll('video[data-src-desktop]');
+    var isMobile = window.matchMedia('(max-width: 900px)').matches;
+    videos.forEach(function (v) {
+      var src = isMobile ? v.dataset.srcMobile : v.dataset.srcDesktop;
+      if (!src) return;
+      var s = document.createElement('source');
+      s.src = src;
+      s.type = 'video/mp4';
+      v.appendChild(s);
+      v.load();
+    });
   })();
 </script>
 
