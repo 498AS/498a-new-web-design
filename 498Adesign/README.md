@@ -221,3 +221,255 @@ Para migrar un HTML construido con v1: cambiar el import a `498Adesign/tokens.cs
 ---
 
 *Generado: 2026-05-16. Inspiración escala tipográfica + degradados: isomorphiclabs.com. Fuentes: Bebas Neue, Hepta Slab, Roboto, Roboto Mono, Poppins, Dela Gothic One (todas Google Fonts).*
+
+---
+
+## 11. v2.1 · Componentes e iteraciones del playground (2026-05-17)
+
+Lo que sigue son los componentes y decisiones que emergieron del stress-test en `playground.html` y que ya forman parte del sistema canónico. El playground es la **fuente de verdad** visual; este documento es el índice navegable.
+
+### 11.1 Nav · raíl flotante transparente
+
+Estructura: dos clusters opacos sobre fondo transparente. El contenido scrollea por debajo.
+
+```html
+<nav class="nav">
+  <a class="nav__brand-box" href="#">498 <em>A</em>DVANCE</a>
+  <div class="nav__links">
+    <a class="nav__link-box"><span class="num">01</span>Vision</a>
+    ...
+  </div>
+  <div class="nav__spacer" aria-hidden="true"></div>
+  <a class="nav__cta-box" href="#contact">Hablemos →</a>
+</nav>
+```
+
+- **Brand-box**: caja negra contigua a los links · texto `498 ADVANCE` en mono UPPER · la "A" de ADVANCE en verde primario.
+- **Link boxes**: blancas, bordes 1 px compartidos (border-left:0 en consecutivos), hover verde-50 + verde-deep.
+- **Spacer transparente**: flex:1 sin bordes, solo empuja el CTA a la derecha.
+- **CTA box**: caja negra aislada · `width: var(--498-rail-width)` (148 px) · cierra el raíl derecho.
+
+**Token nuevo**: `--498-rail-width: 148px` · compartido con el lang grid del hero.
+
+### 11.2 Language selector · matriz 2×3
+
+Sustituye al corner-tag del hero. Misma `--498-rail-width` que el CTA para alinear vertical en el raíl derecho.
+
+```html
+<nav class="lang-grid" aria-label="Idioma">
+  <a class="lang-grid__cell" hreflang="ca">CAT</a>
+  <a class="lang-grid__cell is-active" hreflang="es" aria-current="true">ES</a>
+  <a class="lang-grid__cell" hreflang="en">EN</a>
+  <a class="lang-grid__cell" hreflang="fr">FR</a>
+  <a class="lang-grid__cell" hreflang="de">DE</a>
+  <a class="lang-grid__cell lang-cjk" hreflang="zh" aria-label="中文">中</a>
+</nav>
+```
+
+- Posicionado absoluto en hero, top: 96 px, right: var(--498-page-pad).
+- Bordes 1 px compartidos (último de cada fila/columna sin border).
+- `.is-active`: fondo verde-deep + texto blanco.
+- `.lang-cjk`: regla especial para el glifo `中` (tamaño +3 px, sin uppercase ni tracking, para compensar óptica del CJK frente al mono latino).
+
+Códigos elegidos: **CAT · ES · EN / FR · DE · 中** (ISO 639-1 estándar para latinos, carácter chino para señalar "otra cosa").
+
+### 11.3 Patrón backpropagation · SVG + animaciones
+
+`assets/patterns/grid-backprop.svg` (120×120 tile, fondo transparente):
+
+- 36 puntos `#B0B0B0` en grid 6×6 imaginario.
+- 5 números diagonales activos en verde primario (`0.34`, `-0.12`, `1.05`, `-0.45`, `0.92`).
+- 4 números dormidos en gris medio (`0.78`, `-0.83`, `1.21`, `-0.66`).
+- 5 cells de la diagonal con verde fill opacity escalado 7→13%.
+
+**Dos aplicaciones en CSS** con distinta intensidad:
+
+| Componente | Fondo | Animaciones | Cuándo usar |
+|------------|-------|-------------|-------------|
+| `.pattern-band` | `--498-surface-lab` (#0F1410) | `patternFlow 60s` + `gradientDrift 22s` + `shimmer 14s` | Pausa atmosférica entre secciones light · solo decoración, sin texto encima |
+| `.box-pattern` | white | `patternFlow 90s` + `gradientDrift 28s` (multiply blend) | Cards con contenido legible dentro · animación mucho más sutil |
+
+Ambos respetan `prefers-reduced-motion` y usan `> * { z-index: 1 }` para garantizar que el contenido queda por encima de las capas animadas.
+
+**Label de banda**: `<span class="pattern-band__label">Grid · backpropagation · gradient flow</span>` · caja blanca con border negro y shadow 16 px que pincha contra el fondo dark.
+
+### 11.4 Marcas geométricas para box collections
+
+Sustituyen a los iconos PNG corporativos (que delataban registro "deck de consultora"). 1 px stroke verde-deep, 28×28 px, totalmente abstractas — vocabulary del sistema: cuadrados angulares, puntos, diagonales, frame-cross.
+
+```html
+<span class="box__mark" aria-hidden="true">
+  <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1">
+    <rect x="1.5" y="1.5" width="25" height="25"/>
+    ...
+  </svg>
+</span>
+```
+
+Las 4 marcas canónicas de Pillars:
+1. **Cuadrados concéntricos** · profundidad / escala
+2. **3 diagonales paralelas** · gradient flow (eco del patrón backprop)
+3. **Grid 3×3 puntos con nodo central conectado** · red / atribución
+4. **Cuadrado con frame-cross inscrito** · marca del sistema
+
+Hover: color → verde primario + rotate 45° en 400 ms.
+
+### 11.5 Botones · esquinas a 0 + nueva variante sólida
+
+**Decisión v2.1**: todos los botones a `border-radius: 0`. El radius-2 (4 px) leía suave contra el resto del sistema angular.
+
+| Clase | Fondo | Texto | Cuándo |
+|-------|-------|-------|--------|
+| `.btn-on-video` | white sólido | black | Hero video |
+| `.btn-ghost-on-video` | transparent | white | Hero video, secundario |
+| `.btn-light` | black | white | Sección clara, primario |
+| `.btn-ghost-light` | transparent | text | Sección clara, secundario |
+| `.btn-solid-dark` | black | white | **Nueva**. Pincha sobre fondos con textura (pattern, video) cuando ghost no se lee |
+| `.btn-split` | white + black caja flecha | text | Estilo Isomorphic, en gradient cards |
+
+Hover universal: verde-deep + verde-deep border.
+
+### 11.6 Tarjeta gradient reutilizable (`.vision-hero-card`)
+
+Componente extraído del hero "Our Goal" y reutilizado como "Cómo trabajamos / Manifiesto" antes del contacto.
+
+```html
+<article class="vision-hero-card">
+  <div class="vision-hero-card__content">
+    <span class="eyebrow-square">Cómo trabajamos</span>
+    <h2 class="vision-hero-card__claim">Cada proyecto<br>como un <em>experimento</em>.</h2>
+    <p class="ed-body">Texto explicativo breve · Smart Brevity.</p>
+    <a class="btn-split" href="#">
+      <span class="btn-split__label">Ver metodología</span>
+      <span class="btn-split__arrow">→</span>
+    </a>
+  </div>
+  <div class="vision-hero-card__visual">
+    <img src="..." alt="...">
+  </div>
+</article>
+```
+
+Uso pensado:
+- **Opener** de una sección (lo que la inspiró: "Our Goal" en Vision).
+- **Closer** de la home, antes del contacto (bookend conceptual).
+- **Cualquier punto de la página donde haya que explicar algo con peso**.
+
+Grid 2 columnas, gradient 135° verde-200 → verde-100 → verde-50 → white, padding 56 px, esquinas a 0.
+
+### 11.7 Cursor blink utilities
+
+Dos variantes, distintos casos de uso.
+
+**A · `.has-cursor`** · cursor estático parpadeante al final de un elemento.
+
+```html
+<h2 class="has-cursor">Texto importante</h2>
+```
+
+Cuadradito verde primario, ratio 900 ms on / 900 ms off (`steps(1)`). Para títulos secundarios de alta jerarquía cuando se quiere "live thinking" sin reveal.
+
+**B · `.typewriter`** · reveal char-by-char con cursor avanzando · el cursor desaparece al terminar.
+
+```html
+<span class="typewriter" style="--chars: 13;">Founder Voice</span>
+```
+
+Solo se dispara cuando el elemento entra en viewport (JS IntersectionObserver, threshold 0.6). Cadena de 3 animaciones:
+1. `typewriterReveal` · `width: 0 → calc(--chars × --char-w)` con `steps(--chars, end)` · reveal discreto, no interpolado.
+2. `typewriterCursorShow` · enciende el cursor instantáneamente al empezar.
+3. `typewriterCursorHide` · desactiva el cursor 150 ms después de terminar el reveal · transición seca, sin parpadeo.
+
+**Cursor**: línea vertical fina (`border-right: 2px solid currentColor`) que hereda el color del texto (no verde brand). Una vez el texto está completo, el cursor desaparece y queda solo el título estático.
+
+**Regla de escasez**: máximo 2-3 typewriters en toda la home. Reservados para eyebrows de nivel "Founder Voice" — nunca en body, nunca en h1 normales. Si todo parpadea, nada parpadea.
+
+Variables custom para parametrizar:
+- `--chars`: número de caracteres (incluye espacios)
+- `--char-w`: ancho aprox por char (default `0.78em` · funciona para mono UPPER 11 px + tracking 1.8 px; sobrescribir si la fuente cambia)
+
+Ambas utilidades respetan `prefers-reduced-motion`.
+
+### 11.8 Eyebrow-square (cuadradito + texto mono)
+
+Eyebrow con cuadradito negro `::before` (8×8 px) seguido de texto mono UPPER.
+
+```html
+<span class="eyebrow-square">Our Goal</span>
+```
+
+Variante con typewriter:
+
+```html
+<span class="eyebrow-square">
+  <span class="typewriter" style="--chars: 11;">Founder Voice</span>
+</span>
+```
+
+El cuadradito queda quieto a la izquierda, el texto se escribe al lado.
+
+### 11.9 Citas ChatGPT inline · 3 variantes
+
+Cuadradito 16×16 con número blanco clickable. Reemplaza al sistema `[1]` académico cuando se quiere estética "respuesta de LLM" en vez de "paper".
+
+```html
+texto<a class="cite-chat" href="#ref-1">1</a>.
+texto<a class="cite-chat cite-chat--grey" href="#ref-2">2</a>.
+texto<a class="cite-chat cite-chat--green" href="#ref-3">3</a>.
+```
+
+- **Default** (negro): cita principal, máxima atención.
+- **Grey**: cita secundaria, menos peso visual.
+- **Green**: cita conectada con el thread principal de argumentación (acento brand).
+
+### 11.10 Frame-cross corner marks
+
+Marcas de registro tipo print/editorial. Las hairlines del borde se extienden ligeramente más allá de las esquinas, creando un "+" sutil en cada vértice. Heritage de impresión técnica.
+
+```html
+<div class="frame-cross">contenido</div>
+```
+
+Aplicable a cualquier contenedor que necesite signal de "elemento de sistema". Usar con moderación — el efecto pierde fuerza si está en todos los bordes.
+
+### 11.11 Filosofía de imagen actualizada (post-feedback simulación)
+
+**El brief visual no es "AI consultancy" sino "lab de simulación"**. 498A simula agentes, personas, sociedades, entornos. La imaginería de mundos sintéticos generados es on-thesis, no biotech imitation.
+
+Filtro para cualquier imagen nueva:
+
+> **¿Esta imagen lee como un mundo, sistema o agente generado, con reglas visibles?**
+
+Si sí → suma. Si solo es 3D decorativo bonito → resta.
+
+**Registros que funcionan**:
+- Mundos isométricos sintéticos (ciudades, ecosistemas, infraestructuras)
+- Multi-agent crowds (cientos de figuras pequeñas con rutas)
+- Paisajes procedurales con parámetros visibles (curvas, contornos, heatmaps)
+- Geometría cellular / Voronoi / autómata
+- Cartografía especulativa
+- Cristales / biomorfos SI van con cifras flotantes que digan "esto es output de simulación"
+
+**Drift a evitar**:
+- Renders puros de moléculas/proteínas aisladas → biotech
+- Stock 3D "AI brain" / "neural network globe" → categoría equivocada
+- Microscopía / scanner médico → biotech
+
+### 11.12 Tokens nuevos en `tokens.css`
+
+```css
+--498-rail-width:    148px;   /* CTA nav + lang grid · raíl derecho compartido */
+--498-surface-lab:   #0F1410; /* pattern band oscura · lab notebook */
+```
+
+### 11.13 Próximos pasos del sistema
+
+1. **Validar el sistema en mobile** — el playground se diseñó desktop-first, hay que probar la densidad en 600 px.
+2. **Extraer componentes a archivos separados** si se decide maquetar en Webflow/WP con componentes reutilizables (`nav.html`, `pattern-band.html`, `gradient-card.html`, etc.). Mientras la home siga viviendo en `playground.html`, no hace falta.
+3. **Decisión sobre cursor en Vision claim** — el "Our Goal" podría llevar typewriter también. Pendiente de validar si rompe la escasez o la refuerza.
+4. **Imagen IA real** de cubos isométricos para reemplazar `crystal-cluster.svg` (placeholder).
+5. **Sustituir Lorem Ipsum** por copy real de `498A-homepage-REVIEW.md` al maquetar.
+
+---
+
+*Actualizado v2.1: 2026-05-17. Iteraciones del playground integradas al sistema canónico.*

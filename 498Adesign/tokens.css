@@ -109,6 +109,8 @@
   --498-w-bold:  600;
 
   /* -- Esquinas cuadradas (sin redondeos suaves) ---------------- */
+  /* DECISIÓN v2.1: botones, cards, eyebrow-square y CTA box usan 0.
+     El radius-2 (4px) se reserva solo a forms/badges/code donde 0 lee demasiado duro. */
   --498-radius-0: 0;
   --498-radius-1: 2px;
   --498-radius-2: 4px;   /* máximo · sistema angular, no se usan 12-20px */
@@ -120,6 +122,10 @@
   --498-section-pad-y: 96px;
   --498-nav-h:         72px;
   --498-hero-h:        100vh;
+  --498-rail-width:    148px;  /* ancho compartido CTA nav + lang grid · raíl derecho */
+
+  /* -- Surface oscuro para pattern band y atmospheric breaks --- */
+  --498-surface-lab:   #0F1410;  /* casi-negro con muy ligera deriva verde · lab notebook */
 
   /* -- Motion --------------------------------------------------- */
   --498-ease:     cubic-bezier(.2, .8, .2, 1);
