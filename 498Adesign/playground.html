@@ -287,11 +287,14 @@
     opacity: .2;
   }
 
-  /* Hero-card Vision · 2 columnas con visual a la derecha y stack a la izquierda
-     Las dos áreas se SOLAPAN en una franja central · el visual pasa por detrás
-     de las cajas hairline · gradient monocromático verde de paleta 498A */
+  /* Hero-card Vision · LAYOUT SIMPLIFICADO estilo Isomorphic "Our Goal"
+     · Single card con gradient + rounded corners 4 px
+     · Grid 2 columnas · content izquierda · visual derecha
+     · Visual ocupa su celda de borde a borde (cancela el padding right)
+     · NADA absoluto · NADA overflowing · NADA cajas internas innecesarias */
   .vision-hero-card {
     position: relative;
+    border: 1px solid var(--pg-line-strong);
     border-radius: var(--498-radius-2);
     background:
       linear-gradient(135deg,
@@ -301,74 +304,27 @@
         var(--498-white) 100%);
     padding: 56px;
     margin-bottom: 96px;
-    min-height: 540px;
+    min-height: 480px;
     overflow: hidden;
-    isolation: isolate;
+    display: grid;
+    grid-template-columns: minmax(360px, 0.9fr) 1.1fr;
+    gap: 40px;
+    align-items: center;
   }
   @media (max-width: 900px) {
-    .vision-hero-card { padding: 40px 32px; min-height: 0; }
-  }
-
-  /* Visual · absoluto · ocupa el 60 % derecho desde top a bottom · centrado vertical */
-  .vision-hero-card__visual {
-    position: absolute;
-    top: 0; right: 0; bottom: 0;
-    width: 60%;
-    z-index: 1;
-    pointer-events: none;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .vision-hero-card__visual img {
-    width: 100%; height: 100%;
-    object-fit: contain;
-    object-position: center;
-    display: block;
-  }
-  @media (max-width: 900px) {
-    .vision-hero-card__visual {
-      position: relative; width: 100%; height: 280px;
-      top: auto; right: auto; bottom: auto;
-      margin-top: 24px;
+    .vision-hero-card {
+      grid-template-columns: 1fr;
+      padding: 40px 32px;
+      min-height: 0;
+      gap: 32px;
     }
   }
 
-  /* Stack izquierdo · max 52% para que la franja 40-52% sea zona de solapamiento
-     Las cajas hairline FLOTAN encima del visual (z-index: 2) */
-  .vision-hero-card__stack {
-    position: relative; z-index: 2;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    gap: 16px;
-    max-width: 52%;
-  }
-  @media (max-width: 900px) {
-    .vision-hero-card__stack { max-width: 100%; }
-  }
-
-  /* Caja superior · título · borde hairline · fondo translúcido */
-  .vision-hero-card__title-box {
-    border: 1px solid rgba(0, 0, 0, .25);
-    background: transparent;
-    padding: 36px 32px;
-    min-height: 200px;
-    display: flex; flex-direction: column; justify-content: flex-start;
-  }
-  .vision-hero-card__eyebrow {
-    margin-bottom: 28px;
-  }
-
-  /* Caja inferior · descripción corta + CTA · fondo translúcido */
-  .vision-hero-card__body-box {
-    border: 1px solid rgba(0, 0, 0, .25);
-    background: transparent;
-    padding: 28px 32px;
-    max-width: 460px;
-  }
-  .vision-hero-card__body-box p {
-    font-family: var(--498-family-body); font-weight: 300;
-    font-size: 14px; line-height: 1.65; color: var(--pg-text);
-    margin-bottom: 20px;
+  /* Columna izquierda · contenido directo sobre gradient (sin inner box) */
+  .vision-hero-card__content {
+    display: flex; flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
   }
 
   /* Eyebrow con cuadradito negro tipo Isomorphic */
@@ -425,23 +381,34 @@
   .btn-split:hover .btn-split__label,
   .btn-split:hover .btn-split__arrow { background: var(--pg-text); color: var(--498-white); }
 
+  /* Columna derecha · visual ocupando la celda · sangra a los bordes del card
+     cancelando el padding del contenedor (margin negativo right/top/bottom) */
   .vision-hero-card__visual {
     position: relative;
     height: 100%;
-    min-height: 360px;
+    min-height: 380px;
+    margin: -56px -56px -56px 0;
+    overflow: hidden;
   }
   .vision-hero-card__visual img {
-    position: absolute;
-    top: 50%; right: -10%;
-    transform: translateY(-50%);
-    width: 110%; height: auto;
-    max-height: 140%;
-    object-fit: contain;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
   @media (max-width: 900px) {
-    .vision-hero-card__visual { min-height: 280px; }
-    .vision-hero-card__visual img { position: relative; top: auto; right: auto; transform: none; width: 100%; }
+    .vision-hero-card__visual {
+      margin: 0 -32px -40px -32px;
+      min-height: 260px;
+    }
   }
+
+  /* Claim responsive cap */
+  .vision-hero-card__claim {
+    font-size: 52px;
+  }
+  @media (max-width: 1100px) { .vision-hero-card__claim { font-size: 42px; } }
+  @media (max-width: 720px)  { .vision-hero-card__claim { font-size: 30px; } }
 
   .vision-grid {
     display: grid;
@@ -1341,37 +1308,27 @@
      ================================================================= -->
 <section id="vision" class="vision-section">
 
-  <!-- HERO-CARD Vision · "Solve all disease" style de Isomorphic
-       2 cajas hairline apiladas a la izquierda + visual sangrando desde la derecha -->
+  <!-- HERO-CARD Vision · "Our Goal" style de Isomorphic
+       LAYOUT SIMPLIFICADO · grid 2 columnas · content izquierda · visual derecha
+       Sin cajas internas innecesarias · visual ocupa su celda a borde de card -->
   <article class="vision-hero-card">
 
-    <!-- VISUAL · absoluto · sangra desde la derecha y se solapa con las cajas -->
+    <!-- COLUMNA IZQUIERDA · eyebrow + claim + CTA apilados directos sobre gradient -->
+    <div class="vision-hero-card__content">
+      <span class="eyebrow-square">Our Goal</span>
+      <h2 class="vision-hero-card__claim">
+        Lorem ipsum<br>dolor sit amet.
+      </h2>
+      <a class="btn-split" href="#">
+        <span class="btn-split__label">Work with us</span>
+        <span class="btn-split__arrow">→</span>
+      </a>
+    </div>
+
+    <!-- COLUMNA DERECHA · visual ocupando la celda · sangra a los bordes del card -->
     <div class="vision-hero-card__visual">
       <img src="assets/visuals/green-architecture.webp"
            alt="Arquitectura verde con vegetación · render editorial 498A">
-    </div>
-
-    <!-- STACK · 2 cajas hairline flotando sobre el gradient
-         La caja título lleva frame-cross (corner marks) como firma de craft -->
-    <div class="vision-hero-card__stack">
-      <div class="vision-hero-card__title-box frame-cross frame-cross--soft">
-        <span class="cnr cnr--tl"></span><span class="cnr cnr--tr"></span>
-        <span class="cnr cnr--bl"></span><span class="cnr cnr--br"></span>
-        <span class="eyebrow-square vision-hero-card__eyebrow">Our Goal</span>
-        <h2 class="vision-hero-card__claim">
-          Lorem ipsum<br>dolor sit amet.
-        </h2>
-      </div>
-      <div class="vision-hero-card__body-box">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-        <a class="btn-split" href="#">
-          <span class="btn-split__label">Work with us</span>
-          <span class="btn-split__arrow">→</span>
-        </a>
-      </div>
     </div>
 
   </article>
