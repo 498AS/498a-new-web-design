@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640">
+  <!--
+    Placeholder · cluster de cristal cúbico tipo pirita
+    Color no natural (brand mint + cyan) · pequeños elementos vegetales
+    Cifras flotantes entre 0 y 1 (gradients / probabilidades)
+    Sustituir por imagen IA real cuando esté lista
+  -->
+
+  <defs>
+    <!-- Gradientes para faces de cristal · light/mid/dark -->
+    <linearGradient id="cLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C8F5D8" stop-opacity="0.92"/>
+      <stop offset="100%" stop-color="#8BE3A6" stop-opacity="0.82"/>
+    </linearGradient>
+    <linearGradient id="cMid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7BD898" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#48C075" stop-opacity="0.78"/>
+    </linearGradient>
+    <linearGradient id="cDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3FA858" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#2A8543" stop-opacity="0.78"/>
+    </linearGradient>
+    <linearGradient id="cLightCyan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#BFEFF4" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#88D5DD" stop-opacity="0.75"/>
+    </linearGradient>
+    <linearGradient id="cMidCyan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6FC4D0" stop-opacity="0.80"/>
+      <stop offset="100%" stop-color="#3F9CAA" stop-opacity="0.72"/>
+    </linearGradient>
+    <linearGradient id="cDarkCyan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#377F8C" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#235C68" stop-opacity="0.78"/>
+    </linearGradient>
+
+    <!-- Símbolos de cubo isométrico reutilizables -->
+    <symbol id="crystalMint" viewBox="-60 -60 120 120">
+      <polygon points="0,-30 52,-15 0,0 -52,-15" fill="url(#cLight)"/>
+      <polygon points="0,0 52,-15 52,45 0,60" fill="url(#cMid)"/>
+      <polygon points="0,0 -52,-15 -52,45 0,60" fill="url(#cDark)"/>
+    </symbol>
+    <symbol id="crystalCyan" viewBox="-60 -60 120 120">
+      <polygon points="0,-30 52,-15 0,0 -52,-15" fill="url(#cLightCyan)"/>
+      <polygon points="0,0 52,-15 52,45 0,60" fill="url(#cMidCyan)"/>
+      <polygon points="0,0 -52,-15 -52,45 0,60" fill="url(#cDarkCyan)"/>
+    </symbol>
+  </defs>
+
+  <!-- CLUSTER PRINCIPAL · 6 cristales mint creciendo en racimo irregular -->
+  <use href="#crystalMint" x="350" y="170" width="180" height="180" transform="rotate(-4 440 260)"/>
+  <use href="#crystalMint" x="420" y="220" width="140" height="140" transform="rotate(3 490 290)"/>
+  <use href="#crystalMint" x="280" y="220" width="120" height="120" transform="rotate(-7 340 280)"/>
+  <use href="#crystalMint" x="380" y="290" width="160" height="160" transform="rotate(6 460 370)"/>
+
+  <!-- Cristales cyan creciendo desde el racimo principal hacia abajo-izquierda -->
+  <use href="#crystalCyan" x="240" y="320" width="130" height="130" transform="rotate(-2 305 385)"/>
+  <use href="#crystalCyan" x="340" y="400" width="150" height="150" transform="rotate(4 415 475)"/>
+  <use href="#crystalCyan" x="200" y="430" width="110" height="110" transform="rotate(-5 255 485)"/>
+
+  <!-- Cristal aislado más pequeño · cyan claro · sugiere crecimiento -->
+  <use href="#crystalCyan" x="130" y="510" width="90" height="90" transform="rotate(3 175 555)"/>
+
+  <!-- ELEMENTOS VEGETALES · pequeñas hojas en verde más natural saliendo del cluster -->
+  <g fill="#3D8A4C" fill-opacity="0.78">
+    <!-- Hoja 1 saliendo entre cristales -->
+    <path d="M 360 195 Q 370 175 388 170 Q 380 192 360 195 Z" />
+    <line x1="360" y1="195" x2="372" y2="183" stroke="#2E6B3A" stroke-width="1"/>
+
+    <!-- Hoja 2 -->
+    <path d="M 510 280 Q 524 275 535 285 Q 524 295 510 280 Z" />
+    <line x1="510" y1="280" x2="524" y2="285" stroke="#2E6B3A" stroke-width="1"/>
+
+    <!-- Sprig: 2 hojas opuestas saliendo de un tallo -->
+    <line x1="318" y1="395" x2="318" y2="365" stroke="#2E6B3A" stroke-width="1.4"/>
+    <path d="M 318 380 Q 305 375 298 382 Q 310 388 318 380 Z" />
+    <path d="M 318 374 Q 332 369 339 376 Q 327 382 318 374 Z" />
+
+    <!-- Hoja pequeña aislada cerca del cristal inferior izquierdo -->
+    <path d="M 165 545 Q 178 540 188 550 Q 178 558 165 545 Z" />
+  </g>
+
+  <!-- CIFRAS FLOTANTES · números entre 0 y 1 · sugieren probabilidades / gradients -->
+  <g font-family="'Roboto Mono', ui-monospace, monospace" font-size="11" fill="#1A1A1A" fill-opacity="0.7">
+    <text x="240" y="155">0.78</text>
+    <text x="540" y="220" fill="#0E7A1F" fill-opacity="0.85" font-weight="500">0.34</text>
+    <text x="155" y="310">0.92</text>
+    <text x="540" y="430" font-weight="500" fill-opacity="0.85">0.14</text>
+    <text x="90"  y="450" fill="#0E7A1F" fill-opacity="0.85" font-weight="500">0.61</text>
+    <text x="495" y="565">0.27</text>
+    <text x="280" y="600" font-weight="500" fill-opacity="0.85">0.83</text>
+  </g>
+
+  <!-- Sombra base · sutil drop shadow del cluster -->
+  <ellipse cx="380" cy="610" rx="220" ry="14" fill="#1A1A1A" fill-opacity="0.08"/>
+</svg>

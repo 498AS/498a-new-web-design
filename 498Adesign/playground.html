@@ -287,28 +287,82 @@
     opacity: .2;
   }
 
-  /* Hero-card al inicio de Vision · gradient mint→cyan + cubos isométricos */
+  /* Hero-card Vision · gradient + visual que sangra fuera del rectángulo
+     Background gradient como capa de fondo · cajas hairline floating · imagen
+     que se extiende por debajo y encima de las cajas (Isomorphic-style) */
   .vision-hero-card {
     position: relative;
-    overflow: hidden;
     border-radius: var(--498-radius-2);
-    border: 1px solid var(--pg-line-strong);
     background:
       linear-gradient(135deg,
         rgba(184, 245, 198, .55) 0%,
         rgba(184, 232, 240, .35) 55%,
         rgba(220, 235, 240, .25) 100%),
       var(--498-white);
-    padding: 80px 64px 88px;
+    padding: 56px 56px 56px 56px;
     margin-bottom: 96px;
-    min-height: 480px;
-    display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    gap: 48px;
-    align-items: center;
+    min-height: 520px;
+    overflow: hidden;
+    isolation: isolate;
   }
   @media (max-width: 900px) {
-    .vision-hero-card { grid-template-columns: 1fr; padding: 56px 32px; min-height: 0; }
+    .vision-hero-card { padding: 40px 32px; min-height: 0; }
+  }
+
+  /* Visual · ABSOLUTO · sangra desde la derecha hacia afuera y se solapa con las cajas */
+  .vision-hero-card__visual {
+    position: absolute;
+    top: -8%;
+    right: -8%;
+    width: 58%;
+    height: 116%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .vision-hero-card__visual img {
+    width: 100%; height: 100%; object-fit: contain; object-position: center;
+    display: block;
+  }
+  @media (max-width: 900px) {
+    .vision-hero-card__visual { position: relative; top: auto; right: auto; width: 100%; height: 320px; margin-top: 24px; }
+  }
+
+  /* Stack de cajas hairline flotando sobre el gradient · 2 boxes apilados */
+  .vision-hero-card__stack {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    gap: 16px;
+    max-width: 58%;
+  }
+  @media (max-width: 900px) {
+    .vision-hero-card__stack { max-width: 100%; }
+  }
+
+  /* Caja superior · título · borde hairline · fondo translúcido */
+  .vision-hero-card__title-box {
+    border: 1px solid rgba(0, 0, 0, .25);
+    background: transparent;
+    padding: 36px 32px;
+    min-height: 200px;
+    display: flex; flex-direction: column; justify-content: flex-start;
+  }
+  .vision-hero-card__eyebrow {
+    margin-bottom: 28px;
+  }
+
+  /* Caja inferior · descripción corta + CTA · fondo translúcido */
+  .vision-hero-card__body-box {
+    border: 1px solid rgba(0, 0, 0, .25);
+    background: transparent;
+    padding: 28px 32px;
+    max-width: 460px;
+  }
+  .vision-hero-card__body-box p {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 14px; line-height: 1.65; color: var(--pg-text);
+    margin-bottom: 20px;
   }
 
   /* Eyebrow con cuadradito negro tipo Isomorphic */
@@ -328,14 +382,14 @@
   .vision-hero-card__claim {
     font-family: var(--498-family-body);
     font-weight: 200;
-    font-size: 52px;
-    line-height: 1.08;
-    letter-spacing: -1.2px;
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -1px;
     color: var(--pg-text);
-    margin: 32px 0 48px;
-    max-width: 520px;
+    margin: 0;
+    max-width: 100%;
   }
-  @media (max-width: 720px) { .vision-hero-card__claim { font-size: 32px; } }
+  @media (max-width: 720px) { .vision-hero-card__claim { font-size: 30px; } }
 
   /* Botón split · label box + arrow box · estilo Isomorphic */
   .btn-split {
@@ -579,6 +633,7 @@
     display: flex; flex-direction: column;
     text-decoration: none; color: inherit;
     transition: background .2s;
+    position: relative;
   }
   .box-card:hover { background: var(--pg-paper); }
   .box-card__img {
@@ -586,12 +641,68 @@
     background: var(--pg-paper);
     overflow: hidden;
     border-bottom: 1px solid var(--pg-line);
+    position: relative;
   }
   .box-card__img img, .box-card__img video {
     width: 100%; height: 100%; object-fit: cover;
     transition: transform .6s var(--498-ease);
   }
-  .box-card:hover .box-card__img img { transform: scale(1.04); }
+  /* Zoom on hover · más perceptible para dar feedback (Isomorphic-style) */
+  .box-card:hover .box-card__img img,
+  .box-card:hover .box-card__img video { transform: scale(1.06); }
+
+  /* ===================================================================
+     CHIP overlay sobre imagen · icono + label expandible (Isomorphic-style)
+     Solo el icono visible por defecto · al hover de la card, label aparece
+     =================================================================== */
+  .img-chip {
+    position: absolute;
+    bottom: 12px; left: 12px;
+    z-index: 3;
+    height: 32px;
+    display: inline-flex; align-items: center;
+    background: rgba(255, 255, 255, .94);
+    border: 1px solid rgba(0, 0, 0, .08);
+    padding: 0 0 0 8px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    transition: padding-right .35s var(--498-ease);
+    padding-right: 8px;
+  }
+  .img-chip__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+  }
+  .img-chip__icon svg { width: 14px; height: 14px; display: block; }
+  .img-chip__label {
+    font-family: var(--498-family-mono);
+    font-size: 10px;
+    color: var(--pg-text);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: max-width .35s var(--498-ease),
+                opacity .25s ease .1s,
+                margin-left .35s var(--498-ease);
+  }
+  .box-card:hover .img-chip {
+    border-color: var(--498-green-deep);
+    padding-right: 12px;
+  }
+  .box-card:hover .img-chip__label {
+    max-width: 180px;
+    opacity: 1;
+    margin-left: 8px;
+  }
+  .box-card:hover .img-chip__icon svg path,
+  .box-card:hover .img-chip__icon svg rect,
+  .box-card:hover .img-chip__icon svg line { stroke: var(--498-green-deep); }
   .box-card__body { padding: 24px 28px 28px; }
   .box-card__tag {
     font-family: var(--498-family-mono); font-size: 11px;
@@ -904,21 +1015,36 @@
      ================================================================= -->
 <section id="vision" class="vision-section">
 
-  <!-- HERO-CARD · estilo "Our Goal" de Isomorphic Labs · gradient + visual 3D -->
+  <!-- HERO-CARD Vision · "Solve all disease" style de Isomorphic
+       2 cajas hairline apiladas a la izquierda + visual sangrando desde la derecha -->
   <article class="vision-hero-card">
-    <div>
-      <span class="eyebrow-square">Our Goal</span>
-      <h2 class="vision-hero-card__claim">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </h2>
-      <a class="btn-split" href="#">
-        <span class="btn-split__label">Work with us</span>
-        <span class="btn-split__arrow">→</span>
-      </a>
-    </div>
+
+    <!-- VISUAL · absoluto · sangra desde la derecha y se solapa con las cajas -->
     <div class="vision-hero-card__visual">
-      <img src="assets/visuals/isometric-cubes.svg" alt="Cluster isométrico · placeholder hasta imagen IA final">
+      <img src="assets/visuals/crystal-cluster.svg"
+           alt="Cluster cristalino · placeholder hasta imagen IA final (pirita verde + vegetal + cifras)">
     </div>
+
+    <!-- STACK · 2 cajas hairline flotando sobre el gradient -->
+    <div class="vision-hero-card__stack">
+      <div class="vision-hero-card__title-box">
+        <span class="eyebrow-square vision-hero-card__eyebrow">Our Goal</span>
+        <h2 class="vision-hero-card__claim">
+          Lorem ipsum<br>dolor sit amet.
+        </h2>
+      </div>
+      <div class="vision-hero-card__body-box">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <a class="btn-split" href="#">
+          <span class="btn-split__label">Work with us</span>
+          <span class="btn-split__arrow">→</span>
+        </a>
+      </div>
+    </div>
+
   </article>
 
   <!-- EDITORIAL · sidebar meta + main · debajo del hero-card -->
@@ -1099,6 +1225,17 @@
         <video autoplay muted loop playsinline preload="metadata">
           <source src="assets/video/loop-productos.mp4" type="video/mp4">
         </video>
+        <div class="img-chip" aria-hidden="true">
+          <span class="img-chip__icon">
+            <svg viewBox="0 0 14 14" fill="none" stroke="#1A1A1A" stroke-width="1">
+              <rect x="2" y="2" width="10" height="10"/>
+              <line x1="4" y1="5" x2="10" y2="5"/>
+              <line x1="4" y1="8" x2="10" y2="8"/>
+              <line x1="4" y1="11" x2="8" y2="11"/>
+            </svg>
+          </span>
+          <span class="img-chip__label">Announcement</span>
+        </div>
       </div>
       <div class="box-card__body">
         <span class="box-card__tag">Producto · GEORadar</span>
@@ -1111,6 +1248,17 @@
         <video autoplay muted loop playsinline preload="metadata">
           <source src="assets/video/loop-servicios.mp4" type="video/mp4">
         </video>
+        <div class="img-chip" aria-hidden="true">
+          <span class="img-chip__icon">
+            <svg viewBox="0 0 14 14" fill="none" stroke="#1A1A1A" stroke-width="1">
+              <rect x="2" y="2" width="10" height="10"/>
+              <line x1="4" y1="5" x2="10" y2="5"/>
+              <line x1="4" y1="8" x2="10" y2="8"/>
+              <line x1="4" y1="11" x2="8" y2="11"/>
+            </svg>
+          </span>
+          <span class="img-chip__label">Vision</span>
+        </div>
       </div>
       <div class="box-card__body">
         <span class="box-card__tag">Servicios · Desarrollo</span>
@@ -1121,6 +1269,17 @@
     <a class="box-card" href="#">
       <div class="box-card__img" style="background:var(--pg-pattern),var(--498-white);background-repeat:repeat;display:flex;align-items:center;justify-content:center">
         <img src="assets/logos/georadar_isotype_black.svg" style="width:64px;height:64px;object-fit:contain">
+        <div class="img-chip" aria-hidden="true">
+          <span class="img-chip__icon">
+            <svg viewBox="0 0 14 14" fill="none" stroke="#1A1A1A" stroke-width="1">
+              <rect x="2" y="2" width="10" height="10"/>
+              <line x1="4" y1="5" x2="10" y2="5"/>
+              <line x1="4" y1="8" x2="10" y2="8"/>
+              <line x1="4" y1="11" x2="8" y2="11"/>
+            </svg>
+          </span>
+          <span class="img-chip__label">Product</span>
+        </div>
       </div>
       <div class="box-card__body">
         <span class="box-card__tag">Producto · georadar.app</span>
