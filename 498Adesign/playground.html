@@ -543,14 +543,19 @@
     border-left: 1px solid var(--pg-line-strong);
     overflow: hidden;
   }
+  .box-collection--5 { grid-template-columns: repeat(5, 1fr); }
   .box-collection--4 { grid-template-columns: repeat(4, 1fr); }
   .box-collection--3 { grid-template-columns: repeat(3, 1fr); }
   .box-collection--2 { grid-template-columns: repeat(2, 1fr); }
   @media (max-width: 900px) {
+    .box-collection--5 { grid-template-columns: repeat(3, 1fr); }
     .box-collection--4, .box-collection--3 { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
-    .box-collection--4, .box-collection--3, .box-collection--2 { grid-template-columns: 1fr; }
+    .box-collection--5, .box-collection--4, .box-collection--3, .box-collection--2 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 420px) {
+    .box-collection--5, .box-collection--4, .box-collection--3, .box-collection--2 { grid-template-columns: 1fr; }
   }
 
   .box-collection > * {
@@ -968,41 +973,70 @@
   }
 
   /* ===================================================================
-     Portrait card · patrón propuesto para retratos de equipo
-     Imagen B&W desaturada → color al hover · caption mono UPPER abajo
+     Portrait card · retratos del team senior
+     B&W desaturada → color al hover · caption mono UPPER en pad inferior
+     Diseñado para vivir dentro de .box-collection (bordes compartidos)
      =================================================================== */
-  .portrait { display: block; text-decoration: none; color: inherit; }
+  .portrait {
+    display: flex; flex-direction: column;
+    text-decoration: none; color: inherit;
+    background: var(--498-white);
+    transition: background .2s;
+  }
+  .portrait:hover { background: var(--pg-paper); }
   .portrait__img {
     position: relative;
     aspect-ratio: 4/5;
     overflow: hidden;
     background: var(--pg-paper);
+    border-bottom: 1px solid var(--pg-line);
   }
   .portrait__img img {
     width: 100%; height: 100%;
     object-fit: cover;
-    filter: saturate(.4) contrast(1.05);
-    transition: filter .5s var(--498-ease), transform .6s var(--498-ease);
+    filter: saturate(.35) contrast(1.05);
+    transition: filter .55s var(--498-ease), transform .6s var(--498-ease);
   }
   .portrait:hover .portrait__img img {
     filter: saturate(1) contrast(1);
-    transform: scale(1.03);
+    transform: scale(1.04);
   }
   .portrait__caption {
-    margin-top: 14px;
-    display: flex; flex-direction: column; gap: 4px;
+    padding: 18px 20px 22px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .portrait__num {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--498-green-deep); letter-spacing: 1.5px;
+    font-weight: 500;
   }
   .portrait__name {
     font-family: var(--498-family-body); font-weight: 400;
-    font-size: 16px; color: var(--pg-text);
+    font-size: 16px; color: var(--pg-text); line-height: 1.3;
   }
   .portrait__role {
     font-family: var(--498-family-mono); font-size: 10px;
-    color: var(--pg-text-faint); letter-spacing: 1.5px;
+    color: var(--pg-text-faint); letter-spacing: 1.2px;
     text-transform: uppercase;
   }
-  .portrait__role-num {
-    color: var(--498-green-deep); margin-right: 8px;
+
+  /* Team-grid container wrapper (margen superior tras el split) */
+  .team-grid-wrap {
+    margin-top: 96px;
+  }
+  .team-grid-wrap__head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
+  }
+  .team-grid-wrap__title {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 28px; line-height: 1.3; letter-spacing: -.2px;
+    color: var(--pg-text);
+  }
+  .team-grid-wrap__count {
+    font-family: var(--498-family-mono); font-size: 11px;
+    color: var(--pg-text-faint); letter-spacing: 1.5px;
+    text-transform: uppercase;
   }
 
   /* ===================================================================
@@ -1680,6 +1714,71 @@
       </div>
     </div>
   </div>
+
+  <!-- =================================================================
+       Nivel 2 · Team senior grid · 5 retratos contiguos con persiana
+       B&W desaturado → color al hover · caption mono UPPER abajo
+       ================================================================= -->
+  <div class="team-grid-wrap">
+    <div class="team-grid-wrap__head">
+      <h3 class="team-grid-wrap__title">El equipo senior.</h3>
+      <span class="team-grid-wrap__count">5 / 5 · Barcelona</span>
+    </div>
+
+    <div class="box-collection box-collection--5 box-collection--persiana">
+      <a class="portrait" href="#">
+        <div class="portrait__img">
+          <img src="assets/team/carles-ortet.png" alt="Carles Ortet">
+        </div>
+        <div class="portrait__caption">
+          <span class="portrait__num">01</span>
+          <span class="portrait__name">Carles Ortet</span>
+          <span class="portrait__role">Founder · 498A</span>
+        </div>
+      </a>
+      <a class="portrait" href="#">
+        <div class="portrait__img">
+          <img src="assets/team/dani-ebo.jpeg" alt="Dani Ebo">
+        </div>
+        <div class="portrait__caption">
+          <span class="portrait__num">02</span>
+          <span class="portrait__name">Dani Ebo</span>
+          <span class="portrait__role">Dirección de arte</span>
+        </div>
+      </a>
+      <a class="portrait" href="#">
+        <div class="portrait__img">
+          <img src="assets/team/mer-canet.jpeg" alt="Mer Canet">
+        </div>
+        <div class="portrait__caption">
+          <span class="portrait__num">03</span>
+          <span class="portrait__name">Mer Canet</span>
+          <span class="portrait__role">Producción</span>
+        </div>
+      </a>
+      <a class="portrait" href="#">
+        <div class="portrait__img">
+          <img src="assets/team/charly-fernandez.jpeg" alt="Charly Fernández">
+        </div>
+        <div class="portrait__caption">
+          <span class="portrait__num">04</span>
+          <span class="portrait__name">Charly Fernández</span>
+          <span class="portrait__role">Realización</span>
+        </div>
+      </a>
+      <a class="portrait" href="#">
+        <div class="portrait__img">
+          <img src="assets/team/juanjo-sanchez.jpeg" alt="Juanjo Sánchez">
+        </div>
+        <div class="portrait__caption">
+          <span class="portrait__num">05</span>
+          <span class="portrait__name">Juanjo Sánchez</span>
+          <span class="portrait__role">Tècnic · DigitalLab</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
 </section>
 
 <!-- =================================================================
