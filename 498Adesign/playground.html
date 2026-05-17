@@ -818,6 +818,12 @@
   }
   a.link:hover { border-bottom-color: var(--498-green-deep); }
 
+  /* Cita ChatGPT-style · 3 variantes de color: negro (default), gris, verde
+     Usos:
+       - .cite-chat            (negro) · referencias críticas / externas autoritativas
+       - .cite-chat--grey      (gris)  · referencias secundarias / contexto auxiliar
+       - .cite-chat--green     (verde) · referencias internas brand / papers propios
+  */
   .cite-chat {
     display: inline-flex; align-items: center; justify-content: center;
     vertical-align: super;
@@ -827,9 +833,28 @@
     font-weight: 500; line-height: 1; letter-spacing: .3px;
     text-decoration: none; margin: 0 1px 0 3px;
     border-radius: 1px;
-    transition: background .15s ease;
+    transition: background .15s ease, color .15s ease;
   }
   .cite-chat:hover { background: var(--498-green-deep); }
+
+  /* Variante GREY · secundaria / contextual */
+  .cite-chat--grey {
+    background: var(--498-grey-500);
+    color: var(--498-white);
+  }
+  .cite-chat--grey:hover {
+    background: var(--498-grey-800);
+  }
+
+  /* Variante GREEN · brand / referencia interna */
+  .cite-chat--green {
+    background: var(--498-green-deep);
+    color: var(--498-white);
+  }
+  .cite-chat--green:hover {
+    background: var(--498-green);
+    color: var(--498-black);
+  }
 
   /* Lista de referencias */
   .references {
@@ -1288,8 +1313,8 @@
 
     <!-- VISUAL · absoluto · sangra desde la derecha y se solapa con las cajas -->
     <div class="vision-hero-card__visual">
-      <img src="assets/visuals/crystal-cluster.svg"
-           alt="Cluster cristalino · placeholder hasta imagen IA final (pirita verde + vegetal + cifras)">
+      <img src="assets/visuals/biomorph-shell.webp"
+           alt="Estructura biomórfica 3D · render editorial 498A">
     </div>
 
     <!-- STACK · 2 cajas hairline flotando sobre el gradient
@@ -1402,7 +1427,8 @@
       <span class="box__num">01 / 04</span>
       <span class="box__tag">Capacidad</span>
       <h3 class="ed-h3 box__title">Lorem ipsum dolor</h3>
-      <p class="ed-small box__desc">Consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+      <p class="ed-small box__desc">Consectetur adipiscing elit<a class="cite-chat" href="#ref-1">1</a>.
+      Sed do eiusmod tempor.</p>
       <a class="link" href="#">Ver más →</a>
     </article>
     <article class="box">
@@ -1410,7 +1436,8 @@
       <span class="box__num">02 / 04</span>
       <span class="box__tag">Capacidad</span>
       <h3 class="ed-h3 box__title">Sed do eiusmod</h3>
-      <p class="ed-small box__desc">Tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p class="ed-small box__desc">Tempor incididunt ut labore<a class="cite-chat cite-chat--grey" href="#ref-2">2</a>
+      et dolore magna aliqua.</p>
       <a class="link" href="#">Ver más →</a>
     </article>
     <article class="box">
@@ -1418,7 +1445,8 @@
       <span class="box__num">03 / 04</span>
       <span class="box__tag">Capacidad</span>
       <h3 class="ed-h3 box__title">Ut enim ad minim</h3>
-      <p class="ed-small box__desc">Veniam, quis nostrud exercitation ullamco laboris.</p>
+      <p class="ed-small box__desc">Veniam, quis nostrud<a class="cite-chat cite-chat--green" href="#ref-1">1</a>
+      exercitation ullamco laboris.</p>
       <a class="link" href="#">Ver más →</a>
     </article>
     <article class="box">
@@ -1426,7 +1454,8 @@
       <span class="box__num">04 / 04</span>
       <span class="box__tag">Capacidad</span>
       <h3 class="ed-h3 box__title">Duis aute irure</h3>
-      <p class="ed-small box__desc">Dolor in reprehenderit in voluptate velit esse cillum.</p>
+      <p class="ed-small box__desc">Dolor in reprehenderit in voluptate<a class="cite-chat cite-chat--grey" href="#ref-3">3</a>
+      velit esse cillum.</p>
       <a class="link" href="#">Ver más →</a>
     </article>
   </div>
@@ -1451,28 +1480,28 @@
   <div class="box-collection box-collection--2 box-collection--persiana">
     <article class="box-row">
       <div class="box-row__img">
-        <img src="assets/visuals/visual-layers.webp" alt="Capas translúcidas">
+        <img src="assets/visuals/stacked-layers.webp" alt="Capas translúcidas">
       </div>
       <div class="box-row__body">
         <span class="box-card__tag">Module · Layers</span>
         <h3 class="ed-h2" style="margin-bottom:14px">Sed quia consequuntur magni dolores<a class="cite-chat" href="#ref-2">2</a>.</h3>
         <p class="ed-body" style="margin-bottom:20px">
-          Qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-          qui dolorem ipsum quia dolor sit amet.
+          Qui ratione voluptatem sequi nesciunt<a class="cite-chat cite-chat--grey" href="#ref-2">2</a>.
+          Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
         </p>
         <a class="link" href="#">Ver detalle →</a>
       </div>
     </article>
     <article class="box-row">
       <div class="box-row__img">
-        <img src="assets/visuals/visual-ecosystem.webp" alt="Ecosistema 3D">
+        <img src="assets/visuals/green-architecture.webp" alt="Arquitectura verde con vegetación">
       </div>
       <div class="box-row__body">
         <span class="box-card__tag">Module · Ecosystem</span>
         <h3 class="ed-h2" style="margin-bottom:14px">Excepteur sint occaecat cupidatat<a class="cite-chat" href="#ref-3">3</a>.</h3>
         <p class="ed-body" style="margin-bottom:20px">
-          Non proident, sunt in culpa qui officia deserunt mollit anim
-          id est laborum sed ut perspiciatis.
+          Non proident, sunt in culpa qui officia deserunt<a class="cite-chat cite-chat--green" href="#ref-1">1</a>
+          mollit anim id est laborum sed ut perspiciatis.
         </p>
         <a class="link" href="#">Ver detalle →</a>
       </div>
@@ -1541,10 +1570,10 @@
       </div>
     </a>
     <a class="box-card" href="#">
-      <div class="box-card__img frame-cross-mini" style="background:var(--pg-pattern),var(--498-white);background-repeat:repeat;display:flex;align-items:center;justify-content:center">
+      <div class="box-card__img frame-cross-mini">
         <span class="cnr-mini cnr-mini--tl"></span><span class="cnr-mini cnr-mini--tr"></span>
         <span class="cnr-mini cnr-mini--bl"></span><span class="cnr-mini cnr-mini--br"></span>
-        <img src="assets/logos/georadar_isotype_black.svg" style="width:64px;height:64px;object-fit:contain">
+        <img src="assets/visuals/data-network.webp" alt="Red de datos · render 498A">
         <div class="img-chip" aria-hidden="true">
           <span class="img-chip__icon">
             <svg viewBox="0 0 14 14" fill="none" stroke="#1A1A1A" stroke-width="1">
@@ -1554,7 +1583,7 @@
               <line x1="4" y1="11" x2="8" y2="11"/>
             </svg>
           </span>
-          <span class="img-chip__label">Product</span>
+          <span class="img-chip__label">Research</span>
         </div>
       </div>
       <div class="box-card__body">
@@ -1579,22 +1608,26 @@
     <div class="method-cell">
       <div class="method-cell__circle">01</div>
       <div class="method-cell__title">Dataset</div>
-      <div class="method-cell__desc">Lorem ipsum dolor sit amet consectetur adipiscing.</div>
+      <div class="method-cell__desc">Lorem ipsum dolor sit amet<a class="cite-chat" href="#ref-1">1</a>
+      consectetur adipiscing.</div>
     </div>
     <div class="method-cell">
       <div class="method-cell__circle">02</div>
       <div class="method-cell__title">Model</div>
-      <div class="method-cell__desc">Sed do eiusmod tempor incididunt ut labore et dolore.</div>
+      <div class="method-cell__desc">Sed do eiusmod tempor<a class="cite-chat cite-chat--green" href="#ref-1">1</a>
+      incididunt ut labore et dolore.</div>
     </div>
     <div class="method-cell">
       <div class="method-cell__circle">03</div>
       <div class="method-cell__title">Deploy</div>
-      <div class="method-cell__desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco.</div>
+      <div class="method-cell__desc">Ut enim ad minim veniam<a class="cite-chat cite-chat--grey" href="#ref-2">2</a>,
+      quis nostrud exercitation ullamco.</div>
     </div>
     <div class="method-cell">
       <div class="method-cell__circle">04</div>
       <div class="method-cell__title">Measure</div>
-      <div class="method-cell__desc">Duis aute irure dolor in reprehenderit in voluptate velit.</div>
+      <div class="method-cell__desc">Duis aute irure dolor in reprehenderit<a class="cite-chat" href="#ref-3">3</a>
+      in voluptate velit.</div>
     </div>
   </div>
 </section>
@@ -1635,7 +1668,7 @@
         <p class="team-quote">
           <em>"Una organización próspera es la que sabe anticiparse,
           construir desde la incertidumbre y alinear su progreso con el del
-          mundo que la rodea."</em>
+          mundo que la rodea<a class="cite-chat cite-chat--green" href="#ref-1">1</a>."</em>
         </p>
       </div>
       <div class="team-attribution">
@@ -1665,7 +1698,8 @@
         Performance prediction of parallel systems by simulation.
       </h3>
       <p class="ed-small" style="margin-bottom:20px">
-        Carlos Ortet. Académico, 1993. Treinta años de continuidad intelectual.
+        Carlos Ortet<a class="cite-chat cite-chat--green" href="#ref-1">1</a>.
+        Académico, 1993. Treinta años de continuidad intelectual.
       </p>
       <a class="link" href="#">Leer →</a>
     </article>
@@ -1675,7 +1709,7 @@
         Beyond LLMs: in search of the next AI beast.
       </h3>
       <p class="ed-small" style="margin-bottom:20px">
-        Carlos Ortet. Mayo 2026. Por qué los LLMs autorregresivos
+        Carlos Ortet. Mayo 2026. Por qué los LLMs autorregresivos<a class="cite-chat" href="#ref-2">2</a>
         pueden no ser la herramienta adecuada.
       </p>
       <a class="link" href="#">Leer →</a>
@@ -1686,7 +1720,7 @@
         El GEO no es SEO: 11 argumentos irrefutables.
       </h3>
       <p class="ed-small" style="margin-bottom:20px">
-        Once razones por las que la visibilidad en motores generativos
+        Once razones por las que la visibilidad en motores generativos<a class="cite-chat cite-chat--grey" href="#ref-3">3</a>
         es disciplina distinta del SEO clásico.
       </p>
       <a class="link" href="#">Leer →</a>
