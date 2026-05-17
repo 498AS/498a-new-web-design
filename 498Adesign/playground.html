@@ -287,18 +287,18 @@
     opacity: .2;
   }
 
-  /* Hero-card Vision · gradient + visual que sangra fuera del rectángulo
-     Background gradient como capa de fondo · cajas hairline floating · imagen
-     que se extiende por debajo y encima de las cajas (Isomorphic-style) */
+  /* Hero-card Vision · gradient MONOCROMÁTICO verde (solo paleta 498A)
+     Sustituye el gradient mint-cyan tipo Isomorphic por tonos brand puros.
+     Imagen sangra desde la derecha y se solapa con las cajas hairline. */
   .vision-hero-card {
     position: relative;
     border-radius: var(--498-radius-2);
     background:
       linear-gradient(135deg,
-        rgba(184, 245, 198, .55) 0%,
-        rgba(184, 232, 240, .35) 55%,
-        rgba(220, 235, 240, .25) 100%),
-      var(--498-white);
+        var(--498-green-200) 0%,
+        var(--498-green-100) 35%,
+        var(--498-green-50) 75%,
+        var(--498-white) 100%);
     padding: 56px 56px 56px 56px;
     margin-bottom: 96px;
     min-height: 520px;
@@ -872,6 +872,124 @@
   }
 
   /* ===================================================================
+     UI module · Forms + Badges + Table + Code block (LIGHT mode · esquinas cuadradas)
+     =================================================================== */
+  .ui-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+  @media (max-width: 900px) { .ui-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  /* Form light */
+  .ui-form { display: grid; gap: 16px; max-width: 480px; }
+  .ui-form label {
+    font-family: var(--498-family-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--498-green-deep); font-weight: 500;
+  }
+  .ui-form input, .ui-form textarea {
+    width: 100%;
+    background: var(--498-white);
+    border: 1px solid var(--pg-line-strong);
+    border-radius: var(--498-radius-2);
+    padding: 14px 16px;
+    color: var(--pg-text);
+    font-family: var(--498-family-body);
+    font-size: 15px;
+    transition: border-color .2s;
+  }
+  .ui-form input::placeholder, .ui-form textarea::placeholder {
+    color: var(--pg-text-faint); font-style: italic;
+  }
+  .ui-form input:focus, .ui-form textarea:focus {
+    outline: 0;
+    border-color: var(--498-green-deep);
+  }
+  .ui-form textarea { min-height: 120px; resize: vertical; }
+  .ui-form .row { display: grid; gap: 6px; }
+
+  .ui-btn-submit {
+    background: linear-gradient(135deg, var(--498-green) 0%, var(--498-green-deep) 100%);
+    color: var(--498-white);
+    border: 0;
+    padding: 16px 24px;
+    font-family: var(--498-family-ui); font-size: 13px;
+    text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--498-radius-2);
+    transition: filter .2s;
+    display: inline-flex; align-items: center; gap: 10px; justify-content: center;
+  }
+  .ui-btn-submit:hover { filter: brightness(1.08); }
+
+  /* Badges · esquinas cuadradas (radius 0) explícitas */
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center;
+    font-family: var(--498-family-mono); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 0;        /* cuadradas explícitas */
+    line-height: 1;
+  }
+  .badge-flagship { background: var(--498-green); color: var(--498-black); }
+  .badge-dev { background: transparent; color: var(--498-green-deep); border: 1px solid var(--498-green-deep); }
+  .badge-legacy { background: var(--498-grey-100); color: var(--pg-text-muted); border: 1px solid var(--pg-line); }
+  .badge-critical { background: var(--498-alert); color: var(--498-white); }
+
+  /* Tabla · light · hairlines · square corners */
+  .ui-table {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--498-family-body); font-size: 14px;
+    margin-top: 16px;
+  }
+  .ui-table th, .ui-table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--pg-line);
+  }
+  .ui-table th {
+    font-family: var(--498-family-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--498-green-deep); font-weight: 500;
+    border-bottom: 1px solid var(--pg-line-strong);
+  }
+  .ui-table td { color: var(--pg-text); }
+  .ui-table tr:last-child td { border-bottom: 0; }
+  .ui-table tr:hover td { background: var(--498-green-50); }
+  .ui-table code {
+    font-family: var(--498-family-mono); font-size: 13px;
+    color: var(--498-green-deep);
+    background: var(--498-grey-100); padding: 2px 6px;
+    border-radius: var(--498-radius-1);
+  }
+
+  /* Code block · LIGHT variant · square corners */
+  .ui-code {
+    background: var(--498-grey-50);
+    border: 1px solid var(--pg-line-strong);
+    border-left: 3px solid var(--498-green-deep);
+    border-radius: var(--498-radius-2);
+    padding: 24px 28px;
+    overflow-x: auto;
+    margin: 24px 0;
+    font-family: var(--498-family-mono); font-size: 13px;
+    line-height: 1.7;
+    color: var(--pg-text);
+  }
+  .ui-code .c-key { color: var(--498-green-deep); font-weight: 500; }
+  .ui-code .c-val { color: var(--pg-text-muted); }
+  .ui-code .c-com { color: var(--pg-text-faint); font-style: italic; }
+
+  /* Inline code */
+  p code, li code {
+    background: var(--498-grey-100);
+    color: var(--498-green-deep);
+    padding: 1px 6px;
+    border-radius: var(--498-radius-1);
+    font-size: .92em;
+    font-family: var(--498-family-mono);
+    border: 1px solid var(--pg-line);
+  }
+
+  /* ===================================================================
      Team section · split foto equipo + bloque texto + cita
      =================================================================== */
   .team-section { background: var(--pg-paper); border-top: 1px solid var(--pg-line); border-bottom: 1px solid var(--pg-line); }
@@ -1429,6 +1547,120 @@
       <a class="btn-ghost-light" href="#">Recibir informe →</a>
     </div>
   </article>
+</section>
+
+<!-- =================================================================
+     UI MODULE · Forms + Badges + Table + Code block
+     Light mode · esquinas cuadradas explícitas en badges
+     ================================================================= -->
+<section id="ui" class="section-paper">
+  <div class="section-title-block">
+    <span class="eyebrow">Sectio · 08 · UI Module</span>
+    <h2 class="ed-display-3">Forms, tablas, badges, código.</h2>
+    <p>
+      Componentes funcionales para stress-test del sistema en interfaces densas.
+      Esquinas cuadradas, focus verde profundo, badges sin radius.
+    </p>
+  </div>
+
+  <div class="ui-grid">
+
+    <!-- LEFT · Formulario -->
+    <div>
+      <h3 class="ed-h3" style="margin-bottom:24px">Formulario</h3>
+      <form class="ui-form" onsubmit="return false;">
+        <div class="row">
+          <label for="ui-name">Nombre</label>
+          <input id="ui-name" type="text" placeholder="Lorem ipsum">
+        </div>
+        <div class="row">
+          <label for="ui-email">Email</label>
+          <input id="ui-email" type="email" placeholder="dolor@sit.amet">
+        </div>
+        <div class="row">
+          <label for="ui-msg">Mensaje</label>
+          <textarea id="ui-msg" placeholder="Consectetur adipiscing elit, sed do eiusmod tempor incididunt..."></textarea>
+        </div>
+        <button class="ui-btn-submit" type="submit">Enviar →</button>
+      </form>
+    </div>
+
+    <!-- RIGHT · Badges + Table + Code -->
+    <div>
+      <h3 class="ed-h3" style="margin-bottom:16px">Badges</h3>
+      <div class="badge-row" style="margin-bottom:40px">
+        <span class="badge badge-flagship">Flagship</span>
+        <span class="badge badge-dev">En desarrollo</span>
+        <span class="badge badge-legacy">Legacy</span>
+        <span class="badge badge-critical">Crítico</span>
+      </div>
+
+      <h3 class="ed-h3" style="margin-bottom:8px">Tabla</h3>
+      <table class="ui-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Valor</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--498-green</code></td>
+            <td>#2DD60F</td>
+            <td><span class="badge badge-flagship">Activo</span></td>
+          </tr>
+          <tr>
+            <td><code>--498-green-deep</code></td>
+            <td>#0E7A1F</td>
+            <td><span class="badge badge-flagship">Activo</span></td>
+          </tr>
+          <tr>
+            <td><code>--498-green-100</code></td>
+            <td>#D4F2D9</td>
+            <td><span class="badge badge-flagship">Nuevo</span></td>
+          </tr>
+          <tr>
+            <td><code>--as-green</code></td>
+            <td>#37E813</td>
+            <td><span class="badge badge-legacy">Deprecated</span></td>
+          </tr>
+          <tr>
+            <td><code>--498-radius-2</code></td>
+            <td>4px (máximo)</td>
+            <td><span class="badge badge-dev">Angular</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CODE BLOCK · referencia técnica al estilo paper académico, light mode -->
+  <div class="narrow" style="margin-top:96px">
+    <span class="eyebrow">Sectio · 08·b · Code reference</span>
+    <h3 class="ed-h2" style="margin-bottom:24px">Sectio tertia · de codice.</h3>
+    <p class="ed-body" style="font-size:17px;line-height:1.7;margin-bottom:8px">
+      At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis
+      praesentium voluptatum deleniti atque corrupti, quos dolores et quas
+      molestias excepturi sint, obcaecati cupiditate non provident:
+    </p>
+
+<pre class="ui-code"><span class="c-key">:root</span> {
+  <span class="c-key">--498-green</span>:        <span class="c-val">#2DD60F</span>;
+  <span class="c-key">--498-green-deep</span>:   <span class="c-val">#0E7A1F</span>;
+  <span class="c-key">--498-green-100</span>:    <span class="c-val">#D4F2D9</span>;     <span class="c-com">/* nuevo tint */</span>
+  <span class="c-key">--498-radius-2</span>:     <span class="c-val">4px</span>;         <span class="c-com">/* máximo */</span>
+  <span class="c-key">--498-family-display</span>: <span class="c-val">"Bebas Neue"</span>, Impact, sans-serif;
+}</pre>
+
+    <p class="ed-body" style="font-size:17px;line-height:1.7">
+      Similique sunt in culpa, qui officia deserunt mollitia animi, id est
+      laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
+      distinctio<a class="cite-chat" href="#ref-3" title="Ver fuente 3">4</a>.
+      Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil
+      impedit, quo minus id, quod maxime placeat, facere possimus.
+    </p>
+  </div>
 </section>
 
 <!-- =================================================================

@@ -8,9 +8,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dela+Gothic+One&family=Hepta+Slab:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Poppins:wght@300;400;500&family=Roboto+Mono:wght@400;500&family=Roboto:wght@400;500;700&display=swap');
 
 :root {
-  /* -- Color: brand (dos tonos de verde, intensidad bajada) ----- */
-  --498-green:         #2DD60F;  /* PRIMARY · un punto menos estridente que el viejo #37E813 */
-  --498-green-deep:    #0E7A1F;  /* DEEP · forest/moss · para gradientes y profundidad */
+  /* -- Color: brand (paleta verde extendida · 8 tonos · NO copia Isomorphic) -- */
+  /* Decisión: 498A se queda MONOCROMÁTICO verde (no añadimos cyan/purpura).
+     La amplitud sale del rango de tonos verdes + greys del sistema. */
+  --498-green-50:      #E9F9EC;  /* tint casi blanco · paper-green sustituye al hardcoded */
+  --498-green-100:     #D4F2D9;  /* tint claro · backgrounds suaves */
+  --498-green-200:     #A8E5B4;  /* tint medio · acentos suaves, gradientes */
+  --498-green-300:     #74D898;  /* mid · hover de estados ligeros */
+  --498-green:         #2DD60F;  /* PRIMARY · menos estridente que el viejo #37E813 */
+  --498-green-500:     #1FAA17;  /* mid-dark · alternativa a primary en contexto claro */
+  --498-green-deep:    #0E7A1F;  /* DEEP · forest/moss · gradientes y profundidad */
+  --498-green-700:     var(--498-green-deep);  /* alias semántico */
+  --498-green-900:     #0A5418;  /* darkest · usos puntuales */
+
   --498-green-hover:   #26B30D;  /* hover de CTAs primarios */
   --498-green-soft:    rgba(45, 214, 15, .12);  /* glow / fondos suaves */
   --498-green-line:    rgba(45, 214, 15, .35);  /* underlines, borders sutiles */
