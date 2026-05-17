@@ -1007,6 +1007,50 @@
   }
 
   /* ===================================================================
+     Talent component · Nivel 3 · talent pool extendido
+     Card compacto con avatar circular + nombre + role mono UPPER
+     Diseñado para box-collection con shared borders + persiana animation
+     =================================================================== */
+  .talent {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 20px;
+    background: var(--498-white);
+    text-decoration: none; color: inherit;
+    transition: background .2s;
+  }
+  .talent:hover { background: var(--pg-paper); }
+  .talent__avatar {
+    width: 48px; height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--pg-paper);
+    border: 1px solid var(--pg-line);
+  }
+  .talent__avatar img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(.4) contrast(1.05);
+    transition: filter .5s var(--498-ease), transform .5s var(--498-ease);
+  }
+  .talent:hover .talent__avatar img {
+    filter: saturate(1) contrast(1);
+    transform: scale(1.08);
+  }
+  .talent__info {
+    display: flex; flex-direction: column; gap: 3px;
+    min-width: 0;
+  }
+  .talent__name {
+    font-family: var(--498-family-body); font-weight: 400;
+    font-size: 14px; color: var(--pg-text); line-height: 1.3;
+  }
+  .talent__role {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--pg-text-faint); letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ===================================================================
      UI module · Forms + Badges + Table + Code block (LIGHT mode · esquinas cuadradas)
      =================================================================== */
   .ui-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
@@ -1731,6 +1775,69 @@
           <span class="portrait__num">05</span>
           <span class="portrait__name">Juanjo Sánchez</span>
           <span class="portrait__role">Tècnic · DigitalLab</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- =================================================================
+       Nivel 3 · Talent pool extendido · 7 cards compactas en contacto
+       Avatar circular 48 px + nombre + role mono UPPER
+       ================================================================= -->
+  <div class="team-grid-wrap">
+    <div class="team-grid-wrap__head">
+      <h3 class="team-grid-wrap__title">Talent pool · red extendida.</h3>
+      <span class="team-grid-wrap__count">7 / 7 · Barcelona network</span>
+    </div>
+
+    <div class="box-collection box-collection--4 box-collection--persiana">
+      <a class="talent" href="#">
+        <div class="talent__avatar"><img src="assets/team/roger-de-gracia.jpg" alt="Roger de Gràcia"></div>
+        <div class="talent__info">
+          <span class="talent__name">Roger de Gràcia</span>
+          <span class="talent__role">Talent · Presentador</span>
+        </div>
+      </a>
+      <a class="talent" href="#">
+        <div class="talent__avatar"><img src="assets/team/irene-laprof.png" alt="Irene Laprof"></div>
+        <div class="talent__info">
+          <span class="talent__name">Irene Laprof</span>
+          <span class="talent__role">Talent jove · Digital</span>
+        </div>
+      </a>
+      <a class="talent" href="#">
+        <div class="talent__avatar"><img src="assets/team/carla-calvo.jpeg" alt="Carla Calvo"></div>
+        <div class="talent__info">
+          <span class="talent__name">Carla Calvo</span>
+          <span class="talent__role">Talent pool</span>
+        </div>
+      </a>
+      <a class="talent" href="#">
+        <div class="talent__avatar"><img src="assets/team/mia-ortet.jpeg" alt="Mia Ortet"></div>
+        <div class="talent__info">
+          <span class="talent__name">Mia Ortet</span>
+          <span class="talent__role">Talent pool</span>
+        </div>
+      </a>
+      <a class="talent" href="#">
+        <div class="talent__avatar"><img src="assets/team/esther-rodriguez.jpeg" alt="Esther Rodríguez"></div>
+        <div class="talent__info">
+          <span class="talent__name">Esther Rodríguez</span>
+          <span class="talent__role">Talent pool</span>
+        </div>
+      </a>
+      <a class="talent" href="#">
+        <div class="talent__avatar"><img src="assets/team/matteo-remuzzi.jpeg" alt="Matteo Remuzzi"></div>
+        <div class="talent__info">
+          <span class="talent__name">Matteo Remuzzi</span>
+          <span class="talent__role">Talent pool</span>
+        </div>
+      </a>
+      <a class="talent" href="#">
+        <div class="talent__avatar"><img src="assets/team/roger-adam.jpeg" alt="Roger Adam"></div>
+        <div class="talent__info">
+          <span class="talent__name">Roger Adam</span>
+          <span class="talent__role">Talent pool</span>
         </div>
       </a>
     </div>
