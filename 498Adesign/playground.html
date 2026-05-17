@@ -649,6 +649,25 @@
     border-bottom: 1px solid var(--pg-line);
     position: relative;
   }
+  /* Frame-cross compact para thumbnails de news cards · marca de craft */
+  .box-card__img.frame-cross-mini { border: 0; }
+  .box-card__img .cnr-mini {
+    position: absolute; width: 10px; height: 10px; z-index: 4; pointer-events: none;
+  }
+  .box-card__img .cnr-mini::before {
+    content: ""; position: absolute;
+    top: 50%; transform: translateY(-50%);
+    left: 0; right: 0; height: 1px; background: var(--pg-text);
+  }
+  .box-card__img .cnr-mini::after {
+    content: ""; position: absolute;
+    left: 50%; transform: translateX(-50%);
+    top: 0; bottom: 0; width: 1px; background: var(--pg-text);
+  }
+  .box-card__img .cnr-mini--tl { top: -5px;    left: -5px; }
+  .box-card__img .cnr-mini--tr { top: -5px;    right: -5px; }
+  .box-card__img .cnr-mini--bl { bottom: -5px; left: -5px; }
+  .box-card__img .cnr-mini--br { bottom: -5px; right: -5px; }
   .box-card__img img, .box-card__img video {
     width: 100%; height: 100%; object-fit: cover;
     transition: transform .6s var(--498-ease);
@@ -878,6 +897,90 @@
   }
 
   /* ===================================================================
+     Frame-cross · marcas de registro tipo print/editorial
+     Las hairlines del borde se extienden ligeramente más allá de las esquinas,
+     creando un "+" sutil en cada vértice. Heritage técnico, signal de craft.
+     Uso: añadir clase .frame-cross al contenedor.
+     =================================================================== */
+  .frame-cross {
+    position: relative;
+    border: 1px solid var(--pg-text);
+  }
+  .frame-cross > .cnr {
+    position: absolute;
+    width: 16px; height: 16px;
+    pointer-events: none;
+    z-index: 4;
+  }
+  .frame-cross > .cnr::before,
+  .frame-cross > .cnr::after {
+    content: "";
+    position: absolute;
+    background: var(--pg-text);
+  }
+  /* horizontal stroke through corner */
+  .frame-cross > .cnr::before {
+    top: 50%; transform: translateY(-50%);
+    left: 0; right: 0; height: 1px;
+  }
+  /* vertical stroke through corner */
+  .frame-cross > .cnr::after {
+    left: 50%; transform: translateX(-50%);
+    top: 0; bottom: 0; width: 1px;
+  }
+  .frame-cross > .cnr--tl { top: -8px;    left: -8px; }
+  .frame-cross > .cnr--tr { top: -8px;    right: -8px; }
+  .frame-cross > .cnr--bl { bottom: -8px; left: -8px; }
+  .frame-cross > .cnr--br { bottom: -8px; right: -8px; }
+
+  /* Variante hairline más fino (usar con border-color softer) */
+  .frame-cross--soft {
+    border-color: var(--pg-line-strong);
+  }
+  .frame-cross--soft > .cnr::before,
+  .frame-cross--soft > .cnr::after {
+    background: var(--pg-text);
+  }
+
+  /* ===================================================================
+     Portrait card · patrón propuesto para retratos de equipo
+     Imagen B&W desaturada → color al hover · caption mono UPPER abajo
+     =================================================================== */
+  .portrait { display: block; text-decoration: none; color: inherit; }
+  .portrait__img {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--pg-paper);
+  }
+  .portrait__img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: saturate(.4) contrast(1.05);
+    transition: filter .5s var(--498-ease), transform .6s var(--498-ease);
+  }
+  .portrait:hover .portrait__img img {
+    filter: saturate(1) contrast(1);
+    transform: scale(1.03);
+  }
+  .portrait__caption {
+    margin-top: 14px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .portrait__name {
+    font-family: var(--498-family-body); font-weight: 400;
+    font-size: 16px; color: var(--pg-text);
+  }
+  .portrait__role {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--pg-text-faint); letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .portrait__role-num {
+    color: var(--498-green-deep); margin-right: 8px;
+  }
+
+  /* ===================================================================
      UI module · Forms + Badges + Table + Code block (LIGHT mode · esquinas cuadradas)
      =================================================================== */
   .ui-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
@@ -1004,13 +1107,18 @@
   @media (max-width: 900px) { .team-split { grid-template-columns: 1fr; } }
 
   .team-photo {
-    border: 1px solid var(--pg-line-strong);
-    overflow: hidden;
+    border: 1px solid var(--pg-text);
+    overflow: visible;
     position: relative;
     aspect-ratio: 4/3;
     background: var(--498-grey-100);
   }
-  .team-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .team-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(.5) contrast(1.05);
+    transition: filter .6s var(--498-ease);
+  }
+  .team-photo:hover img { filter: saturate(1) contrast(1); }
   .team-photo__caption {
     position: absolute; left: 12px; bottom: 12px;
     background: rgba(255,255,255,.94); padding: 6px 10px;
@@ -1184,9 +1292,12 @@
            alt="Cluster cristalino · placeholder hasta imagen IA final (pirita verde + vegetal + cifras)">
     </div>
 
-    <!-- STACK · 2 cajas hairline flotando sobre el gradient -->
+    <!-- STACK · 2 cajas hairline flotando sobre el gradient
+         La caja título lleva frame-cross (corner marks) como firma de craft -->
     <div class="vision-hero-card__stack">
-      <div class="vision-hero-card__title-box">
+      <div class="vision-hero-card__title-box frame-cross frame-cross--soft">
+        <span class="cnr cnr--tl"></span><span class="cnr cnr--tr"></span>
+        <span class="cnr cnr--bl"></span><span class="cnr cnr--br"></span>
         <span class="eyebrow-square vision-hero-card__eyebrow">Our Goal</span>
         <h2 class="vision-hero-card__claim">
           Lorem ipsum<br>dolor sit amet.
@@ -1380,7 +1491,9 @@
 
   <div class="box-collection box-collection--3 box-collection--persiana">
     <a class="box-card" href="#">
-      <div class="box-card__img">
+      <div class="box-card__img frame-cross-mini">
+        <span class="cnr-mini cnr-mini--tl"></span><span class="cnr-mini cnr-mini--tr"></span>
+        <span class="cnr-mini cnr-mini--bl"></span><span class="cnr-mini cnr-mini--br"></span>
         <video autoplay muted loop playsinline preload="metadata">
           <source src="assets/video/loop-productos.mp4" type="video/mp4">
         </video>
@@ -1403,7 +1516,9 @@
       </div>
     </a>
     <a class="box-card" href="#">
-      <div class="box-card__img">
+      <div class="box-card__img frame-cross-mini">
+        <span class="cnr-mini cnr-mini--tl"></span><span class="cnr-mini cnr-mini--tr"></span>
+        <span class="cnr-mini cnr-mini--bl"></span><span class="cnr-mini cnr-mini--br"></span>
         <video autoplay muted loop playsinline preload="metadata">
           <source src="assets/video/loop-servicios.mp4" type="video/mp4">
         </video>
@@ -1426,7 +1541,9 @@
       </div>
     </a>
     <a class="box-card" href="#">
-      <div class="box-card__img" style="background:var(--pg-pattern),var(--498-white);background-repeat:repeat;display:flex;align-items:center;justify-content:center">
+      <div class="box-card__img frame-cross-mini" style="background:var(--pg-pattern),var(--498-white);background-repeat:repeat;display:flex;align-items:center;justify-content:center">
+        <span class="cnr-mini cnr-mini--tl"></span><span class="cnr-mini cnr-mini--tr"></span>
+        <span class="cnr-mini cnr-mini--bl"></span><span class="cnr-mini cnr-mini--br"></span>
         <img src="assets/logos/georadar_isotype_black.svg" style="width:64px;height:64px;object-fit:contain">
         <div class="img-chip" aria-hidden="true">
           <span class="img-chip__icon">
@@ -1505,7 +1622,9 @@
   </div>
 
   <div class="team-split">
-    <figure class="team-photo">
+    <figure class="team-photo frame-cross">
+      <span class="cnr cnr--tl"></span><span class="cnr cnr--tr"></span>
+      <span class="cnr cnr--bl"></span><span class="cnr cnr--br"></span>
       <img src="assets/team/equipo-barcelona.webp" alt="Equipo 498A · Barcelona">
       <figcaption class="team-photo__caption">Equipo 498A · Barcelona · 2026</figcaption>
     </figure>
