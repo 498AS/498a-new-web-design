@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+  <!--
+    Trama de píxeles · ALGORITMO GENERATIVO
+    Píxeles CONTIGUOS · 7 clusters separados por whitespace
+    Inspirado en Conway's Game of Life · cellular automata
+    Paleta brand 498A · opacidades 14–35%
+  -->
+
+  <!-- Cluster 01 · block 2x2 · green primary · top-left -->
+  <rect x="10"  y="10"  width="10" height="10" fill="#2DD60F" fill-opacity="0.35"/>
+  <rect x="20"  y="10"  width="10" height="10" fill="#2DD60F" fill-opacity="0.35"/>
+  <rect x="10"  y="20"  width="10" height="10" fill="#2DD60F" fill-opacity="0.35"/>
+  <rect x="20"  y="20"  width="10" height="10" fill="#2DD60F" fill-opacity="0.35"/>
+
+  <!-- Cluster 02 · beehive 6 cells · green deep · upper-middle -->
+  <rect x="60"  y="20"  width="10" height="10" fill="#0E7A1F" fill-opacity="0.30"/>
+  <rect x="70"  y="20"  width="10" height="10" fill="#0E7A1F" fill-opacity="0.30"/>
+  <rect x="50"  y="30"  width="10" height="10" fill="#0E7A1F" fill-opacity="0.30"/>
+  <rect x="80"  y="30"  width="10" height="10" fill="#0E7A1F" fill-opacity="0.30"/>
+  <rect x="60"  y="40"  width="10" height="10" fill="#0E7A1F" fill-opacity="0.30"/>
+  <rect x="70"  y="40"  width="10" height="10" fill="#0E7A1F" fill-opacity="0.30"/>
+
+  <!-- Cluster 03 · glider 5 cells · green primary · upper-right -->
+  <rect x="130" y="30"  width="10" height="10" fill="#2DD60F" fill-opacity="0.28"/>
+  <rect x="120" y="40"  width="10" height="10" fill="#2DD60F" fill-opacity="0.28"/>
+  <rect x="130" y="40"  width="10" height="10" fill="#2DD60F" fill-opacity="0.28"/>
+  <rect x="140" y="40"  width="10" height="10" fill="#2DD60F" fill-opacity="0.28"/>
+  <rect x="110" y="50"  width="10" height="10" fill="#2DD60F" fill-opacity="0.28"/>
+
+  <!-- Cluster 04 · vertical blinker 3 cells · black · mid-left -->
+  <rect x="20"  y="60"  width="10" height="10" fill="#000000" fill-opacity="0.18"/>
+  <rect x="20"  y="70"  width="10" height="10" fill="#000000" fill-opacity="0.18"/>
+  <rect x="20"  y="80"  width="10" height="10" fill="#000000" fill-opacity="0.18"/>
+
+  <!-- Cluster 05 · L-shape 5 cells · green deep · mid-center -->
+  <rect x="70"  y="70"  width="10" height="10" fill="#0E7A1F" fill-opacity="0.32"/>
+  <rect x="70"  y="80"  width="10" height="10" fill="#0E7A1F" fill-opacity="0.32"/>
+  <rect x="70"  y="90"  width="10" height="10" fill="#0E7A1F" fill-opacity="0.32"/>
+  <rect x="80"  y="90"  width="10" height="10" fill="#0E7A1F" fill-opacity="0.32"/>
+  <rect x="90"  y="90"  width="10" height="10" fill="#0E7A1F" fill-opacity="0.32"/>
+
+  <!-- Cluster 06 · horizontal line 4 cells · green primary · mid-right -->
+  <rect x="110" y="80"  width="10" height="10" fill="#2DD60F" fill-opacity="0.25"/>
+  <rect x="120" y="80"  width="10" height="10" fill="#2DD60F" fill-opacity="0.25"/>
+  <rect x="130" y="80"  width="10" height="10" fill="#2DD60F" fill-opacity="0.25"/>
+  <rect x="140" y="80"  width="10" height="10" fill="#2DD60F" fill-opacity="0.25"/>
+
+  <!-- Cluster 07 · toad 6 cells · green deep · bottom-left -->
+  <rect x="40"  y="120" width="10" height="10" fill="#0E7A1F" fill-opacity="0.28"/>
+  <rect x="50"  y="120" width="10" height="10" fill="#0E7A1F" fill-opacity="0.28"/>
+  <rect x="60"  y="120" width="10" height="10" fill="#0E7A1F" fill-opacity="0.28"/>
+  <rect x="30"  y="130" width="10" height="10" fill="#0E7A1F" fill-opacity="0.28"/>
+  <rect x="40"  y="130" width="10" height="10" fill="#0E7A1F" fill-opacity="0.28"/>
+  <rect x="50"  y="130" width="10" height="10" fill="#0E7A1F" fill-opacity="0.28"/>
+
+  <!-- Cluster 08 · diagonal stair 3 cells · grey 700 · bottom-right -->
+  <rect x="110" y="120" width="10" height="10" fill="#404040" fill-opacity="0.16"/>
+  <rect x="120" y="130" width="10" height="10" fill="#404040" fill-opacity="0.16"/>
+  <rect x="130" y="140" width="10" height="10" fill="#404040" fill-opacity="0.16"/>
+
+  <!-- Cluster 09 · pair 2 cells · green primary · bottom edge -->
+  <rect x="90"  y="140" width="10" height="10" fill="#2DD60F" fill-opacity="0.30"/>
+  <rect x="100" y="140" width="10" height="10" fill="#2DD60F" fill-opacity="0.30"/>
+</svg>

@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>498Adesign · showcase v2</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--498-black); color: var(--498-text); font-family: var(--498-family-body); font-weight: 300; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  section { padding: var(--498-section-pad-y) var(--498-page-pad); border-bottom: 1px solid var(--498-line-soft); }
+  section:last-child { border-bottom: 0; }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    height: var(--498-nav-h); padding: 0 var(--498-page-pad);
+    background: rgba(0,0,0,.85); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--498-line-soft);
+  }
+  .nav__brand { font-family: var(--498-family-display); font-size: 22px; color: var(--498-white); letter-spacing: 2px; }
+  .nav__brand b { color: var(--498-green); }
+  .nav__links { display: flex; gap: 28px; }
+  .nav__links a { color: var(--498-text); text-decoration: none; font-family: var(--498-family-ui); font-size: 14px; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 500; transition: color .2s; }
+  .nav__links a:hover { color: var(--498-green); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    background: var(--498-gradient-hero);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: var(--498-section-pad-y) var(--498-page-pad) 80px;
+  }
+  .hero__eyebrow { margin-bottom: 28px; }
+  .hero__display { color: var(--498-white); max-width: 1100px; margin-bottom: 32px; }
+  .hero__display span { color: var(--498-green); }
+  .hero__lead { color: var(--498-text); max-width: 720px; margin-bottom: 36px; }
+  .hero__cta { display: flex; gap: 16px; }
+
+  /* Section headers */
+  h2.sec-title { color: var(--498-white); margin-bottom: 48px; }
+  .sec-eyebrow { margin-bottom: 16px; }
+  .sec-intro { color: var(--498-text-muted); max-width: 680px; margin-bottom: 48px; }
+
+  /* COLOR */
+  .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+  .swatch { border: 1px solid var(--498-line-soft); border-radius: var(--498-radius-2); overflow: hidden; background: var(--498-grey-900); }
+  .swatch__chip { height: 96px; position: relative; }
+  .swatch__chip::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(255,255,255,.04); }
+  .swatch__meta { padding: 12px 14px 14px; }
+  .swatch__name { font-family: var(--498-family-ui); font-weight: 500; font-size: 12px; color: var(--498-white); text-transform: uppercase; letter-spacing: 1px; }
+  .swatch__hex { font-family: var(--498-family-mono); font-size: 11px; color: var(--498-grey-400); margin-top: 4px; }
+  .palette-h3 { color: var(--498-white); margin: 40px 0 20px; }
+  .palette-h3:first-child { margin-top: 0; }
+
+  /* GRADIENT BLOCKS */
+  .gradient-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .grad { height: 200px; border-radius: var(--498-radius-2); position: relative; overflow: hidden; border: 1px solid var(--498-line-soft); }
+  .grad__label { position: absolute; bottom: 12px; left: 14px; right: 14px; font-family: var(--498-family-mono); font-size: 11px; color: var(--498-white); letter-spacing: .8px; text-transform: uppercase; background: rgba(0,0,0,.4); padding: 6px 10px; border-radius: 2px; }
+  .grad-hero { background: var(--498-gradient-hero); }
+  .grad-section { background: var(--498-gradient-section); }
+  .grad-section-light { background: var(--498-gradient-section-light); }
+  .grad-cta { background: var(--498-gradient-cta); }
+  .grad-card-h { background: var(--498-gradient-card-highlight), var(--498-grey-900); }
+  .grad-soft-glow { background: var(--498-gradient-soft-glow), var(--498-black); }
+
+  /* TYPE table */
+  .type-row { display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 22px 0; border-top: 1px solid var(--498-line-soft); align-items: baseline; }
+  .type-row:first-child { border-top: 0; }
+  .type-meta { font-family: var(--498-family-mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--498-green); }
+  .type-meta b { display: block; color: var(--498-text); font-weight: 400; margin-top: 6px; font-family: var(--498-family-ui); font-size: 12px; text-transform: none; letter-spacing: 0; }
+
+  /* COMPONENTS */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
+  .btn-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+  /* EDITORIAL example */
+  .article { max-width: 720px; }
+  .article h3 { color: var(--498-white); margin: 0 0 24px; }
+  .article p { color: var(--498-text); margin-bottom: 20px; }
+  .article p:last-child { margin-bottom: 0; }
+
+  /* FOOTER */
+  footer { padding: 48px var(--498-page-pad); border-top: 1px solid var(--498-line-soft); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  footer .left { font-family: var(--498-family-mono); font-size: 11px; color: var(--498-green); letter-spacing: 1px; text-transform: uppercase; }
+  footer .right { font-family: var(--498-family-ui); font-size: 13px; color: var(--498-text-muted); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__brand">498<b>A</b>design</div>
+  <div class="nav__links">
+    <a href="#color">Color</a>
+    <a href="#gradients">Degradados</a>
+    <a href="#type">Tipografía</a>
+    <a href="#components">Componentes</a>
+    <a href="#editorial">Editorial · Citas</a>
+  </div>
+  <a class="btn" href="#editorial">Ver demo →</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="eyebrow hero__eyebrow">498Adesign · v2 · 2026-05-16</div>
+  <h1 class="t-display-1 hero__display">
+    Verde, gris, negro.<br>
+    Tipografía contenida. <span>Citas técnicas.</span>
+  </h1>
+  <p class="t-p-xl hero__lead">
+    Sistema de diseño v2 de 498A. Dos tonos de verde con la intensidad bajada un punto.
+    Degradados sutiles adaptados de Isomorphic Labs. Escala tipográfica restraint.
+    Hipervínculos y citas con número clickable para densidad técnica.
+    Esquinas cuadradas como antes.
+  </p>
+  <div class="hero__cta">
+    <a class="btn" href="#color">Empezar el tour →</a>
+    <a class="btn btn-ghost" href="#editorial">Ver ejemplo editorial</a>
+  </div>
+</header>
+
+<!-- COLOR -->
+<section id="color">
+  <div class="eyebrow sec-eyebrow">01 · Color</div>
+  <h2 class="t-h1 sec-title">Verde - gris - negro.</h2>
+  <p class="t-p-l sec-intro">
+    Dos tonos de verde (primario más profundo) con la intensidad bajada respecto al fluor original
+    <code style="font-family:var(--498-family-mono);color:var(--498-green);">#37E813</code>.
+    El gris pasa a tier explícito con 10 niveles. El negro queda como lienzo base.
+  </p>
+
+  <h3 class="t-h3 palette-h3">Verdes</h3>
+  <div class="palette-grid">
+    <div class="swatch"><div class="swatch__chip" style="background:#2DD60F"></div><div class="swatch__meta"><div class="swatch__name">Green · primary</div><div class="swatch__hex">#2DD60F</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#0E7A1F"></div><div class="swatch__meta"><div class="swatch__name">Green · deep</div><div class="swatch__hex">#0E7A1F</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#26B30D"></div><div class="swatch__meta"><div class="swatch__name">Green · hover</div><div class="swatch__hex">#26B30D</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:rgba(45,214,15,.12);border-bottom:1px solid #2D2D2D"></div><div class="swatch__meta"><div class="swatch__name">Green · soft</div><div class="swatch__hex">rgba(45,214,15,.12)</div></div></div>
+  </div>
+
+  <h3 class="t-h3 palette-h3">Grey scale</h3>
+  <div class="palette-grid">
+    <div class="swatch"><div class="swatch__chip" style="background:#F7F7F7"></div><div class="swatch__meta"><div class="swatch__name">Grey 50</div><div class="swatch__hex">#F7F7F7</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#ECECEC"></div><div class="swatch__meta"><div class="swatch__name">Grey 100</div><div class="swatch__hex">#ECECEC</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#D9D9D9"></div><div class="swatch__meta"><div class="swatch__name">Grey 200</div><div class="swatch__hex">#D9D9D9</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#BFBFBF"></div><div class="swatch__meta"><div class="swatch__name">Grey 300</div><div class="swatch__hex">#BFBFBF</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#999999"></div><div class="swatch__meta"><div class="swatch__name">Grey 400</div><div class="swatch__hex">#999999</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#7A7A7A"></div><div class="swatch__meta"><div class="swatch__name">Grey 500</div><div class="swatch__hex">#7A7A7A</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#5C5C5C"></div><div class="swatch__meta"><div class="swatch__name">Grey 600</div><div class="swatch__hex">#5C5C5C</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#404040"></div><div class="swatch__meta"><div class="swatch__name">Grey 700</div><div class="swatch__hex">#404040</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#2D2D2D"></div><div class="swatch__meta"><div class="swatch__name">Grey 800</div><div class="swatch__hex">#2D2D2D</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#1A1A1A"></div><div class="swatch__meta"><div class="swatch__name">Grey 900</div><div class="swatch__hex">#1A1A1A</div></div></div>
+  </div>
+
+  <h3 class="t-h3 palette-h3">Anclas</h3>
+  <div class="palette-grid">
+    <div class="swatch"><div class="swatch__chip" style="background:#000"></div><div class="swatch__meta"><div class="swatch__name">Black</div><div class="swatch__hex">#000000</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#FFF"></div><div class="swatch__meta"><div class="swatch__name">White</div><div class="swatch__hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#E84B3C"></div><div class="swatch__meta"><div class="swatch__name">Alert</div><div class="swatch__hex">#E84B3C</div></div></div>
+  </div>
+</section>
+
+<!-- GRADIENTS -->
+<section id="gradients">
+  <div class="eyebrow sec-eyebrow">02 · Degradados</div>
+  <h2 class="t-h1 sec-title">Seis degradados en la paleta de 498A.</h2>
+  <p class="t-p-l sec-intro">
+    Adaptados del lenguaje de isomorphiclabs.com: radiales suaves de baja opacidad sobre negro,
+    lineales sutiles para fondos de sección, y un degradado verde primario→profundo para CTAs y acentos.
+  </p>
+
+  <div class="gradient-grid">
+    <div class="grad grad-hero"><span class="grad__label">--498-gradient-hero · radial verde · low alpha sobre negro</span></div>
+    <div class="grad grad-cta"><span class="grad__label">--498-gradient-cta · 135° green → green-deep</span></div>
+    <div class="grad grad-section"><span class="grad__label">--498-gradient-section · 180° black → grey-900</span></div>
+    <div class="grad grad-section-light"><span class="grad__label">--498-gradient-section-light · 180° grey-50 → grey-100</span></div>
+    <div class="grad grad-card-h"><span class="grad__label">--498-gradient-card-highlight · radial verde 8% sobre grey-900</span></div>
+    <div class="grad grad-soft-glow"><span class="grad__label">--498-gradient-soft-glow · radial verde 15% bottom center</span></div>
+  </div>
+</section>
+
+<!-- TYPE -->
+<section id="type">
+  <div class="eyebrow sec-eyebrow">03 · Tipografía</div>
+  <h2 class="t-h1 sec-title">Escala de Isomorphic, fuentes de 498A.</h2>
+  <p class="t-p-l sec-intro">
+    Bebas Neue para displays UPPER. Hepta Slab para headlines y body. Roboto Mono para tags y citas.
+    Roboto para UI. Tamaños y tracking adaptados directamente de isomorphiclabs.com — restraint editorial
+    en lugar de gritar con 100&nbsp;px.
+  </p>
+
+  <div class="type-row">
+    <div class="type-meta">Display 1 · Bebas Neue<b>70 / 77 · -2 · UPPER</b></div>
+    <div class="t-display-1" style="color:var(--498-white)">498A. Verde, gris, negro.</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Display 2<b>56 / 61.6 · -1.7</b></div>
+    <div class="t-display-2" style="color:var(--498-white)">Inteligencia aplicada</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Display 3<b>48 / 57.6 · -1</b></div>
+    <div class="t-display-3" style="color:var(--498-white)">Frontera entre investigación y aplicación</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Headline 1 · Hepta Slab<b>36 / 43.2 · -.7 · 300</b></div>
+    <div class="t-h1" style="color:var(--498-white)">Compañeros digitales que deciden, colaboran y aprenden.</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Headline 2<b>28 / 36.4 · -.3</b></div>
+    <div class="t-h2" style="color:var(--498-white)">Modelos en tu infraestructura. Tu dato se queda en casa.</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Headline 3<b>24 / 31.2 · -.2</b></div>
+    <div class="t-h3" style="color:var(--498-white)">Cómo la IA narra el Mundial FIFA 2026.</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Quote L · italic<b>48 / 57.6 · -1</b></div>
+    <div class="t-quote-l" style="color:var(--498-white);max-width:880px">
+      <em>"We don't know of any other consultancy that knows how to work in that thin line between research and applied solutions."</em>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Paragraph XL<b>24 / 32.4</b></div>
+    <div class="t-p-xl" style="max-width:760px">
+      Construimos los sistemas que permiten ver el comportamiento antes de que llegue al negocio,
+      a la institución o a la sociedad.
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Paragraph L<b>20 / 28</b></div>
+    <div class="t-p-l" style="max-width:680px">
+      Cada proyecto que sale por la puerta de 498A pasa por las cuatro etapas: dataset, modelo,
+      despliegue, medición. Cuatro etapas que se retroalimentan en espiral.
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Paragraph M<b>16 / 22.4</b></div>
+    <div class="t-p-m" style="color:var(--498-text-muted);max-width:600px">
+      Body para cards, captions y metadatos. Siempre Hepta Slab 300.
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Paragraph XS<b>12 / 16.8 · Buch 400</b></div>
+    <div class="t-p-xs" style="color:var(--498-text-muted)">
+      PARA NOTAS AL PIE, LEGAL Y DISCLAIMERS · OPCIONAL ALL-CAPS.
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Tag L · Roboto Mono<b>14 · +1.1</b></div>
+    <div class="t-tag-l c-green">• Estudio en curso · GEORadar · Mundial FIFA 2026</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Tag S · Roboto Mono<b>12 · +1</b></div>
+    <div class="t-tag-s c-green">• Capacidad 01 · Sistemas multiagente</div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section id="components">
+  <div class="eyebrow sec-eyebrow">04 · Componentes</div>
+  <h2 class="t-h1 sec-title">Esquinas cuadradas. Sin redondeos suaves.</h2>
+  <p class="t-p-l sec-intro">
+    Radius máximo 4&nbsp;px. Botones con degradado verde. Cards con highlight radial sutil en la esquina superior izquierda.
+    Todo angular, como antes.
+  </p>
+
+  <h3 class="t-h3 palette-h3">Botones</h3>
+  <div class="btn-row" style="margin-bottom:48px">
+    <a class="btn" href="#">Solicitar auditoría →</a>
+    <a class="btn btn-ghost" href="#">Ver capacidades</a>
+    <a class="btn" href="#" style="background:var(--498-green);">Solid verde primary</a>
+  </div>
+
+  <h3 class="t-h3 palette-h3">Cards</h3>
+  <div class="grid-3">
+    <article class="card">
+      <div class="t-tag-l c-green" style="margin-bottom:18px">• Capacidad 01</div>
+      <h4 class="t-h2" style="color:var(--498-white);margin-bottom:16px">Sistemas multiagente</h4>
+      <p class="t-p-m" style="color:var(--498-text-muted)">
+        Compañeros digitales (AI implants) que deciden, colaboran y aprenden.
+        Para clientes con operaciones complejas.
+      </p>
+      <a class="link" href="#" style="margin-top:24px;display:inline-block">Ver caso de uso</a>
+    </article>
+    <article class="card">
+      <div class="t-tag-l c-green" style="margin-bottom:18px">• Capacidad 02</div>
+      <h4 class="t-h2" style="color:var(--498-white);margin-bottom:16px">Visibilidad GEO</h4>
+      <p class="t-p-m" style="color:var(--498-text-muted)">
+        Cómo te ven ChatGPT, Claude, Gemini, Perplexity, Copilot y Google AI Overviews.
+      </p>
+      <a class="link link-ext" href="https://georadar.app" target="_blank" style="margin-top:24px;display:inline-block">georadar.app</a>
+    </article>
+    <article class="card card-light">
+      <div class="t-tag-l c-green-deep" style="margin-bottom:18px;color:var(--498-green-deep)">• Variante claro</div>
+      <h4 class="t-h2" style="color:var(--498-black);margin-bottom:16px">Cuando hay que respirar</h4>
+      <p class="t-p-m" style="color:var(--498-grey-600)">
+        La variante card-light rompe la monocromía oscura cuando una sección lo necesita.
+        Mismas esquinas cuadradas, fondo gris 50.
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- EDITORIAL · LINKS Y CITAS -->
+<section id="editorial">
+  <div class="eyebrow sec-eyebrow">05 · Editorial · Hipervínculos y citas técnicas</div>
+  <h2 class="t-h1 sec-title">Texto con peso de paper académico.</h2>
+  <p class="t-p-l sec-intro">
+    Los hipervínculos llevan underline sutil en verde. Las citas son números clickables tipo paper
+    académico — pequeños, en mono, con border cuadrado. Al final del artículo, una lista de referencias
+    ordenada con anclas verdes.
+  </p>
+
+  <article class="article">
+    <div class="eyebrow" style="margin-bottom:16px">Ejemplo · fragmento editorial</div>
+    <h3 class="t-h2">Por qué el embudo de decisión ha cambiado de superficie.</h3>
+
+    <p class="t-p-long">
+      Mientras tu competencia optimiza para Google clásico, los modelos generativos
+      <a class="link" href="#ref-1">ya están filtrando, comparando y recomendando marcas</a><span class="cite"><a href="#ref-1">[1]</a></span>
+      en el momento exacto de la decisión.
+      GEORadar audita ese espacio semántico con entre 3.000 y 30.000 prompts personalizados
+      por estudio, ejecutados contra los seis motores principales<span class="cite"><a href="#ref-2">[2]</a></span>.
+    </p>
+
+    <p class="t-p-long">
+      El nuevo embudo de decisión no es un calco del antiguo. Los bloques de
+      <a class="link link-ext" href="https://blog.google/products/search/ai-overviews/" target="_blank">Google AI Overviews</a>
+      aparecen en aproximadamente el 21% de búsquedas globales, superando el 30% en sectores
+      regulados<span class="cite"><a href="#ref-3">[3]</a></span>. La equivalencia operativa es clara:
+      una consulta a un LLM produce aproximadamente el mismo descubrimiento que
+      tres o cuatro búsquedas tradicionales con bloques AIO.
+    </p>
+
+    <p class="t-p-long">
+      Esto cambia el cálculo de inversión en visibilidad. Las consultoras que solo miden Google
+      pierden un porcentaje creciente del embudo real, y el GEO deja de ser
+      <a class="link" href="https://zoopa.es/es/geo-ia-visibilidad/geo-no-es-seo-argumentos/" target="_blank">una extensión del SEO</a><span class="cite"><a href="#ref-4">[4]</a></span>
+      para convertirse en una disciplina con métricas y metodología propias.
+    </p>
+
+    <ol class="references">
+      <li id="ref-1">
+        Ortet, C. <em>Beyond LLMs: in search of the next AI beast</em>.
+        Medium, mayo 2026.
+        <a href="https://medium.com/@carlosortet/beyond-llms-in-search-of-the-next-ai-beast-2ad0da1138ca" target="_blank">medium.com/@carlosortet</a>
+      </li>
+      <li id="ref-2">
+        498A. <em>Stack canónico GEORadar: 9 capas, 9 verticales, KPIs propietarios</em>.
+        Documentación interna, 2026-05-12.
+      </li>
+      <li id="ref-3">
+        Google. <em>AI Overviews launch and rollout data</em>.
+        Communicado público, 2026.
+        <a href="https://blog.google/products/search/ai-overviews/" target="_blank">blog.google/products/search</a>
+      </li>
+      <li id="ref-4">
+        Equipo Zoopa. <em>El GEO no es SEO: 11 argumentos irrefutables</em>.
+        Zoopa Blog, febrero 2026.
+        <a href="https://zoopa.es/es/geo-ia-visibilidad/geo-no-es-seo-argumentos/" target="_blank">zoopa.es</a>
+      </li>
+    </ol>
+  </article>
+</section>
+
+<footer>
+  <div class="left">498Adesign v2 · 2026-05-16</div>
+  <div class="right">Adaptado de isomorphiclabs.com · esquinas cuadradas · dos verdes · escala restraint</div>
+</footer>
+
+</body>
+</html>

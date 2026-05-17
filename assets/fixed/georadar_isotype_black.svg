@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- georadar · isotype vectorial limpio (reconstruido del PNG raster) -->
+<!-- Disco negro + "g" Hepta Slab en blanco + punto satélite (eco de radar) -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 200 200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@300;400;500;600&display=swap');
+      .iso-disc { fill: #000000; }
+      .iso-dot  { fill: #000000; }
+      .iso-g {
+        font-family: 'Hepta Slab', 'Georgia', serif;
+        font-weight: 600;
+        font-size: 160px;
+        fill: #ffffff;
+        dominant-baseline: middle;
+        text-anchor: middle;
+      }
+    </style>
+  </defs>
+  <!-- Disco principal -->
+  <circle class="iso-disc" cx="90" cy="105" r="85"/>
+  <!-- Punto satélite (eco) -->
+  <circle class="iso-dot" cx="172" cy="35" r="15"/>
+  <!-- Letra g blanca -->
+  <text class="iso-g" x="90" y="118">g</text>
+</svg>

@@ -1,0 +1,396 @@
+/* =============================================================
+   498Adesign · tokens v2 · 2026-05-16
+   Verde-gris-negro · dos tonos de verde · intensidad bajada
+   Escala tipográfica adaptada de isomorphiclabs.com
+   Esquinas cuadradas, sin redondeos suaves
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dela+Gothic+One&family=Hepta+Slab:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Poppins:wght@300;400;500&family=Roboto+Mono:wght@400;500&family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  /* -- Color: brand (dos tonos de verde, intensidad bajada) ----- */
+  --498-green:         #2DD60F;  /* PRIMARY · un punto menos estridente que el viejo #37E813 */
+  --498-green-deep:    #0E7A1F;  /* DEEP · forest/moss · para gradientes y profundidad */
+  --498-green-hover:   #26B30D;  /* hover de CTAs primarios */
+  --498-green-soft:    rgba(45, 214, 15, .12);  /* glow / fondos suaves */
+  --498-green-line:    rgba(45, 214, 15, .35);  /* underlines, borders sutiles */
+
+  /* -- Color: monocromo (verde-GRIS-negro · tier explícito) ----- */
+  --498-black:         #000000;
+  --498-grey-900:      #1A1A1A;   /* deep surface */
+  --498-grey-800:      #2D2D2D;   /* surface 1 */
+  --498-grey-700:      #404040;   /* surface 2 · borders dark */
+  --498-grey-600:      #5C5C5C;
+  --498-grey-500:      #7A7A7A;   /* text muted */
+  --498-grey-400:      #999999;   /* text soft */
+  --498-grey-300:      #BFBFBF;
+  --498-grey-200:      #D9D9D9;   /* text on dark */
+  --498-grey-100:      #ECECEC;   /* background light */
+  --498-grey-50:       #F7F7F7;   /* paper */
+  --498-white:         #FFFFFF;
+
+  /* -- Semánticos (alias amigables) ----------------------------- */
+  --498-bg:            var(--498-black);
+  --498-bg-soft:       var(--498-grey-900);
+  --498-text:          var(--498-grey-200);
+  --498-text-muted:    var(--498-grey-400);
+  --498-text-strong:   var(--498-white);
+  --498-line:          var(--498-grey-700);
+  --498-line-soft:     var(--498-grey-800);
+
+  /* -- Alerta (un punto menos que antes) ------------------------ */
+  --498-alert:         #E84B3C;
+
+  /* -- Gradientes (estilo Isomorphic, paleta 498A) -------------- */
+  --498-gradient-hero:
+    radial-gradient(70% 50% at 80% 20%, rgba(45, 214, 15, .12), transparent 60%),
+    radial-gradient(50% 40% at 20% 80%, rgba(14, 122, 31, .25), transparent 60%),
+    #000000;
+
+  --498-gradient-section:
+    linear-gradient(180deg, #000000 0%, #1A1A1A 100%);
+
+  --498-gradient-section-light:
+    linear-gradient(180deg, #F7F7F7 0%, #ECECEC 100%);
+
+  --498-gradient-cta:
+    linear-gradient(135deg, #2DD60F 0%, #0E7A1F 100%);
+
+  --498-gradient-card-highlight:
+    radial-gradient(60% 50% at 0% 0%, rgba(45, 214, 15, .08), transparent 70%);
+
+  --498-gradient-soft-glow:
+    radial-gradient(50% 30% at 50% 100%, rgba(45, 214, 15, .15), transparent 70%);
+
+  /* -- Tipografía: familias ------------------------------------- */
+  --498-family-display: "Bebas Neue", Impact, "Arial Narrow", sans-serif;  /* h1, displays UPPER */
+  --498-family-chunky:  "Dela Gothic One", "Arial Black", sans-serif;       /* acentos rotundos */
+  --498-family-body:    "Hepta Slab", Georgia, serif;                       /* body slab */
+  --498-family-ui:      "Roboto", system-ui, Arial, sans-serif;             /* UI funcional */
+  --498-family-alt:     "Poppins", system-ui, Arial, sans-serif;            /* editorial alt */
+  --498-family-mono:    "Roboto Mono", ui-monospace, Menlo, monospace;      /* tags, citas, code */
+
+  /* -- Tipografía: escala (adaptada de Isomorphic, DESKTOP) ----- */
+  --498-display-1-size: 70px;    --498-display-1-lh: 77px;     --498-display-1-ls: -2px;
+  --498-display-2-size: 56px;    --498-display-2-lh: 61.6px;   --498-display-2-ls: -1.7px;
+  --498-display-3-size: 48px;    --498-display-3-lh: 57.6px;   --498-display-3-ls: -1px;
+
+  --498-h1-size: 36px;           --498-h1-lh: 43.2px;          --498-h1-ls: -.7px;
+  --498-h2-size: 28px;           --498-h2-lh: 36.4px;          --498-h2-ls: -.3px;
+  --498-h3-size: 24px;           --498-h3-lh: 31.2px;          --498-h3-ls: -.2px;
+
+  --498-quote-l-size: 48px;      --498-quote-l-lh: 57.6px;     --498-quote-l-ls: -1px;
+  --498-quote-m-size: 28px;      --498-quote-m-lh: 36.4px;     --498-quote-m-ls: -.3px;
+
+  --498-p-xl-size: 24px;         --498-p-xl-lh: 32.4px;
+  --498-p-l-size:  20px;         --498-p-l-lh:  28px;
+  --498-p-m-size:  16px;         --498-p-m-lh:  22.4px;
+  --498-p-s-size:  14px;         --498-p-s-lh:  19.6px;
+  --498-p-xs-size: 12px;         --498-p-xs-lh: 16.8px;        --498-p-xs-ls: .3px;
+  --498-p-long-size: 20px;       --498-p-long-lh: 28px;        --498-p-long-ls: .2px;
+
+  --498-tag-l-size: 14px;        --498-tag-l-lh: 19.6px;       --498-tag-l-ls: 1.1px;
+  --498-tag-s-size: 12px;        --498-tag-s-lh: 16.8px;       --498-tag-s-ls: 1px;
+
+  /* -- Pesos ---------------------------------------------------- */
+  --498-w-light: 300;
+  --498-w-reg:   400;
+  --498-w-mid:   500;
+  --498-w-bold:  600;
+
+  /* -- Esquinas cuadradas (sin redondeos suaves) ---------------- */
+  --498-radius-0: 0;
+  --498-radius-1: 2px;
+  --498-radius-2: 4px;   /* máximo · sistema angular, no se usan 12-20px */
+
+  /* -- Layout --------------------------------------------------- */
+  --498-content-max:   1440px;
+  --498-content-narrow: 760px;
+  --498-page-pad:      8vw;
+  --498-section-pad-y: 96px;
+  --498-nav-h:         72px;
+  --498-hero-h:        100vh;
+
+  /* -- Motion --------------------------------------------------- */
+  --498-ease:     cubic-bezier(.2, .8, .2, 1);
+  --498-dur-fast: 150ms;
+  --498-dur:      280ms;
+  --498-dur-slow: 600ms;
+}
+
+/* =============================================================
+   Responsive
+   ============================================================= */
+
+@media (max-width: 1024px) {
+  :root {
+    --498-display-1-size: 48px;  --498-display-1-lh: 57.6px;  --498-display-1-ls: -1px;
+    --498-display-2-size: 42px;  --498-display-2-lh: 50.4px;  --498-display-2-ls: -.8px;
+    --498-display-3-size: 36px;  --498-display-3-lh: 43.2px;  --498-display-3-ls: -.4px;
+    --498-h1-size: 28px;         --498-h1-lh: 36.4px;
+    --498-h2-size: 26px;         --498-h2-lh: 33.8px;
+    --498-h3-size: 22px;         --498-h3-lh: 28.6px;
+    --498-quote-l-size: 28px;    --498-quote-l-lh: 36.4px;
+    --498-p-xl-size: 22px;       --498-p-xl-lh: 30.8px;
+    --498-p-l-size:  18px;       --498-p-l-lh:  25.2px;
+    --498-section-pad-y: 72px;
+    --498-page-pad: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --498-display-1-size: 32px;  --498-display-1-lh: 38px;    --498-display-1-ls: -.3px;
+    --498-display-2-size: 28px;  --498-display-2-lh: 33.6px;
+    --498-display-3-size: 26px;  --498-display-3-lh: 31.2px;
+    --498-h1-size: 24px;         --498-h1-lh: 31.2px;
+    --498-h2-size: 22px;         --498-h2-lh: 28.6px;
+    --498-quote-l-size: 22px;    --498-quote-l-lh: 28.6px;
+    --498-p-xl-size: 18px;       --498-p-xl-lh: 26px;
+    --498-section-pad-y: 56px;
+    --498-page-pad: 20px;
+  }
+}
+
+/* =============================================================
+   Utility classes — tipografía
+   ============================================================= */
+
+.t-display-1 {
+  font-family: var(--498-family-display); font-weight: var(--498-w-bold);
+  font-size: var(--498-display-1-size); line-height: var(--498-display-1-lh);
+  letter-spacing: var(--498-display-1-ls); text-transform: uppercase;
+}
+.t-display-2 {
+  font-family: var(--498-family-display); font-weight: var(--498-w-bold);
+  font-size: var(--498-display-2-size); line-height: var(--498-display-2-lh);
+  letter-spacing: var(--498-display-2-ls); text-transform: uppercase;
+}
+.t-display-3 {
+  font-family: var(--498-family-display); font-weight: var(--498-w-bold);
+  font-size: var(--498-display-3-size); line-height: var(--498-display-3-lh);
+  letter-spacing: var(--498-display-3-ls); text-transform: uppercase;
+}
+
+.t-h1 {
+  font-family: var(--498-family-body); font-weight: var(--498-w-light);
+  font-size: var(--498-h1-size); line-height: var(--498-h1-lh);
+  letter-spacing: var(--498-h1-ls);
+}
+.t-h2 {
+  font-family: var(--498-family-body); font-weight: var(--498-w-light);
+  font-size: var(--498-h2-size); line-height: var(--498-h2-lh);
+  letter-spacing: var(--498-h2-ls);
+}
+.t-h3 {
+  font-family: var(--498-family-body); font-weight: var(--498-w-light);
+  font-size: var(--498-h3-size); line-height: var(--498-h3-lh);
+  letter-spacing: var(--498-h3-ls);
+}
+
+.t-quote-l {
+  font-family: var(--498-family-body); font-style: italic; font-weight: var(--498-w-light);
+  font-size: var(--498-quote-l-size); line-height: var(--498-quote-l-lh);
+  letter-spacing: var(--498-quote-l-ls);
+}
+
+.t-p-xl    { font-family: var(--498-family-body); font-weight: 300; font-size: var(--498-p-xl-size);   line-height: var(--498-p-xl-lh); }
+.t-p-l     { font-family: var(--498-family-body); font-weight: 300; font-size: var(--498-p-l-size);    line-height: var(--498-p-l-lh); }
+.t-p-m     { font-family: var(--498-family-body); font-weight: 300; font-size: var(--498-p-m-size);    line-height: var(--498-p-m-lh); }
+.t-p-s     { font-family: var(--498-family-body); font-weight: 300; font-size: var(--498-p-s-size);    line-height: var(--498-p-s-lh); }
+.t-p-xs    { font-family: var(--498-family-body); font-weight: 400; font-size: var(--498-p-xs-size);   line-height: var(--498-p-xs-lh); letter-spacing: var(--498-p-xs-ls); }
+.t-p-long  { font-family: var(--498-family-body); font-weight: 300; font-size: var(--498-p-long-size); line-height: var(--498-p-long-lh); letter-spacing: var(--498-p-long-ls); }
+
+.t-tag-l {
+  font-family: var(--498-family-mono); font-weight: var(--498-w-mid);
+  font-size: var(--498-tag-l-size); line-height: var(--498-tag-l-lh);
+  letter-spacing: var(--498-tag-l-ls); text-transform: uppercase;
+}
+.t-tag-s {
+  font-family: var(--498-family-mono); font-weight: var(--498-w-mid);
+  font-size: var(--498-tag-s-size); line-height: var(--498-tag-s-lh);
+  letter-spacing: var(--498-tag-s-ls); text-transform: uppercase;
+}
+
+/* Color helpers */
+.c-green       { color: var(--498-green); }
+.c-green-deep  { color: var(--498-green-deep); }
+.c-white       { color: var(--498-white); }
+.c-muted       { color: var(--498-text-muted); }
+.bg-black      { background: var(--498-black); }
+.bg-grey-900   { background: var(--498-grey-900); }
+.bg-grey-100   { background: var(--498-grey-100); }
+.bg-paper      { background: var(--498-grey-50); }
+.bg-hero       { background: var(--498-gradient-hero); }
+.bg-cta        { background: var(--498-gradient-cta); }
+
+/* =============================================================
+   Components
+   ============================================================= */
+
+/* Botón primario · gradiente verde · esquinas cuadradas */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--498-family-ui); font-weight: var(--498-w-mid);
+  font-size: 15px; line-height: 1;
+  padding: 16px 28px;
+  background: var(--498-gradient-cta);
+  color: var(--498-black);
+  border: 0;
+  border-radius: var(--498-radius-2);
+  text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1px;
+  transition: filter var(--498-dur) var(--498-ease), transform var(--498-dur) var(--498-ease);
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn:active { transform: translateY(1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--498-green);
+  border: 1px solid var(--498-green-line);
+}
+.btn-ghost:hover {
+  background: var(--498-green-soft);
+  filter: none;
+  border-color: var(--498-green);
+}
+
+/* Card · esquinas cuadradas · sutil highlight superior izq con gradiente */
+.card {
+  background: var(--498-grey-900);
+  border: 1px solid var(--498-line-soft);
+  border-radius: var(--498-radius-2);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--498-gradient-card-highlight);
+  pointer-events: none;
+}
+.card > * { position: relative; }
+
+.card-light {
+  background: var(--498-grey-50);
+  border: 1px solid var(--498-grey-200);
+  color: var(--498-black);
+}
+.card-light::before { display: none; }
+
+/* =============================================================
+   Hyperlinks
+   ============================================================= */
+
+a.link {
+  color: var(--498-green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--498-green-line);
+  transition: border-color var(--498-dur-fast) var(--498-ease), color var(--498-dur-fast) var(--498-ease);
+}
+a.link:hover {
+  border-bottom-color: var(--498-green);
+}
+a.link-ext::after {
+  content: " ↗";
+  font-size: .85em;
+  opacity: .7;
+  margin-left: 2px;
+}
+
+/* =============================================================
+   Citas técnicas · números clickables tipo paper académico
+   ============================================================= */
+
+.cite {
+  display: inline-block;
+  vertical-align: super;
+  font-family: var(--498-family-mono);
+  font-size: 10px;
+  line-height: 1;
+  margin-left: 2px;
+}
+.cite a {
+  color: var(--498-green);
+  text-decoration: none;
+  padding: 2px 5px;
+  border: 1px solid var(--498-green-line);
+  border-radius: var(--498-radius-1);
+  letter-spacing: .5px;
+  font-weight: var(--498-w-mid);
+  transition: all var(--498-dur-fast) var(--498-ease);
+}
+.cite a:hover {
+  background: var(--498-green);
+  color: var(--498-black);
+  border-color: var(--498-green);
+}
+
+/* Lista de referencias al final de artículos */
+.references {
+  border-top: 1px solid var(--498-line);
+  padding-top: 24px;
+  margin-top: 64px;
+  list-style: none;
+  counter-reset: ref;
+  padding-left: 0;
+}
+.references li {
+  counter-increment: ref;
+  font-family: var(--498-family-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--498-grey-400);
+  padding-left: 44px;
+  position: relative;
+  margin-bottom: 14px;
+}
+.references li::before {
+  content: "[" counter(ref) "]";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-family: var(--498-family-mono);
+  font-size: 11px;
+  color: var(--498-green);
+  letter-spacing: .5px;
+  font-weight: var(--498-w-mid);
+}
+.references a {
+  color: var(--498-grey-300);
+  border-bottom: 1px solid var(--498-grey-700);
+  text-decoration: none;
+  transition: color var(--498-dur-fast) var(--498-ease);
+}
+.references a:hover { color: var(--498-green); }
+
+/* =============================================================
+   Eyebrow · etiqueta editorial corta
+   ============================================================= */
+
+.eyebrow {
+  font-family: var(--498-family-mono);
+  font-size: var(--498-tag-l-size);
+  line-height: var(--498-tag-l-lh);
+  letter-spacing: var(--498-tag-l-ls);
+  text-transform: uppercase;
+  color: var(--498-green);
+  font-weight: var(--498-w-mid);
+  display: inline-block;
+}
+
+/* =============================================================
+   Hero helper
+   ============================================================= */
+
+.hero-498 {
+  position: relative;
+  min-height: var(--498-hero-h);
+  background: var(--498-gradient-hero);
+  color: var(--498-white);
+  padding: 0 var(--498-page-pad);
+  display: flex; flex-direction: column; justify-content: center;
+}

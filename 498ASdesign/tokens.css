@@ -1,0 +1,170 @@
+/* =============================================================
+   498ASdesign — design tokens
+   Extracted from 498as.com (2026-05-15)
+   Source: Elementor globals + Hello Elementor child theme
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dela+Gothic+One&family=Hepta+Slab:wght@300;400;600&family=Poppins:wght@300;400;500&family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  /* -- Type families ---------------------------------------- */
+  --as-type-primary:   "Bebas Neue", Impact, Arial Narrow, sans-serif;   /* display UPPER */
+  --as-type-secondary: "Dela Gothic One", "Arial Black", sans-serif;     /* chunky accent */
+  --as-type-text:      "Hepta Slab", Georgia, serif;                     /* body slab */
+  --as-type-accent:    "Roboto", system-ui, Arial, sans-serif;           /* UI */
+  --as-type-alt:       "Poppins", system-ui, Arial, sans-serif;          /* editorial */
+
+  /* -- Type scale ------------------------------------------- */
+  --as-counter-size: 100px;   --as-counter-lh: 1;
+  --as-mega-size:    80px;    --as-mega-lh: 1;
+  --as-h1-size:      55px;    --as-h1-lh: 50px;     --as-h1-weight: 600;
+  --as-h2-size:      38px;    --as-h2-lh: 1.1;      --as-h2-weight: 300;
+  --as-chunky-size:  33px;    --as-chunky-weight: 500;
+  --as-hero-sub-size: 30px;   --as-hero-sub-lh: 37px;
+  --as-lead-size:    28px;    --as-lead-lh: 1.3;
+  --as-body-xl-size: 26px;    --as-body-xl-lh: 33px;
+  --as-body-l-size:  24px;    --as-body-l-lh: 1.4;
+  --as-body-m-size:  22px;    --as-body-m-lh: 1.4;
+  --as-body-s-size:  20px;    --as-body-s-lh: 1.5;
+  --as-caption-size: 18px;    --as-caption-lh: 1.5;
+  --as-meta-size:    14px;    --as-meta-lh: 1.5;
+  --as-micro-size:   11px;    --as-micro-lh: 1.5;
+
+  --as-w-light: 300;
+  --as-w-reg:   400;
+  --as-w-mid:   500;
+  --as-w-bold:  600;
+
+  /* -- Color: brand & core ---------------------------------- */
+  --as-black:           #000000;
+  --as-white:           #FFFFFF;
+  --as-green:           #37E813;  /* ✦ brand green — fluor */
+  --as-green-hover:     #00B147;
+
+  /* -- Color: text ------------------------------------------ */
+  --as-text-on-dark:    #DBDBDB;
+  --as-text-muted:      #CCCCCC;
+  --as-text-soft:       #B9B9B9;
+
+  /* -- Color: surfaces & lines ------------------------------ */
+  --as-surface-1:       #303030;
+  --as-surface-2:       #343434;
+  --as-surface-3:       #474747;
+  --as-charcoal:        #676767;
+  --as-hairline-dark:   #343434;
+  --as-hairline-light:  #E5E5E5;
+
+  /* -- Hero overlay ----------------------------------------- */
+  --as-overlay-black:   rgba(0, 0, 0, .45);
+  --as-text-shadow:     2px 2px 5px rgba(0, 0, 0, .75);
+
+  /* -- Layout ----------------------------------------------- */
+  --as-content-max:     1100px;
+  --as-content-wide:    1640px;
+  --as-pad-left:        5%;
+  --as-pad-right:       4%;
+  --as-section-pad-y:   65px;
+  --as-hero-h:          100vh;
+
+  /* -- Form / radii (angular system) ------------------------ */
+  --as-radius-0: 0;
+  --as-radius-1: 2px;
+  --as-radius-2: 4px;
+  --as-radius-3: 6px;
+
+  /* -- Motion ----------------------------------------------- */
+  --as-ease:     cubic-bezier(.2, .8, .2, 1);
+  --as-dur-fast: 150ms;
+  --as-dur:      280ms;
+  --as-dur-slow: 600ms;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --as-h1-size: 44px;  --as-h1-lh: 44px;
+    --as-h2-size: 32px;
+    --as-hero-sub-size: 24px; --as-hero-sub-lh: 30px;
+    --as-lead-size: 22px;
+    --as-body-xl-size: 22px; --as-body-xl-lh: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --as-counter-size: 64px;
+    --as-mega-size: 54px;
+    --as-h1-size: 36px;  --as-h1-lh: 36px;
+    --as-h2-size: 26px;
+    --as-hero-sub-size: 20px; --as-hero-sub-lh: 22px;
+    --as-lead-size: 19px;
+    --as-body-xl-size: 18px; --as-body-xl-lh: 26px;
+    --as-pad-left: 6vw;
+    --as-pad-right: 6vw;
+    --as-hero-h: 95vh;
+  }
+}
+
+/* =============================================================
+   Utility classes — apply tokens directly
+   ============================================================= */
+
+.as-counter { font-family: var(--as-type-primary); font-weight: var(--as-w-bold); font-size: var(--as-counter-size); line-height: var(--as-counter-lh); color: var(--as-green); }
+.as-mega    { font-family: var(--as-type-primary); font-weight: var(--as-w-bold); font-size: var(--as-mega-size);    line-height: var(--as-mega-lh);    text-transform: uppercase; }
+.as-h1      { font-family: var(--as-type-primary); font-weight: var(--as-h1-weight); font-size: var(--as-h1-size); line-height: var(--as-h1-lh); text-transform: uppercase; }
+.as-h2      { font-family: var(--as-type-text);    font-weight: var(--as-h2-weight); font-size: var(--as-h2-size); line-height: var(--as-h2-lh); }
+.as-chunky  { font-family: var(--as-type-secondary); font-weight: var(--as-chunky-weight); font-size: var(--as-chunky-size); }
+.as-hero-sub { font-family: var(--as-type-alt); font-weight: var(--as-w-light); font-size: var(--as-hero-sub-size); line-height: var(--as-hero-sub-lh); text-transform: uppercase; }
+.as-lead    { font-family: var(--as-type-alt);  font-weight: var(--as-w-light); font-size: var(--as-lead-size);    line-height: var(--as-lead-lh); }
+.as-body-xl { font-family: var(--as-type-text); font-weight: var(--as-w-light); font-size: var(--as-body-xl-size); line-height: var(--as-body-xl-lh); }
+.as-body-l  { font-family: var(--as-type-text); font-weight: var(--as-w-light); font-size: var(--as-body-l-size);  line-height: var(--as-body-l-lh); }
+.as-body-m  { font-family: var(--as-type-text); font-weight: var(--as-w-light); font-size: var(--as-body-m-size);  line-height: var(--as-body-m-lh); }
+.as-body-s  { font-family: var(--as-type-text); font-weight: var(--as-w-light); font-size: var(--as-body-s-size);  line-height: var(--as-body-s-lh); }
+.as-caption { font-family: var(--as-type-alt);  font-weight: var(--as-w-light); font-size: var(--as-caption-size); line-height: var(--as-caption-lh); }
+.as-meta    { font-family: var(--as-type-accent); font-weight: var(--as-w-mid); font-size: var(--as-meta-size); }
+.as-micro   { font-family: var(--as-type-accent); font-weight: var(--as-w-mid); font-size: var(--as-micro-size); text-transform: uppercase; letter-spacing: 1px; }
+
+/* Buttons */
+.as-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--as-type-accent); font-weight: var(--as-w-mid); font-size: 16px;
+  padding: 14px 26px;
+  background: var(--as-green); color: var(--as-black);
+  border: 1px solid var(--as-green); border-radius: var(--as-radius-2);
+  text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
+  transition: background var(--as-dur) var(--as-ease), color var(--as-dur) var(--as-ease);
+}
+.as-btn:hover { background: var(--as-green-hover); color: var(--as-white); border-color: var(--as-green-hover); }
+.as-btn--ghost { background: transparent; color: var(--as-green); }
+.as-btn--ghost:hover { background: var(--as-green); color: var(--as-black); border-color: var(--as-green); }
+
+/* Card */
+.as-card-dark {
+  background: var(--as-surface-1);
+  border: 1px solid var(--as-hairline-dark);
+  border-radius: var(--as-radius-2);
+  padding: 32px;
+  color: var(--as-text-on-dark);
+}
+.as-card-light {
+  background: var(--as-white);
+  border: 1px solid var(--as-hairline-light);
+  border-radius: var(--as-radius-2);
+  padding: 32px;
+  color: var(--as-black);
+}
+
+/* Hero overlay helper */
+.as-hero {
+  position: relative;
+  min-height: var(--as-hero-h);
+  background-position: 50% 50%;
+  background-size: cover;
+  color: var(--as-white);
+}
+.as-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: var(--as-overlay-black);
+  pointer-events: none;
+}
+.as-hero > * { position: relative; z-index: 1; }
+.as-hero--shadow { text-shadow: var(--as-text-shadow); }

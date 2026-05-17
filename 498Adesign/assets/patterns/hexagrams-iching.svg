@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="144" height="96" viewBox="0 0 144 96">
+  <!--
+    Trama de hexagramas I Ching · 6 hexagramas en grid 3×2
+    Yang  = línea sólida horizontal (36×4 px)
+    Yin   = línea partida (dos segmentos 14×4 con gap centrado 8 px)
+    Grid de referencia · hairlines black @ 6% opacity
+    Paleta brand 498A · opacidades 26–30%
+  -->
+
+  <!-- Grid de cells · referencia visual tipo tabla científica -->
+  <line x1="48"  y1="0"  x2="48"  y2="96" stroke="#000000" stroke-opacity="0.06"/>
+  <line x1="96"  y1="0"  x2="96"  y2="96" stroke="#000000" stroke-opacity="0.06"/>
+  <line x1="0"   y1="48" x2="144" y2="48" stroke="#000000" stroke-opacity="0.06"/>
+
+  <!-- H01 · ䷀ Qian / Heaven · 6 yang · top-left -->
+  <g transform="translate(6,7)" fill="#0E7A1F" fill-opacity="0.30">
+    <rect x="0" y="0"  width="36" height="4"/>
+    <rect x="0" y="6"  width="36" height="4"/>
+    <rect x="0" y="12" width="36" height="4"/>
+    <rect x="0" y="18" width="36" height="4"/>
+    <rect x="0" y="24" width="36" height="4"/>
+    <rect x="0" y="30" width="36" height="4"/>
+  </g>
+
+  <!-- H02 · ䷁ Kun / Earth · 6 yin · top-center -->
+  <g transform="translate(54,7)" fill="#2DD60F" fill-opacity="0.28">
+    <rect x="0"  y="0"  width="14" height="4"/><rect x="22" y="0"  width="14" height="4"/>
+    <rect x="0"  y="6"  width="14" height="4"/><rect x="22" y="6"  width="14" height="4"/>
+    <rect x="0"  y="12" width="14" height="4"/><rect x="22" y="12" width="14" height="4"/>
+    <rect x="0"  y="18" width="14" height="4"/><rect x="22" y="18" width="14" height="4"/>
+    <rect x="0"  y="24" width="14" height="4"/><rect x="22" y="24" width="14" height="4"/>
+    <rect x="0"  y="30" width="14" height="4"/><rect x="22" y="30" width="14" height="4"/>
+  </g>
+
+  <!-- H03 · ䷿ Wei Ji / Not Yet Fording · yang-yin-yang-yin-yang-yin · top-right -->
+  <g transform="translate(102,7)" fill="#0E7A1F" fill-opacity="0.26">
+    <rect x="0" y="0"  width="36" height="4"/>
+    <rect x="0" y="6"  width="14" height="4"/><rect x="22" y="6"  width="14" height="4"/>
+    <rect x="0" y="12" width="36" height="4"/>
+    <rect x="0" y="18" width="14" height="4"/><rect x="22" y="18" width="14" height="4"/>
+    <rect x="0" y="24" width="36" height="4"/>
+    <rect x="0" y="30" width="14" height="4"/><rect x="22" y="30" width="14" height="4"/>
+  </g>
+
+  <!-- H04 · ䷾ Ji Ji / After Completion · yin-yang-yin-yang-yin-yang · bottom-left -->
+  <g transform="translate(6,55)" fill="#2DD60F" fill-opacity="0.28">
+    <rect x="0" y="0"  width="14" height="4"/><rect x="22" y="0"  width="14" height="4"/>
+    <rect x="0" y="6"  width="36" height="4"/>
+    <rect x="0" y="12" width="14" height="4"/><rect x="22" y="12" width="14" height="4"/>
+    <rect x="0" y="18" width="36" height="4"/>
+    <rect x="0" y="24" width="14" height="4"/><rect x="22" y="24" width="14" height="4"/>
+    <rect x="0" y="30" width="36" height="4"/>
+  </g>
+
+  <!-- H05 · ䷋ Pi / Stagnation · yang yang yang yin yin yin · bottom-center -->
+  <g transform="translate(54,55)" fill="#0E7A1F" fill-opacity="0.30">
+    <rect x="0" y="0"  width="36" height="4"/>
+    <rect x="0" y="6"  width="36" height="4"/>
+    <rect x="0" y="12" width="36" height="4"/>
+    <rect x="0" y="18" width="14" height="4"/><rect x="22" y="18" width="14" height="4"/>
+    <rect x="0" y="24" width="14" height="4"/><rect x="22" y="24" width="14" height="4"/>
+    <rect x="0" y="30" width="14" height="4"/><rect x="22" y="30" width="14" height="4"/>
+  </g>
+
+  <!-- H06 · ䷊ Tai / Peace · yin yin yin yang yang yang · bottom-right -->
+  <g transform="translate(102,55)" fill="#2DD60F" fill-opacity="0.28">
+    <rect x="0" y="0"  width="14" height="4"/><rect x="22" y="0"  width="14" height="4"/>
+    <rect x="0" y="6"  width="14" height="4"/><rect x="22" y="6"  width="14" height="4"/>
+    <rect x="0" y="12" width="14" height="4"/><rect x="22" y="12" width="14" height="4"/>
+    <rect x="0" y="18" width="36" height="4"/>
+    <rect x="0" y="24" width="36" height="4"/>
+    <rect x="0" y="30" width="36" height="4"/>
+  </g>
+</svg>

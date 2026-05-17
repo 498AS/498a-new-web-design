@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>498ASdesign — showcase</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--as-black); color: var(--as-text-on-dark); font-family: var(--as-type-text); font-weight: 300; -webkit-font-smoothing: antialiased; }
+
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px; padding: 0 var(--as-pad-left);
+    background: rgba(0,0,0,.85); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--as-hairline-dark);
+  }
+  .nav__brand { font-family: var(--as-type-primary); font-size: 22px; color: var(--as-white); letter-spacing: 2px; }
+  .nav__brand b { color: var(--as-green); }
+  .nav__links { display: flex; gap: 28px; }
+  .nav__links a { color: var(--as-text-on-dark); text-decoration: none; font-family: var(--as-type-accent); font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; }
+  .nav__links a:hover { color: var(--as-green); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: var(--as-hero-h);
+    padding: 0 var(--as-pad-right) 0 var(--as-pad-left);
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end;
+    text-align: right;
+    background:
+      linear-gradient(135deg, rgba(0,0,0,.45), rgba(0,0,0,.45)),
+      radial-gradient(60% 80% at 70% 30%, #303030 0%, #000 60%),
+      #000;
+    color: var(--as-white);
+    text-shadow: var(--as-text-shadow);
+    padding-bottom: 80px;
+  }
+  .hero__eyebrow { font-family: var(--as-type-accent); text-transform: uppercase; letter-spacing: 2px; color: var(--as-green); font-size: 14px; margin-bottom: 28px; }
+  .hero__claim { max-width: 1100px; }
+  .hero__sub { max-width: 470px; margin-top: 32px; }
+  .hero__lead { max-width: 600px; margin-top: 20px; color: var(--as-text-muted); }
+  .hero__cta { margin-top: 40px; }
+  .hero__scroll {
+    position: absolute; left: var(--as-pad-left); bottom: 32px;
+    font-family: var(--as-type-accent); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--as-green);
+  }
+
+  /* SECTIONS */
+  section { padding: var(--as-section-pad-y) var(--as-pad-right) var(--as-section-pad-y) var(--as-pad-left); border-bottom: 1px solid var(--as-hairline-dark); }
+  .eyebrow { font-family: var(--as-type-accent); font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--as-green); margin-bottom: 20px; }
+  .sec-title { color: var(--as-white); margin-bottom: 56px; }
+
+  /* TYPE TABLE */
+  .type-row { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: baseline; padding: 24px 0; border-top: 1px solid var(--as-hairline-dark); }
+  .type-row:first-child { border-top: 0; }
+  .type-meta { font-family: var(--as-type-accent); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--as-green); }
+  .type-meta b { display: block; color: var(--as-text-on-dark); font-weight: 400; margin-top: 6px; text-transform: none; letter-spacing: 0; font-size: 12px; }
+
+  /* SWATCHES */
+  .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+  .swatch { border-radius: var(--as-radius-2); overflow: hidden; border: 1px solid var(--as-hairline-dark); background: var(--as-surface-1); }
+  .swatch__chip { height: 96px; position: relative; }
+  .swatch__chip[data-border]::after { content: ""; position: absolute; inset: 0; border: 1px dashed var(--as-hairline-dark); }
+  .swatch__meta { padding: 12px 14px 14px; }
+  .swatch__name { font-family: var(--as-type-accent); font-weight: 500; font-size: 13px; color: var(--as-white); text-transform: uppercase; letter-spacing: .5px; }
+  .swatch__hex { font-family: var(--as-type-accent); font-size: 11px; color: var(--as-text-muted); letter-spacing: .5px; margin-top: 4px; }
+
+  /* COUNTERS */
+  .counters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding: 40px 0; }
+  @media (max-width: 900px) { .counters { grid-template-columns: repeat(2, 1fr); } }
+  .counter { text-align: center; border-left: 1px solid var(--as-hairline-dark); padding: 0 16px; }
+  .counter:first-child { border-left: 0; }
+  .counter__num { font-family: var(--as-type-primary); font-size: var(--as-counter-size); line-height: 1; color: var(--as-green); }
+  .counter__label { font-family: var(--as-type-secondary); font-size: 18px; color: var(--as-white); margin-top: 12px; text-transform: uppercase; }
+  .counter__plus { color: var(--as-green); }
+
+  /* CARDS */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--as-surface-1); border: 1px solid var(--as-hairline-dark);
+    border-radius: var(--as-radius-2); padding: 32px;
+  }
+  .card__num { font-family: var(--as-type-primary); font-size: 60px; color: var(--as-green); line-height: 1; }
+  .card__title { font-family: var(--as-type-primary); text-transform: uppercase; font-size: 26px; color: var(--as-white); margin: 14px 0 18px; letter-spacing: 1px; }
+  .card__body { color: var(--as-text-muted); }
+  .card__link { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; color: var(--as-green); font-family: var(--as-type-accent); font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; }
+  .card__link:hover { color: var(--as-green-hover); }
+
+  /* QUOTE */
+  .quote {
+    padding: 80px 0; max-width: 1100px;
+  }
+  .quote__mark { font-family: var(--as-type-secondary); font-size: 80px; color: var(--as-green); line-height: 1; margin-bottom: 16px; }
+  .quote__text { color: var(--as-white); }
+  .quote__author { font-family: var(--as-type-primary); font-size: 32px; color: var(--as-white); text-transform: uppercase; letter-spacing: 2px; margin-top: 32px; }
+  .quote__role { font-family: var(--as-type-secondary); font-size: 16px; color: var(--as-green); margin-top: 4px; }
+
+  /* BUTTONS row */
+  .btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  /* LIGHT block */
+  .light { background: var(--as-white); color: var(--as-black); }
+  .light .sec-title { color: var(--as-black); }
+  .light .swatch { background: #f5f5f5; border-color: var(--as-hairline-light); }
+  .light .swatch__name { color: var(--as-black); }
+  .light .swatch__hex { color: var(--as-charcoal); }
+  .light .type-row { border-top-color: var(--as-hairline-light); }
+  .light .type-meta b { color: var(--as-black); }
+  .light .as-body-xl { color: var(--as-black); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__brand">498<b>AS</b>design</div>
+  <div class="nav__links">
+    <a href="#type">Tipografía</a>
+    <a href="#color">Color</a>
+    <a href="#components">Componentes</a>
+    <a href="#voice">Voz</a>
+  </div>
+  <a class="as-btn" href="#">Contacto →</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero__claim">
+    <div class="hero__eyebrow">498 Advance · Consultoría de innovación tecnológica</div>
+    <h1 class="as-h1" style="font-size:clamp(48px, 8vw, 100px); line-height:.95; max-width:1100px; margin-left:auto;">
+      Innovación<br>tecnológica<br><span style="color:var(--as-green)">a escala</span>
+    </h1>
+    <p class="as-hero-sub hero__sub">Asesoramiento tecnológico, IA aplicada, GEO &amp; AI brand visibility</p>
+    <p class="as-lead hero__lead">Acompañamos a las marcas líderes en la adopción de tecnologías emergentes — del proof-of-concept al despliegue en producción.</p>
+    <a class="as-btn hero__cta" href="#">Explorar capacidades →</a>
+  </div>
+  <div class="hero__scroll">↓ Scroll</div>
+</header>
+
+<!-- COUNTERS -->
+<section style="background:#0a0a0a">
+  <div class="eyebrow">01 — Métricas de impacto</div>
+  <h2 class="as-h1 sec-title">Cifras 2026.</h2>
+  <div class="counters">
+    <div class="counter"><div class="counter__num">16<span class="counter__plus">+</span></div><div class="counter__label">Marcas líderes</div></div>
+    <div class="counter"><div class="counter__num">1M<span class="counter__plus">+</span></div><div class="counter__label">Prompts simulados</div></div>
+    <div class="counter"><div class="counter__num">9M<span class="counter__plus">+</span></div><div class="counter__label">Menciones analizadas</div></div>
+    <div class="counter"><div class="counter__num">5</div><div class="counter__label">LLMs cubiertos</div></div>
+  </div>
+</section>
+
+<!-- TYPE -->
+<section id="type">
+  <div class="eyebrow">02 — Tipografía</div>
+  <h2 class="as-h1 sec-title">Cuatro voces, un sistema.</h2>
+
+  <div class="type-row">
+    <div class="type-meta">Counter · Bebas Neue<b>100 / 1 · green</b></div>
+    <div class="as-counter">498</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Mega · Bebas Neue<b>80 · UPPER</b></div>
+    <div class="as-mega" style="color:var(--as-white)">INNOVACIÓN</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Display 1 · Bebas Neue<b>55 / 50 · 600 · UPPER</b></div>
+    <div class="as-h1" style="color:var(--as-white)">CONSULTORÍA TECNOLÓGICA</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Display 2 · Hepta Slab<b>38 / 1.1 · 300</b></div>
+    <div class="as-h2" style="color:var(--as-white)">Acompañamos a empresas líderes en su salto tecnológico.</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Chunky · Dela Gothic<b>33 · 500</b></div>
+    <div class="as-chunky" style="color:var(--as-white)">498A</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Hero sub · Poppins<b>30 / 37 · 300 UPPER</b></div>
+    <div class="as-hero-sub" style="color:var(--as-white)">Inteligencia artificial aplicada</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Lead · Poppins<b>28 · 300</b></div>
+    <div class="as-lead" style="color:var(--as-white)">Diseñamos las arquitecturas de IA que las marcas necesitan para competir.</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Body XL · Hepta Slab<b>26 / 33 · 300</b></div>
+    <div class="as-body-xl" style="max-width:780px">Trabajamos con bancos, retailers, energéticas e instituciones públicas en la adopción de modelos generativos, sistemas de medición y plataformas de datos.</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Body L · Hepta Slab<b>24 · 300</b></div>
+    <div class="as-body-l" style="max-width:760px;color:var(--as-text-muted)">El stack: GEORadar, S.A.M., LEO, InsightDesk. Probado en producción con +16 marcas.</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Caption · Poppins<b>18 · 300</b></div>
+    <div class="as-caption" style="color:var(--as-text-muted)">498 Advance — antes 498AS Innovation Lab.</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Meta · Roboto<b>14 · 500</b></div>
+    <div class="as-meta" style="color:var(--as-text-on-dark)">UI label · breadcrumb · meta info</div>
+  </div>
+  <div class="type-row">
+    <div class="type-meta">Micro · Roboto<b>11 · 500 UPPER</b></div>
+    <div class="as-micro" style="color:var(--as-green)">TAG · STATUS · CATEGORY</div>
+  </div>
+</section>
+
+<!-- COLOR -->
+<section id="color">
+  <div class="eyebrow">03 — Color</div>
+  <h2 class="as-h1 sec-title">Negro absoluto. Verde radioactivo.</h2>
+
+  <h3 class="as-chunky" style="color:var(--as-white);margin-bottom:18px">Brand & núcleo</h3>
+  <div class="swatch-grid" style="margin-bottom:48px">
+    <div class="swatch"><div class="swatch__chip" style="background:#000" data-border></div><div class="swatch__meta"><div class="swatch__name">Black</div><div class="swatch__hex">#000000</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#37E813"></div><div class="swatch__meta"><div class="swatch__name">Brand Green ✦</div><div class="swatch__hex">#37E813</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#00B147"></div><div class="swatch__meta"><div class="swatch__name">Green hover</div><div class="swatch__hex">#00B147</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#FFFFFF"></div><div class="swatch__meta"><div class="swatch__name">White</div><div class="swatch__hex">#FFFFFF</div></div></div>
+  </div>
+
+  <h3 class="as-chunky" style="color:var(--as-white);margin-bottom:18px">Text & superficies</h3>
+  <div class="swatch-grid">
+    <div class="swatch"><div class="swatch__chip" style="background:#DBDBDB"></div><div class="swatch__meta"><div class="swatch__name">Text on dark</div><div class="swatch__hex">#DBDBDB</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#CCCCCC"></div><div class="swatch__meta"><div class="swatch__name">Text muted</div><div class="swatch__hex">#CCCCCC</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#B9B9B9"></div><div class="swatch__meta"><div class="swatch__name">Text soft</div><div class="swatch__hex">#B9B9B9</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#676767"></div><div class="swatch__meta"><div class="swatch__name">Charcoal</div><div class="swatch__hex">#676767</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#474747"></div><div class="swatch__meta"><div class="swatch__name">Surface 3</div><div class="swatch__hex">#474747</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#343434"></div><div class="swatch__meta"><div class="swatch__name">Surface 2 / Hairline</div><div class="swatch__hex">#343434</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#303030"></div><div class="swatch__meta"><div class="swatch__name">Surface 1</div><div class="swatch__hex">#303030</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#E5E5E5"></div><div class="swatch__meta"><div class="swatch__name">Hairline light</div><div class="swatch__hex">#E5E5E5</div></div></div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section id="components">
+  <div class="eyebrow">04 — Componentes</div>
+  <h2 class="as-h1 sec-title">Cards, botones, cita.</h2>
+
+  <div class="cards" style="margin-bottom:64px">
+    <article class="card">
+      <div class="card__num">01</div>
+      <h3 class="card__title">Auditoría GEO</h3>
+      <p class="card__body as-body-m">Medimos cómo te ven los modelos generativos. 3.000–30.000 prompts personalizados por marca.</p>
+      <a class="card__link" href="#">Ver servicio →</a>
+    </article>
+    <article class="card">
+      <div class="card__num">02</div>
+      <h3 class="card__title">S.A.M.</h3>
+      <p class="card__body as-body-m">Semantic Alignment Machine. Generación de contenido alineado con prompts target.</p>
+      <a class="card__link" href="#">Ver servicio →</a>
+    </article>
+    <article class="card">
+      <div class="card__num">03</div>
+      <h3 class="card__title">LEO</h3>
+      <p class="card__body as-body-m">The Ultimate Content Factory. Generación multicanal en 30+ plataformas, agentic-first.</p>
+      <a class="card__link" href="#">Ver servicio →</a>
+    </article>
+  </div>
+
+  <h3 class="as-chunky" style="color:var(--as-white);margin-bottom:18px">Botones</h3>
+  <div class="btn-row" style="margin-bottom:64px">
+    <a class="as-btn" href="#">Solicitar auditoría →</a>
+    <a class="as-btn as-btn--ghost" href="#">Ver el stack</a>
+  </div>
+
+  <div class="quote">
+    <div class="quote__mark">“</div>
+    <p class="as-h2 quote__text">498 Advance ha sido determinante para entender cómo nos perciben los modelos generativos.</p>
+    <div class="quote__author">Cliente Enterprise</div>
+    <div class="quote__role">Director de marca · Sector banca</div>
+  </div>
+</section>
+
+<!-- LIGHT MODE BLOCK -->
+<section class="light" id="voice">
+  <div class="eyebrow" style="color:var(--as-green-hover)">05 — Modo claro & voz editorial</div>
+  <h2 class="as-h1 sec-title">El sistema también respira en blanco.</h2>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+    <div>
+      <div class="as-micro" style="color:var(--as-green-hover);margin-bottom:18px">VOZ DE MARCA</div>
+      <p class="as-body-xl" style="margin-bottom:24px">Asertiva. En mayúsculas. Cifras grandes. Verde que grita.</p>
+      <p class="as-body-m" style="color:var(--as-charcoal);margin-bottom:18px">Cuando el sistema baja al body, se relaja: Hepta Slab 300 — el slab serif compensa la energía de Bebas Neue y permite leer largo sin fatiga.</p>
+      <p class="as-body-m" style="color:var(--as-charcoal)">Los acentos verdes son puntuales: números, links, hover de CTAs, subrayados. Nunca relleno.</p>
+    </div>
+    <div>
+      <div class="as-card-light">
+        <div class="as-micro" style="color:var(--as-green-hover);margin-bottom:14px">CASO DE ESTUDIO</div>
+        <h4 class="card__title" style="color:var(--as-black);font-family:var(--as-type-primary)">Banca: +28% de share-of-voice</h4>
+        <p class="as-body-m" style="color:var(--as-charcoal);margin-bottom:24px">Tras 3 ciclos de auditoría GEO y activación SAM/LEO. 12 meses de operación.</p>
+        <a class="as-btn" href="#">Leer el caso →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:48px var(--as-pad-left);border-top:1px solid var(--as-hairline-dark);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+  <div class="as-micro" style="color:var(--as-green)">498ASDESIGN · EXTRACTED 2026-05-15</div>
+  <div class="as-meta" style="color:var(--as-text-muted)">Source · CSS público de 498as.com · Google Fonts</div>
+</footer>
+
+</body>
+</html>

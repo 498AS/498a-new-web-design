@@ -1,0 +1,244 @@
+/* =============================================================
+   isomorphicdesign — design tokens
+   Extracted from isomorphiclabs.com (2026-05-15)
+   Fallback fonts: Inter (light/regular) + JetBrains Mono
+   ============================================================= */
+
+:root {
+  /* -- Type families ---------------------------------------- */
+  --iso-family-display:  "Soehne Extraleicht", "Inter", Arial, sans-serif;        /* 200 */
+  --iso-family-light:    "Soehne Leicht", "Inter", Arial, sans-serif;             /* 300 */
+  --iso-family-body:     "Soehne Buch", "Inter", Arial, sans-serif;               /* 400 */
+  --iso-family-mono:     "Sohne Mono", "JetBrains Mono", ui-monospace, monospace; /* 400 */
+
+  /* -- Type scale (DESKTOP defaults; overridden by @media) -- */
+  --iso-display-1-size: 70px;   --iso-display-1-lh: 77px;     --iso-display-1-ls: -2px;
+  --iso-display-2-size: 56px;   --iso-display-2-lh: 61.6px;   --iso-display-2-ls: -1.7px;
+  --iso-display-3-size: 48px;   --iso-display-3-lh: 57.6px;   --iso-display-3-ls: -1px;
+
+  --iso-h1-size: 36px;          --iso-h1-lh: 43.2px;          --iso-h1-ls: -.7px;
+  --iso-h2-size: 28px;          --iso-h2-lh: 36.4px;          --iso-h2-ls: -.3px;
+  --iso-h3-size: 24px;          --iso-h3-lh: 31.2px;          --iso-h3-ls: -.2px;
+
+  --iso-quote-l-size: 48px;     --iso-quote-l-lh: 57.6px;     --iso-quote-l-ls: -1px;
+
+  --iso-p-xl-size: 24px;        --iso-p-xl-lh: 32.4px;        --iso-p-xl-ls: 0;
+  --iso-p-l-size:  20px;        --iso-p-l-lh:  28px;          --iso-p-l-ls:  0;
+  --iso-p-m-size:  16px;        --iso-p-m-lh:  22.4px;        --iso-p-m-ls:  0;
+  --iso-p-s-size:  14px;        --iso-p-s-lh:  19.6px;        --iso-p-s-ls:  0;
+  --iso-p-xs-size: 12px;        --iso-p-xs-lh: 16.8px;        --iso-p-xs-ls: .3px;
+  --iso-p-long-size: 20px;      --iso-p-long-lh: 28px;        --iso-p-long-ls: .2px;
+
+  --iso-tag-l-size: 14px;       --iso-tag-l-lh: 19.6px;       --iso-tag-l-ls: 1.1px;
+  --iso-tag-s-size: 12px;       --iso-tag-s-lh: 16.8px;       --iso-tag-s-ls: 1px;
+
+  /* -- Weights ---------------------------------------------- */
+  --iso-w-200: 200;
+  --iso-w-300: 300;
+  --iso-w-400: 400;
+
+  /* -- Color: monochrome core ------------------------------- */
+  --iso-black:       #000000;
+  --iso-ink:         #1e1e1e;  /* body text */
+  --iso-charcoal:    #3a3a3a;
+  --iso-graphite:    #585858;
+  --iso-graphite-2:  #626262;
+  --iso-steel:       #758696;  /* signature functional grey-blue */
+  --iso-steel-light: #aaadb0;
+  --iso-hairline:    #d8d8d8;
+  --iso-hairline-2:  #e2e2e2;
+  --iso-hairline-3:  #e8e8e8;
+  --iso-paper:       #fafafa;
+  --iso-paper-2:     #f7f7f7;
+  --iso-paper-cool:  #f5f8f9;
+  --iso-white:       #ffffff;
+  --iso-scrim:       #62626280;  /* label over image */
+
+  /* -- Color: editorial accents (tag + illustration) -------- */
+  --iso-blue-50:  #e6f7ff;   --iso-blue-100: #ccecfe;  --iso-blue-200: #9cdcff;
+  --iso-blue-500: #2895f7;   --iso-blue-600: #0082f3;  --iso-blue-700: #1378d1;
+  --iso-blue-900: #2d62ff;   --iso-blue-950: #1e00ff;
+
+  --iso-steelb-50:  #cddbe3; --iso-steelb-300: #67aacf;
+  --iso-steelb-500: #6e848f; --iso-steelb-700: #5d6c7b;
+  --iso-steelb-900: #304a57; --iso-steelb-800: #367496;
+
+  --iso-violet-50:  #f8ebff; --iso-violet-50b: #ffecfc;
+  --iso-violet-300: #d38df4; --iso-violet-500: #8744a7;
+  --iso-violet-600: #cc508b; --iso-violet-700: #652085;
+  --iso-violet-800: #a12661; --iso-violet-950: #130535;
+
+  --iso-green-50:  #e9ffe9;  --iso-green-100: #cbfedc;
+  --iso-green-200: #94f1cf;  --iso-green-500: #57be98;
+  --iso-green-700: #258360;
+
+  --iso-lime-50:  #e8fac3;   --iso-lime-100: #dff0ad;
+  --iso-lime-300: #e6fa5e;   --iso-lime-500: #b3c828;
+  --iso-lime-700: #768702;
+
+  --iso-earth-50:  #ffe4cc;  --iso-earth-100: #ffdede;
+  --iso-earth-200: #ffbedd;  --iso-earth-500: #bf7027;
+  --iso-earth-700: #8e4605;  --iso-earth-950: #3b0b0b;
+
+  --iso-alert:    #ea384c;
+
+  /* -- Radii (desktop) -------------------------------------- */
+  --iso-radius-1: 3.3px;
+  --iso-radius-2: 4.5px;
+  --iso-radius-3: 5.6px;
+  --iso-radius-4: 7px;
+  --iso-radius-5: 10px;
+  --iso-radius-container: 20px;
+
+  /* -- Layout ---------------------------------------------- */
+  --iso-screen-max: 1440px;
+  --iso-page-pad: 8vw;
+  --iso-nav-h: 72px;
+  --iso-nav-pad: 20px;
+  --iso-hero-h: 660px;
+  --iso-card-pad: 50px;
+
+  /* -- Narrative indents ----------------------------------- */
+  --iso-indent-paragraph: 108px;
+  --iso-indent-interview: 108px;
+  --iso-indent-caption: 300px;
+
+  /* -- Icon sizes ------------------------------------------ */
+  --iso-icon-xl: 24px;
+  --iso-icon-l:  20px;
+  --iso-icon-m:  16px;
+  --iso-icon-s:  12px;
+  --iso-icon-expressive: 40px;
+
+  /* -- Motion ---------------------------------------------- */
+  --iso-ease: cubic-bezier(.2, .6, .2, 1);
+  --iso-dur-fast: 160ms;
+  --iso-dur: 240ms;
+  --iso-dur-slow: 480ms;
+}
+
+/* === Tablet =============================================== */
+@media (max-width: 991px) {
+  :root {
+    --iso-display-1-size: 48px;  --iso-display-1-lh: 57.6px; --iso-display-1-ls: -1px;
+    --iso-display-2-size: 42px;  --iso-display-2-lh: 50.4px; --iso-display-2-ls: -.8px;
+    --iso-display-3-size: 36px;  --iso-display-3-lh: 43.2px; --iso-display-3-ls: -.4px;
+
+    --iso-h1-size: 28px;         --iso-h1-lh: 36.4px;        --iso-h1-ls: -.3px;
+    --iso-h2-size: 26px;         --iso-h2-lh: 33.8px;        --iso-h2-ls: -.2px;
+    --iso-h3-size: 22px;         --iso-h3-lh: 28.6px;        --iso-h3-ls: -.25px;
+
+    --iso-quote-l-size: 28px;    --iso-quote-l-lh: 36.4px;   --iso-quote-l-ls: -.3px;
+
+    --iso-p-xl-size: 22px;       --iso-p-xl-lh: 30.8px;      --iso-p-xl-ls: -.2px;
+    --iso-p-l-size:  18px;       --iso-p-l-lh:  25.2px;
+    --iso-p-m-size:  14px;       --iso-p-m-lh:  19.6px;
+    --iso-p-s-size:  12px;       --iso-p-s-lh:  16.8px;
+    --iso-p-xs-size: 10px;       --iso-p-xs-lh: 14px;        --iso-p-xs-ls: .36px;
+    --iso-p-long-size: 16px;     --iso-p-long-lh: 22.4px;
+
+    --iso-tag-l-size: 12px;      --iso-tag-l-lh: 16.8px;     --iso-tag-l-ls: 1px;
+    --iso-tag-s-size: 10px;      --iso-tag-s-lh: 14px;       --iso-tag-s-ls: .8px;
+
+    --iso-radius-1: 3.1px;
+    --iso-radius-2: 3.9px;
+    --iso-radius-3: 4.8px;
+    --iso-radius-4: 5.9px;
+    --iso-radius-container: 16px;
+
+    --iso-page-pad: 24px;
+    --iso-hero-h: 500px;
+    --iso-card-pad: 36px;
+
+    --iso-indent-paragraph: 100px;
+    --iso-indent-interview: 100px;
+    --iso-indent-caption: 108px;
+
+    --iso-icon-xl: 20px;
+    --iso-icon-l: 16px;
+    --iso-icon-m: 12px;
+    --iso-icon-s: 10px;
+    --iso-icon-expressive: 32px;
+  }
+}
+
+/* === Mobile =============================================== */
+@media (max-width: 478px) {
+  :root {
+    --iso-display-1-size: 28px;  --iso-display-1-lh: 36.4px; --iso-display-1-ls: -.3px;
+    --iso-display-2-size: 28px;  --iso-display-2-lh: 36.4px;
+    --iso-display-3-size: 28px;  --iso-display-3-lh: 36.4px;
+
+    --iso-h1-size: 26px;         --iso-h1-lh: 33.8px;
+    --iso-h2-size: 24px;         --iso-h2-lh: 31.2px;
+    --iso-h3-size: 22px;         --iso-h3-lh: 28.6px;
+
+    --iso-quote-l-size: 22px;    --iso-quote-l-lh: 30.8px;
+
+    --iso-p-xl-size: 16px;       --iso-p-xl-lh: 22.4px;
+    --iso-p-l-size:  16px;       --iso-p-l-lh:  22.4px;
+
+    --iso-radius-1: 2.8px;
+    --iso-radius-2: 3.6px;
+    --iso-radius-3: 4.2px;
+    --iso-radius-4: 5px;
+    --iso-radius-container: 12px;
+
+    --iso-page-pad: 20px;
+    --iso-hero-h: 440px;
+    --iso-card-pad: 28px;
+
+    --iso-indent-paragraph: 0;
+    --iso-indent-interview: 48px;
+    --iso-indent-caption: 48px;
+
+    --iso-icon-xl: 14px;
+    --iso-icon-expressive: 26px;
+  }
+}
+
+/* =============================================================
+   Utility classes — apply tokens directly
+   ============================================================= */
+
+.iso-display-1 { font-family: var(--iso-family-display); font-weight: var(--iso-w-300); font-size: var(--iso-display-1-size); line-height: var(--iso-display-1-lh); letter-spacing: var(--iso-display-1-ls); }
+.iso-display-2 { font-family: var(--iso-family-display); font-weight: var(--iso-w-300); font-size: var(--iso-display-2-size); line-height: var(--iso-display-2-lh); letter-spacing: var(--iso-display-2-ls); }
+.iso-display-3 { font-family: var(--iso-family-display); font-weight: var(--iso-w-300); font-size: var(--iso-display-3-size); line-height: var(--iso-display-3-lh); letter-spacing: var(--iso-display-3-ls); }
+
+.iso-h1 { font-family: var(--iso-family-light); font-weight: var(--iso-w-300); font-size: var(--iso-h1-size); line-height: var(--iso-h1-lh); letter-spacing: var(--iso-h1-ls); }
+.iso-h2 { font-family: var(--iso-family-light); font-weight: var(--iso-w-300); font-size: var(--iso-h2-size); line-height: var(--iso-h2-lh); letter-spacing: var(--iso-h2-ls); }
+.iso-h3 { font-family: var(--iso-family-light); font-weight: var(--iso-w-300); font-size: var(--iso-h3-size); line-height: var(--iso-h3-lh); letter-spacing: var(--iso-h3-ls); }
+
+.iso-quote-l { font-family: var(--iso-family-display); font-style: italic; font-weight: var(--iso-w-300); font-size: var(--iso-quote-l-size); line-height: var(--iso-quote-l-lh); letter-spacing: var(--iso-quote-l-ls); }
+
+.iso-p-xl   { font-family: var(--iso-family-light); font-size: var(--iso-p-xl-size);   line-height: var(--iso-p-xl-lh);   letter-spacing: var(--iso-p-xl-ls); }
+.iso-p-l    { font-family: var(--iso-family-light); font-size: var(--iso-p-l-size);    line-height: var(--iso-p-l-lh); }
+.iso-p-m    { font-family: var(--iso-family-light); font-size: var(--iso-p-m-size);    line-height: var(--iso-p-m-lh); }
+.iso-p-s    { font-family: var(--iso-family-light); font-size: var(--iso-p-s-size);    line-height: var(--iso-p-s-lh); }
+.iso-p-xs   { font-family: var(--iso-family-body);  font-size: var(--iso-p-xs-size);   line-height: var(--iso-p-xs-lh);   letter-spacing: var(--iso-p-xs-ls); }
+.iso-p-long { font-family: var(--iso-family-light); font-size: var(--iso-p-long-size); line-height: var(--iso-p-long-lh); letter-spacing: var(--iso-p-long-ls); }
+
+.iso-tag-l { font-family: var(--iso-family-mono); font-size: var(--iso-tag-l-size); line-height: var(--iso-tag-l-lh); letter-spacing: var(--iso-tag-l-ls); text-transform: uppercase; }
+.iso-tag-s { font-family: var(--iso-family-mono); font-size: var(--iso-tag-s-size); line-height: var(--iso-tag-s-lh); letter-spacing: var(--iso-tag-s-ls); text-transform: uppercase; }
+
+/* Button (Work with us) */
+.iso-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--iso-family-body); font-size: 14px; line-height: 1;
+  padding: 14px 22px;
+  background: var(--iso-ink); color: var(--iso-white);
+  border: 1px solid var(--iso-ink); border-radius: var(--iso-radius-3);
+  text-decoration: none;
+  transition: background var(--iso-dur) var(--iso-ease), color var(--iso-dur) var(--iso-ease);
+}
+.iso-btn:hover { background: var(--iso-charcoal); }
+.iso-btn--ghost { background: transparent; color: var(--iso-ink); }
+.iso-btn--ghost:hover { background: var(--iso-ink); color: var(--iso-white); }
+
+/* Card */
+.iso-card {
+  background: var(--iso-white);
+  border-radius: var(--iso-radius-container);
+  padding: var(--iso-card-pad);
+  border: 1px solid var(--iso-hairline-2);
+}
