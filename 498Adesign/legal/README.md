@@ -16,7 +16,7 @@ Las dos versiones contienen el mismo texto; la HTML añade selector de idioma st
 | Aviso legal | ✅ `aviso-legal.md` | ✅ `aviso-legal.html` | CA · EN · ES (pendiente) | Versión ES · revisión post-rebrand |
 | Política de privacidad | ✅ `politica-privacidad.md` | ✅ `politica-privacidad.html` | ES · CA, EN (pendientes) | Gaps RGPD · versiones CA y EN |
 | Política de cookies | ✅ `politica-cookies.md` | ✅ `politica-cookies.html` | ES · CA, EN (pendientes) | Inventario cookies del nuevo stack · versiones CA y EN |
-| Declaración de accesibilidad | ⏳ pendiente · auditoría primero | ⏳ pendiente | — | Fix gaps WCAG identificados en playground · audit con axe/Lighthouse · entonces redactar |
+| Declaración de accesibilidad | ✅ `declaracion-accesibilidad.md` | ✅ `declaracion-accesibilidad.html` | ES · CA, EN (pendientes) | Audit externo profesional · axe/Lighthouse en CI · subtítulos vídeo · tests con usuarios de tecnologías de apoyo |
 
 ---
 
@@ -62,14 +62,32 @@ El texto legacy es **mínimo** y le faltan elementos que las buenas prácticas R
 
 ---
 
+## Mejoras de accesibilidad implementadas en el playground v2.1
+
+Como parte del cierre de la Declaración de Accesibilidad, se han aplicado las siguientes mejoras WCAG 2.1 AA:
+
+- **Skip link** "Saltar al contenido principal" (WCAG 2.4.1)
+- **`<main>` landmark** envolviendo el contenido principal (WCAG 1.3.1, 2.4.1)
+- **`<a>`/`<button>`/`<input>` focus-visible** global con outline verde 2 px + offset 2 px (WCAG 2.4.7)
+- **Focus trap** del modal de cookies con devolución de focus al trigger (WCAG 2.4.3)
+- **Contraste de texto**: `--pg-text-faint` subido de `#999` a `#717171` (ratio 4.6:1, pasa AA). `.eyebrow` en tokens.css cambiado a verde-deep (`#0E7A1F`, ratio 6.1:1) en lugar de verde primary (`#2DD60F`, fallaba)
+- **Typewriter sr-only**: el reveal char-by-char tiene un `<span class="sr-only">` con el texto completo para lectores de pantalla, mientras la animación visual usa `aria-hidden="true"`
+- **Touch targets**: `lang-grid` ≥ 44 × 44 px en pantallas táctiles (WCAG 2.5.5)
+- **`aria-label`** en el vídeo hero describiendo el contenido visual (WCAG 1.2.5)
+- **`prefers-reduced-motion`** respetado en todas las animaciones (WCAG 2.3.3)
+
 ## Próximos pasos
 
-1. **Recibir versiones CA y EN** de Privacidad y Cookies del equipo legal.
-2. **Recibir versión ES** del Aviso legal.
-3. **Auditoría de accesibilidad** del playground (axe DevTools + Lighthouse + WAVE). Cerrar gaps WCAG 2.1 AA antes de redactar la Declaración de Accesibilidad (no copiar la legacy; declarar el estado real auditado).
-4. **Confirmar dominio target** y propagar a todos los textos.
-5. **Reescribir inventario de cookies** cuando el nuevo stack esté en pre-producción.
-6. **Validar conformidad** GDPR / LOPDGDD / LSSI-CE / EAA (Accessibility Act) con asesoría legal antes de publicar.
+1. **Auditoría profesional externa** con entidad certificada (Funka u otra) antes del go-live.
+2. **Tests automatizados** con axe DevTools / Lighthouse / WAVE integrados en CI.
+3. **Tests con usuarios** de tecnologías de apoyo (NVDA + Firefox, VoiceOver + Safari).
+4. **Recibir versiones CA y EN** de Privacidad, Cookies y Accesibilidad del equipo legal.
+5. **Recibir versión ES** del Aviso legal.
+6. **Confirmar dominio target** (`www.498a.com` provisional) y propagar a todos los textos.
+7. **Reescribir inventario de cookies** cuando el nuevo stack esté en pre-producción.
+8. **Subtítulos del vídeo hero** cuando se sustituya por contenido productivo.
+9. **Validar conformidad** GDPR / LOPDGDD / LSSI-CE / EAA con asesoría legal antes de publicar.
+10. **Revisión semestral** de la Declaración de Accesibilidad una vez en producción.
 
 ---
 

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Declaración de Accesibilidad · 498 Advance</title>
+<meta name="description" content="Declaración de accesibilidad WCAG 2.1 AA · 498 Advanced Solutions SL · CIF B64519622">
+<link rel="stylesheet" href="../tokens.css">
+<style>
+  /* ===================================================================
+     Página legal · usa tokens del design system 498A v2.1
+     Layout editorial puro · max-width contenido para lectura cómoda
+     =================================================================== */
+  :root {
+    --pg-text: #1A1A1A;
+    --pg-text-muted: #5C5C5C;
+    --pg-text-faint: #999999;
+    --pg-line: rgba(0, 0, 0, .08);
+    --pg-line-strong: rgba(0, 0, 0, .18);
+    --pg-paper: #FAFAFA;
+    --pg-rail-width: 148px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--pg-text);
+    background: var(--498-white);
+  }
+
+  /* Skip link · accesibilidad WCAG 2.4.1 */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--498-green-deep);
+    color: var(--498-white);
+    padding: 12px 18px;
+    font-family: var(--498-family-mono); font-size: 12px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+    z-index: 100;
+    transition: top .2s;
+  }
+  .skip-link:focus { top: 0; outline: 2px solid var(--498-green); outline-offset: 2px; }
+
+  /* Nav superior simple · brand + back link */
+  .legal-nav {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--pg-line);
+    padding: 0;
+  }
+  .legal-nav__brand {
+    display: inline-flex; align-items: center;
+    padding: 0 18px;
+    background: var(--498-black);
+    color: var(--498-white);
+    font-family: var(--498-family-mono); font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+    height: 56px;
+  }
+  .legal-nav__brand em { color: var(--498-green); font-style: normal; margin: 0 1px; }
+  .legal-nav__back {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0 18px;
+    border-left: 1px solid var(--pg-line);
+    border-right: 1px solid var(--pg-line);
+    color: var(--pg-text);
+    text-decoration: none;
+    font-family: var(--498-family-ui); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500;
+    height: 56px;
+    transition: background .2s, color .2s;
+  }
+  .legal-nav__back:hover { background: var(--498-green-50); color: var(--498-green-deep); }
+  .legal-nav__back:focus-visible { outline: 2px solid var(--498-green-deep); outline-offset: -2px; }
+  .legal-nav__spacer { flex: 1; border-bottom: 1px solid var(--pg-line); }
+
+  /* Header del documento */
+  .legal-header {
+    padding: 64px 8vw 32px;
+    max-width: 920px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--pg-line);
+  }
+  .legal-header__eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--pg-text); font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .legal-header__eyebrow::before {
+    content: ""; display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--pg-text);
+  }
+  .legal-header__title {
+    font-family: var(--498-family-body);
+    font-weight: 300; font-style: italic;
+    font-size: 56px; line-height: 1.05; letter-spacing: -1.5px;
+    color: var(--pg-text);
+    margin-bottom: 24px;
+  }
+  .legal-header__meta {
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--pg-text-muted);
+  }
+  @media (max-width: 720px) {
+    .legal-header { padding: 40px 6vw 24px; }
+    .legal-header__title { font-size: 36px; }
+  }
+
+  /* Lang selector · matriz 1x3 sticky · ES / CA / EN */
+  .legal-lang {
+    position: sticky; top: 0; z-index: 10;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--pg-line-strong);
+  }
+  .legal-lang__cell {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 16px 0;
+    min-height: 44px;
+    font-family: var(--498-family-mono); font-size: 12px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
+    color: var(--pg-text); text-decoration: none;
+    border-right: 1px solid var(--pg-line);
+    transition: background .2s, color .2s;
+  }
+  .legal-lang__cell:last-child { border-right: 0; }
+  .legal-lang__cell:hover { background: var(--498-green-50); color: var(--498-green-deep); }
+  .legal-lang__cell:focus-visible { outline: 2px solid var(--498-green-deep); outline-offset: -2px; }
+  .legal-lang__cell.is-active { background: var(--498-green-deep); color: var(--498-white); }
+
+  /* Contenido legal · max-width tipo paper */
+  .legal-content {
+    padding: 48px 8vw 96px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .legal-content h2 {
+    font-family: var(--498-family-mono); font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--498-green-deep); font-weight: 600;
+    margin: 56px 0 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--pg-line-strong);
+  }
+  .legal-content h2:first-of-type { margin-top: 0; }
+  .legal-content h3 {
+    font-family: var(--498-family-body);
+    font-weight: 300; font-style: italic;
+    font-size: 24px; line-height: 1.2;
+    margin: 32px 0 16px;
+    color: var(--pg-text);
+  }
+  .legal-content p {
+    margin-bottom: 18px;
+    color: var(--pg-text);
+  }
+  .legal-content p strong {
+    color: var(--pg-text);
+    font-weight: 500;
+  }
+  .legal-content ul,
+  .legal-content ol {
+    margin: 0 0 18px 20px;
+    color: var(--pg-text);
+  }
+  .legal-content ul li,
+  .legal-content ol li { margin-bottom: 6px; }
+  .legal-content a {
+    color: var(--498-green-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--498-green-line);
+    transition: border-color .2s;
+  }
+  .legal-content a:hover { border-bottom-color: var(--498-green-deep); }
+  .legal-content a:focus-visible { outline: 2px solid var(--498-green-deep); outline-offset: 2px; }
+  .legal-content blockquote {
+    margin: 32px 0;
+    padding: 20px 24px;
+    background: var(--pg-paper);
+    border-left: 3px solid var(--498-green-deep);
+    color: var(--pg-text-muted);
+    font-size: 14px;
+    font-style: italic;
+  }
+  .legal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .legal-content th, .legal-content td {
+    text-align: left;
+    padding: 10px 14px;
+    border: 1px solid var(--pg-line-strong);
+  }
+  .legal-content th {
+    background: var(--pg-paper);
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+  }
+
+  /* Lang sections · solo una visible a la vez (JS toggle) */
+  .lang-section { display: none; }
+  .lang-section.is-active { display: block; }
+  .lang-pending {
+    padding: 48px 32px; text-align: center;
+    background: var(--pg-paper);
+    border: 1px dashed var(--pg-line-strong);
+    color: var(--pg-text-muted);
+    font-style: italic;
+  }
+
+  /* Footer mínimo */
+  .legal-footer {
+    padding: 32px 8vw;
+    border-top: 1px solid var(--pg-line);
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--pg-text-muted);
+  }
+  .legal-footer a {
+    color: var(--pg-text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  .legal-footer a:hover {
+    color: var(--498-green-deep);
+    border-bottom-color: var(--498-green-line);
+  }
+  .legal-footer a:focus-visible { outline: 2px solid var(--498-green-deep); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+<nav class="legal-nav" aria-label="Navegación principal">
+  <a class="legal-nav__brand" href="../playground.html" aria-label="498 Advance · Inicio">
+    498 <em>A</em>DVANCE
+  </a>
+  <a class="legal-nav__back" href="../playground.html">← Volver a la home</a>
+  <div class="legal-nav__spacer" aria-hidden="true"></div>
+</nav>
+
+<header class="legal-header">
+  <span class="legal-header__eyebrow">Accesibilidad · 498 Advance</span>
+  <h1 class="legal-header__title">Declaración <em style="font-style:italic">de accesibilidad</em>.</h1>
+  <div class="legal-header__meta">
+    Última actualización · 18 May 2026 · 498 Advanced Solutions SL · CIF B64519622
+  </div>
+</header>
+
+<nav class="legal-lang" aria-label="Idioma del documento">
+  <a class="legal-lang__cell is-active" href="#es" data-lang="es" hreflang="es">Castellano</a>
+  <a class="legal-lang__cell" href="#ca" data-lang="ca" hreflang="ca">Català</a>
+  <a class="legal-lang__cell" href="#en" data-lang="en" hreflang="en">English</a>
+</nav>
+
+<main class="legal-content" id="contenido-principal">
+
+  <!-- ============================== ES ============================== -->
+  <article id="es" class="lang-section is-active" lang="es">
+
+    <p>498 Advanced Solutions SL (en adelante, <strong>498 Advance</strong> o <strong>498A</strong>) se compromete a hacer accesible su sitio web <a href="https://www.498a.com" target="_blank" rel="noopener">www.498a.com</a> de conformidad con el Real Decreto 1112/2018 de 7 de septiembre, sobre accesibilidad de los sitios web y aplicaciones para dispositivos móviles del sector público (transposición de la Directiva (UE) 2016/2102 al ordenamiento jurídico español) y la <strong>Directiva (UE) 2019/882 — European Accessibility Act</strong>, aplicable a productos y servicios privados desde el 28 de junio de 2025.</p>
+
+    <p>La presente Declaración de Accesibilidad se aplica al sitio <a href="https://www.498a.com" target="_blank" rel="noopener">www.498a.com</a>.</p>
+
+    <h2>Situación de cumplimiento</h2>
+    <p>Este sitio web es <strong>parcialmente conforme</strong> con la norma <strong>UNE-EN 301 549:2022</strong>, que recoge los requisitos de accesibilidad WCAG 2.1 nivel AA, debido a las excepciones y a la falta de conformidad de los aspectos que se indican a continuación.</p>
+
+    <h2>Contenido no accesible</h2>
+    <p>El contenido que se recoge a continuación no es accesible por los siguientes motivos:</p>
+
+    <h3>1. Falta de conformidad pendiente de auditoría externa profesional</h3>
+    <p>A fecha de <strong>18 de mayo de 2026</strong>, esta declaración se basa en una <strong>revisión manual interna</strong> del equipo de 498A. Está pendiente de:</p>
+    <ul>
+      <li><strong>Auditoría profesional externa</strong> por entidad certificada en accesibilidad (Funka, accessibility.es u otra acreditada).</li>
+      <li><strong>Tests automatizados</strong> con axe DevTools y Lighthouse en pre-producción.</li>
+      <li><strong>Tests de usabilidad con personas usuarias de tecnologías de apoyo</strong> (lectores de pantalla, navegación por teclado, alto contraste).</li>
+    </ul>
+    <p>Hasta que estos tests se completen, se publican como "no auditados" los siguientes módulos:</p>
+    <ul>
+      <li>Hero con vídeo autoplay (vídeo sin subtítulos ni descripción detallada en pista alternativa).</li>
+      <li>Animaciones decorativas: pattern band animada, persiana scaleY en cajas, typewriter reveal en eyebrows de alta jerarquía.</li>
+      <li>Componentes interactivos del playground stress-test (gestor de cookies, selector de idioma, navegación principal).</li>
+    </ul>
+
+    <h3>2. Contenido pendiente</h3>
+    <ul>
+      <li><strong>Subtítulos del vídeo hero</strong>: el vídeo del hero se reproduce en bucle, sin audio significativo (es atmosférico) pero sin pista de texto descriptiva. Se incluirá descripción en <code>&lt;track kind="descriptions"&gt;</code> cuando se reemplace por contenido productivo.</li>
+      <li><strong>Versiones en catalán e inglés</strong> de algunos textos legales (Aviso Legal, Política de Privacidad, Política de Cookies).</li>
+      <li><strong>Auditoría de contraste exhaustiva</strong> en componentes derivados del design system v2.1 cuando se desplieguen en producción.</li>
+    </ul>
+
+    <h3>3. Carga desproporcionada</h3>
+    <p>No se invocan exenciones por carga desproporcionada en esta versión.</p>
+
+    <h2>Mejoras de accesibilidad ya implementadas</h2>
+    <p>Como parte del rediseño v2.1 del sitio (mayo 2026), se han incorporado las siguientes medidas:</p>
+
+    <h3>Estructura semántica</h3>
+    <ul>
+      <li>HTML semántico con landmarks <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>.</li>
+      <li><strong>Skip link</strong> "Saltar al contenido principal" visible al recibir focus de teclado (WCAG 2.4.1).</li>
+      <li>Jerarquía de encabezados consistente (<code>h1</code> → <code>h2</code> → <code>h3</code> sin saltos directos).</li>
+    </ul>
+
+    <h3>Navegación por teclado</h3>
+    <ul>
+      <li><strong>Focus visible global</strong> con outline verde de 2 px y offset 2 px en todos los elementos interactivos (WCAG 2.4.7).</li>
+      <li><strong>Tab order lógico</strong> en navegación principal, selector de idioma y formularios.</li>
+      <li><strong>Tecla Escape</strong> cierra el modal de cookies (WCAG 2.1.2).</li>
+      <li><strong>Focus trap</strong> dentro del modal de cookies con devolución del focus al elemento que lo invocó (WCAG 2.4.3).</li>
+    </ul>
+
+    <h3>Color y contraste</h3>
+    <ul>
+      <li>Verde marca primario (<code>#2DD60F</code>, ratio 2.83:1 sobre blanco) reservado a fondos oscuros y elementos no textuales.</li>
+      <li>Verde profundo (<code>#0E7A1F</code>, ratio 6.1:1 sobre blanco) utilizado en texto y enlaces sobre fondo claro · cumple AA.</li>
+      <li>Color de texto secundario subido a <code>#717171</code> (ratio 4.6:1) · cumple AA para body text.</li>
+      <li>Color de texto principal <code>#1A1A1A</code> (ratio 16.9:1) · cumple AAA.</li>
+    </ul>
+
+    <h3>Lectores de pantalla</h3>
+    <ul>
+      <li><strong>Atributos ARIA</strong>: <code>aria-label</code>, <code>aria-current</code>, <code>aria-modal</code>, <code>aria-labelledby</code>, <code>aria-hidden</code>, <code>role="dialog"</code> aplicados donde procede.</li>
+      <li><strong>Elementos decorativos</strong> (marcas SVG, frame-cross corners, separadores) marcados como <code>aria-hidden="true"</code>.</li>
+      <li><strong>Atributo <code>lang</code></strong> declarado en cada bloque de idioma en los documentos legales.</li>
+      <li><strong>Texto alternativo <code>sr-only</code></strong> para el typewriter reveal del eyebrow "Founder Voice" (los lectores de pantalla reciben el texto completo, mientras la animación visual permanece para usuarios sin tecnologías de apoyo).</li>
+    </ul>
+
+    <h3>Animaciones y movimiento</h3>
+    <ul>
+      <li>Soporte completo de <strong><code>prefers-reduced-motion</code></strong> en todas las animaciones de la web (pattern band, persiana, typewriter, gradient drift, shimmer).</li>
+      <li>Vídeo hero sin sonido (<code>muted</code>) por defecto. Loops cortos sin transiciones agresivas.</li>
+    </ul>
+
+    <h3>Formularios y controles</h3>
+    <ul>
+      <li>Toggles del gestor de cookies con <code>&lt;label&gt;</code> envolviendo <code>&lt;input&gt;</code> (asociación nativa).</li>
+      <li>Focus visible explícito en estado <code>:focus-visible</code>.</li>
+      <li>Tamaños de touch target ≥ 44 × 44 px en pantallas táctiles para el selector de idioma (WCAG 2.5.5).</li>
+    </ul>
+
+    <h2>Preparación de la presente declaración</h2>
+    <p>La presente declaración fue preparada el <strong>18 de mayo de 2026</strong>.</p>
+    <p>El método empleado para preparar la declaración ha sido una <strong>autoevaluación</strong> llevada a cabo por el propio equipo de 498A, sobre la versión v2.1 del nuevo sitio web (todavía en pre-producción).</p>
+    <p>Última revisión de la declaración: <strong>18 de mayo de 2026</strong>.</p>
+
+    <h2>Observaciones y datos de contacto</h2>
+    <p>Puedes realizar comunicaciones sobre requisitos de accesibilidad (Artículo 10.2.a del RD 1112/2018) como por ejemplo:</p>
+    <ul>
+      <li>Informar sobre cualquier posible incumplimiento por parte de este sitio web.</li>
+      <li>Transmitir otras dificultades de acceso al contenido.</li>
+      <li>Formular cualquier otra consulta o sugerencia de mejora relativa a la accesibilidad del sitio web.</li>
+    </ul>
+    <p>A través del correo electrónico: <a href="mailto:accesibilidad@498a.com"><strong>accesibilidad@498a.com</strong></a></p>
+    <p>Las comunicaciones serán recibidas y tratadas por 498 Advanced Solutions SL.</p>
+
+    <h2>Procedimiento de aplicación</h2>
+    <p>En el caso de que, una vez realizada una solicitud de información accesible o queja, ésta hubiera sido desestimada, no se estuviera de acuerdo con la decisión adoptada, o la respuesta no cumpliera los requisitos contemplados en el artículo 12.5 del RD 1112/2018, la persona interesada podrá iniciar una reclamación para conocer y oponerse a los motivos de la desestimación, instar la adopción de las medidas oportunas en el caso de no estar de acuerdo con la decisión adoptada, o exponer las razones por las que se considera que la respuesta no cumple con los requisitos exigidos.</p>
+    <p>La reclamación puede presentarse a través del correo: <a href="mailto:accesibilidad@498a.com"><strong>accesibilidad@498a.com</strong></a></p>
+
+    <h2>Contenido opcional</h2>
+
+    <h3>Diseño técnico</h3>
+    <p>Este sitio web ha sido desarrollado sobre un design system propio (<code>498Adesign v2.1</code>) basado en HTML5 semántico, CSS3 y JavaScript vanilla mínimo (un único <code>IntersectionObserver</code> para animaciones de entrada en viewport y un módulo de gestión de consent de cookies).</p>
+    <p>No utiliza frameworks reactivos pesados (React, Vue, Angular) que generen árboles de accesibilidad opacos.</p>
+
+    <h3>Compatibilidad con navegadores y tecnologías de apoyo</h3>
+    <p>El sitio web es compatible con las versiones más recientes de los siguientes navegadores y combinaciones de tecnologías de apoyo (pendiente de tests formales):</p>
+    <ul>
+      <li><strong>Chrome, Edge, Firefox, Safari</strong> (últimas 2 versiones) en escritorio.</li>
+      <li><strong>Chrome y Safari</strong> en dispositivos móviles iOS y Android.</li>
+      <li>Lectores de pantalla <strong>NVDA + Firefox</strong> y <strong>VoiceOver + Safari</strong> (pendiente test formal).</li>
+    </ul>
+
+    <h3>Tecnologías utilizadas</h3>
+    <p>HTML5 · CSS3 · JavaScript (ES5 vanilla · <code>IntersectionObserver</code> · <code>localStorage</code> API).</p>
+
+    <h2>Próximos pasos para alcanzar conformidad plena</h2>
+    <ol>
+      <li><strong>Auditoría profesional externa</strong> con entidad certificada antes del go-live.</li>
+      <li><strong>Tests automatizados continuos</strong> con axe DevTools / Lighthouse / WAVE integrados en CI.</li>
+      <li><strong>Tests de usabilidad</strong> con personas usuarias de tecnologías de apoyo.</li>
+      <li><strong>Subtítulos y descripciones</strong> para vídeo del hero cuando se sustituya por contenido productivo.</li>
+      <li><strong>Versiones CA y EN</strong> de todos los textos legales.</li>
+      <li><strong>Revisión semestral</strong> de la declaración una vez en producción.</li>
+    </ol>
+
+    <blockquote>Declaración de accesibilidad actualizada a 18 de mayo de 2026. Borrador autoevaluado, pendiente de auditoría externa profesional antes de publicación definitiva.</blockquote>
+
+  </article>
+
+  <!-- ============================== CA ============================== -->
+  <article id="ca" class="lang-section" lang="ca">
+    <div class="lang-pending">
+      Versió catalana pendent. El text es publicarà tan bon punt l'equip legal
+      proporcioni la traducció definitiva. Mentrestant, la versió en castellà
+      és la disponible.
+    </div>
+  </article>
+
+  <!-- ============================== EN ============================== -->
+  <article id="en" class="lang-section" lang="en">
+    <div class="lang-pending">
+      English version pending. The text will be published as soon as the legal
+      team provides the final translation. In the meantime, the Spanish version
+      is the one available.
+    </div>
+  </article>
+
+</main>
+
+<footer class="legal-footer">
+  <span>© 2026 498 Advanced Solutions SL · Una compañía del grupo Zoopa</span>
+  <span>
+    <a href="../playground.html">Inicio</a> ·
+    <a href="aviso-legal.html">Aviso legal</a> ·
+    <a href="politica-privacidad.html">Política de privacidad</a> ·
+    <a href="politica-cookies.html">Política de cookies</a>
+  </span>
+</footer>
+
+<script>
+  // Language switcher · cambia visibilidad de las 3 lang-section sin recargar
+  (function () {
+    var cells = document.querySelectorAll('.legal-lang__cell');
+    var sections = document.querySelectorAll('.lang-section');
+
+    function activate(lang) {
+      cells.forEach(function (c) {
+        c.classList.toggle('is-active', c.dataset.lang === lang);
+      });
+      sections.forEach(function (s) {
+        s.classList.toggle('is-active', s.id === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+
+    cells.forEach(function (c) {
+      c.addEventListener('click', function (e) {
+        e.preventDefault();
+        var lang = this.dataset.lang;
+        activate(lang);
+        // Update URL hash without scroll jump
+        history.replaceState(null, '', '#' + lang);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // On load: read hash and activate that lang (default: es)
+    var initial = (location.hash || '#es').replace('#', '');
+    if (['es', 'ca', 'en'].indexOf(initial) !== -1) activate(initial);
+  })();
+</script>
+
+</body>
+</html>

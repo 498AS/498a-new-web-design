@@ -29,8 +29,8 @@
     --pg-line-strong: rgba(0, 0, 0, .14);
     --pg-line-mid:    rgba(0, 0, 0, .11);
     --pg-text:        #1A1A1A;
-    --pg-text-muted:  #5C5C5C;
-    --pg-text-faint:  #999999;
+    --pg-text-muted:  #5C5C5C;  /* ratio 7.4:1 sobre blanco · pasa AAA */
+    --pg-text-faint:  #717171;  /* ratio 4.6:1 sobre blanco · pasa AA · subido desde #999 que fallaba */
     --pg-paper:       #FAFAFA;
     --pg-paper-green: #F4FAF3;
     --pg-section-pad-y: 120px;
@@ -51,6 +51,54 @@
   }
   .container { max-width: var(--498-content-max); margin: 0 auto; }
   .narrow    { max-width: 760px;  margin: 0 auto; }
+
+  /* ===================================================================
+     ACCESIBILIDAD · WCAG 2.1 AA
+     =================================================================== */
+
+  /* Skip link · oculto hasta que recibe focus por Tab · WCAG 2.4.1 */
+  .skip-link {
+    position: fixed; top: 0; left: 0; z-index: 100;
+    padding: 14px 22px;
+    background: var(--498-black); color: var(--498-white);
+    font-family: var(--498-family-mono); font-size: 13px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+    border: 2px solid var(--498-green);
+    transform: translateY(-150%);
+    transition: transform .15s ease-out;
+  }
+  .skip-link:focus { transform: translateY(0); outline: none; }
+
+  /* Focus visible global · keyboard navigation · WCAG 2.4.7
+     Aplica a todos los elementos interactivos sin custom focus
+     (no rompe los focus específicos ya definidos en componentes) */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--498-green);
+    outline-offset: 2px;
+    border-radius: 0;
+  }
+  /* Algunos componentes ya tienen focus custom · evitamos doblar outline */
+  .cookie-toggle input:focus-visible + .cookie-toggle__track {
+    outline: 2px solid var(--498-green);
+    outline-offset: 2px;
+  }
+
+  /* SR-only · contenido visible solo para lectores de pantalla */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 
   /* ===================================================================
      Tipografía editorial
@@ -299,6 +347,10 @@
   /* Glifo CJK: reset case + tracking + tamaño ligeramente mayor para óptica */
   .lang-grid__cell.lang-cjk {
     font-size: 13px; letter-spacing: 0; text-transform: none; font-weight: 400;
+  }
+  /* Touch targets · WCAG 2.5.5 (44×44 mínimo) en pantallas táctiles */
+  @media (max-width: 720px), (pointer: coarse) {
+    .lang-grid { grid-auto-rows: 44px; grid-template-columns: repeat(3, 52px); }
   }
 
   /* Botones sobre video oscuro: blanco como base */
@@ -1704,6 +1756,9 @@
 </head>
 <body>
 
+<!-- Skip link · WCAG 2.4.1 · permite a usuarios de teclado saltar al contenido -->
+<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
 <!-- =================================================================
      NAV en cajas
      ================================================================= -->
@@ -1723,11 +1778,15 @@
   <a class="nav__cta-box" href="#contact">Hablemos →</a>
 </nav>
 
+<!-- Main content landmark · WCAG 1.3.1 + 2.4.1 -->
+<main id="main-content">
+
 <!-- =================================================================
      HERO FULL-BLEED · video cubre 100vh
      ================================================================= -->
 <header class="hero-fullbleed">
   <video class="hero-fullbleed__video" autoplay muted loop playsinline preload="auto"
+         aria-label="Loop ambiental · imágenes generadas que ilustran la atmósfera de trabajo del lab de simulación 498 Advance"
          data-src-desktop="assets/video/hero-loop.mp4"
          data-src-mobile="assets/video/hero-loop-mobile.mp4">
   </video>
@@ -2148,7 +2207,9 @@
     <div class="team-content">
       <div>
         <span class="eyebrow-square">
-          <span class="typewriter" style="--chars: 13;">Founder Voice</span>
+          <!-- SR users reciben el texto completo · visual users ven el typewriter -->
+          <span class="sr-only">Founder Voice</span>
+          <span class="typewriter" style="--chars: 13;" aria-hidden="true">Founder Voice</span>
         </span>
         <p class="team-quote">
           <em>"Una organización próspera es la que sabe anticiparse,
@@ -2531,6 +2592,9 @@
   </div>
 </section>
 
+</main>
+<!-- /Main content landmark -->
+
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
@@ -2585,7 +2649,7 @@
       <a href="legal/politica-privacidad.html">Política de privacidad</a> ·
       <a href="legal/politica-cookies.html">Política de cookies</a> ·
       <a href="#" data-cookie-open>Gestionar cookies</a> ·
-      <a href="#accesibilidad">Declaración de accesibilidad</a>
+      <a href="legal/declaracion-accesibilidad.html">Declaración de accesibilidad</a>
     </span>
   </div>
 </footer>
@@ -2746,19 +2810,45 @@
       try { localStorage.setItem(KEY, JSON.stringify(prefs)); } catch (e) {}
     }
 
+    // Focus trap helpers · WCAG 2.4.3 (focus order) + 2.1.2 (no keyboard trap)
+    var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    var lastTrigger = null;
+
+    function getFocusable(root) {
+      return Array.prototype.slice.call(root.querySelectorAll(FOCUSABLE))
+        .filter(function (el) { return el.offsetParent !== null; });
+    }
+    function trapTab(e) {
+      if (e.key !== 'Tab' || modal.hidden) return;
+      var items = getFocusable(modal);
+      if (!items.length) return;
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
     function showBanner() { banner.hidden = false; }
     function hideBanner() { banner.hidden = true; }
     function openModal() {
+      // Recuerda quién lanzó el modal para devolver el focus al cerrar
+      lastTrigger = document.activeElement;
       // Pre-carga toggles con la preferencia guardada (o defaults)
       var prefs = load() || { analytics: true, marketing: false };
       inputAnalytics.checked = !!prefs.analytics;
       inputMarketing.checked = !!prefs.marketing;
       modal.hidden = false;
       document.documentElement.style.overflow = 'hidden';
+      // Mueve el focus al primer elemento focusable del modal
+      var firstFocusable = getFocusable(modal)[0];
+      if (firstFocusable) setTimeout(function () { firstFocusable.focus(); }, 50);
+      document.addEventListener('keydown', trapTab);
     }
     function closeModal() {
       modal.hidden = true;
       document.documentElement.style.overflow = '';
+      document.removeEventListener('keydown', trapTab);
+      // Devuelve el focus al elemento que abrió el modal
+      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
     }
 
     function acceptAll() {

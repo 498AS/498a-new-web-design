@@ -393,7 +393,7 @@ a.link-ext::after {
   line-height: var(--498-tag-l-lh);
   letter-spacing: var(--498-tag-l-ls);
   text-transform: uppercase;
-  color: var(--498-green);
+  color: var(--498-green-deep);  /* verde-deep (ratio 6.1:1) pasa AA · primary fallaba */
   font-weight: var(--498-w-mid);
   display: inline-block;
 }
