@@ -704,6 +704,120 @@
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 0   100% / 14px 14px no-repeat,
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 100% 100% / 14px 14px no-repeat;
   }
+  /* ===================================================================
+     VARIANTE PERIODIC · grid arquitectónico tipo tabla periódica
+     Cards contiguas con shared borders + estructura interna fija:
+     número TL · símbolo TR · glyph central · divider · descripción.
+     Heritage: tabla periódica de elementos · catálogo de capacidades.
+
+     Diferencias vs frame-cross: NO hay gap entre cards · NO hay corner
+     crosses custom (los "+" salen gratis de la intersección de bordes
+     compartidos con el divider interno).
+     =================================================================== */
+  .box-collection--periodic {
+    /* Truco CSS: background negro + gap 1px + padding 1px crea grid + frame
+       con bordes uniformes sin duplicaciones · zero juggling */
+    background: var(--498-black);
+    gap: 1px;
+    padding: 1px;
+    border: 0;
+    overflow: visible;
+  }
+  .box-collection--periodic > * {
+    border: 0 !important;                    /* anula borders default */
+    background: var(--498-white);
+    padding: 0;
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr 1px auto;   /* meta · symbol fill · divider · description */
+    min-height: 200px;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    cursor: default;
+    transition: background .2s;
+  }
+  .box-collection--periodic > *:hover {
+    background: var(--498-green-50);
+  }
+
+  /* Meta row · número atómico (TL) + símbolo / tag (TR) */
+  .periodic__meta {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 10px;
+    font-family: var(--498-family-mono);
+    font-size: 10px; letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .periodic__num { color: var(--pg-text-faint); font-weight: 500; }
+  .periodic__tag { color: var(--498-green-deep); font-weight: 600; }
+  .box-collection--periodic > *:hover .periodic__tag { color: var(--498-green-deep); }
+
+  /* Símbolo central · letra/abreviatura grande tipo elemento */
+  .periodic__symbol {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--498-family-display);    /* Bebas Neue */
+    font-size: 56px; line-height: 1;
+    letter-spacing: 1px;
+    color: var(--498-black);
+    text-transform: uppercase;
+    padding: 0 12px;
+  }
+  .box-collection--periodic > *:hover .periodic__symbol { color: var(--498-green-deep); }
+
+  /* Divider · 1px horizontal entre símbolo y descripción */
+  .periodic__divider {
+    background: var(--498-black);
+    width: 100%; height: 1px;
+  }
+
+  /* Descripción · cuadradito verde + nombre completo */
+  .periodic__desc {
+    padding: 10px 12px 14px;
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 12px; line-height: 1.4;
+    color: var(--pg-text);
+    margin: 0;
+  }
+  .periodic__desc::before {
+    content: "";
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: var(--498-green);          /* cuadradito verde · eco 498as.com */
+    margin-right: 8px;
+    vertical-align: -1px;
+  }
+
+  /* Celda vacía · placeholder de "expansion futura" · diagonal sutil */
+  .box--periodic-empty {
+    background: var(--498-white) !important;
+    cursor: not-allowed;
+  }
+  .box--periodic-empty::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: linear-gradient(
+      to bottom right,
+      transparent calc(50% - 0.5px),
+      var(--pg-line) calc(50% - 0.5px),
+      var(--pg-line) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    );
+    opacity: .35;
+    pointer-events: none;
+  }
+  .box--periodic-empty:hover { background: var(--498-white) !important; }
+
+  /* Responsive · matriz 4xN → 3xN → 2xN según viewport
+     Como usamos gap+background trick, el grid se reflowa solo · zero ajuste de borders */
+  @media (max-width: 900px) {
+    .box-collection--periodic.box-collection--4 { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .box-collection--periodic.box-collection--4 { grid-template-columns: repeat(2, 1fr); }
+    .periodic__symbol { font-size: 42px; }
+  }
+
   .box-collection--frame-cross > *:hover::before {
     background:
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%230E7A1F' stroke-width='1'/></svg>") 0   0   / 14px 14px no-repeat,
@@ -2000,6 +2114,97 @@
       velit esse cillum.</p>
       <a class="link" href="#">Ver más →</a>
     </article>
+  </div>
+</section>
+
+<!-- =================================================================
+     CAPABILITIES MATRIX · grid arquitectónico tipo tabla periódica
+     Demuestra el módulo box-collection--periodic
+     ================================================================= -->
+<section id="matrix" class="section-paper">
+  <div class="section-title-block">
+    <span class="eyebrow">Sectio · 02b · Matrix</span>
+    <h2 class="ed-display-3">Tabla periódica de <em>capacidades</em>.</h2>
+    <p>
+      Módulo arquitectónico para mostrar el inventario completo del lab como tabla.
+      Cells contiguas con shared borders 1&nbsp;px black. Cada celda con estructura fija
+      (número · símbolo · descripción). Bordes interiores se cruzan formando "+" naturales.
+      Algunas celdas vacías como placeholder de expansión.
+    </p>
+  </div>
+
+  <div class="box-collection box-collection--4 box-collection--periodic">
+    <article class="box">
+      <div class="periodic__meta">
+        <span class="periodic__num">01</span>
+        <span class="periodic__tag">Lab</span>
+      </div>
+      <div class="periodic__symbol">GEO</div>
+      <div class="periodic__divider" aria-hidden="true"></div>
+      <p class="periodic__desc">GEO · Generative Engine Optimization</p>
+    </article>
+
+    <article class="box">
+      <div class="periodic__meta">
+        <span class="periodic__num">02</span>
+        <span class="periodic__tag">Lab</span>
+      </div>
+      <div class="periodic__symbol">MAS</div>
+      <div class="periodic__divider" aria-hidden="true"></div>
+      <p class="periodic__desc">Sistemas multiagente</p>
+    </article>
+
+    <article class="box">
+      <div class="periodic__meta">
+        <span class="periodic__num">03</span>
+        <span class="periodic__tag">R+D</span>
+      </div>
+      <div class="periodic__symbol">SIM</div>
+      <div class="periodic__divider" aria-hidden="true"></div>
+      <p class="periodic__desc">Simulación social · Gerard</p>
+    </article>
+
+    <article class="box">
+      <div class="periodic__meta">
+        <span class="periodic__num">04</span>
+        <span class="periodic__tag">Prod</span>
+      </div>
+      <div class="periodic__symbol">RAD</div>
+      <div class="periodic__divider" aria-hidden="true"></div>
+      <p class="periodic__desc">GEORadar · brand visibility</p>
+    </article>
+
+    <article class="box">
+      <div class="periodic__meta">
+        <span class="periodic__num">05</span>
+        <span class="periodic__tag">Prod</span>
+      </div>
+      <div class="periodic__symbol">SAM</div>
+      <div class="periodic__divider" aria-hidden="true"></div>
+      <p class="periodic__desc">Semantic Alignment Machine</p>
+    </article>
+
+    <article class="box">
+      <div class="periodic__meta">
+        <span class="periodic__num">06</span>
+        <span class="periodic__tag">Prod</span>
+      </div>
+      <div class="periodic__symbol">LEO</div>
+      <div class="periodic__divider" aria-hidden="true"></div>
+      <p class="periodic__desc">Content Factory multicanal</p>
+    </article>
+
+    <article class="box">
+      <div class="periodic__meta">
+        <span class="periodic__num">07</span>
+        <span class="periodic__tag">Lab</span>
+      </div>
+      <div class="periodic__symbol">PAT</div>
+      <div class="periodic__divider" aria-hidden="true"></div>
+      <p class="periodic__desc">Prompt Atlas · datasets</p>
+    </article>
+
+    <article class="box box--periodic-empty" aria-hidden="true"></article>
   </div>
 </section>
 

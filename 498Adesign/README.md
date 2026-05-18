@@ -293,6 +293,72 @@ Ambos respetan `prefers-reduced-motion` y usan `> * { z-index: 1 }` para garanti
 
 **Label de banda**: `<span class="pattern-band__label">Grid · backpropagation · gradient flow</span>` · caja blanca con border negro y shadow 16 px que pincha contra el fondo dark.
 
+### 11.3b Periodic grid · módulo arquitectónico tipo tabla periódica
+
+Módulo añadido en v2.1 para inventarios estructurados (capacidades del lab, motores LLM cubiertos, verticales, KPIs). Inspirado en la tabla periódica de elementos: celdas contiguas con estructura interna fija que se repite, formando una **tabla legible como dataset** más que como colección de cards.
+
+**Anatomía de cada celda**:
+
+```
+┌─────────────────┐
+│ 01         Lab  │  ← número (mono · grey faint) + tag categoría (mono · verde-deep)
+│                 │
+│      GEO        │  ← símbolo grande (Bebas Neue 56 px · 2-3 letras)
+│                 │
+│ ────────────────│  ← divider horizontal 1 px black (eco 498as.com)
+│ ■ Capability    │  ← cuadradito verde (10×10 px · verde primary) + texto
+└─────────────────┘
+```
+
+**Reglas del sistema**:
+- Cells **contiguas** con shared 1 px black borders (sin gap).
+- Encuadre exterior 1 px black sólido → la matriz lee como "tabla cerrada".
+- Cada celda con `display: grid` interno fijo: `auto 1fr 1px auto`.
+- Aspect ratio 4:5 (cells casi cuadradas).
+- Hover: fondo verde-50 + símbolo pasa a verde-deep.
+- **Celdas vacías** (`.box--periodic-empty`) con diagonal sutil → placeholder de expansión.
+- Responsive: 4 cols desktop → 3 cols tablet → 2 cols mobile (con re-cálculo de borders).
+
+**Diferencias clave vs `.box-collection--frame-cross`**:
+
+| | frame-cross | periodic |
+|---|-------------|----------|
+| Espaciado entre cards | Gap 20 px | Contiguas |
+| Corner marks "+" | Custom SVG `::before` | Naturales (intersección de borders + divider) |
+| Estructura interna | Libre (la que tenga la card) | Fija (meta + symbol + divider + desc) |
+| Encuadre exterior | No | 1 px black sólido |
+| Sensación | Cards independientes con craft marks | Tabla / chart / catálogo |
+
+**Uso recomendado**:
+- Mapa de capacidades del lab (Sectio 02b "Capabilities matrix" en playground)
+- Inventario de motores IA cubiertos (ChatGPT · Gemini · Claude · Perplexity · Copilot · AIO)
+- Verticales de industria que cubre 498A
+- Stack técnico del producto (módulos GEORadar: GEOAtlas · S.A.M. · DOC · LEO · GEOdesk)
+- KPIs del Core (SOV · BIS · Sentiment · Position · Attribute · Co-branding)
+
+**Estructura HTML**:
+
+```html
+<div class="box-collection box-collection--4 box-collection--periodic">
+  <article class="box">
+    <div class="periodic__meta">
+      <span class="periodic__num">01</span>
+      <span class="periodic__tag">Lab</span>
+    </div>
+    <div class="periodic__symbol">GEO</div>
+    <div class="periodic__divider" aria-hidden="true"></div>
+    <p class="periodic__desc">GEO · Generative Engine Optimization</p>
+  </article>
+  <!-- más celdas... -->
+  <article class="box box--periodic-empty" aria-hidden="true"></article>
+</div>
+```
+
+**Convenciones de naming sugeridas para el símbolo**:
+- Capacidades del lab: 3 letras UPPER (GEO, MAS, SIM, NLU)
+- Productos: 3 letras (RAD, SAM, LEO, ATL)
+- Tags de categoría: Lab · R+D · Prod · Service
+
 ### 11.4 Marcas geométricas para box collections
 
 Sustituyen a los iconos PNG corporativos (que delataban registro "deck de consultora"). 1 px stroke verde-deep, 28×28 px, totalmente abstractas — vocabulary del sistema: cuadrados angulares, puntos, diagonales, frame-cross.
