@@ -1723,6 +1723,13 @@
     border-top: 1px solid var(--pg-text);
     box-shadow: 0 -8px 32px rgba(0,0,0,.12);
   }
+  .cookie-banner[hidden] { display: none !important; }
+  /* Cuando el banner está visible, el body recibe padding-bottom para que
+     el footer no quede tapado · clase añadida por JS */
+  body.has-cookie-banner { padding-bottom: 140px; }
+  @media (max-width: 720px) {
+    body.has-cookie-banner { padding-bottom: 220px; }
+  }
   .cookie-banner__inner {
     display: grid; grid-template-columns: 1fr auto;
     gap: 32px; align-items: center;
@@ -1762,6 +1769,7 @@
     display: flex; align-items: center; justify-content: center;
     padding: 20px;
   }
+  .cookie-modal[hidden] { display: none !important; }
   .cookie-modal__backdrop {
     position: absolute; inset: 0;
     background: rgba(0,0,0,.45);
@@ -3032,8 +3040,14 @@
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
 
-    function showBanner() { banner.hidden = false; }
-    function hideBanner() { banner.hidden = true; }
+    function showBanner() {
+      banner.hidden = false;
+      document.body.classList.add('has-cookie-banner');
+    }
+    function hideBanner() {
+      banner.hidden = true;
+      document.body.classList.remove('has-cookie-banner');
+    }
     function openModal() {
       // Recuerda quién lanzó el modal para devolver el focus al cerrar
       lastTrigger = document.activeElement;
