@@ -818,6 +818,96 @@
     .periodic__symbol { font-size: 42px; }
   }
 
+  /* ===================================================================
+     VARIANTE SERVICE-CARDS · grid arquitectónico tipo 498as.com
+     Cards más grandes con: imagen full-width arriba · divider horizontal ·
+     título mono UPPER centrado · cuadradito verde + descripción.
+     Hairlines compartidos con técnica gap+background.
+
+     Uso: secciones de servicios o capacidades donde la imagen lleva peso.
+     Para inventarios atómicos pequeños usar .box-collection--periodic.
+     =================================================================== */
+  .box-collection--service-cards {
+    background: var(--498-black);            /* hairlines via gap */
+    gap: 1px;
+    padding: 1px;
+    border: 0;
+    overflow: visible;
+  }
+  .box-collection--service-cards > * {
+    background: var(--498-white);
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden;
+    transition: background .2s;
+  }
+  .box-collection--service-cards > *:hover {
+    background: var(--498-green-50);
+  }
+
+  /* Imagen · full-width del card · aspect-ratio fijo · divider abajo */
+  .service-card__image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid var(--498-black);
+    background: var(--pg-paper);
+  }
+  .service-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Título · mono UPPER pequeño · centrado · debajo de imagen */
+  .service-card__title {
+    padding: 24px 32px 12px;
+    text-align: center;
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--498-black);
+    margin: 0;
+  }
+
+  /* Descripción · cuadradito verde a la izquierda + texto · padding lateral generoso */
+  .service-card__desc {
+    padding: 0 32px 28px;
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--498-black);
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .service-card__desc::before {
+    content: "";
+    display: inline-block;
+    flex-shrink: 0;
+    width: 11px;
+    height: 11px;
+    background: var(--498-green);
+    margin-top: 4px;
+  }
+
+  /* Responsive · 4 cols → 2 cols (mantenemos 2×2 deseable en tablet) → 1 col */
+  @media (max-width: 900px) {
+    .box-collection--service-cards.box-collection--4 { grid-template-columns: repeat(2, 1fr); }
+    .box-collection--service-cards.box-collection--2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .box-collection--service-cards.box-collection--4 { grid-template-columns: 1fr; }
+    .service-card__image { aspect-ratio: 16 / 9; }
+  }
+
   .box-collection--frame-cross > *:hover::before {
     background:
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%230E7A1F' stroke-width='1'/></svg>") 0   0   / 14px 14px no-repeat,
@@ -2126,93 +2216,70 @@
 </section>
 
 <!-- =================================================================
-     CAPABILITIES MATRIX · grid arquitectónico tipo tabla periódica
-     Demuestra el módulo box-collection--periodic
+     SERVICE CARDS · grid arquitectónico tipo 498as.com (2×2)
+     Demuestra el módulo box-collection--service-cards
      ================================================================= -->
 <section id="matrix" class="section-paper">
   <div class="section-title-block">
     <span class="eyebrow">Sectio · 02b · Matrix</span>
-    <h2 class="ed-display-3">Tabla periódica de <em>capacidades</em>.</h2>
+    <h2 class="ed-display-3">Capacidades del lab <em>en cuatro frentes</em>.</h2>
     <p>
-      Módulo arquitectónico para mostrar el inventario completo del lab como tabla.
-      Cells contiguas con shared borders 1&nbsp;px black. Cada celda con estructura fija
-      (número · símbolo · descripción). Bordes interiores se cruzan formando "+" naturales.
-      Algunas celdas vacías como placeholder de expansión.
+      Módulo de servicio con imagen full-width + título mono + descripción con cuadradito verde.
+      Cards contiguas con shared 1&nbsp;px hairlines. Los "+" en las esquinas salen
+      gratis de la intersección natural de bordes. Apto para 2×2, 3×N o 4×N.
     </p>
   </div>
 
-  <div class="box-collection box-collection--4 box-collection--periodic">
+  <div class="box-collection box-collection--2 box-collection--service-cards">
+
     <article class="box">
-      <div class="periodic__meta">
-        <span class="periodic__num">01</span>
-        <span class="periodic__tag">Lab</span>
+      <div class="service-card__image">
+        <img src="assets/visuals/data-network.webp" alt="Red de menciones de marca distribuidas en motores de IA">
       </div>
-      <div class="periodic__symbol">GEO</div>
-      <div class="periodic__divider" aria-hidden="true"></div>
-      <p class="periodic__desc">GEO · Generative Engine Optimization</p>
+      <h3 class="service-card__title">GEO &amp; Visibilidad en IA</h3>
+      <p class="service-card__desc">
+        Haz que la IA recomiende tu marca. Auditamos cómo ChatGPT, Gemini, Claude
+        y Perplexity perciben tu posición competitiva y activamos contenido para
+        moverla.
+      </p>
     </article>
 
     <article class="box">
-      <div class="periodic__meta">
-        <span class="periodic__num">02</span>
-        <span class="periodic__tag">Lab</span>
+      <div class="service-card__image">
+        <img src="assets/visuals/green-architecture.webp" alt="Arquitectura sintética generada · simulación de entornos">
       </div>
-      <div class="periodic__symbol">MAS</div>
-      <div class="periodic__divider" aria-hidden="true"></div>
-      <p class="periodic__desc">Sistemas multiagente</p>
+      <h3 class="service-card__title">Simulación social · Gerard</h3>
+      <p class="service-card__desc">
+        I+D en simulación de agentes, personas y sociedades. Modelos generativos
+        para anticipar comportamientos colectivos antes de desplegar campañas
+        o productos.
+      </p>
     </article>
 
     <article class="box">
-      <div class="periodic__meta">
-        <span class="periodic__num">03</span>
-        <span class="periodic__tag">R+D</span>
+      <div class="service-card__image">
+        <img src="assets/visuals/isometric-cubes.svg" alt="Cubos isométricos · agentes coordinados">
       </div>
-      <div class="periodic__symbol">SIM</div>
-      <div class="periodic__divider" aria-hidden="true"></div>
-      <p class="periodic__desc">Simulación social · Gerard</p>
+      <h3 class="service-card__title">Sistemas multiagente</h3>
+      <p class="service-card__desc">
+        Diseñamos arquitecturas de agentes IA coordinados que ejecutan tareas
+        complejas: investigación, análisis, generación de contenido, ops.
+        Privados por defecto.
+      </p>
     </article>
 
     <article class="box">
-      <div class="periodic__meta">
-        <span class="periodic__num">04</span>
-        <span class="periodic__tag">Prod</span>
+      <div class="service-card__image">
+        <img src="assets/visuals/stacked-layers.webp" alt="Capas de datos apiladas · datasets entrenables">
       </div>
-      <div class="periodic__symbol">RAD</div>
-      <div class="periodic__divider" aria-hidden="true"></div>
-      <p class="periodic__desc">GEORadar · brand visibility</p>
+      <h3 class="service-card__title">Datasets a medida</h3>
+      <p class="service-card__desc">
+        Construimos corpus específicos del dominio del cliente: prompts,
+        evaluaciones, ground truth. Base para fine-tuning, eval automática
+        y producto IA defensivo.
+      </p>
     </article>
 
-    <article class="box">
-      <div class="periodic__meta">
-        <span class="periodic__num">05</span>
-        <span class="periodic__tag">Prod</span>
-      </div>
-      <div class="periodic__symbol">SAM</div>
-      <div class="periodic__divider" aria-hidden="true"></div>
-      <p class="periodic__desc">Semantic Alignment Machine</p>
-    </article>
-
-    <article class="box">
-      <div class="periodic__meta">
-        <span class="periodic__num">06</span>
-        <span class="periodic__tag">Prod</span>
-      </div>
-      <div class="periodic__symbol">LEO</div>
-      <div class="periodic__divider" aria-hidden="true"></div>
-      <p class="periodic__desc">Content Factory multicanal</p>
-    </article>
-
-    <article class="box">
-      <div class="periodic__meta">
-        <span class="periodic__num">07</span>
-        <span class="periodic__tag">Lab</span>
-      </div>
-      <div class="periodic__symbol">PAT</div>
-      <div class="periodic__divider" aria-hidden="true"></div>
-      <p class="periodic__desc">Prompt Atlas · datasets</p>
-    </article>
-
-    <article class="box box--periodic-empty" aria-hidden="true"></article>
   </div>
 </section>
 

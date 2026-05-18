@@ -359,6 +359,68 @@ Módulo añadido en v2.1 para inventarios estructurados (capacidades del lab, mo
 - Productos: 3 letras (RAD, SAM, LEO, ATL)
 - Tags de categoría: Lab · R+D · Prod · Service
 
+### 11.3c Service cards · grid arquitectónico tipo 498as.com
+
+Módulo añadido en v2.1 para secciones de servicios o capacidades donde la imagen tiene peso visual. Replica fielmente el patrón del legacy 498as.com con cards grandes contiguas.
+
+**Anatomía de cada card**:
+
+```
+┌────────────────────────────┐
+│                            │
+│        IMAGE               │  ← full-width · aspect-ratio 16:10 · border-bottom 1px
+│                            │
+├────────────────────────────┤
+│                            │
+│  TITLE (mono UPPER · 11px) │  ← centrado · padding 24/32/12
+│                            │
+│  ■ Description text        │  ← cuadradito verde 11×11 + texto Hepta Slab 13
+│  con múltiples líneas      │
+│                            │
+└────────────────────────────┘
+```
+
+**Reglas del sistema**:
+- Cells contiguas (técnica gap+background) con 1 px black borders.
+- Imagen full-width con `aspect-ratio: 16 / 10`.
+- Divider horizontal 1 px black entre imagen y texto (es el `border-bottom` de la imagen).
+- Título: mono UPPER 11 px, letter-spacing 2 px, centrado, padding 24 px arriba / 12 px abajo.
+- Descripción: Hepta Slab 13 px, color black, con cuadradito verde 11×11 px como bullet a la izquierda (`flex` con `gap: 10px`).
+- Hover: fondo verde-50.
+- Las "+" en las esquinas salen gratis del cruce natural de gaps.
+
+**Cuándo usar este módulo vs los otros**:
+
+| Variante | Caso de uso |
+|----------|-------------|
+| `--periodic` | Inventarios de **celdas atómicas pequeñas** (símbolo + 2-3 líneas) · tabla periódica · catálogos densos |
+| `--service-cards` | Servicios o capacidades **con imagen protagonista** · cards más grandes (2×2, 3×N) · landing-style |
+| `--frame-cross` | Cards independientes con craft decorativo (marcas de registro tipo print) en las esquinas |
+
+**Estructura HTML**:
+
+```html
+<div class="box-collection box-collection--2 box-collection--service-cards">
+  <article class="box">
+    <div class="service-card__image">
+      <img src="..." alt="...">
+    </div>
+    <h3 class="service-card__title">GEO &amp; Visibilidad en IA</h3>
+    <p class="service-card__desc">Descripción del servicio...</p>
+  </article>
+  <!-- más cards... -->
+</div>
+```
+
+**Layouts soportados**:
+- `box-collection--2` → 2 cols (recomendado para 2×2 con 4 cards)
+- `box-collection--3` → 3 cols
+- `box-collection--4` → 4 cols (cards estrechas, mejor con descripciones cortas)
+
+Responsive: en `≤ 900 px` y `≤ 600 px` colapsa a layout single-column manteniendo proporciones.
+
+**Showcase**: Sectio · 02b · Matrix del playground · 4 cards 2×2 mostrando GEO & Visibilidad / Simulación social Gerard / Sistemas multiagente / Datasets a medida.
+
 ### 11.4 Marcas geométricas para box collections
 
 Sustituyen a los iconos PNG corporativos (que delataban registro "deck de consultora"). 1 px stroke verde-deep, 28×28 px, totalmente abstractas — vocabulary del sistema: cuadrados angulares, puntos, diagonales, frame-cross.
