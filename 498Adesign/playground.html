@@ -620,6 +620,47 @@
   }
 
   /* ===================================================================
+     VARIANTE FRAME-CROSS · cards independientes con marcas de registro
+     tipo print/offset en los 4 vértices de cada card.
+     Heritage 498AS · lab notebook / hoja técnica de planos.
+
+     Las cards NO comparten bordes (gap visible) y en cada esquina aparece
+     una pequeña "+" que extiende las hairlines más allá del corner point.
+     =================================================================== */
+  .box-collection--frame-cross {
+    border: 0;                              /* anula bordes del contenedor */
+    overflow: visible;                      /* deja salir los cross marks */
+    gap: 20px;                              /* separación visible entre cards */
+    padding: 10px;                          /* hueco para que la "+" no toque el viewport */
+  }
+  .box-collection--frame-cross > * {
+    border: 1px solid var(--pg-line-strong); /* cada card su propio borde completo */
+    position: relative;
+    overflow: visible;
+    background: var(--498-white);
+  }
+  /* ::before paints las 4 cross marks · usando un SVG mark via background
+     posicionado a los 4 corners del pseudo, que sobresale 7px del card */
+  .box-collection--frame-cross > *::before {
+    content: "";
+    position: absolute;
+    inset: -7px;                            /* extiende 7px en todos los lados */
+    pointer-events: none;
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 0   0   / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 100% 0   / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 0   100% / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 100% 100% / 14px 14px no-repeat;
+  }
+  .box-collection--frame-cross > *:hover::before {
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%230E7A1F' stroke-width='1'/></svg>") 0   0   / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%230E7A1F' stroke-width='1'/></svg>") 100% 0   / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%230E7A1F' stroke-width='1'/></svg>") 0   100% / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%230E7A1F' stroke-width='1'/></svg>") 100% 100% / 14px 14px no-repeat;
+  }
+
+  /* ===================================================================
      Typewriter reveal · heritage CLI/terminal · "live typing" detail
      El cursor avanza char-by-char revelando el texto, luego se queda
      parpadeando al final. Reserva: títulos de máxima importancia
@@ -1507,6 +1548,145 @@
   .footer-social a:hover { border-color: var(--498-green-deep); background: var(--498-green-50); }
   .footer-social img { width: 16px; height: 16px; opacity: .7; }
 
+  /* ===================================================================
+     COOKIE BANNER · sticky bottom · aparece en primera visita
+     =================================================================== */
+  .cookie-banner {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 60;
+    background: var(--498-white);
+    border-top: 1px solid var(--pg-text);
+    box-shadow: 0 -8px 32px rgba(0,0,0,.12);
+  }
+  .cookie-banner__inner {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 32px; align-items: center;
+    padding: 22px var(--498-page-pad);
+    max-width: 1400px; margin: 0 auto;
+  }
+  .cookie-banner__title {
+    font-family: var(--498-family-body); font-weight: 300; font-style: italic;
+    font-size: 18px; margin: 0 0 6px;
+    color: var(--pg-text);
+  }
+  .cookie-banner__body {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 13px; line-height: 1.55;
+    color: var(--pg-text-muted);
+    margin: 0;
+  }
+  .cookie-banner__body a {
+    color: var(--498-green-deep);
+    border-bottom: 1px solid var(--498-green-line);
+    text-decoration: none;
+  }
+  .cookie-banner__actions {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  @media (max-width: 720px) {
+    .cookie-banner__inner { grid-template-columns: 1fr; gap: 16px; }
+    .cookie-banner__actions { width: 100%; }
+    .cookie-banner__actions > * { flex: 1; justify-content: center; }
+  }
+
+  /* ===================================================================
+     COOKIE MODAL · configurador granular
+     =================================================================== */
+  .cookie-modal {
+    position: fixed; inset: 0; z-index: 70;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .cookie-modal__backdrop {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,.45);
+    backdrop-filter: blur(4px);
+  }
+  .cookie-modal__panel {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 640px; max-height: 90vh;
+    background: var(--498-white);
+    border: 1px solid var(--pg-text);
+    box-shadow: 0 24px 64px rgba(0,0,0,.32);
+    display: flex; flex-direction: column;
+  }
+  .cookie-modal__header {
+    padding: 32px 32px 24px;
+    border-bottom: 1px solid var(--pg-line);
+    position: relative;
+  }
+  .cookie-modal__close {
+    position: absolute; top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    background: transparent; border: 1px solid var(--pg-line);
+    font-size: 22px; line-height: 1; color: var(--pg-text);
+    cursor: pointer; padding: 0;
+    transition: background .2s, border-color .2s;
+  }
+  .cookie-modal__close:hover { background: var(--498-green-deep); color: var(--498-white); border-color: var(--498-green-deep); }
+  .cookie-modal__body {
+    padding: 24px 32px; overflow-y: auto;
+  }
+  .cookie-modal__footer {
+    padding: 20px 32px;
+    border-top: 1px solid var(--pg-line);
+    display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;
+  }
+
+  .cookie-cat {
+    border-top: 1px solid var(--pg-line);
+    padding: 18px 0;
+  }
+  .cookie-cat:first-of-type { border-top: 0; padding-top: 0; }
+  .cookie-cat__row {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 24px; align-items: center;
+  }
+  .cookie-cat__name {
+    font-family: var(--498-family-mono); font-size: 12px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--pg-text); font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .cookie-cat__desc {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 13px; line-height: 1.55;
+    color: var(--pg-text-muted); margin: 0;
+    max-width: 420px;
+  }
+  .cookie-cat__pill--locked {
+    font-family: var(--498-family-mono); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 8px 12px; background: var(--498-green-50);
+    color: var(--498-green-deep); border: 1px solid var(--498-green-deep);
+    white-space: nowrap;
+  }
+
+  /* Toggle switch · cuadrado, angular, sin redondeos */
+  .cookie-toggle {
+    position: relative; display: inline-block;
+    width: 44px; height: 24px; cursor: pointer;
+    flex-shrink: 0;
+  }
+  .cookie-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+  .cookie-toggle__track {
+    position: absolute; inset: 0;
+    background: var(--pg-line-mid);
+    border: 1px solid var(--pg-text);
+    transition: background .2s;
+  }
+  .cookie-toggle__track::before {
+    content: "";
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 18px; height: 18px;
+    background: var(--498-white);
+    border: 1px solid var(--pg-text);
+    transition: transform .2s;
+  }
+  .cookie-toggle input:checked + .cookie-toggle__track { background: var(--498-green-deep); }
+  .cookie-toggle input:checked + .cookie-toggle__track::before { transform: translateX(20px); background: var(--498-white); }
+  .cookie-toggle input:focus-visible + .cookie-toggle__track { outline: 2px solid var(--498-green); outline-offset: 2px; }
+
   /* Closing strip · línea final con copyright + legal · una sola caja contigua */
   .footer-strip {
     margin: 0 var(--498-page-pad) 0;
@@ -1686,7 +1866,7 @@
     </p>
   </div>
 
-  <div class="box-collection box-collection--4 box-collection--persiana">
+  <div class="box-collection box-collection--4 box-collection--persiana box-collection--frame-cross">
     <article class="box">
       <span class="box__mark" aria-hidden="true">
         <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1">
@@ -2401,10 +2581,111 @@
   <div class="footer-strip">
     <span>© 2026 498A · Una compañía del grupo Zoopa</span>
     <span>
-      <a href="#">Aviso legal</a> · <a href="#">Política de privacidad</a> · <a href="#">Política de cookies</a>
+      <a href="legal/aviso-legal.html">Aviso legal</a> ·
+      <a href="#privacidad">Política de privacidad</a> ·
+      <a href="#" data-cookie-open>Política de cookies</a> ·
+      <a href="#accesibilidad">Declaración de accesibilidad</a>
     </span>
   </div>
 </footer>
+
+<!-- =================================================================
+     COOKIE BANNER · aparece en primera visita o si no hay choice guardado
+     ================================================================= -->
+<aside id="cookie-banner" class="cookie-banner" role="dialog"
+       aria-labelledby="cookie-banner__title" hidden>
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__copy">
+      <h2 id="cookie-banner__title" class="cookie-banner__title">
+        Cookies y privacidad
+      </h2>
+      <p class="cookie-banner__body">
+        Usamos cookies esenciales para que la web funcione y, con tu permiso,
+        cookies analíticas para entender cómo se navega. No compartimos datos
+        con terceros sin tu consentimiento explícito.
+        <a href="#" data-cookie-config>Configurar preferencias</a>
+      </p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn-ghost-light" data-cookie-reject>Rechazar opcionales</button>
+      <button type="button" class="btn-solid-dark"  data-cookie-accept>Aceptar todas</button>
+    </div>
+  </div>
+</aside>
+
+<!-- =================================================================
+     COOKIE MODAL · configurador granular de preferencias
+     ================================================================= -->
+<div id="cookie-modal" class="cookie-modal" role="dialog" aria-modal="true"
+     aria-labelledby="cookie-modal__title" hidden>
+  <div class="cookie-modal__backdrop" data-cookie-close></div>
+  <div class="cookie-modal__panel">
+    <header class="cookie-modal__header">
+      <span class="eyebrow">Cookies · 498A</span>
+      <h2 id="cookie-modal__title" class="ed-display-3" style="margin:8px 0 0">
+        Tus <em>preferencias</em>.
+      </h2>
+      <button type="button" class="cookie-modal__close" data-cookie-close aria-label="Cerrar">×</button>
+    </header>
+
+    <div class="cookie-modal__body">
+      <p class="ed-body" style="margin-bottom:24px">
+        Tres categorías de cookies. Las esenciales no se pueden desactivar
+        porque sin ellas la web no funciona. El resto las controlas tú.
+      </p>
+
+      <div class="cookie-cat">
+        <div class="cookie-cat__row">
+          <div>
+            <h3 class="cookie-cat__name">Esenciales</h3>
+            <p class="cookie-cat__desc">
+              Necesarias para navegación, sesión y preferencias básicas.
+              Sin ellas la página no funciona.
+            </p>
+          </div>
+          <span class="cookie-cat__pill cookie-cat__pill--locked">Siempre activas</span>
+        </div>
+      </div>
+
+      <div class="cookie-cat">
+        <div class="cookie-cat__row">
+          <div>
+            <h3 class="cookie-cat__name">Analíticas</h3>
+            <p class="cookie-cat__desc">
+              Nos ayudan a entender qué secciones se leen y dónde mejorar.
+              Datos agregados, sin identificación personal.
+            </p>
+          </div>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="cookie-analytics" checked>
+            <span class="cookie-toggle__track"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-cat">
+        <div class="cookie-cat__row">
+          <div>
+            <h3 class="cookie-cat__name">Marketing</h3>
+            <p class="cookie-cat__desc">
+              Permiten medir campañas externas y personalización.
+              Por defecto desactivadas.
+            </p>
+          </div>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="cookie-marketing">
+            <span class="cookie-toggle__track"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <footer class="cookie-modal__footer">
+      <button type="button" class="btn-ghost-light" data-cookie-reject>Rechazar opcionales</button>
+      <button type="button" class="btn-solid-dark"  data-cookie-save>Guardar preferencias</button>
+    </footer>
+  </div>
+</div>
 
 <!-- =================================================================
      JS · IntersectionObserver para persiana · responsive video source
@@ -2447,7 +2728,80 @@
     els.forEach(function (el) { obs.observe(el); });
   })();
 
-  // 3) Responsive video source · ahorro de banda en móvil
+  // 3) Cookie banner + modal · gestión de preferencias con localStorage
+  (function () {
+    var KEY = '498a.cookie-consent.v1';
+    var banner = document.getElementById('cookie-banner');
+    var modal  = document.getElementById('cookie-modal');
+    var inputAnalytics = document.getElementById('cookie-analytics');
+    var inputMarketing = document.getElementById('cookie-marketing');
+    if (!banner || !modal) return;
+
+    function load() {
+      try { return JSON.parse(localStorage.getItem(KEY) || 'null'); }
+      catch (e) { return null; }
+    }
+    function save(prefs) {
+      try { localStorage.setItem(KEY, JSON.stringify(prefs)); } catch (e) {}
+    }
+
+    function showBanner() { banner.hidden = false; }
+    function hideBanner() { banner.hidden = true; }
+    function openModal() {
+      // Pre-carga toggles con la preferencia guardada (o defaults)
+      var prefs = load() || { analytics: true, marketing: false };
+      inputAnalytics.checked = !!prefs.analytics;
+      inputMarketing.checked = !!prefs.marketing;
+      modal.hidden = false;
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.hidden = true;
+      document.documentElement.style.overflow = '';
+    }
+
+    function acceptAll() {
+      save({ essential: true, analytics: true, marketing: true, ts: Date.now() });
+      hideBanner(); closeModal();
+    }
+    function rejectOptional() {
+      save({ essential: true, analytics: false, marketing: false, ts: Date.now() });
+      hideBanner(); closeModal();
+    }
+    function saveCustom() {
+      save({
+        essential: true,
+        analytics: !!inputAnalytics.checked,
+        marketing: !!inputMarketing.checked,
+        ts: Date.now()
+      });
+      hideBanner(); closeModal();
+    }
+
+    // Mostrar banner si no hay choice guardada
+    if (!load()) showBanner();
+
+    // Listeners
+    document.querySelectorAll('[data-cookie-accept]').forEach(function (el) { el.addEventListener('click', acceptAll); });
+    document.querySelectorAll('[data-cookie-reject]').forEach(function (el) { el.addEventListener('click', rejectOptional); });
+    document.querySelectorAll('[data-cookie-save]').forEach(function (el) { el.addEventListener('click', saveCustom); });
+    document.querySelectorAll('[data-cookie-config]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+    });
+    document.querySelectorAll('[data-cookie-open]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+    });
+    document.querySelectorAll('[data-cookie-close]').forEach(function (el) {
+      el.addEventListener('click', closeModal);
+    });
+
+    // ESC cierra el modal
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  })();
+
+  // 4) Responsive video source · ahorro de banda en móvil
   //    Carga mobile (2 MB) en pantallas ≤ 900 px · desktop 2K (11 MB) en grandes
   (function () {
     var videos = document.querySelectorAll('video[data-src-desktop]');
