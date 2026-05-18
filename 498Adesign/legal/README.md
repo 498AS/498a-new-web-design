@@ -13,10 +13,12 @@ Las dos versiones contienen el mismo texto; la HTML añade selector de idioma st
 
 | Documento | Markdown | HTML | Idiomas | Pendiente |
 |-----------|----------|------|---------|-----------|
-| Aviso legal | ✅ `aviso-legal.md` | ✅ `aviso-legal.html` | CA · EN · ES (pendiente) | Versión ES · revisión post-rebrand |
-| Política de privacidad | ✅ `politica-privacidad.md` | ✅ `politica-privacidad.html` | ES · CA, EN (pendientes) | Gaps RGPD · versiones CA y EN |
-| Política de cookies | ✅ `politica-cookies.md` | ✅ `politica-cookies.html` | ES · CA, EN (pendientes) | Inventario cookies del nuevo stack · versiones CA y EN |
-| Declaración de accesibilidad | ✅ `declaracion-accesibilidad.md` | ✅ `declaracion-accesibilidad.html` | ES · CA, EN (pendientes) | Audit externo profesional · axe/Lighthouse en CI · subtítulos vídeo · tests con usuarios de tecnologías de apoyo |
+| Aviso legal | ✅ `aviso-legal.md` | ✅ `aviso-legal.html` | CA + EN (fuente legal) · ES (borrador traducido desde CA) | Validar ES por equipo legal · revisión post-rebrand |
+| Política de privacidad | ✅ `politica-privacidad.md` | ✅ `politica-privacidad.html` | ES (fuente legal) · CA + EN (borradores traducidos desde ES) | Validar CA y EN por equipo legal · gaps RGPD identificados |
+| Política de cookies | ✅ `politica-cookies.md` | ✅ `politica-cookies.html` | ES (fuente legal) · CA + EN (borradores traducidos desde ES) | Validar CA y EN · reescribir inventario de cookies cuando el nuevo stack esté en pre-producción |
+| Declaración de accesibilidad | ✅ `declaracion-accesibilidad.md` | ✅ `declaracion-accesibilidad.html` | ES (autoevaluación) · CA + EN (borradores traducidos desde ES) | Validar CA y EN · audit externo profesional · axe/Lighthouse en CI · subtítulos vídeo · tests con usuarios |
+
+**Todos los borradores traducidos** están marcados con banner `.lang-pending` al inicio del article correspondiente con texto explícito de "borrador pendiente de revisión legal". El frontmatter de cada `.md` también lo señala.
 
 ---
 

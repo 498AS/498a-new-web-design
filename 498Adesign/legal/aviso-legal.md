@@ -4,7 +4,7 @@ slug: aviso-legal
 languages:
   - ca
   - en
-  - es  # pendiente · todavía no recibido del equipo legal
+  - es  # ES traducida desde CA · borrador pendiente revisión legal
 entity: 498 Advanced Solutions SL
 cif: B64519622
 domain_legacy: www.498a.com
@@ -113,7 +113,49 @@ Access to this website and any unauthorized use of the information contained her
 
 ## ES · Aviso legal
 
-> **Pendiente.** La versión castellana no ha sido recibida del equipo legal. Cuando esté disponible, se añadirá aquí siguiendo la misma estructura que CA / EN.
+> **Borrador**: traducción al castellano realizada desde la versión catalana. Pendiente de revisión y validación por el equipo legal de 498 Advance.
+
+Este Aviso Legal regula las condiciones generales de acceso y utilización del sitio web accesible en la dirección URL [www.498a.com](https://www.498a.com) (en adelante, el sitio web), que se pone a disposición de los usuarios de Internet. La utilización del sitio web implica la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en este Aviso Legal. En consecuencia, el usuario del sitio web debe leer atentamente este Aviso Legal en cada una de las ocasiones en que se proponga utilizar el sitio, ya que el texto podría sufrir modificaciones a criterio del titular del sitio, o como consecuencia de un cambio legislativo, jurisprudencial o de la práctica empresarial.
+
+### Página web
+
+**Titularidad de la página web.** El nombre del dominio [www.498A.com](https://www.498A.com) está registrado a favor de 498 Advanced Solutions SL (498A), con domicilio en la calle Doctor Trueta, 158, 08005 Barcelona, España, CIF número B64519622. Correo electrónico de contacto: info@498a.com
+
+### Propiedad intelectual de la web
+
+Todos los derechos de propiedad intelectual del contenido de esta página web y del diseño gráfico son propiedad exclusiva de 498A, a quien corresponde el ejercicio exclusivo de los derechos de explotación de los mismos. Así, queda prohibida su reproducción, distribución, comunicación pública y modificación, total o parcial, sin previa autorización expresa.
+
+De igual modo, todos los signos distintivos, marcas, nombres comerciales o signos de cualquier clase contenidos en esta página web están protegidos por ley.
+
+### Contenido de la web
+
+**Objeto.** El sitio web facilita a sus usuarios el acceso a información y servicios prestados por 498A a aquellas personas u organizaciones interesadas en los mismos.
+
+**Contenidos.** El idioma utilizado por el titular en la web será el castellano, el catalán o el inglés en función de la selección del usuario. 498A no se responsabiliza de la disponibilidad de los diferentes idiomas, de la no comprensión o entendimiento del idioma de la web por parte del usuario, ni de las consecuencias. 498A podrá modificar los contenidos sin previo aviso, así como suprimirlos y cambiarlos dentro de la web, así como la forma en que se accede a los mismos, sin justificación alguna y libremente, no responsabilizándose de las consecuencias que ello pueda ocasionar a los usuarios. Se prohíbe el uso de los contenidos de la web para promocionar, contratar o divulgar publicidad o información propia o de terceras personas sin la autorización de 498A, ni remitir publicidad o información valiéndose para ello de los servicios o información que se ponen a disposición de los usuarios, con independencia de si la utilización es gratuita o no. Los enlaces o hipervínculos que terceros incorporen en sus páginas web, dirigidos a esta web, serán para la apertura de la página web completa, no pudiendo manifestar, directa o indirectamente, indicaciones falsas, inexactas o confusas, ni incurrir en acciones desleales o ilícitas en contra de 498A.
+
+498A no se responsabiliza del mal uso que se realice de los contenidos de su página web, siendo responsabilidad exclusiva de la persona que accede a ellos o los utiliza.
+
+### Acceso y utilización de la web
+
+**Carácter gratuito del acceso y la utilización de la web.** El acceso a la web tiene carácter gratuito para los usuarios de la misma.
+
+**Registro de usuarios.** Con carácter general, el acceso y utilización de la web no exige la previa suscripción o registro de los usuarios de la web.
+
+### Intercambio o difusión de información
+
+498A declina toda responsabilidad derivada del intercambio de información entre usuarios a través de su página web. Especialmente, no nos hacemos responsables del uso que los menores puedan hacer en caso de que los contenidos a los que tengan acceso puedan herir su sensibilidad.
+
+### Actualización y modificación de la página web
+
+498A se reserva el derecho de actualizar, modificar o eliminar la información contenida en su página web, así como su configuración o presentación, en cualquier momento, sin aviso previo y sin asumir ningún tipo de responsabilidad por ello.
+
+### Indicaciones sobre aspectos técnicos y responsabilidad
+
+498A no asume ninguna responsabilidad derivada de problemas técnicos o errores en los equipos informáticos que se produzcan durante la conexión a Internet, o que puedan ser originados por terceras personas a través de intromisiones ilegítimas fuera de su control.
+
+Desde 498A no se garantiza la ausencia de virus y otros elementos que puedan causar daños a los sistemas informáticos, documentos electrónicos o ficheros de usuario de esta página web o de páginas web de terceros, y no se responsabiliza de los daños y perjuicios que puedan llegar a producirse por estos motivos. De igual modo, no se responsabiliza ante posibles daños y perjuicios que puedan afectar al usuario como consecuencia de errores, defectos u omisiones en la información que facilita cuando procede de fuentes de terceros. En cualquier caso, 498A pondrá todo su empeño y medios proporcionales a su alcance para evitar cualquier error o riesgo que pudiera producirse.
+
+Tanto el acceso a la web como el uso no consentido que pueda efectuarse de la información que contiene es de la exclusiva responsabilidad de quien lo realiza. 498A no responderá de ninguna consecuencia, daño o perjuicio que pudiera derivarse de dicho acceso o uso. 498A no se hace responsable de los errores de seguridad que puedan producirse ni de los daños que puedan causarse al sistema informático del usuario (hardware y software), o a los ficheros o documentos almacenados en el mismo, como consecuencia de: la presencia de un virus en el ordenador del usuario que sea utilizado para la conexión a los servicios y contenidos de la web; un mal funcionamiento del navegador; y/o el uso de versiones del navegador no actualizadas. 498A no se hace responsable de la fiabilidad y rapidez de los hipervínculos que se incorporen en la web para la apertura de otras. 498A no garantiza la utilidad de estos enlaces, ni se responsabiliza de los contenidos o servicios a los que el usuario pueda acceder por medio de estos enlaces, ni del buen funcionamiento de dichas webs. 498A no será responsable de los virus u otros programas informáticos que deterioren o puedan deteriorar los sistemas o equipos informáticos de los usuarios al acceder a su web o a otras webs a las que se haya accedido mediante enlaces de esta web.
 
 ---
 
@@ -122,7 +164,7 @@ Access to this website and any unauthorized use of the information contained her
 Cada bloque está marcado con un H2 que actúa como ancla:
 - `#ca` → Avís legal (catalán)
 - `#en` → Legal Notice (inglés)
-- `#es` → Aviso legal (castellano, pendiente)
+- `#es` → Aviso legal (castellano, borrador traducido desde CA)
 
 ---
 

@@ -3,8 +3,9 @@ title: Política de Privacidad · 498 Advance
 slug: politica-privacidad
 languages:
   - es
-  - ca  # pendiente · todavía no recibido del equipo legal
-  - en  # pendiente · todavía no recibido del equipo legal
+  - ca
+  - en
+# CA y EN traducidas desde ES · borrador pendiente revisión legal
 entity: 498 Advanced Solutions SL
 cif: B64519622
 domain_legacy: www.498as.com
@@ -50,13 +51,61 @@ Las categorías de datos que se tratan son:
 
 ## CA · Política de Privacitat
 
-> **Pendent.** La versió catalana no s'ha rebut de l'equip legal. Quan estigui disponible, s'afegirà aquí seguint la mateixa estructura que la versió castellana.
+> **Esborrany**: traducció al català realitzada des de la versió castellana. Pendent de revisió i validació per l'equip legal de 498 Advance.
+
+**Finalitat.** A 498a.com tractem la informació que ens faciliten les persones interessades amb la finalitat de gestionar l'enviament de la informació que ens sol·licitin i prestar-los els serveis que ens són encomanats. A 498a.com no elaborarem perfils comercials en base a la informació sol·licitada sense el seu consentiment, per la qual cosa l'informem que no es prenen decisions automatitzades.
+
+**Conservació de les dades.** Les dades personals proporcionades es conservaran mentre es mantingui la relació entre 498a.com i les persones interessades.
+
+**Legitimació.** La informació facilitada per 498a.com i la prestació dels seus serveis a les persones interessades i clients està basada en el consentiment sol·licitat prèviament i acceptat per les persones interessades i usuàries.
+
+**Quant de temps conservem les teves dades.** Les dades dels clients es comunicaran únicament, prèvia informació i acceptació per a la prestació del servei, així com en cas de ser necessari a empreses del grup i col·laboradors, a l'encarregat del tractament i a aquelles entitats amb les quals sigui necessària la comunicació, amb la finalitat de complir amb la prestació del servei anteriorment esmentat o atendre la sol·licitud d'informació.
+
+**Procedència.** Les dades personals que tractem a 498a.com procedeixen de les seves sol·licituds i/o dels formularis facilitats per les persones interessades.
+
+Les categories de dades que es tracten són:
+
+- Dades d'identificació
+- Adreces postals o electròniques
+- Informació addicional facilitada per la persona interessada
+- Número de telèfon facilitat per a avisos
+- No es tracten dades especialment protegides
+
+**Tractament de dades i Drets.** De conformitat amb el que estableix la normativa vigent en Protecció de Dades de Caràcter Personal i segons el que regula el Reglament (UE) 2016/679 del Parlament Europeu i del Consell, de 27 d'abril de 2016, relatiu a la protecció de les persones físiques pel que fa al tractament de dades personals i a la lliure circulació d'aquestes dades, l'informem que les dades facilitades per les persones interessades seran incorporades a un fitxer sota la responsabilitat de 498 Advanced Solutions S.L., amb domicili a la calle Doctor Trueta 158, 08005 Barcelona, España i CIF número B64519622, amb la finalitat de poder atendre, gestionar i fer seguiment de les seves consultes i peticions.
+
+**Legislació i jurisdicció aplicable.** Amb caràcter general, les relacions amb les persones usuàries i interessades, derivades de la prestació de serveis continguts en aquesta pàgina web, estan sotmeses a la legislació i jurisdicció espanyoles. Les persones usuàries d'aquesta pàgina web són conscients de tot el que s'ha exposat i ho accepten voluntàriament.
+
+*Política de privacitat actualitzada el 24 d'abril de 2025.*
 
 ---
 
 ## EN · Privacy Policy
 
-> **Pending.** The English version has not yet been received from the legal team. Once available, it will be added here following the same structure as the Spanish version.
+> **Draft**: English translation from the Spanish version. Pending review and validation by 498 Advance's legal team.
+
+**Purpose.** At 498a.com we process the information provided to us by data subjects in order to manage the delivery of the information they request and to provide them with the services entrusted to us. At 498a.com we will not build commercial profiles based on the information requested without your consent, and we therefore inform you that no automated decisions are taken.
+
+**Data retention.** The personal data provided will be retained for as long as the relationship between 498a.com and the data subjects is maintained.
+
+**Legal basis.** The information provided by 498a.com and the provision of its services to data subjects and clients is based on the consent previously requested and accepted by the data subjects and users.
+
+**How long we keep your data.** Client data will be disclosed solely, subject to prior information and acceptance for the provision of the service, as well as where necessary to group companies and collaborators, to the data processor and to those entities with which communication is required, for the purpose of fulfilling the provision of the aforementioned service or attending to the request for information.
+
+**Source.** The personal data we process at 498a.com originate from your requests and/or from the forms provided by the data subjects.
+
+The categories of data processed are:
+
+- Identification data
+- Postal or electronic addresses
+- Additional information provided by the data subject
+- Telephone number provided for notifications
+- No specially protected data is processed
+
+**Data processing and Rights.** In accordance with the provisions of the regulations in force on the Protection of Personal Data and as regulated by Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data (GDPR), we inform you that the data provided by the data subjects will be incorporated into a file under the responsibility of 498 Advanced Solutions S.L., with registered office at calle Doctor Trueta 158, 08005 Barcelona, Spain, and Tax ID number B64519622, for the purpose of being able to attend to, manage and follow up on your enquiries and requests.
+
+**Applicable law and jurisdiction.** As a general rule, relations with users and data subjects, arising from the provision of services contained on this website, are subject to Spanish law and jurisdiction. The users of this website are aware of everything that has been set out above and accept it voluntarily.
+
+*Privacy policy last updated on 24 April 2025.*
 
 ---
 

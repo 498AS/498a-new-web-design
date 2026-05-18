@@ -410,20 +410,274 @@
 
   <!-- ============================== CA ============================== -->
   <article id="ca" class="lang-section" lang="ca">
-    <div class="lang-pending">
-      Versió catalana pendent. El text es publicarà tan bon punt l'equip legal
-      proporcioni la traducció definitiva. Mentrestant, la versió en castellà
-      és la disponible.
-    </div>
+
+    <div class="lang-pending"><strong>Esborrany</strong>: traducció al català realitzada des de la versió castellana. Pendent de revisió i validació per l'equip legal de 498 Advance.</div>
+
+    <p>498 Advanced Solutions SL (d'ara endavant, <strong>498 Advance</strong> o <strong>498A</strong>) es compromet a fer accessible el seu lloc web <a href="https://www.498a.com" target="_blank" rel="noopener">www.498a.com</a> de conformitat amb el Reial Decret 1112/2018 de 7 de setembre, sobre accessibilitat dels llocs web i aplicacions per a dispositius mòbils del sector públic (transposició de la Directiva (UE) 2016/2102 a l'ordenament jurídic espanyol) i la <strong>Directiva (UE) 2019/882 — European Accessibility Act</strong>, aplicable a productes i serveis privats des del 28 de juny de 2025.</p>
+
+    <p>La present Declaració d'Accessibilitat s'aplica al lloc <a href="https://www.498a.com" target="_blank" rel="noopener">www.498a.com</a>.</p>
+
+    <h2>Situació de compliment</h2>
+    <p>Aquest lloc web és <strong>parcialment conforme</strong> amb la norma <strong>UNE-EN 301 549:2022</strong>, que recull els requisits d'accessibilitat WCAG 2.1 nivell AA, a causa de les excepcions i de la manca de conformitat dels aspectes que s'indiquen a continuació.</p>
+
+    <h2>Contingut no accessible</h2>
+    <p>El contingut que es recull a continuació no és accessible pels motius següents:</p>
+
+    <h3>1. Manca de conformitat pendent d'auditoria externa professional</h3>
+    <p>A data de <strong>18 de maig de 2026</strong>, aquesta declaració es basa en una <strong>revisió manual interna</strong> de l'equip de 498A. Està pendent de:</p>
+    <ul>
+      <li><strong>Auditoria professional externa</strong> per entitat certificada en accessibilitat (Funka, accessibility.es o una altra acreditada).</li>
+      <li><strong>Tests automatitzats</strong> amb axe DevTools i Lighthouse en pre-producció.</li>
+      <li><strong>Tests d'usabilitat amb persones usuàries de tecnologies de suport</strong> (lectors de pantalla, navegació per teclat, alt contrast).</li>
+    </ul>
+    <p>Fins que aquests tests no es completin, es publiquen com a "no auditats" els mòduls següents:</p>
+    <ul>
+      <li>Hero amb vídeo autoplay (vídeo sense subtítols ni descripció detallada en pista alternativa).</li>
+      <li>Animacions decoratives: pattern band animada, persiana scaleY en caixes, typewriter reveal en eyebrows d'alta jerarquia.</li>
+      <li>Components interactius del playground stress-test (gestor de cookies, selector d'idioma, navegació principal).</li>
+    </ul>
+
+    <h3>2. Contingut pendent</h3>
+    <ul>
+      <li><strong>Subtítols del vídeo hero</strong>: el vídeo del hero es reprodueix en bucle, sense àudio significatiu (és atmosfèric) però sense pista de text descriptiva. S'inclourà descripció en <code>&lt;track kind="descriptions"&gt;</code> quan se substitueixi per contingut productiu.</li>
+      <li><strong>Versions en català i anglès</strong> d'alguns textos legals (Avís Legal, Política de Privacitat, Política de Cookies).</li>
+      <li><strong>Auditoria de contrast exhaustiva</strong> en components derivats del design system v2.1 quan es desplegui en producció.</li>
+    </ul>
+
+    <h3>3. Càrrega desproporcionada</h3>
+    <p>No s'invoquen exempcions per càrrega desproporcionada en aquesta versió.</p>
+
+    <h2>Millores d'accessibilitat ja implementades</h2>
+    <p>Com a part del redisseny v2.1 del lloc (maig 2026), s'han incorporat les mesures següents:</p>
+
+    <h3>Estructura semàntica</h3>
+    <ul>
+      <li>HTML semàntic amb landmarks <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>.</li>
+      <li><strong>Enllaç de salt</strong> "Saltar al contingut principal" visible en rebre el focus de teclat (WCAG 2.4.1).</li>
+      <li>Jerarquia de capçaleres consistent (<code>h1</code> → <code>h2</code> → <code>h3</code> sense salts directes).</li>
+    </ul>
+
+    <h3>Navegació per teclat</h3>
+    <ul>
+      <li><strong>Focus visible global</strong> amb outline verd de 2 px i offset 2 px en tots els elements interactius (WCAG 2.4.7).</li>
+      <li><strong>Tab order lògic</strong> a la navegació principal, selector d'idioma i formularis.</li>
+      <li><strong>Tecla Escape</strong> tanca el modal de cookies (WCAG 2.1.2).</li>
+      <li><strong>Focus trap</strong> dins del modal de cookies amb retorn del focus a l'element que el va invocar (WCAG 2.4.3).</li>
+    </ul>
+
+    <h3>Color i contrast</h3>
+    <ul>
+      <li>Verd marca primari (<code>#2DD60F</code>, ràtio 2.83:1 sobre blanc) reservat a fons foscos i elements no textuals.</li>
+      <li>Verd profund (<code>#0E7A1F</code>, ràtio 6.1:1 sobre blanc) utilitzat en text i enllaços sobre fons clar · compleix AA.</li>
+      <li>Color de text secundari pujat a <code>#717171</code> (ràtio 4.6:1) · compleix AA per a body text.</li>
+      <li>Color de text principal <code>#1A1A1A</code> (ràtio 16.9:1) · compleix AAA.</li>
+    </ul>
+
+    <h3>Lectors de pantalla</h3>
+    <ul>
+      <li><strong>Atributs ARIA</strong>: <code>aria-label</code>, <code>aria-current</code>, <code>aria-modal</code>, <code>aria-labelledby</code>, <code>aria-hidden</code>, <code>role="dialog"</code> aplicats on correspon.</li>
+      <li><strong>Elements decoratius</strong> (marques SVG, frame-cross corners, separadors) marcats com <code>aria-hidden="true"</code>.</li>
+      <li><strong>Atribut <code>lang</code></strong> declarat en cada bloc d'idioma als documents legals.</li>
+      <li><strong>Text alternatiu <code>sr-only</code></strong> per al typewriter reveal de l'eyebrow "Founder Voice" (els lectors de pantalla reben el text complet, mentre l'animació visual es manté per a usuaris sense tecnologies de suport).</li>
+    </ul>
+
+    <h3>Animacions i moviment</h3>
+    <ul>
+      <li>Suport complet de <strong><code>prefers-reduced-motion</code></strong> en totes les animacions de la web (pattern band, persiana, typewriter, gradient drift, shimmer).</li>
+      <li>Vídeo hero sense so (<code>muted</code>) per defecte. Loops curts sense transicions agressives.</li>
+    </ul>
+
+    <h3>Formularis i controls</h3>
+    <ul>
+      <li>Toggles del gestor de cookies amb <code>&lt;label&gt;</code> envoltant <code>&lt;input&gt;</code> (associació nativa).</li>
+      <li>Focus visible explícit en estat <code>:focus-visible</code>.</li>
+      <li>Mides de touch target ≥ 44 × 44 px en pantalles tàctils per al selector d'idioma (WCAG 2.5.5).</li>
+    </ul>
+
+    <h2>Preparació de la present declaració</h2>
+    <p>La present declaració va ser preparada el <strong>18 de maig de 2026</strong>.</p>
+    <p>El mètode emprat per preparar la declaració ha estat una <strong>autoavaluació</strong> duta a terme pel propi equip de 498A, sobre la versió v2.1 del nou lloc web (encara en pre-producció).</p>
+    <p>Última revisió de la declaració: <strong>18 de maig de 2026</strong>.</p>
+
+    <h2>Observacions i dades de contacte</h2>
+    <p>Pots realitzar comunicacions sobre requisits d'accessibilitat (Article 10.2.a del RD 1112/2018) com per exemple:</p>
+    <ul>
+      <li>Informar sobre qualsevol possible incompliment per part d'aquest lloc web.</li>
+      <li>Transmetre altres dificultats d'accés al contingut.</li>
+      <li>Formular qualsevol altra consulta o suggeriment de millora relativa a l'accessibilitat del lloc web.</li>
+    </ul>
+    <p>A través del correu electrònic: <a href="mailto:accesibilidad@498a.com"><strong>accesibilidad@498a.com</strong></a></p>
+    <p>Les comunicacions seran rebudes i tractades per 498 Advanced Solutions SL.</p>
+
+    <h2>Procediment d'aplicació</h2>
+    <p>En el cas que, un cop realitzada una sol·licitud d'informació accessible o queixa, aquesta hagi estat desestimada, no s'estigui d'acord amb la decisió adoptada, o la resposta no compleixi els requisits previstos a l'article 12.5 del RD 1112/2018, la persona interessada podrà iniciar una reclamació per conèixer i oposar-se als motius de la desestimació, instar l'adopció de les mesures oportunes en cas de no estar d'acord amb la decisió adoptada, o exposar les raons per les quals es considera que la resposta no compleix els requisits exigits.</p>
+    <p>La reclamació es pot presentar a través del correu: <a href="mailto:accesibilidad@498a.com"><strong>accesibilidad@498a.com</strong></a></p>
+
+    <h2>Contingut opcional</h2>
+
+    <h3>Disseny tècnic</h3>
+    <p>Aquest lloc web ha estat desenvolupat sobre un design system propi (<code>498Adesign v2.1</code>) basat en HTML5 semàntic, CSS3 i JavaScript vanilla mínim (un únic <code>IntersectionObserver</code> per a animacions d'entrada en viewport i un mòdul de gestió de consent de cookies).</p>
+    <p>No utilitza frameworks reactius pesants (React, Vue, Angular) que generin arbres d'accessibilitat opacs.</p>
+
+    <h3>Compatibilitat amb navegadors i tecnologies de suport</h3>
+    <p>El lloc web és compatible amb les versions més recents dels navegadors i combinacions de tecnologies de suport següents (pendent de tests formals):</p>
+    <ul>
+      <li><strong>Chrome, Edge, Firefox, Safari</strong> (últimes 2 versions) a escriptori.</li>
+      <li><strong>Chrome i Safari</strong> en dispositius mòbils iOS i Android.</li>
+      <li>Lectors de pantalla <strong>NVDA + Firefox</strong> i <strong>VoiceOver + Safari</strong> (pendent test formal).</li>
+    </ul>
+
+    <h3>Tecnologies utilitzades</h3>
+    <p>HTML5 · CSS3 · JavaScript (ES5 vanilla · <code>IntersectionObserver</code> · <code>localStorage</code> API).</p>
+
+    <h2>Propers passos per assolir conformitat plena</h2>
+    <ol>
+      <li><strong>Auditoria professional externa</strong> amb entitat certificada abans del go-live.</li>
+      <li><strong>Tests automatitzats continus</strong> amb axe DevTools / Lighthouse / WAVE integrats a CI.</li>
+      <li><strong>Tests d'usabilitat</strong> amb persones usuàries de tecnologies de suport.</li>
+      <li><strong>Subtítols i descripcions</strong> per al vídeo del hero quan se substitueixi per contingut productiu.</li>
+      <li><strong>Versions CA i EN</strong> de tots els textos legals.</li>
+      <li><strong>Revisió semestral</strong> de la declaració un cop en producció.</li>
+    </ol>
+
+    <blockquote>Declaració d'accessibilitat actualitzada a 18 de maig de 2026. Esborrany autoavaluat, pendent d'auditoria externa professional abans de la publicació definitiva.</blockquote>
+
   </article>
 
   <!-- ============================== EN ============================== -->
   <article id="en" class="lang-section" lang="en">
-    <div class="lang-pending">
-      English version pending. The text will be published as soon as the legal
-      team provides the final translation. In the meantime, the Spanish version
-      is the one available.
-    </div>
+
+    <div class="lang-pending"><strong>Draft</strong>: English translation from the Spanish version. Pending review and validation by 498 Advance's legal team.</div>
+
+    <p>498 Advanced Solutions SL (hereinafter, <strong>498 Advance</strong> or <strong>498A</strong>) is committed to making its website <a href="https://www.498a.com" target="_blank" rel="noopener">www.498a.com</a> accessible in accordance with Royal Decree 1112/2018 of 7 September, on the accessibility of public sector websites and mobile applications (transposition of Directive (EU) 2016/2102 into the Spanish legal system) and <strong>Directive (EU) 2019/882 — European Accessibility Act</strong>, applicable to private products and services since 28 June 2025.</p>
+
+    <p>This Accessibility Statement applies to the website <a href="https://www.498a.com" target="_blank" rel="noopener">www.498a.com</a>.</p>
+
+    <h2>Conformance status</h2>
+    <p>This website is <strong>partially conformant</strong> with <strong>UNE-EN 301 549:2022</strong>, which sets out the WCAG 2.1 Level AA accessibility requirements, due to the exceptions and non-conformance of the aspects listed below.</p>
+
+    <h2>Non-accessible content</h2>
+    <p>The content listed below is not accessible for the following reasons:</p>
+
+    <h3>1. Non-conformance pending external professional audit</h3>
+    <p>As of <strong>18 May 2026</strong>, this statement is based on an <strong>internal manual review</strong> by the 498A team. Pending:</p>
+    <ul>
+      <li><strong>External professional audit</strong> by an entity certified in accessibility (Funka, accessibility.es or another accredited body).</li>
+      <li><strong>Automated tests</strong> with axe DevTools and Lighthouse in pre-production.</li>
+      <li><strong>Usability tests with users of assistive technologies</strong> (screen readers, keyboard navigation, high contrast).</li>
+    </ul>
+    <p>Until these tests are completed, the following modules are published as "non-audited":</p>
+    <ul>
+      <li>Hero with autoplay video (video without subtitles or detailed description in an alternative track).</li>
+      <li>Decorative animations: animated pattern band, scaleY shutter on boxes, typewriter reveal on high-hierarchy eyebrows.</li>
+      <li>Interactive components of the stress-test playground (cookie manager, language selector, main navigation).</li>
+    </ul>
+
+    <h3>2. Pending content</h3>
+    <ul>
+      <li><strong>Hero video subtitles</strong>: the hero video plays in a loop, without significant audio (it is atmospheric) but without a descriptive text track. A description will be included in <code>&lt;track kind="descriptions"&gt;</code> when it is replaced by production content.</li>
+      <li><strong>Catalan and English versions</strong> of some legal texts (Legal Notice, Privacy Policy, Cookie Policy).</li>
+      <li><strong>Exhaustive contrast audit</strong> of components derived from design system v2.1 once deployed to production.</li>
+    </ul>
+
+    <h3>3. Disproportionate burden</h3>
+    <p>No disproportionate burden exemptions are invoked in this version.</p>
+
+    <h2>Accessibility improvements already implemented</h2>
+    <p>As part of the v2.1 redesign of the site (May 2026), the following measures have been incorporated:</p>
+
+    <h3>Semantic structure</h3>
+    <ul>
+      <li>Semantic HTML with <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code> landmarks.</li>
+      <li><strong>Skip link</strong> "Skip to main content" visible when receiving keyboard focus (WCAG 2.4.1).</li>
+      <li>Consistent heading hierarchy (<code>h1</code> → <code>h2</code> → <code>h3</code> without direct jumps).</li>
+    </ul>
+
+    <h3>Keyboard navigation</h3>
+    <ul>
+      <li><strong>Global focus visible</strong> with 2 px green outline and 2 px offset on all interactive elements (WCAG 2.4.7).</li>
+      <li><strong>Logical tab order</strong> in main navigation, language selector and forms.</li>
+      <li><strong>Escape key</strong> closes the cookie modal (WCAG 2.1.2).</li>
+      <li><strong>Focus trap</strong> inside the cookie modal with focus return to the element that invoked it (WCAG 2.4.3).</li>
+    </ul>
+
+    <h3>Color and contrast</h3>
+    <ul>
+      <li>Primary brand green (<code>#2DD60F</code>, 2.83:1 ratio on white) reserved for dark backgrounds and non-textual elements.</li>
+      <li>Deep green (<code>#0E7A1F</code>, 6.1:1 ratio on white) used for text and links on light background · meets AA.</li>
+      <li>Secondary text color raised to <code>#717171</code> (4.6:1 ratio) · meets AA for body text.</li>
+      <li>Main text color <code>#1A1A1A</code> (16.9:1 ratio) · meets AAA.</li>
+    </ul>
+
+    <h3>Screen readers</h3>
+    <ul>
+      <li><strong>ARIA attributes</strong>: <code>aria-label</code>, <code>aria-current</code>, <code>aria-modal</code>, <code>aria-labelledby</code>, <code>aria-hidden</code>, <code>role="dialog"</code> applied where appropriate.</li>
+      <li><strong>Decorative elements</strong> (SVG marks, frame-cross corners, separators) marked as <code>aria-hidden="true"</code>.</li>
+      <li><strong><code>lang</code> attribute</strong> declared on each language block in legal documents.</li>
+      <li><strong><code>sr-only</code> alternative text</strong> for the typewriter reveal of the "Founder Voice" eyebrow (screen readers receive the full text, while the visual animation remains for users without assistive technologies).</li>
+    </ul>
+
+    <h3>Animations and motion</h3>
+    <ul>
+      <li>Full support for <strong><code>prefers-reduced-motion</code></strong> across all animations on the site (pattern band, shutter, typewriter, gradient drift, shimmer).</li>
+      <li>Hero video without sound (<code>muted</code>) by default. Short loops without aggressive transitions.</li>
+    </ul>
+
+    <h3>Forms and controls</h3>
+    <ul>
+      <li>Cookie manager toggles with <code>&lt;label&gt;</code> wrapping <code>&lt;input&gt;</code> (native association).</li>
+      <li>Explicit focus visible on <code>:focus-visible</code> state.</li>
+      <li>Touch target sizes ≥ 44 × 44 px on touch screens for the language selector (WCAG 2.5.5).</li>
+    </ul>
+
+    <h2>Preparation of this statement</h2>
+    <p>This statement was prepared on <strong>18 May 2026</strong>.</p>
+    <p>The method used to prepare the statement was a <strong>self-assessment</strong> carried out by the 498A team itself, on version v2.1 of the new website (still in pre-production).</p>
+    <p>Last review of the statement: <strong>18 May 2026</strong>.</p>
+
+    <h2>Observations and contact details</h2>
+    <p>You may submit communications regarding accessibility requirements (Article 10.2.a of Royal Decree 1112/2018) such as:</p>
+    <ul>
+      <li>Reporting any possible non-compliance by this website.</li>
+      <li>Conveying other difficulties in accessing the content.</li>
+      <li>Submitting any other query or suggestion for improvement regarding the accessibility of the website.</li>
+    </ul>
+    <p>Through email: <a href="mailto:accesibilidad@498a.com"><strong>accesibilidad@498a.com</strong></a></p>
+    <p>Communications will be received and processed by 498 Advanced Solutions SL.</p>
+
+    <h2>Enforcement procedure</h2>
+    <p>If, once a request for accessible information or a complaint has been made, it has been rejected, you do not agree with the decision adopted, or the response does not meet the requirements set out in Article 12.5 of Royal Decree 1112/2018, the interested party may initiate a claim to ascertain and contest the reasons for the rejection, request the adoption of appropriate measures if not in agreement with the decision adopted, or set out the reasons why the response is deemed not to meet the required standards.</p>
+    <p>The claim may be submitted through email: <a href="mailto:accesibilidad@498a.com"><strong>accesibilidad@498a.com</strong></a></p>
+
+    <h2>Optional content</h2>
+
+    <h3>Technical design</h3>
+    <p>This website has been developed on a proprietary design system (<code>498Adesign v2.1</code>) based on semantic HTML5, CSS3 and minimal vanilla JavaScript (a single <code>IntersectionObserver</code> for viewport entry animations and a cookie consent management module).</p>
+    <p>It does not use heavy reactive frameworks (React, Vue, Angular) that generate opaque accessibility trees.</p>
+
+    <h3>Compatibility with browsers and assistive technologies</h3>
+    <p>The website is compatible with the most recent versions of the following browsers and combinations of assistive technologies (pending formal testing):</p>
+    <ul>
+      <li><strong>Chrome, Edge, Firefox, Safari</strong> (latest 2 versions) on desktop.</li>
+      <li><strong>Chrome and Safari</strong> on iOS and Android mobile devices.</li>
+      <li>Screen readers <strong>NVDA + Firefox</strong> and <strong>VoiceOver + Safari</strong> (pending formal testing).</li>
+    </ul>
+
+    <h3>Technologies used</h3>
+    <p>HTML5 · CSS3 · JavaScript (ES5 vanilla · <code>IntersectionObserver</code> · <code>localStorage</code> API).</p>
+
+    <h2>Next steps to achieve full conformance</h2>
+    <ol>
+      <li><strong>External professional audit</strong> by a certified entity before go-live.</li>
+      <li><strong>Continuous automated tests</strong> with axe DevTools / Lighthouse / WAVE integrated in CI.</li>
+      <li><strong>Usability tests</strong> with users of assistive technologies.</li>
+      <li><strong>Subtitles and descriptions</strong> for the hero video when replaced by production content.</li>
+      <li><strong>CA and EN versions</strong> of all legal texts.</li>
+      <li><strong>Biannual review</strong> of the statement once in production.</li>
+    </ol>
+
+    <blockquote>Accessibility statement updated as of 18 May 2026. Self-assessed draft, pending external professional audit before final publication.</blockquote>
+
   </article>
 
 </main>

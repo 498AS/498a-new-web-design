@@ -3,8 +3,8 @@ title: Política de Cookies · 498 Advance
 slug: politica-cookies
 languages:
   - es
-  - ca  # pendiente · todavía no recibido del equipo legal
-  - en  # pendiente · todavía no recibido del equipo legal
+  - ca  # traducción borrador desde castellano · pendiente de revisión legal
+  - en  # traducción borrador desde castellano · pendiente de revisión legal
 entity: 498 Advanced Solutions SL
 cif: B64519622
 dpo_email: protecciondedatos@498a.com
@@ -222,13 +222,405 @@ Sujeta a cambios por:
 
 ## CA · Política de Galetes
 
-> **Pendent.** La versió catalana no s'ha rebut de l'equip legal. Quan estigui disponible, s'afegirà aquí seguint la mateixa estructura que la versió castellana.
+> **Esborrany**: traducció al català realitzada des de la versió castellana. Pendent de revisió i validació per l'equip legal de 498 Advance.
+
+**498 Advanced Solutions S.L.** ("**498A**") treballa per garantir els seus drets en matèria de protecció de dades.
+
+Aquesta política de galetes es regeix per la Ley 34/2002, d'11 de juliol, de serveis de la societat de la informació i comerç electrònic, pel Reglamento Europeo de Protección de Datos 2016/679 CE i per les directrius de l'Agència Espanyola de Protecció de Dades.
+
+### Què són les galetes?
+
+Les galetes són arxius descarregables mitjançant la navegació web que:
+
+- Personalitzen llocs per a usuaris específics
+- Informen els propietaris sobre les pàgines visitades
+- Emmagatzemen i recuperen informació sobre hàbits de navegació
+- **No revelen la identitat ni accedeixen al contingut de l'ordinador**
+
+### Quin tipus de galetes utilitzem, i amb quina finalitat?
+
+#### Classificació per origen
+
+- **Galetes pròpies**: gestionades per 498A
+- **Galetes de tercers**: gestionades per equips/dominis externs
+
+#### Classificació per durada
+
+- **Sessió**: desapareixen en tancar el navegador
+- **Persistents**: emmagatzemades durant un període definit (minuts a anys)
+
+#### Classificació per funció
+
+**Galetes tècniques**: permeten la navegació, la gestió operativa, el control de trànsit, la identificació de sessió, l'accés restringit, recordar elements de comandes, processos de compra, gestió de pagaments, control de frau i funcionalitats dinàmiques.
+
+**Galetes de personalització**: recorden informació de l'usuari (idioma, nombre de resultats, aspecte segons navegador/regió).
+
+**Galetes d'anàlisi**: seguiment del comportament, quantificació de l'impacte publicitari, mesurament de l'activitat dels llocs web per introduir-hi millores.
+
+**Galetes de publicitat comportamental**: emmagatzemen informació contínua d'hàbits de navegació per a perfils específics de publicitat.
+
+### Quines són les seves opcions respecte a les galetes?
+
+#### Opcions al navegador inicial
+
+- Acceptar-les totes (el bàner no torna a aparèixer)
+- Deshabilitar categories (excepte les essencials)
+- Modificar la configuració
+- Accedir i administrar el consentiment en qualsevol moment
+
+#### Control per navegador
+
+- **Firefox**: [support.mozilla.org](https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias)
+- **Chrome**: [support.google.com](https://support.google.com/chrome/answer/95647?hl=es)
+- **Safari**: [support.apple.com](https://support.apple.com/es-es/guide/safari/sfri11471/mac)
+- **Internet Explorer / Edge**: [support.microsoft.com](https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09)
+
+#### Impacte de la deshabilitació
+
+Pot afectar negativament la seva experiència. En determinats casos, pot impedir-li l'accés a parts del lloc web. Desactivar la publicitat comportamental no significa quedar-se sense anuncis, només que no seran personalitzats.
+
+### Durada d'emmagatzematge
+
+| Categoria | Durada | Notes |
+|-----------|--------|-------|
+| Sessió | Tancament del navegador | — |
+| Curt termini | ≤ 1 mes | Preferències, productes d'interès |
+| Curt-mitjà termini | 1 mes a 1 any | Idioma, país, personalització d'anuncis |
+| Llarg termini | ≥ 1 any | Multi-dispositiu, integració de tercers |
+
+**Política de conservació**: durant el temps necessari per a la finalitat per a la qual va ser recollida, llevat que l'usuari en sol·liciti la supressió. Hi ha revisions periòdiques i anonimització per a anàlisis administratives.
+
+### Compartició de dades
+
+- **Personal de 498A**: persones autoritzades conformement a la normativa
+- **Encarregats del tractament**: col·laboradors directes sota nomenament formal
+- **Tercers**: no es comparteixen
+- **Transferències internacionals**: només dins la UE o amb garanties Art. 46+ RGPD
+- **Difusió pública**: no
+
+### Drets de l'usuari
+
+Conformement al RGPD, pot exercir:
+
+- **Accés**: obtenir informació sense cost
+- **Portabilitat**: dades en format estructurat/interoperable
+- **Rectificació**: corregir errors/dades incompletes
+- **Supressió**: eliminació de dades personals
+- **Limitació**: bloqueig restringit a defensa/tercers/interès públic
+- **Oposició**: aturar el tractament
+- **No decisions automatitzades**: si tenen efectes jurídics significatius
+- **Revocació del consentiment**: en qualsevol moment
+
+#### Exercici de drets
+
+Correu: **protecciondedatos@498a.com**
+
+Pot requerir-se identificació (DNI o anàlegs).
+
+#### Reclamació davant l'autoritat
+
+Agència Espanyola de Protecció de Dades: [aepd.es](https://www.aepd.es)
+
+### Galetes específiques utilitzades
+
+#### Elementor (Statistics / anonymous)
+
+| Aspecte | Detall |
+|---------|--------|
+| Ús | Creació de contingut |
+| Cookie | `elementor` |
+| Durada | Persistent |
+| Funció | Emmagatzemar accions realitzades |
+
+#### WooCommerce (Functional)
+
+| Aspecte | Detall |
+|---------|--------|
+| Ús | Gestió de la botiga web |
+| Cookie | `wc_cart_hash_*` |
+| Durada | Sessió |
+| Funció | Emmagatzemar articles del carret |
+
+#### WordPress (Functional)
+
+| Cookie | Durada | Funció |
+|--------|--------|--------|
+| `wpEmojiSettingsSupports` | Sessió | Detalls del navegador |
+| `wp-settings-*` | Persistent | Preferències de l'usuari |
+| `wp-settings-time-*` | 1 any | Preferències de l'usuari |
+| `wordpress_test_cookie` | Sessió | Verificar galetes actives |
+| `wp_lang` | Sessió | Idioma |
+| `wordpress_logged_in_*` | Persistent | Usuaris registrats |
+
+#### Stripe (Functional)
+
+| Aspecte | Detall |
+|---------|--------|
+| Ús | Processament de pagaments |
+| Cookie | `__stripe_mid` |
+| Durada | 1 any |
+| Funció | Prevenció de frau |
+
+#### Sourcebuster JS (Statistics)
+
+Seguiment de visitants:
+
+- `sbjs_migrations` (6 mesos) — historial d'ús
+- `sbjs_current_add` / `sbjs_first_add` (6 mesos) — visites de pàgina
+- `sbjs_first` (sessió) — interacció
+- `sbjs_current` (6 mesos) — detalls del navegador
+- `sbjs_udata` (6 mesos) — ID de sessió únic
+
+#### Google Fonts (Marketing)
+
+- API: llegeix la IP de l'usuari
+- Durada: expira immediatament
+
+#### Google Maps (Marketing)
+
+- API: llegeix la IP de l'usuari
+- Durada: expira immediatament
+
+#### Complianz (Functional)
+
+Gestió del consentiment de galetes:
+
+- `cmplz_functional` (365 dies)
+- `cmplz_statistics` (365 dies)
+- `cmplz_preferences` (365 dies)
+- `cmplz_marketing` (365 dies)
+- `cmplz_consented_services` (365 dies)
+- `cmplz_policy_id` (365 dies) — ID de la política acceptada
+- `cmplz_banner-status` (365 dies) — descartament del bàner
+
+#### Google Analytics (Statistics)
+
+| Cookie | Durada | Funció |
+|--------|--------|--------|
+| `_ga` | 2 anys | Comptar visites |
+| `_ga_*` | 1 any | Comptar visites |
+
+#### Miscellaneous (Purpose pending investigation)
+
+Galetes sense propòsit aclarit: `storeApiCartData`, `storeApiCartHash`, `e_event-tracker`, `e_kit-elements-defaults`, `ssPanelTop`, hashes diversos, `joomla-*`, `browsePath`, `reDimCookieHint`, `ate-maiya-info_*`, `wp-wpml_*`, `mp_*`, `admintools_*`, `joomla_user_state`, `_grecaptcha`, `_ams_session`, `acf`.
+
+### Pot haver-hi modificacions en aquesta política?
+
+Subjecta a canvis per:
+
+- Canvis legals, jurisprudencials o doctrinals
+- Evolució de l'activitat de l'empresa
+- Millores de la política
+
+**Recomanació**: revisar a cada visita al web.
+
+### Contacte i més informació
+
+**Email**: protecciondedatos@498a.com
+
+**Referències addicionals**: Avís Legal, Política de Privacitat, Declaració d'Accessibilitat.
 
 ---
 
 ## EN · Cookie Policy
 
-> **Pending from legal team.** The English version has not yet been received. Once available, it will be added here following the same structure as the Spanish version.
+> **Draft**: English translation from the Spanish version. Pending review and validation by 498 Advance's legal team.
+
+**498 Advanced Solutions S.L.** ("**498A**") works to safeguard your data protection rights.
+
+This cookie policy is governed by Spanish Law 34/2002 of 11 July on Information Society Services and E-Commerce, by the European General Data Protection Regulation 2016/679 EC, and by the guidelines of the Spanish Data Protection Agency (AEPD).
+
+### What are cookies?
+
+Cookies are files downloadable through web browsing that:
+
+- Personalize websites for specific users
+- Inform owners about pages visited
+- Store and retrieve information about browsing habits
+- **Do not reveal identity nor access content on the computer**
+
+### What type of cookies do we use, and for what purpose?
+
+#### Classification by origin
+
+- **First-party cookies**: managed by 498A
+- **Third-party cookies**: managed by external teams/domains
+
+#### Classification by duration
+
+- **Session**: disappear when the browser is closed
+- **Persistent**: stored for a defined period (minutes to years)
+
+#### Classification by function
+
+**Strictly necessary cookies**: enable browsing, operational management, traffic control, session identification, restricted access, remembering order items, purchase processes, payment management, fraud control, and dynamic functionalities.
+
+**Personalization cookies**: remember user information (language, number of results, appearance based on browser/region).
+
+**Analytics cookies**: behavior tracking, quantification of advertising impact, measurement of website activity to introduce improvements.
+
+**Behavioral advertising cookies**: store ongoing information on browsing habits for specific advertising profiles.
+
+### What are your options regarding cookies?
+
+#### Options on initial browsing
+
+- Accept all (banner does not reappear)
+- Disable categories (except essential)
+- Modify settings
+- Access and manage consent at any time
+
+#### Browser control
+
+- **Firefox**: [support.mozilla.org](https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias)
+- **Chrome**: [support.google.com](https://support.google.com/chrome/answer/95647?hl=es)
+- **Safari**: [support.apple.com](https://support.apple.com/es-es/guide/safari/sfri11471/mac)
+- **Internet Explorer / Edge**: [support.microsoft.com](https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09)
+
+#### Impact of disabling
+
+It may negatively affect your experience. In certain cases, it may prevent you from accessing parts of the website. Disabling behavioral advertising does not mean being without ads, only that they will not be personalized.
+
+### Storage duration
+
+| Category | Duration | Notes |
+|----------|----------|-------|
+| Session | Browser close | — |
+| Short term | ≤ 1 month | Preferences, products of interest |
+| Short-medium term | 1 month to 1 year | Language, country, ad personalization |
+| Long term | ≥ 1 year | Multi-device, third-party integration |
+
+**Retention policy**: for the time necessary for the purpose for which it was collected, unless the user requests its deletion. There are periodic reviews and anonymization for administrative analysis.
+
+### Data sharing
+
+- **498A staff**: persons authorized in accordance with regulations
+- **Data processors**: direct collaborators under formal appointment
+- **Third parties**: not shared
+- **International transfers**: only within the EU or with Art. 46+ GDPR safeguards
+- **Public dissemination**: no
+
+### User rights
+
+In accordance with the GDPR, you may exercise:
+
+- **Access**: obtain information at no cost
+- **Portability**: data in a structured/interoperable format
+- **Rectification**: correct errors/incomplete data
+- **Erasure**: deletion of personal data
+- **Restriction**: blocking restricted to defense/third parties/public interest
+- **Objection**: stop processing
+- **Automated decisions**: not to be subject to them when they have significant legal effects
+- **Withdrawal of consent**: at any time
+
+#### Exercise of rights
+
+Email: **protecciondedatos@498a.com**
+
+Identification (national ID or equivalent) may be required.
+
+#### Complaint to the supervisory authority
+
+Spanish Data Protection Agency (AEPD): [aepd.es](https://www.aepd.es)
+
+### Specific cookies used
+
+#### Elementor (Statistics / anonymous)
+
+| Aspect | Detail |
+|--------|--------|
+| Use | Content creation |
+| Cookie | `elementor` |
+| Duration | Persistent |
+| Function | Store actions performed |
+
+#### WooCommerce (Functional)
+
+| Aspect | Detail |
+|--------|--------|
+| Use | Online shop management |
+| Cookie | `wc_cart_hash_*` |
+| Duration | Session |
+| Function | Store cart items |
+
+#### WordPress (Functional)
+
+| Cookie | Duration | Function |
+|--------|----------|----------|
+| `wpEmojiSettingsSupports` | Session | Browser details |
+| `wp-settings-*` | Persistent | User preferences |
+| `wp-settings-time-*` | 1 year | User preferences |
+| `wordpress_test_cookie` | Session | Verify active cookies |
+| `wp_lang` | Session | Language |
+| `wordpress_logged_in_*` | Persistent | Registered users |
+
+#### Stripe (Functional)
+
+| Aspect | Detail |
+|--------|--------|
+| Use | Payment processing |
+| Cookie | `__stripe_mid` |
+| Duration | 1 year |
+| Function | Fraud prevention |
+
+#### Sourcebuster JS (Statistics)
+
+Visitor tracking:
+
+- `sbjs_migrations` (6 months) — usage history
+- `sbjs_current_add` / `sbjs_first_add` (6 months) — page views
+- `sbjs_first` (session) — interaction
+- `sbjs_current` (6 months) — browser details
+- `sbjs_udata` (6 months) — unique session ID
+
+#### Google Fonts (Marketing)
+
+- API: reads the user's IP
+- Duration: expires immediately
+
+#### Google Maps (Marketing)
+
+- API: reads the user's IP
+- Duration: expires immediately
+
+#### Complianz (Functional)
+
+Cookie consent management:
+
+- `cmplz_functional` (365 days)
+- `cmplz_statistics` (365 days)
+- `cmplz_preferences` (365 days)
+- `cmplz_marketing` (365 days)
+- `cmplz_consented_services` (365 days)
+- `cmplz_policy_id` (365 days) — ID of the accepted policy
+- `cmplz_banner-status` (365 days) — banner dismissal
+
+#### Google Analytics (Statistics)
+
+| Cookie | Duration | Function |
+|--------|----------|----------|
+| `_ga` | 2 years | Count views |
+| `_ga_*` | 1 year | Count views |
+
+#### Miscellaneous (Purpose pending investigation)
+
+Cookies without a clarified purpose: `storeApiCartData`, `storeApiCartHash`, `e_event-tracker`, `e_kit-elements-defaults`, `ssPanelTop`, various hashes, `joomla-*`, `browsePath`, `reDimCookieHint`, `ate-maiya-info_*`, `wp-wpml_*`, `mp_*`, `admintools_*`, `joomla_user_state`, `_grecaptcha`, `_ams_session`, `acf`.
+
+### May this policy be modified?
+
+Subject to changes due to:
+
+- Legal, jurisprudential, or doctrinal changes
+- Evolution of the company's activity
+- Policy improvements
+
+**Recommendation**: review on each visit to the website.
+
+### Contact and further information
+
+**Email**: protecciondedatos@498a.com
+
+**Additional references**: Legal Notice, Privacy Policy, Accessibility Statement.
 
 ---
 
