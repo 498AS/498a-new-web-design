@@ -1,0 +1,2794 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>498A · Consultoría de IA aplicada · Investigación con horizonte Gerard · Barcelona</title>
+<meta name="description" content="498A es una consultora de IA aplicada con un programa de investigación a medio plazo orientado a la simulación de personas, grupos y sociedades. Barcelona, desde 2023.">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* ===================================================================
+     498A · home pública v1 · 2026-05-19
+     Reutiliza el CSS de componentes del playground v6.
+     Eliminados: módulos UI (forms/badges/table/code), blog-post demo.
+     =================================================================== */
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--498-white);
+    color: #1A1A1A;
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { max-width: 100%; display: block; }
+
+  :root {
+    --pg-line:        rgba(0, 0, 0, .08);
+    --pg-line-strong: rgba(0, 0, 0, .14);
+    --pg-line-mid:    rgba(0, 0, 0, .11);
+    --pg-text:        #1A1A1A;
+    --pg-text-muted:  #5C5C5C;
+    --pg-text-faint:  #717171;
+    --pg-paper:       #FAFAFA;
+    --pg-paper-green: #F4FAF3;
+    --pg-section-pad-y: 120px;
+
+    --pg-pattern: url('assets/patterns/grid-backprop.svg');
+    --pg-rail-width: 148px;
+  }
+
+  @media (max-width: 900px) {
+    :root { --pg-section-pad-y: 72px; }
+  }
+
+  section {
+    padding: var(--pg-section-pad-y) var(--498-page-pad);
+    position: relative;
+  }
+  .container { max-width: var(--498-content-max); margin: 0 auto; }
+  .narrow    { max-width: 760px;  margin: 0 auto; }
+
+  /* === ACCESIBILIDAD === */
+  .skip-link {
+    position: fixed; top: 0; left: 0; z-index: 100;
+    padding: 14px 22px;
+    background: var(--498-black); color: var(--498-white);
+    font-family: var(--498-family-mono); font-size: 13px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+    border: 2px solid var(--498-green);
+    transform: translateY(-150%);
+    transition: transform .15s ease-out;
+  }
+  .skip-link:focus { transform: translateY(0); outline: none; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible,
+  select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--498-green);
+    outline-offset: 2px;
+    border-radius: 0;
+  }
+  .cookie-toggle input:focus-visible + .cookie-toggle__track {
+    outline: 2px solid var(--498-green);
+    outline-offset: 2px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* === TIPOGRAFÍA === */
+  h1, h2, h3, h4 { color: var(--pg-text); font-weight: 300; }
+  p { color: var(--pg-text-muted); }
+
+  .ed-display-1 {
+    font-family: var(--498-family-body); font-style: italic; font-weight: 200;
+    font-size: 64px; line-height: 1.05; letter-spacing: -1.2px;
+    color: var(--pg-text);
+  }
+  .ed-display-2 {
+    font-family: var(--498-family-body); font-style: italic; font-weight: 200;
+    font-size: 44px; line-height: 1.15; letter-spacing: -.5px;
+  }
+  .ed-display-3 {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 36px; line-height: 1.25; letter-spacing: -.3px;
+  }
+  .ed-h2 {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 28px; line-height: 1.3; letter-spacing: -.2px;
+  }
+  .ed-h3 {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 22px; line-height: 1.35; letter-spacing: -.1px;
+  }
+  .ed-lead {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 22px; line-height: 1.55; color: var(--pg-text);
+  }
+  .ed-body {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 16px; line-height: 1.7; color: var(--pg-text-muted);
+  }
+  .ed-small {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 14px; line-height: 1.65; color: var(--pg-text-muted);
+  }
+  @media (max-width: 720px) {
+    .ed-display-1 { font-size: 40px; }
+    .ed-display-2 { font-size: 30px; }
+    .ed-display-3 { font-size: 26px; }
+    .ed-h2 { font-size: 22px; }
+    .ed-lead { font-size: 18px; }
+  }
+
+  .eyebrow {
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--498-green-deep);
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  /* === NAV === */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 30;
+    display: flex; align-items: stretch;
+    padding: 14px var(--498-page-pad);
+    background: transparent;
+    border-bottom: 0;
+    gap: 0;
+  }
+  .nav__brand-box {
+    display: inline-flex; align-items: center;
+    padding: 0 18px;
+    background: var(--498-black);
+    color: var(--498-white);
+    border: 1px solid var(--498-black);
+    font-family: var(--498-family-mono); font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    height: 40px;
+    transition: background .2s;
+  }
+  .nav__brand-box em { color: var(--498-green); font-style: normal; margin: 0 1px; }
+  .nav__brand-box:hover { background: var(--498-green-deep); border-color: var(--498-green-deep); }
+
+  .nav__links { display: inline-flex; }
+  .nav__link-box {
+    display: inline-flex; align-items: center;
+    padding: 0 14px;
+    border: 1px solid var(--pg-line-mid);
+    border-left: 0;
+    color: var(--pg-text); text-decoration: none;
+    font-family: var(--498-family-ui); font-size: 12px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
+    background: var(--498-white);
+    height: 40px;
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .nav__link-box:hover {
+    border-color: var(--498-green-deep);
+    color: var(--498-green-deep);
+    background: var(--498-green-50);
+    z-index: 1;
+  }
+  .nav__link-box .num {
+    font-size: 9px; color: var(--pg-text-faint); margin-right: 8px; letter-spacing: 1px;
+  }
+  .nav__link-box:hover .num { color: var(--498-green-deep); }
+
+  .nav__spacer { flex: 1; background: transparent; border: 0; height: 40px; }
+
+  .nav__cta-box {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 18px;
+    width: var(--pg-rail-width);
+    background: var(--pg-text); color: var(--498-white);
+    font-family: var(--498-family-mono); font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--pg-text);
+    height: 40px;
+    transition: background .2s, border-color .2s;
+  }
+  .nav__cta-box:hover { background: var(--498-green-deep); border-color: var(--498-green-deep); }
+
+  @media (max-width: 900px) {
+    .nav { flex-wrap: wrap; padding: 12px var(--498-page-pad); }
+    .nav__spacer { display: none; }
+    .nav__links { flex: 1 0 100%; order: 3; flex-wrap: wrap; margin-top: 8px; }
+    .nav__link-box {
+      padding: 0 12px; font-size: 11px; height: 36px;
+      border-left: 1px solid var(--pg-line-mid);
+      border-right: 0;
+    }
+    .nav__link-box:last-child { border-right: 1px solid var(--pg-line-mid); }
+    .nav__cta-box { border-left: 1px solid var(--pg-text); }
+  }
+
+  /* === HERO FULL-BLEED === */
+  .hero-fullbleed {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .hero-fullbleed__video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero-fullbleed::after {
+    content: "";
+    position: absolute; inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.55) 100%);
+    pointer-events: none;
+  }
+  .hero-fullbleed__content {
+    position: relative; z-index: 2;
+    height: 100%;
+    padding: 0 var(--498-page-pad) 80px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    color: var(--498-white);
+    max-width: 1200px;
+  }
+  .hero-fullbleed__eyebrow { color: var(--498-green); margin-bottom: 28px; }
+  .hero-fullbleed__display {
+    color: var(--498-white);
+    margin-bottom: 28px;
+    max-width: 920px;
+    text-shadow: 0 1px 32px rgba(0,0,0,.3);
+  }
+  .hero-fullbleed__display em { color: var(--498-green); font-style: italic; }
+  .hero-fullbleed__lead {
+    color: rgba(255,255,255,.88);
+    max-width: 640px;
+    margin-bottom: 18px;
+    text-shadow: 0 1px 16px rgba(0,0,0,.3);
+  }
+  .hero-fullbleed__sub {
+    color: rgba(255,255,255,.78);
+    max-width: 640px;
+    margin-bottom: 40px;
+    font-size: 16px;
+    font-style: italic;
+    text-shadow: 0 1px 16px rgba(0,0,0,.3);
+  }
+  .hero-fullbleed__cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+  .lang-grid {
+    position: absolute; top: 96px; right: var(--498-page-pad); z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 28px;
+    width: var(--pg-rail-width);
+    background: rgba(255,255,255,.94);
+    border: 1px solid var(--pg-line);
+  }
+  .lang-grid__cell {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--498-family-mono); font-size: 10px;
+    letter-spacing: 1.2px; text-transform: uppercase; font-weight: 500;
+    color: var(--pg-text); text-decoration: none;
+    border-right: 1px solid var(--pg-line);
+    border-bottom: 1px solid var(--pg-line);
+    background: transparent;
+    transition: background .2s, color .2s;
+  }
+  .lang-grid__cell:nth-child(3n) { border-right: 0; }
+  .lang-grid__cell:nth-child(n+4) { border-bottom: 0; }
+  .lang-grid__cell:hover {
+    background: var(--498-green-50);
+    color: var(--498-green-deep);
+  }
+  .lang-grid__cell.is-active {
+    background: var(--498-green-deep);
+    color: var(--498-white);
+  }
+  .lang-grid__cell.lang-cjk {
+    font-size: 13px; letter-spacing: 0; text-transform: none; font-weight: 400;
+  }
+  @media (max-width: 720px), (pointer: coarse) {
+    .lang-grid { grid-auto-rows: 44px; grid-template-columns: repeat(3, 52px); }
+  }
+
+  /* === BUTTONS === */
+  .btn-on-video {
+    background: var(--498-white); color: var(--pg-text);
+    padding: 14px 24px;
+    font-family: var(--498-family-ui); font-size: 13px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 1.2px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid var(--498-white);
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .btn-on-video:hover { background: var(--498-green); color: var(--498-black); border-color: var(--498-green); }
+  .btn-ghost-on-video {
+    background: transparent; color: var(--498-white);
+    padding: 14px 24px;
+    font-family: var(--498-family-ui); font-size: 13px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 1.2px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(255,255,255,.6);
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .btn-ghost-on-video:hover { border-color: var(--498-green); color: var(--498-green); background: rgba(255,255,255,.06); }
+
+  .btn-light {
+    background: var(--pg-text); color: var(--498-white);
+    padding: 14px 24px;
+    font-family: var(--498-family-ui); font-size: 13px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 1.2px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid var(--pg-text);
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .btn-light:hover { background: var(--498-green-deep); border-color: var(--498-green-deep); }
+  .btn-ghost-light {
+    background: transparent; color: var(--pg-text);
+    padding: 14px 24px;
+    font-family: var(--498-family-ui); font-size: 13px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 1.2px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid var(--pg-line-strong);
+    transition: border-color .2s, color .2s;
+  }
+  .btn-ghost-light:hover { border-color: var(--498-green-deep); color: var(--498-green-deep); }
+
+  .btn-solid-dark {
+    background: var(--498-black); color: var(--498-white);
+    padding: 14px 24px;
+    font-family: var(--498-family-ui); font-size: 13px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 1.2px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid var(--498-black);
+    transition: background .2s, border-color .2s;
+    white-space: nowrap;
+  }
+  .btn-solid-dark:hover { background: var(--498-green-deep); border-color: var(--498-green-deep); }
+
+  /* === VISION HERO CARD === */
+  .vision-section {
+    background: var(--498-white);
+    position: relative;
+  }
+  .vision-section::after {
+    content: "";
+    position: absolute; left: 0; right: 0; top: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--498-green-deep) 30%, var(--498-green) 50%, var(--498-green-deep) 70%, transparent);
+    opacity: .2;
+  }
+  .vision-hero-card {
+    position: relative;
+    border: 1px solid var(--pg-line-strong);
+    background:
+      linear-gradient(135deg,
+        var(--498-green-200) 0%,
+        var(--498-green-100) 35%,
+        var(--498-green-50) 75%,
+        var(--498-white) 100%);
+    padding: 56px;
+    margin-bottom: 96px;
+    min-height: 480px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(360px, 0.9fr) 1.1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .vision-hero-card {
+      grid-template-columns: 1fr;
+      padding: 40px 32px;
+      min-height: 0;
+      gap: 32px;
+    }
+  }
+  .vision-hero-card__content {
+    display: flex; flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+  }
+  .eyebrow-square {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--pg-text); font-weight: 500;
+  }
+  .eyebrow-square::before {
+    content: "";
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--pg-text);
+  }
+  .vision-hero-card__claim {
+    font-family: var(--498-family-body);
+    font-weight: 200;
+    font-size: 52px;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--pg-text);
+    margin: 0;
+    max-width: 100%;
+    font-style: italic;
+  }
+  @media (max-width: 1100px) { .vision-hero-card__claim { font-size: 42px; } }
+  @media (max-width: 720px)  { .vision-hero-card__claim { font-size: 30px; } }
+
+  .btn-split { display: inline-flex; align-items: stretch; text-decoration: none; }
+  .btn-split__label {
+    padding: 14px 22px;
+    border: 1px solid var(--pg-text);
+    font-family: var(--498-family-mono); font-size: 12px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--pg-text); font-weight: 500;
+    line-height: 1; display: inline-flex; align-items: center;
+    background: transparent;
+    transition: background .2s, color .2s;
+  }
+  .btn-split__arrow {
+    padding: 14px 18px;
+    border: 1px solid var(--pg-text);
+    border-left: 0;
+    color: var(--pg-text);
+    font-family: var(--498-family-mono); font-size: 16px;
+    line-height: 1; display: inline-flex; align-items: center;
+    background: transparent;
+    transition: background .2s, color .2s;
+  }
+  .btn-split:hover .btn-split__label,
+  .btn-split:hover .btn-split__arrow { background: var(--pg-text); color: var(--498-white); }
+
+  .vision-hero-card__visual {
+    position: relative;
+    height: 100%;
+    min-height: 380px;
+    margin: -56px -56px -56px 0;
+    overflow: hidden;
+  }
+  .vision-hero-card__visual img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  @media (max-width: 900px) {
+    .vision-hero-card__visual {
+      margin: 0 -32px -40px -32px;
+      min-height: 260px;
+    }
+  }
+
+  .vision-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .vision-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .vision-meta {
+    position: sticky; top: 100px;
+    align-self: start;
+    border-top: 1px solid var(--pg-line-strong);
+    padding-top: 20px;
+  }
+  @media (max-width: 900px) { .vision-meta { position: static; } }
+  .vision-meta__num {
+    font-family: var(--498-family-display);
+    font-size: 32px;
+    color: var(--pg-text);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .vision-meta__label {
+    font-family: var(--498-family-mono); font-size: 11px;
+    color: var(--498-green-deep); letter-spacing: 1.5px;
+    text-transform: uppercase; font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .vision-meta__line {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--pg-text-faint); letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .pullquote-inset {
+    margin: 32px 0;
+    padding: 8px 0 8px 24px;
+    border-left: 2px solid var(--498-green-deep);
+  }
+  .pullquote-inset__text {
+    font-family: var(--498-family-body);
+    font-style: italic; font-weight: 200;
+    font-size: 26px; line-height: 1.4;
+    color: var(--pg-text);
+    letter-spacing: -.3px;
+  }
+  .pullquote-inset__attr {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--pg-text-faint); letter-spacing: 1.5px;
+    text-transform: uppercase; margin-top: 14px;
+  }
+  @media (max-width: 720px) { .pullquote-inset__text { font-size: 20px; } }
+
+  /* === BOX COLLECTIONS === */
+  .box-collection {
+    display: grid;
+    border-top: 1px solid var(--pg-line-strong);
+    border-left: 1px solid var(--pg-line-strong);
+    overflow: hidden;
+  }
+  .box-collection--5 { grid-template-columns: repeat(5, 1fr); }
+  .box-collection--4 { grid-template-columns: repeat(4, 1fr); }
+  .box-collection--3 { grid-template-columns: repeat(3, 1fr); }
+  .box-collection--2 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 900px) {
+    .box-collection--5 { grid-template-columns: repeat(3, 1fr); }
+    .box-collection--4, .box-collection--3 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .box-collection--5, .box-collection--4, .box-collection--3, .box-collection--2 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 420px) {
+    .box-collection--5, .box-collection--4, .box-collection--3, .box-collection--2 { grid-template-columns: 1fr; }
+  }
+  .box-collection > * {
+    border-right: 1px solid var(--pg-line-strong);
+    border-bottom: 1px solid var(--pg-line-strong);
+  }
+
+  /* Persiana */
+  .box-collection--persiana > * {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+    transition: transform .55s cubic-bezier(.2,.8,.25,1), opacity .55s ease-out;
+  }
+  .box-collection--persiana.in-view > *:nth-child(1) { transform: scaleY(1); opacity: 1; transition-delay: .05s; }
+  .box-collection--persiana.in-view > *:nth-child(2) { transform: scaleY(1); opacity: 1; transition-delay: .15s; }
+  .box-collection--persiana.in-view > *:nth-child(3) { transform: scaleY(1); opacity: 1; transition-delay: .25s; }
+  .box-collection--persiana.in-view > *:nth-child(4) { transform: scaleY(1); opacity: 1; transition-delay: .35s; }
+  .box-collection--persiana.in-view > *:nth-child(5) { transform: scaleY(1); opacity: 1; transition-delay: .45s; }
+  .box-collection--persiana.in-view > *:nth-child(6) { transform: scaleY(1); opacity: 1; transition-delay: .55s; }
+  @media (prefers-reduced-motion: reduce) {
+    .box-collection--persiana > * { transform: none; opacity: 1; transition: none; }
+  }
+
+  /* Frame-cross */
+  .box-collection--frame-cross {
+    border: 0;
+    overflow: visible;
+    gap: 20px;
+    padding: 10px;
+  }
+  .box-collection--frame-cross > * {
+    border: 1px solid var(--pg-line-strong);
+    position: relative;
+    overflow: visible;
+    background: var(--498-white);
+  }
+  .box-collection--frame-cross > *::before {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    pointer-events: none;
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 0   0   / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 100% 0   / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 0   100% / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 100% 100% / 14px 14px no-repeat;
+  }
+  .box-collection--frame-cross > *:hover::before {
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%230E7A1F' stroke-width='1'/></svg>") 0   0   / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%230E7A1F' stroke-width='1'/></svg>") 100% 0   / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%230E7A1F' stroke-width='1'/></svg>") 0   100% / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%230E7A1F' stroke-width='1'/></svg>") 100% 100% / 14px 14px no-repeat;
+  }
+
+  /* Periodic */
+  .box-collection--periodic {
+    background: var(--498-black);
+    gap: 1px;
+    padding: 1px;
+    border: 0;
+    overflow: visible;
+  }
+  .box-collection--periodic > * {
+    border: 0 !important;
+    background: var(--498-white);
+    padding: 0;
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr 1px auto;
+    min-height: 200px;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    cursor: default;
+    transition: background .2s;
+  }
+  .box-collection--periodic > *:hover { background: var(--498-green-50); }
+  .periodic__meta {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 10px;
+    font-family: var(--498-family-mono);
+    font-size: 10px; letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .periodic__num { color: var(--pg-text-faint); font-weight: 500; }
+  .periodic__tag { color: var(--498-green-deep); font-weight: 600; }
+  .periodic__symbol {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--498-family-display);
+    font-size: 56px; line-height: 1;
+    letter-spacing: 1px;
+    color: var(--498-black);
+    text-transform: uppercase;
+    padding: 0 12px;
+    text-align: center;
+  }
+  .box-collection--periodic > *:hover .periodic__symbol { color: var(--498-green-deep); }
+  .periodic__divider { background: var(--498-black); width: 100%; height: 1px; }
+  .periodic__desc {
+    padding: 10px 12px 14px;
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 12px; line-height: 1.4;
+    color: var(--pg-text);
+    margin: 0;
+  }
+  .periodic__desc::before {
+    content: "";
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: var(--498-green);
+    margin-right: 8px;
+    vertical-align: -1px;
+  }
+  @media (max-width: 900px) {
+    .box-collection--periodic.box-collection--3 { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .box-collection--periodic.box-collection--3 { grid-template-columns: repeat(2, 1fr); }
+    .periodic__symbol { font-size: 42px; }
+  }
+
+  /* Service cards */
+  .box-collection--service-cards {
+    background: var(--498-black);
+    gap: 1px;
+    padding: 1px;
+    border: 0;
+    overflow: visible;
+  }
+  .box-collection--service-cards > * {
+    background: var(--498-white);
+    display: flex;
+    flex-direction: column;
+    padding: 18px !important;
+    border: 0 !important;
+    overflow: hidden;
+    transition: background .2s;
+    position: relative;
+  }
+  .box-collection--service-cards > *::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid var(--498-black);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .box-collection--service-cards > *:hover { background: var(--498-green-50); }
+  .box-collection--service-cards > *:hover::before { border-color: var(--498-green-deep); }
+
+  .service-card__image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid var(--498-black);
+    background: var(--pg-paper);
+  }
+  .service-card__image img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .service-card__num {
+    padding: 14px 32px 0;
+    text-align: center;
+    font-family: var(--498-family-mono);
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--498-green-deep);
+    font-weight: 600;
+  }
+  .service-card__title {
+    padding: 12px 32px 8px;
+    text-align: center;
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--498-black);
+    margin: 0;
+  }
+  .service-card__headline {
+    padding: 6px 32px 14px;
+    text-align: center;
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--498-black);
+    margin: 0;
+    letter-spacing: -.2px;
+  }
+  .service-card__desc {
+    padding: 0 32px 18px;
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--498-black);
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .service-card__desc::before {
+    content: "";
+    display: inline-block;
+    flex-shrink: 0;
+    width: 11px;
+    height: 11px;
+    background: var(--498-green);
+    margin-top: 4px;
+  }
+  .service-card__proof {
+    padding: 12px 32px 28px;
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    color: var(--498-green-deep);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-align: center;
+    border-top: 1px dashed var(--pg-line);
+    margin: 0 32px;
+  }
+  .service-card__badge {
+    position: absolute;
+    top: 28px; right: 28px;
+    z-index: 3;
+    font-family: var(--498-family-mono);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 5px 9px;
+    background: var(--498-green-deep);
+    color: var(--498-white);
+    border-radius: 0;
+  }
+  @media (max-width: 900px) {
+    .box-collection--service-cards.box-collection--2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .service-card__image { aspect-ratio: 16 / 9; }
+  }
+
+  /* === BOX (single) === */
+  .box {
+    background: var(--498-white);
+    padding: 36px 32px;
+    position: relative;
+    transition: background .2s;
+  }
+  .box:hover { background: var(--pg-paper); }
+  .box__num {
+    position: absolute; top: 18px; right: 22px;
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--pg-text-faint); letter-spacing: 1.2px;
+  }
+  .box__tag {
+    font-family: var(--498-family-mono); font-size: 11px;
+    color: var(--498-green-deep); letter-spacing: 1.5px;
+    text-transform: uppercase; font-weight: 500;
+    margin-bottom: 20px; display: block;
+  }
+  .box__title { margin-bottom: 16px; }
+  .box__desc { color: var(--pg-text-muted); margin-bottom: 20px; }
+  .box__mark {
+    width: 28px; height: 28px;
+    margin-bottom: 20px;
+    display: block;
+    color: var(--498-green-deep);
+    transition: color .2s, transform .4s ease;
+  }
+  .box:hover .box__mark { color: var(--498-green); transform: rotate(45deg); }
+  .box__mark svg { width: 100%; height: 100%; display: block; }
+
+  /* Pattern box */
+  .box-pattern {
+    padding: 40px 32px;
+    background: var(--pg-pattern), var(--498-white);
+    background-repeat: repeat;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    animation: patternFlow 90s linear infinite;
+  }
+  .box-pattern::before {
+    content: "";
+    position: absolute; inset: -10%;
+    background: linear-gradient(
+      115deg,
+      rgba(45, 214, 15, 0)    0%,
+      rgba(45, 214, 15, 0.10) 30%,
+      rgba(150, 150, 150, 0.06) 50%,
+      rgba(14, 122, 31, 0.10) 70%,
+      rgba(45, 214, 15, 0)    100%
+    );
+    background-size: 260% 260%;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    animation: gradientDrift 28s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+  .box-pattern > * { position: relative; z-index: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    .box-pattern, .box-pattern::before { animation: none; }
+  }
+
+  /* Box-paper-green */
+  .box-paper-green {
+    background: var(--pg-paper-green);
+    padding: 36px 32px;
+  }
+  .box-paper-green .box-card__tag {
+    font-family: var(--498-family-mono); font-size: 11px;
+    color: var(--498-green-deep); letter-spacing: 1.5px;
+    text-transform: uppercase; font-weight: 500;
+    margin-bottom: 12px; display: block;
+  }
+
+  /* Method cells */
+  .method-cell {
+    background: var(--498-white);
+    padding: 32px 24px;
+  }
+  .method-cell__circle {
+    width: 32px; height: 32px;
+    border: 1px solid var(--498-green-deep);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--498-green-deep); letter-spacing: .5px; font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .method-cell__title {
+    font-family: var(--498-family-mono); font-size: 12px;
+    color: var(--pg-text); letter-spacing: 1.5px;
+    text-transform: uppercase; font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .method-cell__desc {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 14px; line-height: 1.6; color: var(--pg-text-muted);
+  }
+
+  /* Section helpers */
+  .section-title-block { margin-bottom: 56px; max-width: 760px; }
+  .section-title-block h2 { margin-bottom: 16px; }
+  .section-title-block p { color: var(--pg-text-muted); max-width: 580px; font-size: 17px; line-height: 1.55; font-weight: 300; }
+  .section-paper { background: var(--pg-paper); border-top: 1px solid var(--pg-line); border-bottom: 1px solid var(--pg-line); }
+  .section-paper-green { background: var(--pg-paper-green); border-top: 1px solid var(--pg-line); border-bottom: 1px solid var(--pg-line); }
+
+  /* Links + citas */
+  a.link {
+    color: var(--498-green-deep);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(14,122,31,.35);
+    transition: border-color .15s ease;
+  }
+  a.link:hover { border-bottom-color: var(--498-green-deep); }
+
+  .cite-chat {
+    display: inline-flex; align-items: center; justify-content: center;
+    vertical-align: super;
+    background: var(--498-black); color: var(--498-white);
+    min-width: 16px; height: 16px; padding: 0 4px;
+    font-family: var(--498-family-mono); font-size: 9px;
+    font-weight: 500; line-height: 1; letter-spacing: .3px;
+    text-decoration: none; margin: 0 1px 0 3px;
+    border-radius: 1px;
+    transition: background .15s ease, color .15s ease;
+  }
+  .cite-chat:hover { background: var(--498-green-deep); }
+  .cite-chat--grey { background: var(--498-grey-500); color: var(--498-white); }
+  .cite-chat--grey:hover { background: var(--498-grey-800); }
+  .cite-chat--green { background: var(--498-green-deep); color: var(--498-white); }
+  .cite-chat--green:hover { background: var(--498-green); color: var(--498-black); }
+
+  .references {
+    border-top: 1px solid var(--pg-line-strong);
+    margin-top: 64px; padding: 24px 0 0;
+    list-style: none; counter-reset: ref;
+  }
+  .references li {
+    counter-increment: ref;
+    padding-left: 36px; position: relative;
+    margin-bottom: 14px;
+    font-family: var(--498-family-body); font-size: 14px;
+    line-height: 1.65; color: var(--pg-text-faint);
+  }
+  .references li::before {
+    content: counter(ref);
+    position: absolute; left: 0; top: 1px;
+    background: var(--498-black); color: var(--498-white);
+    width: 18px; height: 18px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--498-family-mono); font-size: 10px;
+    font-weight: 500; border-radius: 1px;
+  }
+  .references a {
+    color: var(--pg-text-muted);
+    border-bottom: 1px solid var(--pg-line);
+    text-decoration: none;
+  }
+  .references a:hover { color: var(--498-green-deep); }
+
+  /* Pull quote */
+  .pull { max-width: 1000px; }
+  .pull__text {
+    font-family: var(--498-family-body); font-style: italic; font-weight: 200;
+    font-size: 48px; line-height: 1.25; color: var(--pg-text);
+    letter-spacing: -.5px;
+  }
+  @media (max-width: 720px) { .pull__text { font-size: 28px; } }
+  .pull__attr {
+    margin-top: 32px;
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--498-green-deep); font-weight: 500;
+  }
+
+  /* Pattern band */
+  .pattern-band {
+    height: 160px;
+    background: var(--pg-pattern), #0F1410;
+    background-repeat: repeat;
+    border-top: 1px solid var(--498-black);
+    border-bottom: 1px solid var(--498-black);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    animation: patternFlow 60s linear infinite;
+  }
+  @keyframes patternFlow {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: 120px 120px, 0 0; }
+  }
+  .pattern-band::before {
+    content: "";
+    position: absolute; inset: -20%;
+    background: linear-gradient(
+      115deg,
+      rgba(45, 214, 15, 0)    0%,
+      rgba(45, 214, 15, 0.18) 18%,
+      rgba(150, 150, 150, 0.10) 38%,
+      rgba(14, 122, 31, 0.22) 58%,
+      rgba(150, 150, 150, 0.08) 78%,
+      rgba(45, 214, 15, 0)    100%
+    );
+    background-size: 280% 280%;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    animation: gradientDrift 22s ease-in-out infinite alternate;
+    z-index: 1;
+  }
+  @keyframes gradientDrift {
+    0%   { background-position:   0% 50%; opacity: .85; }
+    50%  { background-position: 100% 50%; opacity: 1;   }
+    100% { background-position:  50%  0%; opacity: .9;  }
+  }
+  .pattern-band::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      135deg,
+      transparent 40%,
+      rgba(45, 214, 15, 0.08) 50%,
+      transparent 60%
+    );
+    background-size: 300% 300%;
+    pointer-events: none;
+    animation: shimmer 14s linear infinite;
+    z-index: 2;
+  }
+  @keyframes shimmer {
+    from { background-position: -50% -50%; }
+    to   { background-position: 150% 150%; }
+  }
+  .pattern-band__label {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-family: var(--498-family-mono); font-size: 11px;
+    color: var(--498-green-deep); letter-spacing: 2px;
+    text-transform: uppercase; background: var(--498-white);
+    padding: 10px 18px; border: 1px solid var(--498-black);
+    z-index: 3;
+    box-shadow: 0 2px 16px rgba(0,0,0,.35);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pattern-band, .pattern-band::before, .pattern-band::after { animation: none; }
+  }
+
+  /* Frame-cross corner marks */
+  .frame-cross {
+    position: relative;
+    border: 1px solid var(--pg-text);
+  }
+  .frame-cross > .cnr {
+    position: absolute;
+    width: 16px; height: 16px;
+    pointer-events: none;
+    z-index: 4;
+  }
+  .frame-cross > .cnr::before,
+  .frame-cross > .cnr::after {
+    content: "";
+    position: absolute;
+    background: var(--pg-text);
+  }
+  .frame-cross > .cnr::before {
+    top: 50%; transform: translateY(-50%);
+    left: 0; right: 0; height: 1px;
+  }
+  .frame-cross > .cnr::after {
+    left: 50%; transform: translateX(-50%);
+    top: 0; bottom: 0; width: 1px;
+  }
+  .frame-cross > .cnr--tl { top: -8px;    left: -8px; }
+  .frame-cross > .cnr--tr { top: -8px;    right: -8px; }
+  .frame-cross > .cnr--bl { bottom: -8px; left: -8px; }
+  .frame-cross > .cnr--br { bottom: -8px; right: -8px; }
+
+  /* Typewriter */
+  .typewriter {
+    --chars: 10;
+    --char-w: 0.78em;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: -0.18em;
+    width: 0;
+    border-right: 2px solid transparent;
+  }
+  .typewriter.is-typing {
+    animation:
+      typewriterReveal calc(var(--chars) * 0.085s) steps(var(--chars), end) forwards,
+      typewriterCursorShow 0.01s linear forwards,
+      typewriterCursorHide 0.01s linear forwards calc(var(--chars) * 0.085s + 0.15s);
+  }
+  @keyframes typewriterReveal {
+    from { width: 0; }
+    to   { width: calc(var(--chars) * var(--char-w)); }
+  }
+  @keyframes typewriterCursorShow { to { border-right-color: currentColor; } }
+  @keyframes typewriterCursorHide { to { border-right-color: transparent; } }
+  @media (prefers-reduced-motion: reduce) {
+    .typewriter, .typewriter.is-typing { width: auto; border-right: 0; animation: none; }
+  }
+
+  /* Author block */
+  .author-block {
+    margin-top: 28px; padding-top: 20px;
+    border-top: 1px solid var(--pg-line);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .author-block__photo {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--pg-line-strong);
+  }
+  .author-block__name {
+    font-family: var(--498-family-body); font-size: 14px;
+    color: var(--pg-text); font-weight: 400; display: block;
+  }
+  .author-block__role {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--pg-text-faint); letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* === GERARD section connector === */
+  .gerard-connector {
+    margin: 40px 0;
+    border-top: 1px solid var(--pg-line);
+    border-bottom: 1px solid var(--pg-line);
+    padding: 12px 0;
+  }
+  .gerard-connector__row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 8px;
+    border-bottom: 1px solid var(--pg-line);
+  }
+  .gerard-connector__row:last-child { border-bottom: 0; }
+  .gerard-connector__from,
+  .gerard-connector__to {
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--pg-text);
+  }
+  .gerard-connector__from { color: var(--pg-text-muted); }
+  .gerard-connector__to { color: var(--498-green-deep); font-weight: 600; }
+  .gerard-connector__arrow {
+    font-family: var(--498-family-mono);
+    color: var(--498-green);
+    font-size: 18px;
+    line-height: 1;
+  }
+  @media (max-width: 600px) {
+    .gerard-connector__row { grid-template-columns: 1fr; gap: 4px; }
+    .gerard-connector__arrow { font-size: 14px; }
+  }
+
+  /* === PROOF section three columns === */
+  .proof-three-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--pg-line-strong);
+    border-left: 1px solid var(--pg-line-strong);
+  }
+  .proof-three-cols > * {
+    padding: 32px 28px;
+    border-right: 1px solid var(--pg-line-strong);
+    border-bottom: 1px solid var(--pg-line-strong);
+    background: var(--498-white);
+  }
+  @media (max-width: 900px) {
+    .proof-three-cols { grid-template-columns: 1fr; }
+  }
+  .proof-three-cols h3 {
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: var(--pg-text);
+  }
+  .proof-three-cols ul {
+    list-style: none;
+    font-family: var(--498-family-body);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--pg-text-muted);
+  }
+  .proof-three-cols ul li {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--pg-line);
+  }
+  .proof-three-cols ul li:last-child { border-bottom: 0; }
+  .proof-three-cols ul li em {
+    font-style: italic;
+    color: var(--498-green-deep);
+    font-family: var(--498-family-mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-right: 6px;
+  }
+
+  /* === GEO VERTICALS chips === */
+  .verticals-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 16px 0 8px;
+  }
+  .verticals-chips span {
+    font-family: var(--498-family-mono);
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    background: var(--498-green-50);
+    color: var(--498-green-deep);
+    border: 1px solid var(--498-green-line);
+    font-weight: 500;
+  }
+
+  /* === TEAM SECTION === */
+  .team-section { background: var(--pg-paper); border-top: 1px solid var(--pg-line); border-bottom: 1px solid var(--pg-line); }
+  .team-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: stretch; }
+  @media (max-width: 900px) { .team-split { grid-template-columns: 1fr; } }
+
+  .team-photo {
+    border: 1px solid var(--pg-text);
+    overflow: visible;
+    position: relative;
+    aspect-ratio: 4/3;
+    background: var(--498-grey-100);
+  }
+  .team-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(.5) contrast(1.05);
+    transition: filter .6s var(--498-ease);
+  }
+  .team-photo:hover img { filter: saturate(1) contrast(1); }
+  .team-photo__caption {
+    position: absolute; left: 12px; bottom: 12px;
+    background: rgba(255,255,255,.94); padding: 6px 10px;
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--498-green-deep); letter-spacing: 1.5px;
+    text-transform: uppercase; border: 1px solid var(--pg-line);
+  }
+  .team-content { display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+  .team-content p {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 16px; line-height: 1.7; color: var(--pg-text-muted);
+  }
+
+  /* === FOUNDER QUOTE === */
+  .founder-quote {
+    background: var(--498-white);
+    padding: var(--pg-section-pad-y) var(--498-page-pad);
+  }
+  .founder-quote__inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .founder-quote__text {
+    font-family: var(--498-family-body); font-style: italic; font-weight: 200;
+    font-size: 48px; line-height: 1.25; color: var(--pg-text);
+    letter-spacing: -.5px;
+    margin: 14px 0 32px;
+  }
+  @media (max-width: 720px) { .founder-quote__text { font-size: 28px; } }
+  .founder-quote__attr {
+    display: flex; align-items: center; gap: 16px;
+    padding-top: 20px;
+    border-top: 1px solid var(--pg-line);
+  }
+  .founder-quote__attr img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 1px solid var(--pg-line-strong); }
+  .founder-quote__attr-name {
+    font-family: var(--498-family-body);
+    font-weight: 400;
+    color: var(--pg-text);
+    display: block;
+  }
+  .founder-quote__attr-role {
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    color: var(--pg-text-faint);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* === TESTIMONIALS GRID === */
+  .testimonial-box {
+    background: var(--498-white);
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .testimonial-box__quote {
+    font-family: var(--498-family-body);
+    font-style: italic;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--pg-text);
+    margin: 0;
+    flex: 1;
+  }
+  .testimonial-box__attr {
+    padding-top: 18px;
+    border-top: 1px solid var(--pg-line);
+  }
+  .testimonial-box__name {
+    font-family: var(--498-family-mono);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pg-text);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .testimonial-box__org {
+    font-family: var(--498-family-body);
+    font-size: 13px;
+    color: var(--pg-text-muted);
+  }
+
+  /* === BLOG CARDS (perspectivas) === */
+  .blog-card {
+    background: var(--498-white);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: background .2s;
+  }
+  .blog-card:hover { background: var(--pg-paper-green); }
+  .blog-card__tag {
+    font-family: var(--498-family-mono);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--498-green-deep);
+    font-weight: 600;
+  }
+  .blog-card__title {
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--pg-text);
+    margin: 0;
+    letter-spacing: -.2px;
+  }
+  .blog-card__meta {
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    color: var(--pg-text-faint);
+    letter-spacing: .5px;
+  }
+  .blog-card__summary {
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--pg-text-muted);
+    margin: 0;
+    flex: 1;
+  }
+  .blog-card__link {
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--498-green-deep);
+    border-bottom: 1px solid var(--498-green-line);
+    align-self: flex-start;
+    padding-bottom: 2px;
+  }
+
+  /* === FOOTER === */
+  footer {
+    padding: 0;
+    background: var(--498-white);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.2fr repeat(4, 1fr);
+    margin: 0 var(--498-page-pad);
+    border-top: 1px solid var(--pg-line-strong);
+    border-left: 1px solid var(--pg-line-strong);
+  }
+  .footer-top > * {
+    padding: 32px 28px;
+    border-right: 1px solid var(--pg-line-strong);
+    border-bottom: 1px solid var(--pg-line-strong);
+  }
+  @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } }
+
+  .footer-brand img { height: 32px; width: auto; display: block; margin-bottom: 16px; }
+  .footer-brand p {
+    font-family: var(--498-family-body); font-size: 13px; line-height: 1.6; color: var(--pg-text-muted);
+    margin-bottom: 12px;
+  }
+  .footer-brand .meta-line {
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    color: var(--pg-text-faint);
+    letter-spacing: 1px;
+    line-height: 1.6;
+  }
+  .footer-col__title {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--498-green-deep); letter-spacing: 1.5px;
+    text-transform: uppercase; font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a {
+    font-family: var(--498-family-body); font-size: 14px; color: var(--pg-text);
+    text-decoration: none; transition: color .2s;
+  }
+  .footer-col a:hover { color: var(--498-green-deep); }
+
+  .footer-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    margin: 0 var(--498-page-pad) 0;
+    border-left: 1px solid var(--pg-line-strong);
+  }
+  .footer-bottom > * {
+    padding: 20px 28px;
+    border-right: 1px solid var(--pg-line-strong);
+    border-bottom: 1px solid var(--pg-line-strong);
+    display: flex; align-items: center;
+  }
+  @media (max-width: 720px) {
+    .footer-bottom { grid-template-columns: 1fr; }
+  }
+  .footer-meta {
+    font-family: var(--498-family-mono); font-size: 11px;
+    color: var(--498-green-deep); letter-spacing: 1.5px;
+    text-transform: uppercase; font-weight: 500;
+  }
+  .footer-social { gap: 10px; justify-content: flex-end; }
+  @media (max-width: 720px) { .footer-social { justify-content: flex-start; } }
+  .footer-social a {
+    width: 32px; height: 32px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--pg-line-strong);
+    transition: border-color .2s, background .2s;
+  }
+  .footer-social a:hover { border-color: var(--498-green-deep); background: var(--498-green-50); }
+  .footer-social img { width: 16px; height: 16px; opacity: .7; }
+
+  .footer-strip {
+    margin: 0 var(--498-page-pad) 0;
+    padding: 16px 28px;
+    border-left: 1px solid var(--pg-line-strong);
+    border-right: 1px solid var(--pg-line-strong);
+    border-bottom: 1px solid var(--pg-line-strong);
+    font-family: var(--498-family-body); font-size: 12px;
+    color: var(--pg-text-faint);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-strip a { color: var(--pg-text-muted); text-decoration: none; }
+  .footer-strip a:hover { color: var(--498-green-deep); }
+
+  /* === COOKIE BANNER + MODAL === */
+  .cookie-banner {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 60;
+    background: var(--498-white);
+    border-top: 1px solid var(--pg-text);
+    box-shadow: 0 -8px 32px rgba(0,0,0,.12);
+  }
+  .cookie-banner[hidden] { display: none !important; }
+  body.has-cookie-banner { padding-bottom: 140px; }
+  @media (max-width: 720px) {
+    body.has-cookie-banner { padding-bottom: 220px; }
+  }
+  .cookie-banner__inner {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 32px; align-items: center;
+    padding: 22px var(--498-page-pad);
+    max-width: 1400px; margin: 0 auto;
+  }
+  .cookie-banner__title {
+    font-family: var(--498-family-body); font-weight: 300; font-style: italic;
+    font-size: 18px; margin: 0 0 6px;
+    color: var(--pg-text);
+  }
+  .cookie-banner__body {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 13px; line-height: 1.55;
+    color: var(--pg-text-muted);
+    margin: 0;
+  }
+  .cookie-banner__body a {
+    color: var(--498-green-deep);
+    border-bottom: 1px solid var(--498-green-line);
+    text-decoration: none;
+  }
+  .cookie-banner__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  @media (max-width: 720px) {
+    .cookie-banner__inner { grid-template-columns: 1fr; gap: 16px; }
+    .cookie-banner__actions { width: 100%; }
+    .cookie-banner__actions > * { flex: 1; justify-content: center; }
+  }
+
+  .cookie-modal {
+    position: fixed; inset: 0; z-index: 70;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .cookie-modal[hidden] { display: none !important; }
+  .cookie-modal__backdrop {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,.45);
+    backdrop-filter: blur(4px);
+  }
+  .cookie-modal__panel {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 640px; max-height: 90vh;
+    background: var(--498-white);
+    border: 1px solid var(--pg-text);
+    box-shadow: 0 24px 64px rgba(0,0,0,.32);
+    display: flex; flex-direction: column;
+  }
+  .cookie-modal__header {
+    padding: 32px 32px 24px;
+    border-bottom: 1px solid var(--pg-line);
+    position: relative;
+  }
+  .cookie-modal__close {
+    position: absolute; top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    background: transparent; border: 1px solid var(--pg-line);
+    font-size: 22px; line-height: 1; color: var(--pg-text);
+    cursor: pointer; padding: 0;
+    transition: background .2s, border-color .2s;
+  }
+  .cookie-modal__close:hover { background: var(--498-green-deep); color: var(--498-white); border-color: var(--498-green-deep); }
+  .cookie-modal__body { padding: 24px 32px; overflow-y: auto; }
+  .cookie-modal__footer {
+    padding: 20px 32px;
+    border-top: 1px solid var(--pg-line);
+    display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;
+  }
+  .cookie-cat { border-top: 1px solid var(--pg-line); padding: 18px 0; }
+  .cookie-cat:first-of-type { border-top: 0; padding-top: 0; }
+  .cookie-cat__row {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 24px; align-items: center;
+  }
+  .cookie-cat__name {
+    font-family: var(--498-family-mono); font-size: 12px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--pg-text); font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .cookie-cat__desc {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 13px; line-height: 1.55;
+    color: var(--pg-text-muted); margin: 0;
+    max-width: 420px;
+  }
+  .cookie-cat__pill--locked {
+    font-family: var(--498-family-mono); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 8px 12px; background: var(--498-green-50);
+    color: var(--498-green-deep); border: 1px solid var(--498-green-deep);
+    white-space: nowrap;
+  }
+  .cookie-toggle {
+    position: relative; display: inline-block;
+    width: 44px; height: 24px; cursor: pointer;
+    flex-shrink: 0;
+  }
+  .cookie-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+  .cookie-toggle__track {
+    position: absolute; inset: 0;
+    background: var(--pg-line-mid);
+    border: 1px solid var(--pg-text);
+    transition: background .2s;
+  }
+  .cookie-toggle__track::before {
+    content: "";
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 18px; height: 18px;
+    background: var(--498-white);
+    border: 1px solid var(--pg-text);
+    transition: transform .2s;
+  }
+  .cookie-toggle input:checked + .cookie-toggle__track { background: var(--498-green-deep); }
+  .cookie-toggle input:checked + .cookie-toggle__track::before { transform: translateX(20px); background: var(--498-white); }
+</style>
+</head>
+<body>
+
+<!-- Skip link · WCAG 2.4.1 -->
+<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+<!-- =================================================================
+     00 · NAV
+     ================================================================= -->
+<nav class="nav" aria-label="Navegación principal">
+  <a class="nav__brand-box" href="#" aria-label="498 Advance · home">
+    498 <em>A</em>DVANCE
+  </a>
+  <div class="nav__links">
+    <a class="nav__link-box" href="#capacidades"><span class="num">01</span>Capacidades</a>
+    <a class="nav__link-box" href="#productos"><span class="num">02</span>Productos</a>
+    <a class="nav__link-box" href="#investigacion"><span class="num">03</span>Investigación</a>
+    <a class="nav__link-box" href="#perspectivas"><span class="num">04</span>Perspectivas</a>
+  </div>
+  <div class="nav__spacer" aria-hidden="true"></div>
+  <a class="nav__cta-box" href="#contacto">Hablemos →</a>
+</nav>
+
+<main id="main-content">
+
+<!-- =================================================================
+     01 · HERO
+     ================================================================= -->
+<header class="hero-fullbleed">
+  <video class="hero-fullbleed__video" autoplay muted loop playsinline preload="auto"
+         aria-label="Loop ambiental · simulación 498A"
+         data-src-desktop="assets/video/section-home.mp4"
+         data-src-mobile="assets/video/hero-loop-mobile.mp4">
+  </video>
+
+  <nav class="lang-grid" aria-label="Idioma">
+    <a class="lang-grid__cell" href="#" hreflang="ca">CAT</a>
+    <a class="lang-grid__cell is-active" href="#" hreflang="es" aria-current="true">ES</a>
+    <a class="lang-grid__cell" href="#" hreflang="en">EN</a>
+    <a class="lang-grid__cell" href="#" hreflang="fr">FR</a>
+    <a class="lang-grid__cell" href="#" hreflang="de">DE</a>
+    <a class="lang-grid__cell lang-cjk" href="#" hreflang="zh" aria-label="中文">中</a>
+  </nav>
+
+  <div class="hero-fullbleed__content">
+    <span class="eyebrow hero-fullbleed__eyebrow">Programa de investigación aplicada · Barcelona</span>
+    <h1 class="ed-display-1 hero-fullbleed__display">
+      La simulación es la nueva interfaz con el futuro.<br>
+      Con datos, IA y modelos, convertimos lo posible en algo<br>
+      que se puede probar, medir y mejorar <em>antes de hacerlo realidad</em>.
+    </h1>
+    <p class="ed-lead hero-fullbleed__lead">
+      498 segundos es el tiempo que tarda la luz del Sol en llegar a la Tierra.
+      Lo que ya está pasando en el Sol todavía no lo vemos. Nuestro trabajo es
+      construir los sistemas que permiten ver el comportamiento antes de que
+      llegue a la sociedad, el negocio, o la institución.
+    </p>
+    <p class="hero-fullbleed__sub">
+      498A es una consultora de inteligencia artificial aplicada con un
+      programa de investigación a medio plazo orientado a la simulación de
+      personas, grupos y sociedades.
+    </p>
+    <div class="hero-fullbleed__cta">
+      <a class="btn-on-video" href="#contacto">Hablemos →</a>
+      <a class="btn-ghost-on-video" href="#capacidades">Ver capacidades</a>
+    </div>
+  </div>
+</header>
+
+<!-- =================================================================
+     02 · TESIS
+     ================================================================= -->
+<section id="tesis" class="vision-section">
+
+  <article class="vision-hero-card">
+    <div class="vision-hero-card__content">
+      <span class="eyebrow-square">Tesis · 01</span>
+      <h2 class="vision-hero-card__claim">
+        Entre la investigación y el negocio hay una distancia que <em style="color:var(--498-green-deep)">casi nadie atraviesa</em>.
+      </h2>
+      <p class="ed-body" style="font-size:17px;line-height:1.7;color:var(--pg-text);margin:0;max-width:520px">
+        Entre la investigación que aún no puede aplicarse y la consultoría que llega
+        cuando la tecnología ya se ha normalizado, hay una frontera decisiva. En 498A
+        trabajamos precisamente ahí: conectamos ciencia, IA y ejecución para transformar
+        conocimiento avanzado en soluciones aplicables, medibles y útiles en entornos
+        reales. Soluciones que se convierten en ventaja competitiva cuando todavía
+        pueden marcar una diferencia real<a class="cite-chat" href="#ref-1" title="Ver fuente 1">1</a>.
+      </p>
+      <a class="btn-split" href="#capacidades">
+        <span class="btn-split__label">Ver capacidades</span>
+        <span class="btn-split__arrow">→</span>
+      </a>
+    </div>
+
+    <div class="vision-hero-card__visual">
+      <img src="assets/visuals/vision-organism.jpg"
+           alt="Organismo en transformación · tesis 498A · investigación aplicada">
+    </div>
+  </article>
+
+</section>
+
+<!-- =================================================================
+     Pattern band entre Tesis y Método
+     ================================================================= -->
+<div class="pattern-band">
+  <span class="pattern-band__label">Grid · backpropagation · gradient flow</span>
+</div>
+
+<!-- =================================================================
+     03 · MÉTODO
+     ================================================================= -->
+<section id="metodo" class="section-paper">
+  <div class="section-title-block">
+    <span class="eyebrow">Método · 02</span>
+    <h2 class="ed-display-3">Del dato al conocimiento. <em>Del conocimiento, a soluciones reales.</em></h2>
+    <p>
+      La inteligencia artificial solo genera valor cuando se construye sobre datos
+      propios, relevantes y de calidad, modelos controlados y medición constante.
+    </p>
+    <p style="margin-top:16px">
+      En 498A trabajamos cada proyecto como un sistema vivo en espiral:
+      dataset, modelo, despliegue y medición. Cuatro etapas que se retroalimentan
+      para acelerar la ejecución, reducir incertidumbre y convertir cada ciclo
+      de aprendizaje en conocimiento operativo y mejores decisiones<a class="cite-chat cite-chat--green" href="#ref-2" title="Ver fuente 2">2</a>.
+    </p>
+  </div>
+
+  <div class="box-collection box-collection--4 box-collection--persiana">
+    <div class="method-cell">
+      <div class="method-cell__circle">01</div>
+      <div class="method-cell__title">Dataset</div>
+      <div class="method-cell__desc">Construimos corpus específicos del dominio: anotación experta, validación cruzada, trazabilidad metodológica.</div>
+    </div>
+    <div class="method-cell">
+      <div class="method-cell__circle">02</div>
+      <div class="method-cell__title">Modelo</div>
+      <div class="method-cell__desc">Entrenamiento o ajuste sobre modelos open-source o privados. Control sobre arquitectura, sesgos y comportamiento.</div>
+    </div>
+    <div class="method-cell">
+      <div class="method-cell__circle">03</div>
+      <div class="method-cell__title">Despliegue</div>
+      <div class="method-cell__desc">Integración en el flujo real de trabajo: agentes proactivos conectados a las herramientas que tu equipo ya usa.</div>
+    </div>
+    <div class="method-cell">
+      <div class="method-cell__circle">04</div>
+      <div class="method-cell__title">Medición</div>
+      <div class="method-cell__desc">Métricas operativas continuas. Cada ciclo retroalimenta el dataset y mejora el sistema completo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     04 · CAPACIDADES (intro + 4 service-cards)
+     ================================================================= -->
+<section id="capacidades">
+  <div class="section-title-block">
+    <span class="eyebrow">Capacidades</span>
+    <h2 class="ed-display-3"><em>Cuatro líneas de trabajo aplicado.</em> Cada una autosuficiente. Las cuatro conectadas.</h2>
+  </div>
+
+  <!-- 4 capacidades como service-cards 2×2 -->
+  <div class="box-collection box-collection--2 box-collection--service-cards">
+
+    <!-- 04 · A · Sistemas multiagente -->
+    <article class="box">
+      <div class="service-card__image">
+        <img src="assets/visuals/science-network.jpg" alt="Red multiagente · agentes coordinados">
+      </div>
+      <div class="service-card__num">Capacidad 01</div>
+      <h3 class="service-card__title">Sistemas multiagente</h3>
+      <p class="service-card__headline">Equipos digitales (AI implants) que deciden, colaboran y aprenden.</p>
+      <p class="service-card__desc">
+        Los desplegamos en operaciones reales (informes, análisis, atención al cliente,
+        forecasting, vigilancia regulatoria, generación de contenido) conectados a las
+        herramientas que tu equipo ya usa e integrados para que tu equipo puede comunicarse
+        con ellos como con un compañero más. No son chatbots ni copilotos pasivos.
+        Orquestan tareas complejas, toman decisiones autónomas dentro de límites definidos
+        y mejoran con cada interacción. Operan sobre modelos generalistas en la nube o
+        privados con entrenamientos específicos, siempre con conocimientos propios de tu
+        organización<a class="cite-chat cite-chat--green" href="#ref-3" title="Ver fuente 3">3</a>.
+      </p>
+      <div class="service-card__proof">+100.000 horas manuales liberadas en producción</div>
+    </article>
+
+    <!-- 04 · B · GEO -->
+    <article class="box">
+      <div class="service-card__image">
+        <img src="assets/visuals/sc-geo-visibility.jpg" alt="Mapa de visibilidad en motores generativos">
+      </div>
+      <div class="service-card__num">Capacidad 02</div>
+      <h3 class="service-card__title">GEO · Visibilidad en motores generativos</h3>
+      <p class="service-card__headline">La decisión de tu cliente se toma en ChatGPT, Claude, Gemini, Perplexity, Copilot y Google AI Overviews.</p>
+      <p class="service-card__desc">
+        Mientras tu competencia optimiza para Google clásico, los modelos generativos
+        y los bloques AIO ya están filtrando, comparando y recomendando marcas en el
+        momento exacto de la decisión. <strong>GEORadar</strong> —nuestra plataforma
+        propia— audita ese espacio semántico con 3.000 a 30.000 prompts personalizados
+        por estudio, ejecutados contra los seis motores. Sistema de seis módulos
+        (GEOAtlas · multi-LLM · GEOdesk · DOC · SAM · LEO) que entrega visibilidad,
+        preferencia, percepción, benchmark competitivo y trazabilidad de fuentes.
+        Cierre con plan de acción de 90 días, no con un informe<a class="cite-chat" href="#ref-4" title="Ver fuente 4">4</a>.
+      </p>
+      <div style="padding: 0 32px 12px">
+        <div style="font-family:var(--498-family-mono);font-size:10px;color:var(--pg-text-faint);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;text-align:center">9 verticales con KPIs propietarios</div>
+        <div class="verticals-chips" style="justify-content:center">
+          <span>Travel</span><span>Finance</span><span>Health</span><span>Education</span>
+          <span>Corporate</span><span>Consumer</span><span>Energy</span><span>Mobility</span><span>Civic</span>
+        </div>
+      </div>
+      <p class="service-card__desc" style="font-style:italic;font-size:12px;color:var(--pg-text-muted)">
+        <span style="background:transparent;width:0;height:0;display:none"></span>
+        Actualmente auditamos el Mundial FIFA 2026 en EE. UU. con esta misma metodología. Ver detalle en <em>Evidencia</em>.
+      </p>
+      <div class="service-card__proof">
+        Primera consultora europea especializada en GEO ·
+        1.000.000+ prompts simulados ·
+        10.000.000+ menciones analizadas ·
+        16+ marcas líderes en producción
+      </div>
+    </article>
+
+    <!-- 04 · C · IA privada -->
+    <article class="box">
+      <div class="service-card__image">
+        <img src="assets/visuals/method-panels.jpg" alt="Modelos IA privados desplegados en infraestructura propia">
+      </div>
+      <div class="service-card__num">Capacidad 03</div>
+      <h3 class="service-card__title">IA privada</h3>
+      <p class="service-card__headline">Modelos en tu infraestructura. Tu dato se queda en casa.</p>
+      <p class="service-card__desc">
+        Para empresas e instituciones que no pueden permitirse que sus datos atraviesen
+        un API externo. Desplegamos modelos open-source ajustados a tu dominio, en tu
+        infraestructura, bajo tu control. Cumplimiento del EU AI Act, soberanía del
+        dato, latencia baja, coste predecible. La misma potencia que un modelo comercial
+        sin la dependencia del vendor lock-in<a class="cite-chat cite-chat--grey" href="#ref-5" title="Ver fuente 5">5</a>.
+      </p>
+      <div class="service-card__proof">Marcos de gobernanza alineados con EU AI Act y UNESCO AI Working Group</div>
+    </article>
+
+    <!-- 04 · D · Datasets -->
+    <article class="box">
+      <div class="service-card__image">
+        <img src="assets/visuals/sc-datasets-layers.jpg" alt="Capas de datasets · corpus específicos por dominio">
+      </div>
+      <div class="service-card__num">Capacidad 04</div>
+      <h3 class="service-card__title">Datasets a medida</h3>
+      <p class="service-card__headline">El cuello de botella de cualquier IA seria es el dato.</p>
+      <p class="service-card__desc">
+        Construimos corpus específicos para el problema concreto: anotación experta,
+        validación cruzada con centros académicos y de investigación, trazabilidad
+        metodológica que tus auditores aceptarán. Son los datos sobre los que se
+        entrenarán los modelos que después decidirán dentro de tu organización.
+        Su calidad es el techo de todo lo demás; su entrenamiento es capital de
+        conocimiento y tu secreto industrial.
+      </p>
+      <div class="service-card__proof">Acuerdo marco con la UAB desde 2023 · Colaboración activa con investigadores del CSIC</div>
+    </article>
+
+  </div>
+</section>
+
+<!-- =================================================================
+     Pattern band entre Capacidades y Productos
+     ================================================================= -->
+<div class="pattern-band">
+  <span class="pattern-band__label">Stack 498A · plataformas propias</span>
+</div>
+
+<!-- =================================================================
+     05 · PRODUCTOS
+     ================================================================= -->
+<section id="productos" class="section-paper-green">
+  <div class="section-title-block">
+    <span class="eyebrow">Productos · Plataformas propias del stack 498A</span>
+    <h2 class="ed-display-3"><em>Cuatro destacados.</em> Seis más en el portfolio.</h2>
+    <p>
+      Nuestro stack en una pantalla. Cuatro productos representan los cuatro ámbitos
+      donde trabajamos: visibilidad en IA, alineamiento semántico, gestión reputacional
+      y agentes companion. Seis más completan el ecosistema, en producción o en
+      desarrollo con la UAB.
+    </p>
+  </div>
+
+  <!-- 4 DESTACADOS · service-cards 2x2 -->
+  <div class="box-collection box-collection--2 box-collection--service-cards">
+
+    <!-- Destacado 01 · GEORadar -->
+    <article class="box">
+      <span class="service-card__badge" style="background:var(--498-green);color:var(--498-black)">Flagship</span>
+      <div class="service-card__image">
+        <img src="assets/visuals/sc-geo-visibility.jpg" alt="GEORadar · plataforma de visibilidad en IA">
+      </div>
+      <div class="service-card__num">Visibilidad en IA · Flagship</div>
+      <h3 class="service-card__title">GEORadar</h3>
+      <p class="service-card__headline">La primera plataforma europea para auditar y mejorar cómo te ven los motores generativos.</p>
+      <p class="service-card__desc">
+        Audita ChatGPT, Claude, Gemini, Perplexity, Copilot y Google AI Overviews.
+        3.000 a 30.000 prompts personalizados por estudio, nueve verticales con KPIs
+        propios, plan de acción de 90 días. 16+ marcas líderes en producción.
+      </p>
+      <div style="padding:0 32px 28px;text-align:center">
+        <a class="btn-split" href="https://georadar.app" target="_blank" rel="noopener">
+          <span class="btn-split__label">georadar.app</span>
+          <span class="btn-split__arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Destacado 02 · S.A.M. -->
+    <article class="box">
+      <div class="service-card__image">
+        <img src="assets/visuals/sc-multiagent-flow.jpg" alt="S.A.M. · Semantic Alignment Machine">
+      </div>
+      <div class="service-card__num">Visibilidad en IA · Alineamiento semántico</div>
+      <h3 class="service-card__title">S.A.M. · Semantic Alignment Machine</h3>
+      <p class="service-card__headline">Alinea tu contenido con los prompts reales que tus clientes hacen a la IA.</p>
+      <p class="service-card__desc">
+        Detecta qué páginas reescribir, qué mensajes faltan y qué territorios semánticos
+        puedes ocupar para que la IA recomiende tu marca antes que la de tu competencia.
+        Validado contra consultas reales en cinco LLMs.
+      </p>
+      <div style="padding:0 32px 28px;text-align:center">
+        <a class="btn-split" href="#contacto">
+          <span class="btn-split__label">Ver cómo funciona</span>
+          <span class="btn-split__arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Destacado 03 · Stardesk -->
+    <article class="box">
+      <div class="service-card__image">
+        <img src="assets/visuals/data-network.webp" alt="Stardesk · Reputation OS">
+      </div>
+      <div class="service-card__num">Gestión reputacional · Reputation OS</div>
+      <h3 class="service-card__title">Stardesk · Reputation OS</h3>
+      <p class="service-card__headline">Plataforma configurable de gestión reputacional con tres capas y tres modos de uso.</p>
+      <p class="service-card__desc">
+        Tres capas, tres niveles de detalle ajustables por medio y tres modos de uso:
+        operativo, estratégico y forense. Pensada para marcas, instituciones y operaciones
+        que necesitan control granular y trazabilidad completa de su reputación digital.
+      </p>
+      <div style="padding:0 32px 28px;text-align:center">
+        <a class="btn-split" href="#contacto">
+          <span class="btn-split__label">Ver módulos</span>
+          <span class="btn-split__arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Destacado 04 · ROBIN -->
+    <article class="box">
+      <span class="service-card__badge">En desarrollo</span>
+      <div class="service-card__image">
+        <img src="assets/visuals/biomorph-shell.webp" alt="ROBIN · Companion agent">
+      </div>
+      <div class="service-card__num">Human-centered · Companion agent</div>
+      <h3 class="service-card__title">ROBIN · Companion agent</h3>
+      <p class="service-card__headline">Agente companion para perfiles cognitivos no normativos.</p>
+      <p class="service-card__desc">
+        Diseñado para personas con espectro autista, TDAH y otros. Asiste, acompaña,
+        traduce contextos sociales y aprende del usuario a lo largo del tiempo.
+        Actualmente en fase de recogida masiva de datos. Pensado para uso B2C directo
+        y para despliegue institucional en entornos educativos y sanitarios.
+      </p>
+      <div style="padding:0 32px 28px;text-align:center">
+        <a class="btn-split" href="#contacto">
+          <span class="btn-split__label">Sumarse al programa</span>
+          <span class="btn-split__arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Portfolio completo · 6 mini · periodic grid -->
+  <div style="margin-top:80px">
+    <div class="section-title-block" style="margin-bottom:32px">
+      <span class="eyebrow">Portfolio completo · seis productos más</span>
+      <h3 class="ed-h2">El ecosistema extendido del stack.</h3>
+    </div>
+
+    <div class="box-collection box-collection--3 box-collection--periodic box-collection--persiana">
+
+      <article>
+        <div class="periodic__meta">
+          <span class="periodic__num">05</span>
+          <span class="periodic__tag">Visibilidad en IA</span>
+        </div>
+        <div class="periodic__symbol">LEO</div>
+        <div class="periodic__divider"></div>
+        <p class="periodic__desc"><strong>LEO · The Ultimate Content Factory.</strong> Content factory agentic-first. Genera y adapta contenidos para 30+ plataformas con focus group nativo y multi-autor con NPCs éticos.</p>
+      </article>
+
+      <article>
+        <div class="periodic__meta">
+          <span class="periodic__num">06</span>
+          <span class="periodic__tag">Visibilidad en IA</span>
+        </div>
+        <div class="periodic__symbol">DOC</div>
+        <div class="periodic__divider"></div>
+        <p class="periodic__desc"><strong>DOC · Diagnostic Optimization Checker.</strong> Audita la Agent Experience (AX) técnica de tu web ante los crawlers IA: bloqueos CDN, robots.txt, llms.txt, indexabilidad.</p>
+      </article>
+
+      <article>
+        <div class="periodic__meta">
+          <span class="periodic__num">07</span>
+          <span class="periodic__tag">Privacidad &amp; Integridad</span>
+        </div>
+        <div class="periodic__symbol">CMP</div>
+        <div class="periodic__divider"></div>
+        <p class="periodic__desc"><strong>COMPLY.</strong> Software propio on-premise para gestión remota de datos en entornos corporate. Privacidad por diseño, soberanía del dato, cumplimiento normativo.</p>
+      </article>
+
+      <article>
+        <div class="periodic__meta">
+          <span class="periodic__num">08</span>
+          <span class="periodic__tag">En desarrollo · UAB</span>
+        </div>
+        <div class="periodic__symbol">HM</div>
+        <div class="periodic__divider"></div>
+        <p class="periodic__desc"><strong>HUMANMADE.</strong> Sistema integrado en el workflow de creación que certifica que un contenido ha sido producido íntegramente por personas.</p>
+      </article>
+
+      <article>
+        <div class="periodic__meta">
+          <span class="periodic__num">09</span>
+          <span class="periodic__tag">Insight &amp; Data tools</span>
+        </div>
+        <div class="periodic__symbol">PA</div>
+        <div class="periodic__divider"></div>
+        <p class="periodic__desc"><strong>Prompt Atlas.</strong> Datasets estratégicos de prompts diseñados para sectores específicos. La base sobre la que GEORadar construye sus estudios.</p>
+      </article>
+
+      <article>
+        <div class="periodic__meta">
+          <span class="periodic__num">10</span>
+          <span class="periodic__tag">Insight &amp; Data tools</span>
+        </div>
+        <div class="periodic__symbol">ID</div>
+        <div class="periodic__divider"></div>
+        <p class="periodic__desc"><strong>InsightDesk.</strong> Análisis NPS asistido por IA. Convierte respuestas abiertas en jerarquías de insight accionable.</p>
+      </article>
+
+    </div>
+
+    <div style="margin-top:48px;text-align:center">
+      <a class="btn-ghost-light" href="#contacto">Ver portfolio completo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     06 · INVESTIGACIÓN · Gerard
+     ================================================================= -->
+<section id="investigacion" class="section-paper">
+  <div class="vision-grid">
+
+    <aside class="vision-meta">
+      <div class="vision-meta__num">06</div>
+      <div class="vision-meta__label">Programa I+D · Gerard</div>
+      <div class="vision-meta__line">Horizonte 2026 – 2028</div>
+      <div class="vision-meta__line">Piloto privado · 2026</div>
+      <div class="vision-meta__line">3 clientes del grupo</div>
+
+      <div class="author-block">
+        <img class="author-block__photo" src="assets/team/carlos-ortet.webp" alt="Carlos Ortet">
+        <div>
+          <span class="author-block__name">Carlos Ortet</span>
+          <span class="author-block__role">Director · 498A</span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="vision-main">
+      <span class="eyebrow">Programa de I+D · Gerard · Horizonte 2026–2028</span>
+      <h2 class="ed-display-2" style="margin-bottom:24px">
+        <em>Generative Research<br><span style="color:var(--498-green-deep)">And</span> Rapid Development.</em>
+      </h2>
+      <p class="ed-lead" style="margin-bottom:32px;color:var(--pg-text)">
+        <strong>Construyendo Gerard: investigación sintética empoderada por IA.</strong>
+      </p>
+
+      <p class="ed-body" style="font-size:17px;line-height:1.7;margin-bottom:20px;color:var(--pg-text)">
+        Las cuatro capacidades anteriores no son un catálogo cerrado. Son la
+        infraestructura sobre la que estamos construyendo <strong>Gerard</strong>
+        — <em>The Generative R&amp;D Platform</em> — un sistema que simula el
+        comportamiento de personas, agentes, grupos y poblaciones como entornos
+        seguros donde una empresa puede ensayar un producto, una institución puede
+        probar una política, o la negociación de su agente con otro y un equipo
+        puede observar el efecto cascada de una decisión antes de aplicarla<a class="cite-chat cite-chat--green" href="#ref-6" title="Ver fuente 6">6</a>.
+      </p>
+
+      <p class="ed-body" style="font-size:17px;line-height:1.7;margin-bottom:24px;color:var(--pg-text)">
+        Es un horizonte cercano. El piloto privado arranca en 2026 con tres clientes
+        actuales del grupo. Es la razón por la que cada agente que entregamos, cada
+        dataset que construimos y cada modelo privado que desplegamos hoy está pensado
+        para escalar mañana hacia algo más grande: ensayar el futuro y mejorarlo antes
+        de que ocurra.
+      </p>
+
+      <!-- CONNECTOR VISUAL · presente → futuro -->
+      <div class="gerard-connector" aria-label="Conexión capacidades presentes con horizonte Gerard">
+        <div class="gerard-connector__row">
+          <span class="gerard-connector__from">Sistemas multiagente</span>
+          <span class="gerard-connector__arrow" aria-hidden="true">→</span>
+          <span class="gerard-connector__to">Agent-Based Research</span>
+        </div>
+        <div class="gerard-connector__row">
+          <span class="gerard-connector__from">Datasets a medida</span>
+          <span class="gerard-connector__arrow" aria-hidden="true">→</span>
+          <span class="gerard-connector__to">Poblaciones sintéticas validadas</span>
+        </div>
+        <div class="gerard-connector__row">
+          <span class="gerard-connector__from">Visibilidad GEO</span>
+          <span class="gerard-connector__arrow" aria-hidden="true">→</span>
+          <span class="gerard-connector__to">Personas sintéticas para test de marca</span>
+        </div>
+        <div class="gerard-connector__row">
+          <span class="gerard-connector__from">IA privada</span>
+          <span class="gerard-connector__arrow" aria-hidden="true">→</span>
+          <span class="gerard-connector__to">Sandbox soberano de simulación</span>
+        </div>
+      </div>
+
+      <!-- META LINE -->
+      <p class="ed-small" style="margin-top:32px;padding-top:20px;border-top:1px solid var(--pg-line);font-style:italic">
+        Gerard se construye sobre el stack de <strong>GEORadar</strong> (GEOAtlas,
+        GEOdesk, SAM, LEO, DOC) integrado con un Research Agent Orchestrator
+        multiagente, un Participant Simulator de personas sintéticas y un Insight
+        Synthesizer con RAG sobre datos propietarios. Stack europeo, GDPR by design,
+        infraestructura AWS Frankfurt<a class="cite-chat cite-chat--grey" href="#ref-7" title="Ver fuente 7">7</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     07 · PRUEBA · evidencia
+     ================================================================= -->
+<section id="prueba">
+  <div class="section-title-block">
+    <span class="eyebrow">Evidencia · Caso en curso</span>
+  </div>
+
+  <!-- FEATURED CALLOUT · Mundial FIFA -->
+  <article class="box-pattern frame-cross" style="max-width:1180px;margin:0 auto 80px;border:1px solid var(--pg-line-strong)">
+    <span class="cnr cnr--tl"></span><span class="cnr cnr--tr"></span>
+    <span class="cnr cnr--bl"></span><span class="cnr cnr--br"></span>
+
+    <div style="display:grid;gap:24px;max-width:880px;margin:0 auto;padding:24px 16px">
+      <span class="eyebrow" style="margin-bottom:0">Estudio en curso · GEORadar · Mundial FIFA 2026</span>
+      <h3 class="ed-display-2" style="margin:0;font-size:38px;line-height:1.2">
+        Cómo la IA narra el <em style="color:var(--498-green-deep)">Mundial FIFA 2026</em>.
+      </h3>
+      <p class="ed-body" style="font-size:16px;line-height:1.7;color:var(--pg-text);margin:0">
+        Estamos auditando en tiempo real cómo ChatGPT, Claude, Gemini, Perplexity y
+        Google AI Overviews construyen la narrativa del Mundial: qué marcas asocian
+        a la competición, qué sedes destacan, qué riesgos perciben, qué fuentes
+        alimentan las respuestas. La fotografía completa de cómo la mayor cita
+        deportiva del año vive en la mente de los modelos generativos.
+      </p>
+      <div>
+        <a class="btn-solid-dark" href="#contacto">Recibir el informe al publicarse →</a>
+      </div>
+    </div>
+  </article>
+
+  <div class="section-title-block">
+    <h2 class="ed-display-3">Investigación a la izquierda. <em>Producción</em> a la derecha. Escala en el medio.</h2>
+  </div>
+
+  <div class="proof-three-cols">
+    <div>
+      <h3>Investigación</h3>
+      <ul>
+        <li><em>UAB</em> Universitat Autònoma de Barcelona · acuerdo marco, 2023</li>
+        <li><em>CSIC</em> Investigadores colaboradores</li>
+        <li><em>UNESCO</em> AI Governance Working Group</li>
+        <li><em>EU</em> EU AI Act alignment</li>
+        <li><em>GitHub</em> 498AS/docs-geo · 498AS/ai-overviews-research</li>
+        <li><em>Output</em> Papers, no decks</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Producción · Cartera GEORadar</h3>
+      <ul>
+        <li><em>Banca/Seguros</em> Banco Sabadell · Fundació LaCaixa · Imagin · Adeslas · AXA</li>
+        <li><em>Gran consumo</em> Coca-Cola · Danone · NAOS · Selena</li>
+        <li><em>Mobility</em> Ford</li>
+        <li><em>Travel</em> Iberostar · PortAventura</li>
+        <li><em>Health/Pharma</em> AstraZeneca · Dexeus Mujer</li>
+        <li><em>Energy</em> Veolia</li>
+        <li><em>Corporate</em> Nestlé</li>
+        <li><em>Media/Institucional</em> 3Cat (CCMA) · Generalitat de Catalunya · UE/INTPA · Mataró</li>
+        <li><em>Educación</em> UAB · UVic</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Escala</h3>
+      <ul>
+        <li><em>Proyectos</em> 40+ desde 2023</li>
+        <li><em>Sectores</em> 6 · farmacia · salud · banca · instituciones · gran consumo · medios</li>
+        <li><em>Verticales</em> 9 GEORadar con KPIs propietarios cerrados</li>
+        <li><em>Prompts</em> 1.000.000+ simulados acumulados</li>
+        <li><em>Menciones</em> 10.000.000+ de marca analizadas</li>
+        <li><em>Motores</em> ChatGPT · Claude · Gemini · Perplexity · Copilot · AIO</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     08 · EQUIPO
+     ================================================================= -->
+<section id="equipo" class="team-section">
+  <div class="section-title-block">
+    <span class="eyebrow">Equipo · Barcelona · Desde 2023</span>
+    <h2 class="ed-display-3"><em>Una casa pequeña</em> que trabaja con casas grandes.</h2>
+  </div>
+
+  <div class="team-split">
+    <figure class="team-photo frame-cross">
+      <span class="cnr cnr--tl"></span><span class="cnr cnr--tr"></span>
+      <span class="cnr cnr--bl"></span><span class="cnr cnr--br"></span>
+      <!-- TODO: image · equipo Barcelona grupo · usar foto disponible -->
+      <img src="assets/team/equipo-barcelona.webp" alt="Equipo 498A · Barcelona">
+      <figcaption class="team-photo__caption">Equipo 498A · Barcelona · 2026</figcaption>
+    </figure>
+
+    <div class="team-content">
+      <p>
+        498A nace en 2023 en conexión con la <strong>Universitat Autònoma de Barcelona</strong>
+        y en colaboración con el entorno científico del <strong>CSIC</strong>.
+        Como división de I+D en inteligencia artificial del grupo Zoopa, trabaja en
+        la frontera entre investigación avanzada, estrategia e implementación real<a class="cite-chat cite-chat--green" href="#ref-8" title="Ver fuente 8">8</a>.
+      </p>
+      <p>
+        Dirigida por <strong>Carlos Ortet</strong> —Senior Innovation Engineer y
+        uno de los primeros consultores GEO operando en Europa—, 498A funciona con
+        un equipo deliberadamente compacto. Cada proyecto está liderado por un socio
+        de principio a fin, garantizando criterio experto, continuidad y responsabilidad
+        directa en cada fase.
+      </p>
+      <p>
+        Esta forma de trabajar define también los proyectos que asumimos: sistemas
+        donde la inteligencia artificial permite crear conocimiento propio, resolver
+        problemas reales y construir ventaja para el progreso de las personas, antes
+        de que la tecnología se limite a decidir por ellas.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     09 · VOCES · testimoniales
+     ================================================================= -->
+<section id="voces">
+  <div class="section-title-block">
+    <span class="eyebrow">Voces · Testimonios reales</span>
+    <h2 class="ed-display-3">Lo que nos cuentan <em>desde dentro</em>.</h2>
+  </div>
+
+  <div class="box-collection box-collection--3 box-collection--persiana">
+
+    <article class="testimonial-box">
+      <span class="eyebrow-square">Client Voice · Specialisterne · International</span>
+      <p class="testimonial-box__quote">
+        <em>"As a multinational specialised in cognitively diverse profiles, we needed
+        frontier solutions that were truly personalised. We don't know of any other
+        consultancy that knows how to work in that thin line between research and
+        applied solutions."</em>
+      </p>
+      <div class="testimonial-box__attr">
+        <span class="testimonial-box__name">Daniel Reyes</span>
+        <span class="testimonial-box__org">Specialisterne</span>
+      </div>
+    </article>
+
+    <article class="testimonial-box">
+      <span class="eyebrow-square">Client Voice · imagin bank · Banca digital</span>
+      <p class="testimonial-box__quote">
+        <em>"498A ideó un sistema basado en intención que no creíamos posible y que
+        impulsó nuestra reputación en las app stores durante cuatro años."</em>
+      </p>
+      <div class="testimonial-box__attr">
+        <span class="testimonial-box__name">Christian M.</span>
+        <span class="testimonial-box__org">imagin bank</span>
+      </div>
+    </article>
+
+    <article class="testimonial-box">
+      <span class="eyebrow-square">Client Voice · NAOS · Gran consumo</span>
+      <p class="testimonial-box__quote">
+        <em>"498A nos ha abierto las puertas a un escenario de innovación basado en
+        IA realmente aplicado a nuestro negocio."</em>
+      </p>
+      <div class="testimonial-box__attr">
+        <span class="testimonial-box__name">Héctor Menéndez</span>
+        <span class="testimonial-box__org">CEO · NAOS</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- =================================================================
+     10 · CITA FUNDADOR
+     ================================================================= -->
+<section class="founder-quote">
+  <div class="founder-quote__inner">
+    <span class="eyebrow-square">
+      <span class="sr-only">Founder Voice</span>
+      <span class="typewriter" style="--chars: 13;" aria-hidden="true">Founder Voice</span>
+    </span>
+    <p class="founder-quote__text">
+      <em>"Una organización próspera es la que sabe anticiparse, construir desde
+      la incertidumbre y alinear su progreso con el del mundo que la rodea."</em>
+    </p>
+    <div class="founder-quote__attr">
+      <img src="assets/team/carlos-ortet.webp" alt="Carlos Ortet">
+      <div>
+        <span class="founder-quote__attr-name">Carlos Ortet</span>
+        <span class="founder-quote__attr-role">Fundador · 498A</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     11 · INVITACIÓN · CTA final
+     ================================================================= -->
+<section id="contacto" class="section-paper">
+  <div class="narrow">
+    <span class="eyebrow">Contacto</span>
+    <h2 class="ed-display-3" style="margin-bottom:24px">
+      Si tu organización tiene una decisión que depende de IA, <em>hablemos</em>.
+    </h2>
+    <p class="ed-body" style="font-size:18px;line-height:1.7;margin-bottom:40px;max-width:600px;color:var(--pg-text)">
+      Trabajamos con un número limitado de proyectos cada trimestre para garantizar
+      profundidad. La primera conversación es una llamada de 30 minutos sin compromiso.
+      Si encajamos, lo sabremos al final de esa llamada.
+    </p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <a class="btn-light" href="mailto:hola@498a.com">Hablemos →</a>
+      <a class="btn-ghost-light" href="#perspectivas">Suscribirme a las perspectivas</a>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     12 · PERSPECTIVAS
+     ================================================================= -->
+<section id="perspectivas">
+  <div class="section-title-block">
+    <span class="eyebrow">Perspectivas · La otra mitad de la frontera</span>
+    <h2 class="ed-display-3"><em>Lo que publicamos.</em></h2>
+    <p>
+      La columna de research de 498A vive aquí. Papers académicos firmados con la UAB,
+      blog técnico para profesionales de la IA, ebooks para responsables de marca y
+      producto, podcast para conversaciones largas con investigadores y ejecutores.
+      La frontera entre investigación y aplicación se cuenta tan a menudo aquí como
+      en los proyectos cliente.
+    </p>
+  </div>
+
+  <div class="box-collection box-collection--3 box-collection--persiana">
+
+    <a class="blog-card" href="#" target="_blank" rel="noopener">
+      <span class="blog-card__tag">Paper · Académico · 1993</span>
+      <h3 class="blog-card__title">Performance Prediction of Parallel Systems by Simulation.</h3>
+      <span class="blog-card__meta">Carlos Ortet · 1993 · paper académico</span>
+      <p class="blog-card__summary">
+        La simulación es una idea con larga trayectoria en la casa. Carlos Ortet la
+        firmaba como investigador hace treinta años, mucho antes de que existiera
+        Gerard. La continuidad intelectual de 498A se mide así.
+      </p>
+      <span class="blog-card__link">academia.edu →</span>
+    </a>
+
+    <a class="blog-card" href="https://medium.com/@carlosortet" target="_blank" rel="noopener">
+      <span class="blog-card__tag">Essay · Medium · EN</span>
+      <h3 class="blog-card__title">Beyond LLMs: in search of the next AI beast.</h3>
+      <span class="blog-card__meta">Carlos Ortet · mayo 2026 · Medium · inglés</span>
+      <p class="blog-card__summary">
+        Por qué los LLMs autorregresivos pueden no ser la herramienta adecuada para
+        la siguiente generación de IA. Cinco hipótesis sobre lo que viene después y
+        qué arquitecturas conviene estar mirando.
+      </p>
+      <span class="blog-card__link">medium.com/@carlosortet →</span>
+    </a>
+
+    <a class="blog-card" href="https://zoopa.es/es/geo-ia-visibilidad/geo-no-es-seo-argumentos/" target="_blank" rel="noopener">
+      <span class="blog-card__tag">Blog · Zoopa</span>
+      <h3 class="blog-card__title">El GEO no es SEO: 11 argumentos irrefutables.</h3>
+      <span class="blog-card__meta">Febrero 2026 · 8 min lectura</span>
+      <p class="blog-card__summary">
+        Once razones técnicas y estratégicas por las que la visibilidad en motores
+        generativos es una disciplina distinta del SEO clásico. Cómo ha cambiado el
+        embudo de decisión y qué métricas importan en la nueva superficie.
+      </p>
+      <span class="blog-card__link">zoopa.es →</span>
+    </a>
+
+  </div>
+
+  <div style="margin-top:48px;text-align:center">
+    <a class="btn-ghost-light" href="#">Ver biblioteca completa →</a>
+  </div>
+
+  <!-- References at the bottom of perspectivas -->
+  <div class="narrow" style="margin-top:80px">
+    <ol class="references">
+      <li id="ref-1">
+        498A. <em>Posicionamiento institucional 2026</em>. Documento interno, mayo 2026.
+        <a href="#">498as.com/posicionamiento</a>
+      </li>
+      <li id="ref-2">
+        498A. <em>Método espiral: dataset · modelo · despliegue · medición</em>. Whitepaper técnico, 2026.
+        <a href="#">498as.com/metodo</a>
+      </li>
+      <li id="ref-3">
+        498A. <em>Sistemas multiagente en producción · cartera 2023–2026</em>. Reporte interno, 2026.
+        <a href="#">498as.com/multiagente</a>
+      </li>
+      <li id="ref-4">
+        498A. <em>State of GEO 2026</em>. Reporte de cartera GEORadar, 2026.
+        <a href="https://georadar.app/research">georadar.app/research</a>
+      </li>
+      <li id="ref-5">
+        UNESCO. <em>AI Governance Working Group · Principles for trustworthy AI</em>. 2024–2026.
+        <a href="#">unesco.org/ai-governance</a>
+      </li>
+      <li id="ref-6">
+        Ortet, C. <em>Generative Research and Rapid Development · Gerard whitepaper</em>. 498A, 2026.
+        <a href="#">498as.com/gerard</a>
+      </li>
+      <li id="ref-7">
+        498A · UAB. <em>Acuerdo marco de colaboración en investigación aplicada</em>. Bellaterra, 2023.
+        <a href="#">uab.cat/498a-marco</a>
+      </li>
+      <li id="ref-8">
+        Ortet, C. <em>Performance Prediction of Parallel Systems by Simulation</em>. Paper académico, 1993.
+        <a href="#">academia.edu/carlosortet</a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+</main>
+<!-- /Main content landmark -->
+
+<!-- =================================================================
+     13 · FOOTER
+     ================================================================= -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="assets/logos/498A_ADVANCED_black.svg" alt="498A">
+      <p>
+        Una compañía del grupo Zoopa · Barcelona · Co-fundada en 2023.
+      </p>
+      <div class="meta-line">
+        hola@498a.com<br>
+        +34 932 24 77 44
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col__title">Capacidades</div>
+      <ul>
+        <li><a href="#capacidades">Sistemas multiagente</a></li>
+        <li><a href="#capacidades">GEO en motores IA</a></li>
+        <li><a href="#capacidades">IA privada</a></li>
+        <li><a href="#capacidades">Datasets a medida</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col__title">Productos</div>
+      <ul>
+        <li><a href="https://georadar.app" target="_blank" rel="noopener">GEORadar</a></li>
+        <li><a href="#productos">S.A.M.</a></li>
+        <li><a href="#productos">LEO</a></li>
+        <li><a href="#productos">DOC</a></li>
+        <li><a href="#productos">COMPLY</a></li>
+        <li><a href="#productos">HUMANMADE</a></li>
+        <li><a href="#productos">ROBIN</a></li>
+        <li><a href="#productos">Stardesk</a></li>
+        <li><a href="#productos">Prompt Atlas</a></li>
+        <li><a href="#productos">InsightDesk</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col__title">Investigación</div>
+      <ul>
+        <li><a href="#investigacion">Gerard</a></li>
+        <li><a href="#perspectivas">Papers</a></li>
+        <li><a href="#prueba">UAB · CSIC</a></li>
+        <li><a href="#perspectivas">Perspectivas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col__title">Compañía</div>
+      <ul>
+        <li><a href="#tesis">Sobre 498A</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="mailto:hola@498a.com">Trabaja con nosotros</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-meta">498 segundos · La distancia entre el futuro y el presente.</div>
+    <div class="footer-social">
+      <a href="#" aria-label="LinkedIn">
+        <img src="assets/icons/icon-linkedin.png" alt="LinkedIn">
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <span>© 2026 498A · Todos los derechos reservados</span>
+    <span>
+      <a href="legal/aviso-legal.html">Aviso legal</a> ·
+      <a href="legal/politica-privacidad.html">Política de privacidad</a> ·
+      <a href="legal/politica-cookies.html">Política de cookies</a> ·
+      <a href="#" data-cookie-open>Gestionar cookies</a> ·
+      <a href="legal/declaracion-accesibilidad.html">Declaración de accesibilidad</a>
+    </span>
+  </div>
+</footer>
+
+<!-- =================================================================
+     COOKIE BANNER
+     ================================================================= -->
+<aside id="cookie-banner" class="cookie-banner" role="dialog"
+       aria-labelledby="cookie-banner__title" hidden>
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__copy">
+      <h2 id="cookie-banner__title" class="cookie-banner__title">
+        Cookies y privacidad
+      </h2>
+      <p class="cookie-banner__body">
+        Usamos cookies esenciales para que la web funcione y, con tu permiso,
+        cookies analíticas para entender cómo se navega. No compartimos datos
+        con terceros sin tu consentimiento explícito.
+        <a href="#" data-cookie-config>Configurar preferencias</a>
+      </p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn-ghost-light" data-cookie-reject>Rechazar opcionales</button>
+      <button type="button" class="btn-solid-dark"  data-cookie-accept>Aceptar todas</button>
+    </div>
+  </div>
+</aside>
+
+<!-- =================================================================
+     COOKIE MODAL
+     ================================================================= -->
+<div id="cookie-modal" class="cookie-modal" role="dialog" aria-modal="true"
+     aria-labelledby="cookie-modal__title" hidden>
+  <div class="cookie-modal__backdrop" data-cookie-close></div>
+  <div class="cookie-modal__panel">
+    <header class="cookie-modal__header">
+      <span class="eyebrow">Cookies · 498A</span>
+      <h2 id="cookie-modal__title" class="ed-display-3" style="margin:8px 0 0">
+        Tus <em>preferencias</em>.
+      </h2>
+      <button type="button" class="cookie-modal__close" data-cookie-close aria-label="Cerrar">×</button>
+    </header>
+
+    <div class="cookie-modal__body">
+      <p class="ed-body" style="margin-bottom:24px">
+        Tres categorías de cookies. Las esenciales no se pueden desactivar
+        porque sin ellas la web no funciona. El resto las controlas tú.
+      </p>
+
+      <div class="cookie-cat">
+        <div class="cookie-cat__row">
+          <div>
+            <h3 class="cookie-cat__name">Esenciales</h3>
+            <p class="cookie-cat__desc">
+              Necesarias para navegación, sesión y preferencias básicas.
+              Sin ellas la página no funciona.
+            </p>
+          </div>
+          <span class="cookie-cat__pill cookie-cat__pill--locked">Siempre activas</span>
+        </div>
+      </div>
+
+      <div class="cookie-cat">
+        <div class="cookie-cat__row">
+          <div>
+            <h3 class="cookie-cat__name">Analíticas</h3>
+            <p class="cookie-cat__desc">
+              Nos ayudan a entender qué secciones se leen y dónde mejorar.
+              Datos agregados, sin identificación personal.
+            </p>
+          </div>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="cookie-analytics" checked>
+            <span class="cookie-toggle__track"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-cat">
+        <div class="cookie-cat__row">
+          <div>
+            <h3 class="cookie-cat__name">Marketing</h3>
+            <p class="cookie-cat__desc">
+              Permiten medir campañas externas y personalización.
+              Por defecto desactivadas.
+            </p>
+          </div>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="cookie-marketing">
+            <span class="cookie-toggle__track"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <footer class="cookie-modal__footer">
+      <button type="button" class="btn-ghost-light" data-cookie-reject>Rechazar opcionales</button>
+      <button type="button" class="btn-solid-dark"  data-cookie-save>Guardar preferencias</button>
+    </footer>
+  </div>
+</div>
+
+<!-- =================================================================
+     JS · persiana + typewriter + cookies + responsive video
+     ================================================================= -->
+<script>
+  // 1) Persiana animation on scroll
+  (function () {
+    var collections = document.querySelectorAll('.box-collection--persiana');
+    if (!('IntersectionObserver' in window)) {
+      collections.forEach(function (el) { el.classList.add('in-view'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -60px 0px' });
+    collections.forEach(function (el) { obs.observe(el); });
+  })();
+
+  // 2) Typewriter reveal
+  (function () {
+    var els = document.querySelectorAll('.typewriter');
+    if (!els.length) return;
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-typing'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-typing');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    els.forEach(function (el) { obs.observe(el); });
+  })();
+
+  // 3) Cookie banner + modal · localStorage + focus trap
+  (function () {
+    var KEY = '498a.cookie-consent.v1';
+    var banner = document.getElementById('cookie-banner');
+    var modal  = document.getElementById('cookie-modal');
+    var inputAnalytics = document.getElementById('cookie-analytics');
+    var inputMarketing = document.getElementById('cookie-marketing');
+    if (!banner || !modal) return;
+
+    function load() {
+      try { return JSON.parse(localStorage.getItem(KEY) || 'null'); }
+      catch (e) { return null; }
+    }
+    function save(prefs) {
+      try { localStorage.setItem(KEY, JSON.stringify(prefs)); } catch (e) {}
+    }
+
+    var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    var lastTrigger = null;
+
+    function getFocusable(root) {
+      return Array.prototype.slice.call(root.querySelectorAll(FOCUSABLE))
+        .filter(function (el) { return el.offsetParent !== null; });
+    }
+    function trapTab(e) {
+      if (e.key !== 'Tab' || modal.hidden) return;
+      var items = getFocusable(modal);
+      if (!items.length) return;
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
+    function showBanner() {
+      banner.hidden = false;
+      document.body.classList.add('has-cookie-banner');
+    }
+    function hideBanner() {
+      banner.hidden = true;
+      document.body.classList.remove('has-cookie-banner');
+    }
+    function openModal() {
+      lastTrigger = document.activeElement;
+      var prefs = load() || { analytics: true, marketing: false };
+      inputAnalytics.checked = !!prefs.analytics;
+      inputMarketing.checked = !!prefs.marketing;
+      modal.hidden = false;
+      document.documentElement.style.overflow = 'hidden';
+      var firstFocusable = getFocusable(modal)[0];
+      if (firstFocusable) setTimeout(function () { firstFocusable.focus(); }, 50);
+      document.addEventListener('keydown', trapTab);
+    }
+    function closeModal() {
+      modal.hidden = true;
+      document.documentElement.style.overflow = '';
+      document.removeEventListener('keydown', trapTab);
+      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+    }
+
+    function acceptAll() {
+      save({ essential: true, analytics: true, marketing: true, ts: Date.now() });
+      hideBanner(); closeModal();
+    }
+    function rejectOptional() {
+      save({ essential: true, analytics: false, marketing: false, ts: Date.now() });
+      hideBanner(); closeModal();
+    }
+    function saveCustom() {
+      save({
+        essential: true,
+        analytics: !!inputAnalytics.checked,
+        marketing: !!inputMarketing.checked,
+        ts: Date.now()
+      });
+      hideBanner(); closeModal();
+    }
+
+    if (!load()) showBanner();
+
+    document.querySelectorAll('[data-cookie-accept]').forEach(function (el) { el.addEventListener('click', acceptAll); });
+    document.querySelectorAll('[data-cookie-reject]').forEach(function (el) { el.addEventListener('click', rejectOptional); });
+    document.querySelectorAll('[data-cookie-save]').forEach(function (el) { el.addEventListener('click', saveCustom); });
+    document.querySelectorAll('[data-cookie-config]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+    });
+    document.querySelectorAll('[data-cookie-open]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+    });
+    document.querySelectorAll('[data-cookie-close]').forEach(function (el) {
+      el.addEventListener('click', closeModal);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  })();
+
+  // 4) Responsive video source · ahorro de banda en móvil
+  (function () {
+    var videos = document.querySelectorAll('video[data-src-desktop]');
+    var isMobile = window.matchMedia('(max-width: 900px)').matches;
+    videos.forEach(function (v) {
+      var src = isMobile ? v.dataset.srcMobile : v.dataset.srcDesktop;
+      if (!src) return;
+      var s = document.createElement('source');
+      s.src = src;
+      s.type = 'video/mp4';
+      v.appendChild(s);
+      v.load();
+    });
+  })();
+</script>
+
+</body>
+</html>
