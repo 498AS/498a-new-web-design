@@ -1964,6 +1964,165 @@
   .cookie-toggle input:checked + .cookie-toggle__track::before { transform: translateX(20px); background: var(--498-white); }
   .cookie-toggle input:focus-visible + .cookie-toggle__track { outline: 2px solid var(--498-green); outline-offset: 2px; }
 
+  /* ===================================================================
+     BLOG POST · ejemplo de cómo el sistema se aplica a un artículo
+     editorial. Layout 2-col: sidebar sticky meta + main reading column.
+     =================================================================== */
+  .blog-post {
+    max-width: var(--498-content-max);
+    margin: 0 auto;
+  }
+  .blog-post__hero {
+    margin: 0 0 56px;
+  }
+  .blog-post__hero img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    border: 1px solid var(--498-black);
+  }
+  .blog-post__caption {
+    margin-top: 10px;
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pg-text-muted);
+  }
+
+  .blog-post__layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 64px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .blog-post__layout { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* Sidebar meta · sticky · número grande tipo Sectio counter */
+  .blog-post__meta {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+    border-top: 2px solid var(--498-black);
+    padding-top: 16px;
+  }
+  .blog-post__meta-num {
+    font-family: var(--498-family-display);
+    font-size: 56px;
+    line-height: 0.9;
+    color: var(--498-green-deep);
+    margin-bottom: 6px;
+  }
+  .blog-post__meta-label {
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--498-green-deep);
+    margin-bottom: 22px;
+    font-weight: 600;
+  }
+  .blog-post__meta-line {
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--pg-text-muted);
+    margin-bottom: 5px;
+  }
+  .blog-post__meta-tags {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--pg-line);
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+  .blog-post__meta-tags a {
+    color: var(--498-green-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--498-green-line);
+  }
+  .blog-post__meta-tags a:hover { color: var(--498-green); }
+
+  /* Main reading column · ancho cómodo de lectura */
+  .blog-post__main {
+    max-width: 720px;
+  }
+  .blog-post__title {
+    font-family: var(--498-family-body);
+    font-weight: 200;
+    font-style: italic;
+    font-size: 44px;
+    line-height: 1.08;
+    letter-spacing: -0.7px;
+    color: var(--pg-text);
+    margin: 0 0 24px;
+  }
+  .blog-post__title em {
+    color: var(--498-green-deep);
+    font-style: italic;
+  }
+  @media (max-width: 720px) {
+    .blog-post__title { font-size: 32px; }
+  }
+
+  .blog-post__lead {
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--pg-text);
+    margin: 0 0 44px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--pg-line);
+  }
+
+  .blog-post__body {
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--pg-text);
+  }
+  .blog-post__body p { margin: 0 0 24px; }
+  .blog-post__body h2 {
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 30px;
+    line-height: 1.15;
+    margin: 56px 0 20px;
+    color: var(--pg-text);
+    letter-spacing: -0.3px;
+  }
+  .blog-post__body h2 em { color: var(--498-green-deep); font-style: italic; }
+
+  .blog-post__figure {
+    margin: 40px 0;
+  }
+  .blog-post__figure img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--498-black);
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .blog-post__figure figcaption {
+    margin-top: 10px;
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pg-text-muted);
+  }
+
   /* Closing strip · línea final con copyright + legal · una sola caja contigua */
   .footer-strip {
     margin: 0 var(--498-page-pad) 0;
@@ -2065,8 +2224,8 @@
 
     <!-- COLUMNA DERECHA · visual ocupando la celda · sangra a los bordes del card -->
     <div class="vision-hero-card__visual">
-      <img src="assets/visuals/green-architecture.webp"
-           alt="Arquitectura verde con vegetación · render editorial 498A">
+      <img src="assets/visuals/vision-organism.jpg"
+           alt="Sistema vivo en transformación · vision 498A">
     </div>
 
   </article>
@@ -2315,7 +2474,7 @@
   <div class="box-collection box-collection--2 box-collection--persiana">
     <article class="box-row">
       <div class="box-row__img">
-        <img src="assets/visuals/stacked-layers.webp" alt="Capas translúcidas">
+        <img src="assets/visuals/science-stacks.jpg" alt="Figura vertical con capas de datos · módulo Layers">
       </div>
       <div class="box-row__body">
         <span class="box-card__tag">Module · Layers</span>
@@ -2329,7 +2488,7 @@
     </article>
     <article class="box-row">
       <div class="box-row__img">
-        <img src="assets/visuals/data-network.webp" alt="Red de datos · render 498A">
+        <img src="assets/visuals/science-network.jpg" alt="Cables verdes a través de cubos transparentes · ecosistema multi-agente">
       </div>
       <div class="box-row__body">
         <span class="box-card__tag">Module · Ecosystem</span>
@@ -2408,7 +2567,7 @@
       <div class="box-card__img frame-cross-mini" style="background:var(--498-grey-50);display:flex;align-items:center;justify-content:center;padding:24px">
         <span class="cnr-mini cnr-mini--tl"></span><span class="cnr-mini cnr-mini--tr"></span>
         <span class="cnr-mini cnr-mini--bl"></span><span class="cnr-mini cnr-mini--br"></span>
-        <img src="assets/visuals/crystal-cluster.svg" alt="Cluster cristalino · placeholder vector" style="max-width:80%;max-height:80%;object-fit:contain">
+        <img src="assets/visuals/news-llm.jpg" alt="Flor luminosa con código · investigación LLM" style="max-width:80%;max-height:80%;object-fit:contain">
         <div class="img-chip" aria-hidden="true">
           <span class="img-chip__icon">
             <svg viewBox="0 0 14 14" fill="none" stroke="#1A1A1A" stroke-width="1">
@@ -2711,6 +2870,158 @@
 </section>
 
 <!-- =================================================================
+     BLOG POST · ejemplo de cómo se aplicaría el sistema a un artículo
+     editorial · featured image + sidebar sticky meta + main reading column
+     ================================================================= -->
+<section id="blog-post" class="section-paper">
+  <div class="section-title-block">
+    <span class="eyebrow">Sectio · 06b · Blog</span>
+    <h2 class="ed-display-3">Anatomía de un <em>post editorial</em>.</h2>
+    <p>
+      Cómo el sistema se traduce a la página de artículo: featured image full-width,
+      sidebar sticky con metadata, columna de lectura cómoda 720&nbsp;px, citas inline
+      tipo ChatGPT, pull quote inset, figura intercalada y referencias al pie.
+    </p>
+  </div>
+
+  <article class="blog-post">
+
+    <!-- Featured image · 21:9 full-width -->
+    <figure class="blog-post__hero">
+      <img src="assets/visuals/blog-hero.jpg"
+           alt="Figura humano-robot con musgo verde · render generativo">
+      <figcaption class="blog-post__caption">
+        Fig. 01 · Identidad híbrida humano-IA · render generativo · 498A lab 2026
+      </figcaption>
+    </figure>
+
+    <!-- 2-col layout: meta sidebar + main reading -->
+    <div class="blog-post__layout">
+
+      <!-- META SIDEBAR · sticky · número grande + line items + tags + autor -->
+      <aside class="blog-post__meta">
+        <div class="blog-post__meta-num">07</div>
+        <div class="blog-post__meta-label">Article · Research</div>
+        <div class="blog-post__meta-line">19 May 2026</div>
+        <div class="blog-post__meta-line">8 min lectura</div>
+        <div class="blog-post__meta-line">Carlos Ortet · founder</div>
+
+        <div class="blog-post__meta-tags">
+          <a href="#">GEO</a> · <a href="#">LLM</a> · <a href="#">Brand presence</a>
+        </div>
+
+        <div class="author-block">
+          <img class="author-block__photo"
+               src="assets/team/carlos-ortet.webp"
+               alt="Carlos Ortet">
+          <div>
+            <span class="author-block__name">Carlos Ortet</span>
+            <span class="author-block__role">Founder · 498A</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN READING COLUMN -->
+      <div class="blog-post__main">
+
+        <h1 class="blog-post__title">
+          Cómo medir <em>la presencia</em> de una marca en respuestas de IA generativa.
+        </h1>
+
+        <p class="blog-post__lead">
+          El paradigma SEO heredado falla cuando el buscador es un LLM. Lo que importa
+          ya no es el ranking, sino la presencia narrativa dentro de una respuesta
+          que el modelo construye sobre la marcha.
+        </p>
+
+        <div class="blog-post__body">
+
+          <p>
+            Cuando un usuario pregunta a ChatGPT, Gemini o Claude por una recomendación
+            de producto<a class="cite-chat" href="#bref-1">1</a>, el modelo NO devuelve
+            una lista ordenada como Google. Devuelve una respuesta narrativa donde la
+            marca aparece —o no— con un tono específico, en una posición concreta y
+            comparada con un conjunto de competidores que el propio modelo selecciona.
+          </p>
+
+          <p>
+            La métrica clásica de "ranking" se vuelve obsoleta. Las nuevas métricas
+            son <a class="link" href="#">Share of Voice</a>,
+            <a class="link" href="#">Position Score</a>,
+            <a class="link" href="#">Sentiment</a> y
+            <a class="link" href="#">Attribute Affinity</a>.
+            Cada una mide una dimensión distinta<a class="cite-chat cite-chat--green" href="#bref-2">2</a>,
+            y la mayoría de las marcas que auditamos solo conocen una o dos.
+          </p>
+
+          <h2>El marco de <em>cinco dimensiones</em></h2>
+
+          <p>
+            En 498A diseñamos un marco propietario que mide la presencia de una marca
+            en superficies de IA generativa a lo largo de cinco ejes simultáneos:
+            visibilidad, preferencia, percepción, benchmark competitivo y trazabilidad.
+            Aplicado a más de 9&nbsp;millones de menciones analizadas en
+            cartera<a class="cite-chat cite-chat--grey" href="#bref-3">3</a>, permite
+            anticipar movimientos competitivos antes de que sean evidentes en métricas
+            de tráfico convencional.
+          </p>
+
+          <aside class="pullquote-inset">
+            <p class="pullquote-inset__text">
+              <em>"Una marca con alta visibilidad pero bajo sentiment es más vulnerable
+              que una con baja visibilidad y alto sentiment. La presencia sin
+              alineación narrativa es ruido."</em>
+            </p>
+            <span class="pullquote-inset__attribution">Carlos Ortet · 498A</span>
+          </aside>
+
+          <p>
+            Cuando aplicamos este marco a 16&nbsp;marcas líderes de cartera,
+            descubrimos un patrón que nos sorprendió: las marcas con mayor
+            "Share of Voice" en motores IA no siempre coincidían con las de mayor
+            reputación tradicional. Los LLMs construyen su mapa narrativo
+            a partir de fuentes que el SEO clásico ignora.
+          </p>
+
+          <figure class="blog-post__figure">
+            <img src="assets/visuals/blog-figure.jpg"
+                 alt="Estructura interna conceptual de un modelo de lenguaje">
+            <figcaption>Fig. 02 · Arquitectura conceptual del razonamiento LLM · simulación 498A</figcaption>
+          </figure>
+
+          <p>
+            El siguiente paso operativo, en cualquier estrategia que tome esto
+            en serio, es montar un dashboard de medición continua y un protocolo
+            de activación rápida de contenido. No basta con medir;
+            hay que poder moverse cuando el motor cambia el mapa.
+          </p>
+
+        </div>
+
+        <!-- References -->
+        <ol class="references">
+          <li id="bref-1">
+            OpenAI. <em>GPT-4 system card</em>. Technical report, 2024.
+            <a href="#">openai.com/research</a>
+          </li>
+          <li id="bref-2">
+            Anthropic. <em>Constitutional AI: harmlessness from AI feedback</em>.
+            arXiv preprint, 2022. <a href="#">arxiv.org/abs/2212.08073</a>
+          </li>
+          <li id="bref-3">
+            498A. <em>State of GEO 2026</em>. Reporte interno cartera 498A, 2026.
+            <a href="#">georadar.app/research</a>
+          </li>
+        </ol>
+
+      </div>
+
+    </div>
+
+  </article>
+</section>
+
+<!-- =================================================================
      UI MODULE · Forms + Badges + Table + Code block
      Light mode · esquinas cuadradas explícitas en badges
      ================================================================= -->
@@ -2848,8 +3159,8 @@
     </div>
 
     <div class="vision-hero-card__visual">
-      <img src="assets/visuals/data-network.webp"
-           alt="Red de datos generada · output de simulación 498A">
+      <img src="assets/visuals/manifesto-hands.jpg"
+           alt="Manos pasándose hilos verdes · iteración del lab">
     </div>
 
   </article>
