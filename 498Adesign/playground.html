@@ -838,13 +838,26 @@
     background: var(--498-white);
     display: flex;
     flex-direction: column;
-    padding: 0 !important;
+    padding: 18px !important;            /* hombro blanco entre outer line y inner frame */
     border: 0 !important;
     overflow: hidden;
     transition: background .2s;
+    position: relative;
+  }
+  /* Inner frame · doble línea arquitectónica (eco planos técnicos · 498as.com) */
+  .box-collection--service-cards > *::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid var(--498-black);
+    pointer-events: none;
+    z-index: 2;
   }
   .box-collection--service-cards > *:hover {
     background: var(--498-green-50);
+  }
+  .box-collection--service-cards > *:hover::before {
+    border-color: var(--498-green-deep);
   }
 
   /* Imagen · full-width del card · aspect-ratio fijo · divider abajo */
@@ -2234,7 +2247,7 @@
 
     <article class="box">
       <div class="service-card__image">
-        <img src="assets/visuals/data-network.webp" alt="Red de menciones de marca distribuidas en motores de IA">
+        <img src="assets/visuals/sc-geo-visibility.jpg" alt="Muros vegetales con circuitos verdes · mapa de visibilidad en IA">
       </div>
       <h3 class="service-card__title">GEO &amp; Visibilidad en IA</h3>
       <p class="service-card__desc">
@@ -2246,7 +2259,7 @@
 
     <article class="box">
       <div class="service-card__image">
-        <img src="assets/visuals/green-architecture.webp" alt="Arquitectura sintética generada · simulación de entornos">
+        <img src="assets/visuals/sc-simulation-cube.jpg" alt="Cubo de cristal con masa orgánica viva · simulación contenida a escala humana">
       </div>
       <h3 class="service-card__title">Simulación social · Gerard</h3>
       <p class="service-card__desc">
@@ -2258,7 +2271,7 @@
 
     <article class="box">
       <div class="service-card__image">
-        <img src="assets/visuals/isometric-cubes.svg" alt="Cubos isométricos · agentes coordinados">
+        <img src="assets/visuals/sc-multiagent-flow.jpg" alt="Formas orgánicas fluidas con schemas técnicos · agentes coordinados">
       </div>
       <h3 class="service-card__title">Sistemas multiagente</h3>
       <p class="service-card__desc">
@@ -2270,7 +2283,7 @@
 
     <article class="box">
       <div class="service-card__image">
-        <img src="assets/visuals/stacked-layers.webp" alt="Capas de datos apiladas · datasets entrenables">
+        <img src="assets/visuals/sc-datasets-layers.jpg" alt="Estructura vertical apilada con musgo · estratos de datasets generados">
       </div>
       <h3 class="service-card__title">Datasets a medida</h3>
       <p class="service-card__desc">

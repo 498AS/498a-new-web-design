@@ -2,3 +2,8 @@
 .playwright-cli/
 *.log
 /tmp/
+
+# Source dumps · evitar subir extracciones crudas al repo
+OneDrive_*.zip
+**/imagenes web/
+**/imagenes-web/
