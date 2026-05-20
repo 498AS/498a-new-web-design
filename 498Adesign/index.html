@@ -832,6 +832,117 @@
     .service-card__image { aspect-ratio: 16 / 9; }
   }
 
+  /* ============================================================
+     BOX COLLECTION · variante ZIGZAG · editorial magazine flow
+     Cards horizontales · imagen alternando izq/der · contiguas con
+     hairlines 1px black (gap+bg technique) · 1 columna vertical.
+     ============================================================ */
+  .box-collection--zigzag {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 1px;
+    background: var(--498-black);
+    padding: 1px;
+    border: 0;
+    overflow: visible;
+  }
+  .box-collection--zigzag > * {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--498-white);
+    padding: 0 !important;
+    border: 0 !important;
+    min-height: 420px;
+    align-items: stretch;
+    overflow: hidden;
+    transition: background .2s;
+  }
+  /* Alternancia · cards pares con imagen a la derecha */
+  .box-collection--zigzag > *:nth-child(even) {
+    grid-template-areas: "content image";
+  }
+  .box-collection--zigzag > *:nth-child(odd) {
+    grid-template-areas: "image content";
+  }
+  .box-collection--zigzag > *:hover { background: var(--498-green-50); }
+
+  .zigzag-card__image {
+    grid-area: image;
+    overflow: hidden;
+    background: var(--pg-paper);
+  }
+  .zigzag-card__image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .zigzag-card__content {
+    grid-area: content;
+    padding: 56px 64px;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+  .zigzag-card__num {
+    font-family: var(--498-family-mono);
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--498-green-deep);
+    font-weight: 600;
+  }
+  .zigzag-card__title {
+    font-family: var(--498-family-body);
+    font-weight: 200;
+    font-style: italic;
+    font-size: 36px;
+    line-height: 1.08;
+    letter-spacing: -0.4px;
+    color: var(--pg-text);
+    margin: 0;
+  }
+  .zigzag-card__title em { color: var(--498-green-deep); font-style: italic; }
+  .zigzag-card__headline {
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--pg-text);
+    margin: 4px 0 0;
+  }
+  .zigzag-card__body {
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--pg-text-muted);
+    margin: 0;
+  }
+  .zigzag-card__proof {
+    font-family: var(--498-family-mono);
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--498-green-deep);
+    border-top: 1px solid var(--pg-line);
+    padding-top: 14px;
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+  /* Responsive · mobile/tablet stack vertical · imagen arriba siempre */
+  @media (max-width: 900px) {
+    .box-collection--zigzag > *,
+    .box-collection--zigzag > *:nth-child(even),
+    .box-collection--zigzag > *:nth-child(odd) {
+      grid-template-columns: 1fr;
+      grid-template-areas: "image" "content";
+      min-height: 0;
+    }
+    .zigzag-card__image { aspect-ratio: 16 / 10; }
+    .zigzag-card__content { padding: 36px 32px; }
+    .zigzag-card__title { font-size: 28px; }
+  }
+
   /* === BOX (single) === */
   .box {
     background: var(--498-white);
@@ -1742,52 +1853,18 @@
 </header>
 
 <!-- =================================================================
-     02 · TESIS
-     ================================================================= -->
-<section id="tesis" class="vision-section">
-
-  <article class="vision-hero-card">
-    <div class="vision-hero-card__content">
-      <span class="eyebrow-square">Tesis · 01</span>
-      <h2 class="vision-hero-card__claim">
-        Cerramos la brecha entre <em style="color:var(--498-green-deep)">investigación y negocio</em>.
-      </h2>
-      <p class="ed-body" style="font-size:17px;line-height:1.7;color:var(--pg-text);margin:0 0 16px;max-width:520px">
-        Entre la investigación que aún no puede aplicarse y la consultoría que llega
-        cuando la tecnología ya se ha normalizado, hay una frontera decisiva.
-        En 498A trabajamos precisamente ahí.
-      </p>
-      <p class="ed-body" style="font-size:17px;line-height:1.7;color:var(--pg-text);margin:0;max-width:520px">
-        Conectamos ciencia, IA y ejecución para convertir conocimiento avanzado en
-        ventaja medible. Antes de que la tecnología sea evidente para todos<a class="cite-chat" href="#ref-1" title="Ver fuente 1">1</a>.
-      </p>
-      <a class="btn-split" href="#capacidades">
-        <span class="btn-split__label">Ver capacidades</span>
-        <span class="btn-split__arrow">→</span>
-      </a>
-    </div>
-
-    <div class="vision-hero-card__visual">
-      <img src="assets/visuals/green-architecture.webp"
-           alt="Arquitectura verde modular · sistema en crecimiento · tesis 498A">
-    </div>
-  </article>
-
-</section>
-
-<!-- =================================================================
-     Pattern band entre Tesis y Método
+     Pattern band entre Hero y Método · pausa atmosférica
      ================================================================= -->
 <div class="pattern-band">
   <span class="pattern-band__label">Grid · backpropagation · gradient flow</span>
 </div>
 
 <!-- =================================================================
-     03 · MÉTODO
+     02 · MÉTODO (antes 03 · renumerado tras eliminar Tesis)
      ================================================================= -->
 <section id="metodo" class="section-paper">
   <div class="section-title-block">
-    <span class="eyebrow">Método · 02</span>
+    <span class="eyebrow">Método · 01</span>
     <h2 class="ed-display-3">Cuatro etapas que <em>se retroalimentan</em>.</h2>
   </div>
 
@@ -1824,102 +1901,95 @@
     <h2 class="ed-display-3"><em>Cuatro líneas de trabajo aplicado.</em> Cada una autosuficiente. Las cuatro conectadas.</h2>
   </div>
 
-  <!-- 4 capacidades como service-cards 2×2 -->
-  <div class="box-collection box-collection--2 box-collection--service-cards">
+  <!-- 4 capacidades como zigzag · cards horizontales alternando imagen izq/der -->
+  <div class="box-collection box-collection--zigzag">
 
-    <!-- 04 · A · Sistemas multiagente -->
-    <article class="box">
-      <div class="service-card__image">
+    <!-- Capacidad 01 · Sistemas multiagente · image LEFT (odd) -->
+    <article>
+      <div class="zigzag-card__image">
         <img src="assets/visuals/science-network.jpg" alt="Red multiagente · agentes coordinados">
       </div>
-      <div class="service-card__num">Capacidad 01</div>
-      <h3 class="service-card__title">Sistemas multiagente</h3>
-      <p class="service-card__headline">Equipos digitales (AI implants) que deciden, colaboran y aprenden.</p>
-      <p class="service-card__desc">
-        Los desplegamos en operaciones reales (informes, análisis, atención al cliente,
-        forecasting, vigilancia regulatoria, generación de contenido) conectados a las
-        herramientas que tu equipo ya usa e integrados para que tu equipo puede comunicarse
-        con ellos como con un compañero más. No son chatbots ni copilotos pasivos.
-        Orquestan tareas complejas, toman decisiones autónomas dentro de límites definidos
-        y mejoran con cada interacción. Operan sobre modelos generalistas en la nube o
-        privados con entrenamientos específicos, siempre con conocimientos propios de tu
-        organización<a class="cite-chat cite-chat--green" href="#ref-3" title="Ver fuente 3">3</a>.
-      </p>
-      <div class="service-card__proof">+100.000 horas manuales liberadas en producción</div>
+      <div class="zigzag-card__content">
+        <span class="zigzag-card__num">Capacidad 01</span>
+        <h3 class="zigzag-card__title">Sistemas <em>multiagente</em>.</h3>
+        <p class="zigzag-card__headline">
+          Equipos digitales que deciden, colaboran y aprenden.
+        </p>
+        <p class="zigzag-card__body">
+          Agentes proactivos que orquestan tareas complejas y toman decisiones
+          autónomas dentro de límites definidos. Operan sobre modelos generalistas
+          en la nube o privados, siempre con conocimientos propios de tu
+          organización<a class="cite-chat cite-chat--green" href="#ref-3" title="Ver fuente 3">3</a>.
+        </p>
+        <div class="zigzag-card__proof">+100.000 horas manuales liberadas en producción</div>
+      </div>
     </article>
 
-    <!-- 04 · B · GEO -->
-    <article class="box">
-      <div class="service-card__image">
+    <!-- Capacidad 02 · GEO · image RIGHT (even) -->
+    <article>
+      <div class="zigzag-card__image">
         <img src="assets/visuals/sc-geo-visibility.jpg" alt="Mapa de visibilidad en motores generativos">
       </div>
-      <div class="service-card__num">Capacidad 02</div>
-      <h3 class="service-card__title">GEO · Visibilidad en motores generativos</h3>
-      <p class="service-card__headline">La decisión de tu cliente se toma en ChatGPT, Claude, Gemini, Perplexity, Copilot y Google AI Overviews.</p>
-      <p class="service-card__desc">
-        Mientras tu competencia optimiza para Google clásico, los modelos generativos
-        y los bloques AIO ya están filtrando, comparando y recomendando marcas en el
-        momento exacto de la decisión. <strong>GEORadar</strong> —nuestra plataforma
-        propia— audita ese espacio semántico con 3.000 a 30.000 prompts personalizados
-        por estudio, ejecutados contra los seis motores. Sistema de seis módulos
-        (GEOAtlas · multi-LLM · GEOdesk · DOC · SAM · LEO) que entrega visibilidad,
-        preferencia, percepción, benchmark competitivo y trazabilidad de fuentes.
-        Cierre con plan de acción de 90 días, no con un informe<a class="cite-chat" href="#ref-4" title="Ver fuente 4">4</a>.
-      </p>
-      <div style="padding: 0 32px 12px">
-        <div style="font-family:var(--498-family-mono);font-size:10px;color:var(--pg-text-faint);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;text-align:center">9 verticales con KPIs propietarios</div>
-        <div class="verticals-chips" style="justify-content:center">
+      <div class="zigzag-card__content">
+        <span class="zigzag-card__num">Capacidad 02</span>
+        <h3 class="zigzag-card__title">GEO · <em>visibilidad en IA</em>.</h3>
+        <p class="zigzag-card__headline">
+          La decisión de tu cliente se toma en ChatGPT, Claude, Gemini, Perplexity, Copilot y Google AIO.
+        </p>
+        <p class="zigzag-card__body">
+          <strong>GEORadar</strong> audita ese espacio semántico con 3.000 a 30.000 prompts
+          personalizados por estudio, contra los seis motores. Plan de acción de 90 días,
+          no un informe<a class="cite-chat" href="#ref-4" title="Ver fuente 4">4</a>.
+        </p>
+        <div class="verticals-chips" style="margin-top:4px">
           <span>Travel</span><span>Finance</span><span>Health</span><span>Education</span>
           <span>Corporate</span><span>Consumer</span><span>Energy</span><span>Mobility</span><span>Civic</span>
         </div>
-      </div>
-      <p class="service-card__desc" style="font-style:italic;font-size:12px;color:var(--pg-text-muted)">
-        <span style="background:transparent;width:0;height:0;display:none"></span>
-        Actualmente auditamos el Mundial FIFA 2026 en EE. UU. con esta misma metodología. Ver detalle en <em>Evidencia</em>.
-      </p>
-      <div class="service-card__proof">
-        Primera consultora europea especializada en GEO ·
-        1.000.000+ prompts simulados ·
-        10.000.000+ menciones analizadas ·
-        16+ marcas líderes en producción
+        <div class="zigzag-card__proof">
+          Primera consultora europea especializada en GEO · 1M+ prompts simulados ·
+          10M+ menciones analizadas · 16+ marcas líderes en producción
+        </div>
       </div>
     </article>
 
-    <!-- 04 · C · IA privada -->
-    <article class="box">
-      <div class="service-card__image">
+    <!-- Capacidad 03 · IA privada · image LEFT (odd) -->
+    <article>
+      <div class="zigzag-card__image">
         <img src="assets/visuals/method-panels.jpg" alt="Modelos IA privados desplegados en infraestructura propia">
       </div>
-      <div class="service-card__num">Capacidad 03</div>
-      <h3 class="service-card__title">IA privada</h3>
-      <p class="service-card__headline">Modelos en tu infraestructura. Tu dato se queda en casa.</p>
-      <p class="service-card__desc">
-        Para empresas e instituciones que no pueden permitirse que sus datos atraviesen
-        un API externo. Desplegamos modelos open-source ajustados a tu dominio, en tu
-        infraestructura, bajo tu control. Cumplimiento del EU AI Act, soberanía del
-        dato, latencia baja, coste predecible. La misma potencia que un modelo comercial
-        sin la dependencia del vendor lock-in<a class="cite-chat cite-chat--grey" href="#ref-5" title="Ver fuente 5">5</a>.
-      </p>
-      <div class="service-card__proof">Marcos de gobernanza alineados con EU AI Act y UNESCO AI Working Group</div>
+      <div class="zigzag-card__content">
+        <span class="zigzag-card__num">Capacidad 03</span>
+        <h3 class="zigzag-card__title">IA <em>privada</em>.</h3>
+        <p class="zigzag-card__headline">
+          Modelos en tu infraestructura. Tu dato se queda en casa.
+        </p>
+        <p class="zigzag-card__body">
+          Para organizaciones que no pueden permitirse que sus datos atraviesen un API externo.
+          Modelos open-source ajustados a tu dominio, bajo tu control. EU AI Act compliant,
+          latencia baja, coste predecible, sin vendor lock-in<a class="cite-chat cite-chat--grey" href="#ref-5" title="Ver fuente 5">5</a>.
+        </p>
+        <div class="zigzag-card__proof">Marcos de gobernanza alineados con EU AI Act y UNESCO AI Working Group</div>
+      </div>
     </article>
 
-    <!-- 04 · D · Datasets -->
-    <article class="box">
-      <div class="service-card__image">
+    <!-- Capacidad 04 · Datasets · image RIGHT (even) -->
+    <article>
+      <div class="zigzag-card__image">
         <img src="assets/visuals/sc-datasets-layers.jpg" alt="Capas de datasets · corpus específicos por dominio">
       </div>
-      <div class="service-card__num">Capacidad 04</div>
-      <h3 class="service-card__title">Datasets a medida</h3>
-      <p class="service-card__headline">El cuello de botella de cualquier IA seria es el dato.</p>
-      <p class="service-card__desc">
-        Construimos corpus específicos para el problema concreto: anotación experta,
-        validación cruzada con centros académicos y de investigación, trazabilidad
-        metodológica que tus auditores aceptarán. Son los datos sobre los que se
-        entrenarán los modelos que después decidirán dentro de tu organización.
-        Su calidad es el techo de todo lo demás; su entrenamiento es capital de
-        conocimiento y tu secreto industrial.
-      </p>
-      <div class="service-card__proof">Acuerdo marco con la UAB desde 2023 · Colaboración activa con investigadores del CSIC</div>
+      <div class="zigzag-card__content">
+        <span class="zigzag-card__num">Capacidad 04</span>
+        <h3 class="zigzag-card__title">Datasets <em>a medida</em>.</h3>
+        <p class="zigzag-card__headline">
+          El cuello de botella de cualquier IA seria es el dato.
+        </p>
+        <p class="zigzag-card__body">
+          Corpus específicos para tu problema concreto: anotación experta, validación
+          cruzada con centros académicos, trazabilidad metodológica auditable. La
+          calidad del dato es el techo de todo lo demás.
+        </p>
+        <div class="zigzag-card__proof">Acuerdo marco con la UAB desde 2023 · Colaboración activa con investigadores del CSIC</div>
+      </div>
     </article>
 
   </div>
