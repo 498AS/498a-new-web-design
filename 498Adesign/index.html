@@ -1295,6 +1295,13 @@
     background: var(--498-white);
     padding: var(--pg-section-pad-y) var(--498-page-pad);
   }
+  /* Variante embebida dentro de Voces · menos padding vertical, sin background propio */
+  .founder-quote--in-voces {
+    padding: 56px 0 0;
+    background: transparent;
+    border-top: 1px solid var(--pg-line);
+    margin-top: 64px;
+  }
   .founder-quote__inner {
     max-width: 1000px;
     margin: 0 auto;
@@ -1418,6 +1425,18 @@
     border-bottom: 1px solid var(--498-green-line);
     align-self: flex-start;
     padding-bottom: 2px;
+  }
+
+  /* Mini variant · solo tag + título + link · sin meta ni summary · home */
+  .blog-card--mini {
+    padding: 24px 22px;
+    gap: 14px;
+    min-height: 0;
+  }
+  .blog-card--mini .blog-card__title {
+    font-size: 19px;
+    line-height: 1.25;
+    margin: 0;
   }
 
   /* === FOOTER === */
@@ -2349,26 +2368,27 @@
     </article>
 
   </div>
-</section>
 
-<!-- =================================================================
-     10 · CITA FUNDADOR
-     ================================================================= -->
-<section class="founder-quote">
-  <div class="founder-quote__inner">
-    <span class="eyebrow-square">
-      <span class="sr-only">Founder Voice</span>
-      <span class="typewriter" style="--chars: 13;" aria-hidden="true">Founder Voice</span>
-    </span>
-    <p class="founder-quote__text">
-      <em>"Una organización próspera es la que sabe anticiparse, construir desde
-      la incertidumbre y alinear su progreso con el del mundo que la rodea."</em>
-    </p>
-    <div class="founder-quote__attr">
-      <img src="assets/team/carlos-ortet.webp" alt="Carlos Ortet">
-      <div>
-        <span class="founder-quote__attr-name">Carlos Ortet</span>
-        <span class="founder-quote__attr-role">Fundador · 498A</span>
+  <!--
+    Cita destacada del fundador · merge ex-sección "Founder Quote" dentro de Voces
+    Mantiene el typewriter en el eyebrow + foto Carlos + tamaño visualmente mayor
+  -->
+  <div class="founder-quote founder-quote--in-voces">
+    <div class="founder-quote__inner">
+      <span class="eyebrow-square">
+        <span class="sr-only">Founder Voice</span>
+        <span class="typewriter" style="--chars: 13;" aria-hidden="true">Founder Voice</span>
+      </span>
+      <p class="founder-quote__text">
+        <em>"Una organización próspera es la que sabe anticiparse, construir desde
+        la incertidumbre y alinear su progreso con el del mundo que la rodea."</em>
+      </p>
+      <div class="founder-quote__attr">
+        <img src="assets/team/carlos-ortet.webp" alt="Carlos Ortet">
+        <div>
+          <span class="founder-quote__attr-name">Carlos Ortet</span>
+          <span class="founder-quote__attr-role">Fundador · 498A</span>
+        </div>
       </div>
     </div>
   </div>
@@ -2399,59 +2419,34 @@
      12 · PERSPECTIVAS
      ================================================================= -->
 <section id="perspectivas">
-  <div class="section-title-block">
-    <span class="eyebrow">Perspectivas · La otra mitad de la frontera</span>
+  <div class="section-title-block" style="margin-bottom:32px">
+    <span class="eyebrow">Perspectivas</span>
     <h2 class="ed-display-3"><em>Lo que publicamos.</em></h2>
-    <p>
-      La columna de research de 498A vive aquí. Papers académicos firmados con la UAB,
-      blog técnico para profesionales de la IA, ebooks para responsables de marca y
-      producto, podcast para conversaciones largas con investigadores y ejecutores.
-      La frontera entre investigación y aplicación se cuenta tan a menudo aquí como
-      en los proyectos cliente.
-    </p>
   </div>
 
   <div class="box-collection box-collection--3 box-collection--persiana">
 
-    <a class="blog-card" href="#" target="_blank" rel="noopener">
+    <a class="blog-card blog-card--mini" href="#" target="_blank" rel="noopener">
       <span class="blog-card__tag">Paper · Académico · 1993</span>
       <h3 class="blog-card__title">Performance Prediction of Parallel Systems by Simulation.</h3>
-      <span class="blog-card__meta">Carlos Ortet · 1993 · paper académico</span>
-      <p class="blog-card__summary">
-        La simulación es una idea con larga trayectoria en la casa. Carlos Ortet la
-        firmaba como investigador hace treinta años, mucho antes de que existiera
-        Gerard. La continuidad intelectual de 498A se mide así.
-      </p>
       <span class="blog-card__link">academia.edu →</span>
     </a>
 
-    <a class="blog-card" href="https://medium.com/@carlosortet" target="_blank" rel="noopener">
+    <a class="blog-card blog-card--mini" href="https://medium.com/@carlosortet" target="_blank" rel="noopener">
       <span class="blog-card__tag">Essay · Medium · EN</span>
       <h3 class="blog-card__title">Beyond LLMs: in search of the next AI beast.</h3>
-      <span class="blog-card__meta">Carlos Ortet · mayo 2026 · Medium · inglés</span>
-      <p class="blog-card__summary">
-        Por qué los LLMs autorregresivos pueden no ser la herramienta adecuada para
-        la siguiente generación de IA. Cinco hipótesis sobre lo que viene después y
-        qué arquitecturas conviene estar mirando.
-      </p>
       <span class="blog-card__link">medium.com/@carlosortet →</span>
     </a>
 
-    <a class="blog-card" href="https://zoopa.es/es/geo-ia-visibilidad/geo-no-es-seo-argumentos/" target="_blank" rel="noopener">
+    <a class="blog-card blog-card--mini" href="https://zoopa.es/es/geo-ia-visibilidad/geo-no-es-seo-argumentos/" target="_blank" rel="noopener">
       <span class="blog-card__tag">Blog · Zoopa</span>
       <h3 class="blog-card__title">El GEO no es SEO: 11 argumentos irrefutables.</h3>
-      <span class="blog-card__meta">Febrero 2026 · 8 min lectura</span>
-      <p class="blog-card__summary">
-        Once razones técnicas y estratégicas por las que la visibilidad en motores
-        generativos es una disciplina distinta del SEO clásico. Cómo ha cambiado el
-        embudo de decisión y qué métricas importan en la nueva superficie.
-      </p>
       <span class="blog-card__link">zoopa.es →</span>
     </a>
 
   </div>
 
-  <div style="margin-top:48px;text-align:center">
+  <div style="margin-top:32px;text-align:center">
     <a class="btn-ghost-light" href="#">Ver biblioteca completa →</a>
   </div>
 
