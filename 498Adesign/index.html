@@ -248,7 +248,26 @@
     max-width: 1100px;
   }
   /* Hero text · escala muy reducida: bloque entero ≤ 35-40% del viewport */
-  .hero-fullbleed__eyebrow { color: var(--498-green); margin-bottom: 12px; font-size: 10px; }
+  .hero-fullbleed__eyebrow {
+    display: flex; flex-direction: column;
+    gap: 4px;
+    margin-bottom: 16px;
+    font-family: var(--498-family-mono);
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .hero-fullbleed__eyebrow .primary {
+    color: var(--498-green);
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+  .hero-fullbleed__eyebrow .secondary {
+    color: rgba(255,255,255,.62);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+  }
   .hero-fullbleed__display {
     color: var(--498-white);
     font-family: var(--498-family-body); font-style: italic; font-weight: 200;
@@ -1665,22 +1684,36 @@
   </nav>
 
   <div class="hero-fullbleed__content">
-    <span class="eyebrow hero-fullbleed__eyebrow">Programa de investigación aplicada · Barcelona</span>
-    <h1 class="ed-display-1 hero-fullbleed__display">
-      La simulación es la nueva interfaz con el futuro.<br>
-      Con datos, IA y modelos, convertimos lo posible en algo<br>
-      que se puede probar, medir y mejorar <em>antes de hacerlo realidad</em>.
+    <!--
+      COPY ORIGINAL (preservado por trazabilidad · sustituido 2026-05-20):
+
+      EYEBROW: "Programa de investigación aplicada · Barcelona"
+
+      DISPLAY: "La simulación es la nueva interfaz con el futuro.
+                Con datos, IA y modelos, convertimos lo posible en algo
+                que se puede probar, medir y mejorar antes de hacerlo realidad."
+
+      LEAD: "498 segundos es el tiempo que tarda la luz del Sol en llegar a la Tierra.
+             Lo que ya está pasando en el Sol todavía no lo vemos. Nuestro trabajo es
+             construir los sistemas que permiten ver el comportamiento antes de que
+             llegue a la sociedad, el negocio, o la institución."
+
+      SUB:  "498A es una consultora de inteligencia artificial aplicada con un
+             programa de investigación a medio plazo orientado a la simulación de
+             personas, grupos y sociedades."
+    -->
+    <div class="hero-fullbleed__eyebrow">
+      <span class="primary">Lab de IA aplicada · Barcelona</span>
+      <span class="secondary">Simulación de agentes, personas, grupos y sociedades</span>
+    </div>
+    <h1 class="hero-fullbleed__display">
+      La simulación es la nueva interfaz con el <em>futuro</em>.
     </h1>
-    <p class="ed-lead hero-fullbleed__lead">
-      498 segundos es el tiempo que tarda la luz del Sol en llegar a la Tierra.
-      Lo que ya está pasando en el Sol todavía no lo vemos. Nuestro trabajo es
-      construir los sistemas que permiten ver el comportamiento antes de que
-      llegue a la sociedad, el negocio, o la institución.
-    </p>
-    <p class="hero-fullbleed__sub">
-      498A es una consultora de inteligencia artificial aplicada con un
-      programa de investigación a medio plazo orientado a la simulación de
-      personas, grupos y sociedades.
+    <p class="hero-fullbleed__lead">
+      Nuestro objetivo es construir los sistemas que permiten predecir el
+      comportamiento real, bajo distintos escenarios, antes de que llegue a
+      la sociedad, negocio o institución. Decisiones críticas y desarrollo
+      basados en evidencias, no en hipótesis.
     </p>
     <div class="hero-fullbleed__cta">
       <a class="btn-on-video" href="#contacto">Hablemos →</a>
