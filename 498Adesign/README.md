@@ -206,7 +206,12 @@ Para migrar un HTML construido con v1: cambiar el import a `498Adesign/tokens.cs
 | Fichero | Contenido |
 |---------|-----------|
 | `tokens.css` | Variables, media queries responsive, utility classes (`t-display-1`, `t-h1`, `t-p-l`, `t-tag-l`...), componentes (`btn`, `card`, `link`, `cite`, `references`, `hero-498`). |
-| `showcase.html` | Demo navegable de todos los tokens en acción: paleta, gradientes, escala tipográfica completa, botones, cards, ejemplo editorial con hipervínculos y 4 citas reales. |
+| `playground.html` | **Stress design page** · 3.523 líneas · todos los componentes del sistema v2.1 con Lorem Ipsum · fuente de verdad visual. |
+| `index.html` | **Home v4** producción · 2.855 líneas · copy real mapeado a los componentes del sistema. |
+| `design-system.html` | **Browser navegable del sistema** · ~1.730 líneas · catálogo organizado por categorías con sidebar fijo · 40 secciones (Foundations · Navegación · Hero · Cajas · Cards · Editorial · UI · Patterns · Marcas geométricas · Assets · Legal · Referencia). Pensado para diseñadores, developers o stakeholders que quieren ver el sistema completo de un vistazo. |
+| `showcase.html` | Showcase legacy v1 · 377 líneas · referencia histórica pre-v2.1. |
+| `legal/` | 4 documentos legales (Aviso · Privacidad · Cookies · Accesibilidad) en CA + ES + EN · MD + HTML. |
+| `INVENTORY.md` | Inventario completo del design system (67 assets · 41 MB · cobertura por superficie). |
 | `README.md` | Este documento. |
 
 ---
@@ -601,3 +606,45 @@ Si sí → suma. Si solo es 3D decorativo bonito → resta.
 ---
 
 *Actualizado v2.1: 2026-05-17. Iteraciones del playground integradas al sistema canónico.*
+
+---
+
+## Changelog · v2.1.1 (2026-05-20)
+
+**Aditivo**:
+- `index.html` · home v4 producción con copy real de `498A-homepage-REVIEW.md`.
+- `legal/` · 4 documentos legales completos (Aviso · Privacidad · Cookies · Accesibilidad) en CA + ES + EN.
+- `design-system.html` · browser navegable del sistema con 40 secciones organizadas por categorías + sidebar fijo + scroll spy.
+- `INVENTORY.md` · snapshot del catálogo de assets (67 archivos · 41 MB · cobertura por superficie).
+- `assets/visuals/` · 21 nuevas imágenes IA distribuidas por secciones.
+- `assets/video/` · 7 nuevos vídeos sectionales optimizados (H.264 CRF 26 · -67 % peso · 108 MB → 36 MB).
+
+**Limpieza**:
+- Borrados 4 iconos PNG legacy del 498AS original (`icon-countries.png`, `icon-experience.png`, `icon-projects.png`, `plus-circle.png`). Sustituidos por marcas geométricas SVG inline en v2.1. Quedan solo iconos en uso (`icon-linkedin.png`).
+- Liberados ~17 KB y eliminada ambigüedad de "qué icono usar".
+
+**Accesibilidad WCAG 2.1 AA**:
+- Skip link "Saltar al contenido principal" · WCAG 2.4.1
+- `<main>` landmark · WCAG 1.3.1
+- Focus-visible global verde 2 px · WCAG 2.4.7
+- Focus trap en modal cookies · WCAG 2.4.3
+- Contraste subido en `--pg-text-faint` (#999 → #717171) · WCAG 1.4.3
+- Eyebrow color a verde-deep (no verde primary) · pasa AA
+- Typewriter con `sr-only` fallback · WCAG 1.3.1
+- `aria-label` en vídeo hero · WCAG 1.2.5
+- Touch targets lang grid ≥ 44×44 mobile · WCAG 2.5.5
+- `prefers-reduced-motion` respetado en todas las animaciones · WCAG 2.3.3
+
+**Cookie banner + modal**:
+- Banner sticky bottom + modal de configuración con focus trap.
+- Persistencia en `localStorage` con clave `498a.cookie-consent.v1`.
+
+**Reglas de estilo activas en memoria global**:
+- No em-dashes (`—` `–` entre cláusulas).
+- Titulares en afirmativo (sin "no", "ni").
+- Smart Brevity por defecto.
+- Párrafos cortos por defecto (máximo 5 líneas, idealmente 3).
+
+---
+
+*Última actualización: 2026-05-20.*

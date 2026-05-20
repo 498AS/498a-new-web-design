@@ -1,0 +1,3126 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>498Adesign · Browser v2.1 · catálogo navegable</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* ===================================================================
+     498Adesign · BROWSER v2.1
+     Storybook vanilla · catálogo navegable de componentes
+     Layout: nav top (compact) · sidebar fijo izq 280 · main content
+     Reutiliza tokens.css + clases canónicas (replicadas mínimo necesario)
+     =================================================================== */
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    background: var(--498-white);
+    color: #1A1A1A;
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { max-width: 100%; display: block; }
+
+  :root {
+    --pg-line:        rgba(0, 0, 0, .08);
+    --pg-line-strong: rgba(0, 0, 0, .14);
+    --pg-line-mid:    rgba(0, 0, 0, .11);
+    --pg-text:        #1A1A1A;
+    --pg-text-muted:  #5C5C5C;
+    --pg-text-faint:  #717171;
+    --pg-paper:       #FAFAFA;
+    --pg-paper-green: #F4FAF3;
+    --ds-sidebar-w:   280px;
+    --ds-nav-h:       56px;
+  }
+
+  /* ===================================================================
+     SKIP LINK · WCAG 2.4.1
+     =================================================================== */
+  .skip-link {
+    position: fixed; top: 0; left: 0; z-index: 100;
+    padding: 14px 22px;
+    background: var(--498-black); color: var(--498-white);
+    font-family: var(--498-family-mono); font-size: 13px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+    border: 2px solid var(--498-green);
+    transform: translateY(-150%);
+    transition: transform .15s ease-out;
+  }
+  .skip-link:focus { transform: translateY(0); outline: none; }
+
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--498-green);
+    outline-offset: 2px;
+  }
+
+  /* ===================================================================
+     NAV TOP · compact · brand + back-link
+     =================================================================== */
+  .ds-nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 50;
+    display: flex; align-items: center;
+    height: var(--ds-nav-h);
+    padding: 0 24px;
+    background: var(--498-white);
+    border-bottom: 1px solid var(--pg-line-strong);
+    gap: 16px;
+  }
+  .ds-nav__brand {
+    display: inline-flex; align-items: center;
+    padding: 8px 14px;
+    background: var(--498-black);
+    color: var(--498-white);
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+  }
+  .ds-nav__brand em { color: var(--498-green); font-style: normal; }
+  .ds-nav__title {
+    font-family: var(--498-family-mono); font-size: 11px;
+    color: var(--pg-text-muted); letter-spacing: 1.5px;
+    text-transform: uppercase; font-weight: 500;
+  }
+  .ds-nav__title strong { color: var(--pg-text); font-weight: 600; }
+  .ds-nav__spacer { flex: 1; }
+  .ds-nav__links { display: flex; gap: 0; }
+  .ds-nav__link {
+    padding: 8px 14px;
+    border: 1px solid var(--pg-line-strong);
+    border-right: 0;
+    font-family: var(--498-family-mono); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
+    color: var(--pg-text); text-decoration: none;
+    background: var(--498-white);
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .ds-nav__link:last-child { border-right: 1px solid var(--pg-line-strong); }
+  .ds-nav__link:hover {
+    color: var(--498-green-deep);
+    border-color: var(--498-green-deep);
+    background: var(--498-green-50);
+    z-index: 1;
+  }
+
+  /* ===================================================================
+     SIDEBAR FIJO · 280 px · scroll independiente
+     =================================================================== */
+  .ds-sidebar {
+    position: fixed;
+    top: var(--ds-nav-h);
+    left: 0;
+    bottom: 0;
+    width: var(--ds-sidebar-w);
+    background: var(--498-white);
+    border-right: 1px solid var(--pg-line-strong);
+    padding: 24px;
+    overflow-y: auto;
+    font-family: var(--498-family-mono);
+    z-index: 40;
+  }
+  .ds-sidebar h3 {
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--498-green-deep);
+    margin-top: 28px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--pg-line);
+    font-weight: 600;
+  }
+  .ds-sidebar h3:first-child { margin-top: 0; }
+  .ds-sidebar ul { list-style: none; margin: 6px 0 0; padding: 0; }
+  .ds-sidebar li { padding: 0; }
+  .ds-sidebar a {
+    display: block;
+    padding: 5px 0 5px 12px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--pg-text);
+    text-decoration: none;
+    position: relative;
+    transition: color .15s, padding-left .15s;
+  }
+  .ds-sidebar a:hover {
+    color: var(--498-green-deep);
+    padding-left: 18px;
+  }
+  .ds-sidebar a:hover::before {
+    content: "·";
+    position: absolute;
+    left: 6px;
+    color: var(--498-green-deep);
+  }
+  .ds-sidebar a.is-active {
+    color: var(--498-green-deep);
+    font-weight: 600;
+    padding-left: 18px;
+  }
+  .ds-sidebar a.is-active::before {
+    content: "▪";
+    position: absolute;
+    left: 4px;
+    font-size: 10px;
+    color: var(--498-green-deep);
+  }
+
+  /* Mobile sidebar toggle */
+  .ds-sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 64px; right: 16px;
+    z-index: 45;
+    padding: 8px 14px;
+    background: var(--498-black);
+    color: var(--498-white);
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    border: 0;
+    cursor: pointer;
+  }
+
+  /* ===================================================================
+     MAIN CONTENT · scroll natural · padding compensa sidebar
+     =================================================================== */
+  .ds-main {
+    margin-top: var(--ds-nav-h);
+    margin-left: var(--ds-sidebar-w);
+    padding: 48px 64px;
+    max-width: calc(var(--ds-sidebar-w) + 1100px);
+    min-height: calc(100vh - var(--ds-nav-h));
+  }
+
+  /* PAGE INTRO */
+  .ds-intro {
+    padding-bottom: 40px;
+    margin-bottom: 56px;
+    border-bottom: 1px solid var(--pg-line-strong);
+  }
+  .ds-intro__eyebrow {
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--498-green-deep); font-weight: 600;
+    display: inline-block; margin-bottom: 20px;
+  }
+  .ds-intro__title {
+    font-family: var(--498-family-body); font-weight: 200; font-style: italic;
+    font-size: 52px; line-height: 1.05; letter-spacing: -1px;
+    color: var(--pg-text);
+    margin-bottom: 24px;
+  }
+  .ds-intro__title em { color: var(--498-green-deep); font-style: italic; }
+  .ds-intro__lead {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 20px; line-height: 1.55;
+    color: var(--pg-text-muted);
+    max-width: 720px;
+  }
+  .ds-intro__meta {
+    margin-top: 24px;
+    display: flex; gap: 16px; flex-wrap: wrap;
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--pg-text-faint);
+  }
+  .ds-intro__meta span { padding: 6px 10px; border: 1px solid var(--pg-line); }
+
+  /* ===================================================================
+     SECTION PATTERN · header + preview + (code)
+     =================================================================== */
+  .ds-section {
+    margin-bottom: 88px;
+    scroll-margin-top: 76px;
+  }
+  .ds-section__header {
+    margin-bottom: 28px;
+  }
+  .ds-section__category {
+    font-family: var(--498-family-mono); font-size: 10px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--498-green-deep); font-weight: 600;
+    display: block; margin-bottom: 10px;
+  }
+  .ds-section__title {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 30px; line-height: 1.2; letter-spacing: -.4px;
+    color: var(--pg-text);
+    margin-bottom: 12px;
+  }
+  .ds-section__title em { color: var(--498-green-deep); font-style: italic; }
+  .ds-section__description {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 15px; line-height: 1.6;
+    color: var(--pg-text-muted);
+    max-width: 680px;
+  }
+  .ds-preview {
+    margin-top: 24px;
+    padding: 32px;
+    background: var(--pg-paper);
+    border: 1px solid var(--pg-line-strong);
+    position: relative;
+  }
+  .ds-preview--flush { padding: 0; }
+  .ds-preview--dark { background: var(--498-black); color: var(--498-white); }
+  .ds-preview__label {
+    position: absolute;
+    top: 0; right: 0;
+    padding: 4px 8px;
+    background: var(--498-black);
+    color: var(--498-white);
+    font-family: var(--498-family-mono); font-size: 9px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .ds-code {
+    margin-top: 12px;
+    border: 1px solid var(--pg-line);
+  }
+  .ds-code summary {
+    padding: 10px 14px;
+    background: var(--498-grey-50);
+    cursor: pointer;
+    font-family: var(--498-family-mono); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--498-green-deep); font-weight: 500;
+    user-select: none;
+  }
+  .ds-code summary:hover { background: var(--498-green-50); }
+  .ds-code pre {
+    margin: 0;
+    padding: 16px;
+    background: var(--498-grey-50);
+    border-top: 1px solid var(--pg-line);
+    border-left: 3px solid var(--498-green-deep);
+    overflow-x: auto;
+    font-family: var(--498-family-mono); font-size: 12px;
+    line-height: 1.6;
+    color: var(--pg-text);
+  }
+  .ds-code code { font-family: var(--498-family-mono); }
+
+  /* ===================================================================
+     FOUNDATIONS · COLOR · swatches grid
+     =================================================================== */
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--pg-line);
+    border-left: 1px solid var(--pg-line);
+  }
+  .swatch {
+    border-right: 1px solid var(--pg-line);
+    border-bottom: 1px solid var(--pg-line);
+    background: var(--498-white);
+    overflow: hidden;
+  }
+  .swatch__color {
+    height: 100px;
+  }
+  .swatch__meta {
+    padding: 12px 14px;
+    font-family: var(--498-family-mono);
+  }
+  .swatch__name {
+    font-size: 11px;
+    color: var(--pg-text);
+    font-weight: 600;
+    letter-spacing: 1px;
+    display: block; margin-bottom: 4px;
+  }
+  .swatch__hex {
+    font-size: 10px;
+    color: var(--pg-text-faint);
+    letter-spacing: .5px;
+    display: block; margin-bottom: 6px;
+  }
+  .swatch__ratio {
+    font-size: 9px;
+    color: var(--498-green-deep);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .swatch__ratio.fail { color: var(--pg-text-faint); }
+
+  /* TYPOGRAPHY scale display */
+  .type-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--pg-line);
+    align-items: baseline;
+  }
+  .type-row:last-child { border-bottom: 0; }
+  .type-row__meta {
+    font-family: var(--498-family-mono); font-size: 10px;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--pg-text-faint);
+  }
+  .type-row__meta strong {
+    display: block; color: var(--498-green-deep);
+    font-size: 11px; font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .type-row__sample { color: var(--pg-text); }
+
+  /* SPACES + RADIUS visuals */
+  .space-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+  .space-box {
+    background: var(--498-white);
+    border: 1px solid var(--pg-line-strong);
+    padding: 16px;
+    text-align: center;
+  }
+  .space-box__visual {
+    background: var(--498-green-deep);
+    margin: 0 auto 12px;
+    border-radius: 0;
+  }
+  .space-box__label {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--pg-text-muted); letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .space-box__label strong { display: block; color: var(--pg-text); font-weight: 600; }
+
+  /* MOTION demo */
+  .motion-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .motion-box {
+    width: 80px; height: 80px;
+    background: var(--498-grey-100);
+    border: 1px solid var(--pg-line-strong);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--498-family-mono); font-size: 10px;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--pg-text-faint);
+    cursor: pointer;
+  }
+  .motion-box.fast { transition: background var(--498-dur-fast) var(--498-ease), color var(--498-dur-fast) var(--498-ease); }
+  .motion-box.mid  { transition: background var(--498-dur) var(--498-ease), color var(--498-dur) var(--498-ease); }
+  .motion-box.slow { transition: background var(--498-dur-slow) var(--498-ease), color var(--498-dur-slow) var(--498-ease); }
+  .motion-box:hover { background: var(--498-green-deep); color: var(--498-white); }
+
+  /* ===================================================================
+     COMPONENTS · NAV demo (compacto, no fixed)
+     =================================================================== */
+  .demo-nav {
+    display: flex; align-items: stretch;
+    gap: 0;
+  }
+  .demo-nav__brand-box {
+    display: inline-flex; align-items: center;
+    padding: 0 18px;
+    background: var(--498-black);
+    color: var(--498-white);
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+    height: 40px;
+  }
+  .demo-nav__brand-box em { color: var(--498-green); font-style: normal; }
+  .demo-nav__link-box {
+    display: inline-flex; align-items: center;
+    padding: 0 14px;
+    border: 1px solid var(--pg-line-mid);
+    border-left: 0;
+    color: var(--pg-text); text-decoration: none;
+    font-family: var(--498-family-ui); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
+    background: var(--498-white);
+    height: 40px;
+  }
+  .demo-nav__link-box .num {
+    font-size: 9px; color: var(--pg-text-faint); margin-right: 8px; letter-spacing: 1px;
+  }
+  .demo-nav__link-box:hover {
+    border-color: var(--498-green-deep);
+    color: var(--498-green-deep);
+    background: var(--498-green-50);
+    z-index: 1;
+  }
+  .demo-nav__cta-box {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 18px;
+    margin-left: 12px;
+    background: var(--498-black); color: var(--498-white);
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    text-decoration: none;
+    height: 40px; min-width: 148px;
+  }
+  .demo-nav__cta-box:hover { background: var(--498-green-deep); }
+
+  /* LANG GRID */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 52px);
+    grid-auto-rows: 32px;
+    background: var(--498-white);
+    border: 1px solid var(--pg-line-strong);
+    width: max-content;
+  }
+  .lang-grid__cell {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--498-family-mono); font-size: 10px;
+    letter-spacing: 1.2px; text-transform: uppercase; font-weight: 500;
+    color: var(--pg-text); text-decoration: none;
+    border-right: 1px solid var(--pg-line);
+    border-bottom: 1px solid var(--pg-line);
+  }
+  .lang-grid__cell:nth-child(3n) { border-right: 0; }
+  .lang-grid__cell:nth-child(n+4) { border-bottom: 0; }
+  .lang-grid__cell:hover { background: var(--498-green-50); color: var(--498-green-deep); }
+  .lang-grid__cell.is-active { background: var(--498-green-deep); color: var(--498-white); }
+  .lang-grid__cell.lang-cjk { font-size: 13px; letter-spacing: 0; text-transform: none; }
+
+  /* ===================================================================
+     HERO demo (reducido, no full-bleed)
+     =================================================================== */
+  .demo-hero {
+    position: relative;
+    height: 360px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .demo-hero video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .demo-hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.6) 100%);
+    z-index: 1;
+  }
+  .demo-hero__content {
+    position: relative; z-index: 2;
+    height: 100%;
+    padding: 0 32px 32px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    color: var(--498-white);
+  }
+  .demo-hero__eyebrow {
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--498-green); font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .demo-hero__display {
+    font-family: var(--498-family-body); font-style: italic; font-weight: 200;
+    font-size: 40px; line-height: 1.05; letter-spacing: -.8px;
+    color: var(--498-white);
+    margin-bottom: 16px;
+    text-shadow: 0 1px 32px rgba(0,0,0,.3);
+    max-width: 580px;
+  }
+  .demo-hero__display em { color: var(--498-green); font-style: italic; }
+  .demo-hero__lead {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 16px; line-height: 1.5;
+    color: rgba(255,255,255,.88);
+    max-width: 460px;
+    margin-bottom: 20px;
+  }
+
+  /* ===================================================================
+     BOX COLLECTIONS
+     =================================================================== */
+  .box-collection {
+    display: grid;
+    border-top: 1px solid var(--pg-line-strong);
+    border-left: 1px solid var(--pg-line-strong);
+    overflow: hidden;
+  }
+  .box-collection--4 { grid-template-columns: repeat(4, 1fr); }
+  .box-collection--3 { grid-template-columns: repeat(3, 1fr); }
+  .box-collection--2 { grid-template-columns: repeat(2, 1fr); }
+  .box-collection > * {
+    border-right: 1px solid var(--pg-line-strong);
+    border-bottom: 1px solid var(--pg-line-strong);
+  }
+
+  /* Persiana animation */
+  .box-collection--persiana > * {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+    transition: transform .55s cubic-bezier(.2,.8,.25,1), opacity .55s ease-out;
+  }
+  .box-collection--persiana.in-view > *:nth-child(1) { transform: scaleY(1); opacity: 1; transition-delay: .05s; }
+  .box-collection--persiana.in-view > *:nth-child(2) { transform: scaleY(1); opacity: 1; transition-delay: .15s; }
+  .box-collection--persiana.in-view > *:nth-child(3) { transform: scaleY(1); opacity: 1; transition-delay: .25s; }
+  .box-collection--persiana.in-view > *:nth-child(4) { transform: scaleY(1); opacity: 1; transition-delay: .35s; }
+  .box-collection--persiana.in-view > *:nth-child(5) { transform: scaleY(1); opacity: 1; transition-delay: .45s; }
+  .box-collection--persiana.in-view > *:nth-child(6) { transform: scaleY(1); opacity: 1; transition-delay: .55s; }
+
+  /* Frame-cross variant */
+  .box-collection--frame-cross {
+    border: 0;
+    overflow: visible;
+    gap: 20px;
+    padding: 10px;
+  }
+  .box-collection--frame-cross > * {
+    border: 1px solid var(--pg-line-strong);
+    position: relative;
+    overflow: visible;
+    background: var(--498-white);
+  }
+  .box-collection--frame-cross > *::before {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    pointer-events: none;
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 0 0 / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 100% 0 / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 0 100% / 14px 14px no-repeat,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><path d='M0 7H14M7 0V14' stroke='%231A1A1A' stroke-width='1'/></svg>") 100% 100% / 14px 14px no-repeat;
+  }
+
+  /* Periodic variant */
+  .box-collection--periodic {
+    background: var(--498-black);
+    gap: 1px;
+    padding: 1px;
+    border: 0;
+    overflow: visible;
+  }
+  .box-collection--periodic > * {
+    border: 0 !important;
+    background: var(--498-white);
+    padding: 0;
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr 1px auto;
+    min-height: 200px;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    transition: background .2s;
+  }
+  .box-collection--periodic > *:hover { background: var(--498-green-50); }
+  .periodic__meta {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 10px;
+    font-family: var(--498-family-mono);
+    font-size: 10px; letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .periodic__num { color: var(--pg-text-faint); font-weight: 500; }
+  .periodic__tag { color: var(--498-green-deep); font-weight: 600; }
+  .periodic__symbol {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--498-family-display);
+    font-size: 56px; line-height: 1;
+    letter-spacing: 1px;
+    color: var(--498-black);
+    text-transform: uppercase;
+  }
+  .periodic__divider { background: var(--498-black); width: 100%; height: 1px; }
+  .periodic__desc {
+    padding: 10px 12px 14px;
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 12px; line-height: 1.4;
+    color: var(--pg-text);
+  }
+  .periodic__desc::before {
+    content: "";
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: var(--498-green);
+    margin-right: 8px;
+    vertical-align: -1px;
+  }
+
+  /* Service cards variant */
+  .box-collection--service-cards {
+    background: var(--498-black);
+    gap: 1px;
+    padding: 1px;
+    border: 0;
+    overflow: visible;
+  }
+  .box-collection--service-cards > * {
+    background: var(--498-white);
+    display: flex;
+    flex-direction: column;
+    padding: 18px !important;
+    border: 0 !important;
+    overflow: hidden;
+    transition: background .2s;
+    position: relative;
+  }
+  .box-collection--service-cards > *::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid var(--498-black);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .box-collection--service-cards > *:hover { background: var(--498-green-50); }
+  .box-collection--service-cards > *:hover::before { border-color: var(--498-green-deep); }
+  .service-card__image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid var(--498-black);
+  }
+  .service-card__image img { width: 100%; height: 100%; object-fit: cover; }
+  .service-card__title {
+    padding: 20px 24px 10px;
+    text-align: center;
+    font-family: var(--498-family-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--498-black);
+  }
+  .service-card__desc {
+    padding: 0 24px 22px;
+    font-family: var(--498-family-body);
+    font-weight: 300;
+    font-size: 13px; line-height: 1.55;
+    color: var(--498-black);
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .service-card__desc::before {
+    content: "";
+    display: inline-block; flex-shrink: 0;
+    width: 11px; height: 11px;
+    background: var(--498-green);
+    margin-top: 4px;
+  }
+
+  /* BOXES individual */
+  .box {
+    background: var(--498-white);
+    padding: 28px 24px;
+    position: relative;
+    transition: background .2s;
+  }
+  .box:hover { background: var(--pg-paper); }
+  .box__num {
+    position: absolute; top: 14px; right: 18px;
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--pg-text-faint); letter-spacing: 1.2px;
+  }
+  .box__tag {
+    font-family: var(--498-family-mono); font-size: 11px;
+    color: var(--498-green-deep); letter-spacing: 1.5px;
+    text-transform: uppercase; font-weight: 500;
+    margin-bottom: 14px; display: block;
+  }
+  .box__title {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 18px; line-height: 1.3;
+    color: var(--pg-text);
+    margin-bottom: 12px;
+  }
+  .box__desc {
+    color: var(--pg-text-muted);
+    font-size: 13px; line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .box__mark {
+    width: 28px; height: 28px;
+    margin-bottom: 16px;
+    display: block;
+    color: var(--498-green-deep);
+    transition: color .2s, transform .4s ease;
+  }
+  .box:hover .box__mark { color: var(--498-green); transform: rotate(45deg); }
+  .box__mark svg { width: 100%; height: 100%; }
+
+  /* ===================================================================
+     CARDS
+     =================================================================== */
+  .vision-hero-card {
+    position: relative;
+    border: 1px solid var(--pg-line-strong);
+    background:
+      linear-gradient(135deg,
+        var(--498-green-200) 0%,
+        var(--498-green-100) 35%,
+        var(--498-green-50) 75%,
+        var(--498-white) 100%);
+    padding: 40px;
+    min-height: 320px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(280px, 0.9fr) 1.1fr;
+    gap: 28px;
+    align-items: center;
+  }
+  .vision-hero-card__content {
+    display: flex; flex-direction: column;
+    gap: 20px; align-items: flex-start;
+  }
+  .eyebrow-square {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--pg-text); font-weight: 500;
+  }
+  .eyebrow-square::before {
+    content: "";
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--pg-text);
+  }
+  .vision-hero-card__claim {
+    font-family: var(--498-family-body);
+    font-weight: 200;
+    font-size: 36px;
+    line-height: 1.05;
+    letter-spacing: -.7px;
+    color: var(--pg-text);
+  }
+  .btn-split {
+    display: inline-flex; align-items: stretch;
+    text-decoration: none;
+  }
+  .btn-split__label {
+    padding: 12px 18px;
+    border: 1px solid var(--pg-text);
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--pg-text); font-weight: 500;
+    line-height: 1; display: inline-flex; align-items: center;
+    background: transparent;
+    transition: background .2s, color .2s;
+  }
+  .btn-split__arrow {
+    padding: 12px 14px;
+    border: 1px solid var(--pg-text);
+    border-left: 0;
+    color: var(--pg-text);
+    font-family: var(--498-family-mono); font-size: 14px;
+    line-height: 1; display: inline-flex; align-items: center;
+    background: transparent;
+    transition: background .2s, color .2s;
+  }
+  .btn-split:hover .btn-split__label,
+  .btn-split:hover .btn-split__arrow { background: var(--pg-text); color: var(--498-white); }
+  .vision-hero-card__visual {
+    position: relative;
+    height: 100%;
+    min-height: 240px;
+    margin: -40px -40px -40px 0;
+    overflow: hidden;
+  }
+  .vision-hero-card__visual img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  /* BOX PATTERN · trama animada */
+  .box-pattern {
+    padding: 32px 28px;
+    background: url('assets/patterns/grid-backprop.svg'), var(--498-white);
+    background-repeat: repeat;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    animation: patternFlow 90s linear infinite;
+  }
+  .box-pattern::before {
+    content: "";
+    position: absolute; inset: -10%;
+    background: linear-gradient(115deg,
+      rgba(45, 214, 15, 0) 0%,
+      rgba(45, 214, 15, 0.10) 30%,
+      rgba(150, 150, 150, 0.06) 50%,
+      rgba(14, 122, 31, 0.10) 70%,
+      rgba(45, 214, 15, 0) 100%);
+    background-size: 260% 260%;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    animation: gradientDrift 28s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+  .box-pattern > * { position: relative; z-index: 1; }
+  @keyframes patternFlow {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: 120px 120px, 0 0; }
+  }
+  @keyframes gradientDrift {
+    0%   { background-position:   0% 50%; opacity: .85; }
+    50%  { background-position: 100% 50%; opacity: 1;   }
+    100% { background-position:  50%  0%; opacity: .9;  }
+  }
+
+  /* MANIFESTO gradient card */
+  .manifesto-card {
+    position: relative;
+    background: var(--498-green-deep);
+    color: var(--498-white);
+    padding: 40px 36px;
+    overflow: hidden;
+    min-height: 280px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .manifesto-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 50% at 100% 0%, rgba(45,214,15,.35), transparent 60%),
+      radial-gradient(50% 40% at 0% 100%, rgba(0,0,0,.35), transparent 60%);
+    pointer-events: none;
+  }
+  .manifesto-card > * { position: relative; }
+  .manifesto-card__eyebrow {
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--498-green-200); font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .manifesto-card__claim {
+    font-family: var(--498-family-body); font-weight: 200; font-style: italic;
+    font-size: 30px; line-height: 1.2; letter-spacing: -.4px;
+    margin-bottom: 18px;
+    max-width: 520px;
+  }
+  .manifesto-card__body {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 14px; line-height: 1.65;
+    color: rgba(255,255,255,.85);
+    max-width: 520px;
+  }
+
+  /* BLOG POST simplified */
+  .blog-mini {
+    background: var(--498-white);
+    border: 1px solid var(--pg-line);
+  }
+  .blog-mini__hero {
+    aspect-ratio: 21 / 9;
+    overflow: hidden;
+    border-bottom: 1px solid var(--498-black);
+  }
+  .blog-mini__hero img { width: 100%; height: 100%; object-fit: cover; }
+  .blog-mini__body { padding: 28px 32px 32px; }
+  .blog-mini__meta {
+    display: flex; gap: 16px;
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--498-green-deep); font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .blog-mini__meta span:not(:first-child) { color: var(--pg-text-faint); }
+  .blog-mini__title {
+    font-family: var(--498-family-body); font-weight: 200; font-style: italic;
+    font-size: 28px; line-height: 1.15; letter-spacing: -.4px;
+    color: var(--pg-text);
+    margin-bottom: 14px;
+  }
+  .blog-mini__title em { color: var(--498-green-deep); font-style: italic; }
+  .blog-mini__lead {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 16px; line-height: 1.55;
+    color: var(--pg-text-muted);
+  }
+
+  /* ===================================================================
+     EDITORIAL · typography helpers
+     =================================================================== */
+  .eyebrow {
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--498-green-deep); font-weight: 500;
+    display: inline-block;
+  }
+  .ed-display-2 {
+    font-family: var(--498-family-body); font-style: italic; font-weight: 200;
+    font-size: 44px; line-height: 1.15; letter-spacing: -.5px;
+  }
+  .ed-display-3 {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 32px; line-height: 1.25; letter-spacing: -.3px;
+  }
+  .ed-h2 {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 24px; line-height: 1.3;
+  }
+  .ed-h3 {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 20px; line-height: 1.35;
+  }
+  .ed-lead {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 20px; line-height: 1.55; color: var(--pg-text);
+  }
+  .ed-body {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 16px; line-height: 1.7; color: var(--pg-text-muted);
+  }
+
+  /* Pull quote inset */
+  .pullquote-inset {
+    margin: 8px 0;
+    padding: 8px 0 8px 24px;
+    border-left: 2px solid var(--498-green-deep);
+    max-width: 620px;
+  }
+  .pullquote-inset__text {
+    font-family: var(--498-family-body);
+    font-style: italic; font-weight: 200;
+    font-size: 22px; line-height: 1.4;
+    color: var(--pg-text);
+  }
+  .pullquote-inset__attr {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--pg-text-faint); letter-spacing: 1.5px;
+    text-transform: uppercase; margin-top: 12px;
+  }
+
+  /* Pull quote editorial */
+  .pull {
+    max-width: 780px;
+  }
+  .pull__text {
+    font-family: var(--498-family-body); font-style: italic; font-weight: 200;
+    font-size: 32px; line-height: 1.3; color: var(--pg-text);
+    letter-spacing: -.4px;
+  }
+  .pull__attr {
+    margin-top: 20px;
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--498-green-deep); font-weight: 500;
+  }
+
+  /* CITE chats */
+  .cite-chat {
+    display: inline-flex; align-items: center; justify-content: center;
+    vertical-align: super;
+    background: var(--498-black); color: var(--498-white);
+    min-width: 16px; height: 16px; padding: 0 4px;
+    font-family: var(--498-family-mono); font-size: 9px;
+    font-weight: 500; line-height: 1; letter-spacing: .3px;
+    text-decoration: none; margin: 0 1px 0 3px;
+    border-radius: 1px;
+    transition: background .15s ease;
+  }
+  .cite-chat:hover { background: var(--498-green-deep); }
+  .cite-chat--grey { background: var(--498-grey-500); }
+  .cite-chat--grey:hover { background: var(--498-grey-800); }
+  .cite-chat--green { background: var(--498-green-deep); }
+  .cite-chat--green:hover { background: var(--498-green); color: var(--498-black); }
+
+  /* Hyperlink */
+  a.link {
+    color: var(--498-green-deep);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(14,122,31,.35);
+    transition: border-color .15s ease;
+  }
+  a.link:hover { border-bottom-color: var(--498-green-deep); }
+
+  /* Frame-cross standalone */
+  .frame-cross {
+    position: relative;
+    border: 1px solid var(--pg-text);
+    padding: 28px;
+    background: var(--498-white);
+  }
+  .frame-cross > .cnr {
+    position: absolute;
+    width: 16px; height: 16px;
+    pointer-events: none;
+    z-index: 4;
+  }
+  .frame-cross > .cnr::before,
+  .frame-cross > .cnr::after {
+    content: "";
+    position: absolute;
+    background: var(--pg-text);
+  }
+  .frame-cross > .cnr::before {
+    top: 50%; transform: translateY(-50%);
+    left: 0; right: 0; height: 1px;
+  }
+  .frame-cross > .cnr::after {
+    left: 50%; transform: translateX(-50%);
+    top: 0; bottom: 0; width: 1px;
+  }
+  .frame-cross > .cnr--tl { top: -8px;    left: -8px; }
+  .frame-cross > .cnr--tr { top: -8px;    right: -8px; }
+  .frame-cross > .cnr--bl { bottom: -8px; left: -8px; }
+  .frame-cross > .cnr--br { bottom: -8px; right: -8px; }
+
+  /* Typewriter */
+  .typewriter {
+    --chars: 10;
+    --char-w: 0.78em;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: -0.18em;
+    width: 0;
+    border-right: 2px solid transparent;
+  }
+  .typewriter.is-typing {
+    animation:
+      typewriterReveal calc(var(--chars) * 0.085s) steps(var(--chars), end) forwards,
+      typewriterCursorShow 0.01s linear forwards,
+      typewriterCursorHide 0.01s linear forwards calc(var(--chars) * 0.085s + 0.15s);
+  }
+  @keyframes typewriterReveal {
+    from { width: 0; }
+    to   { width: calc(var(--chars) * var(--char-w)); }
+  }
+  @keyframes typewriterCursorShow { to { border-right-color: currentColor; } }
+  @keyframes typewriterCursorHide { to { border-right-color: transparent; } }
+
+  /* Has-cursor static blink */
+  .has-cursor::after {
+    content: "▍";
+    display: inline-block;
+    margin-left: 4px;
+    color: var(--498-green-deep);
+    animation: blink 1.05s steps(2, start) infinite;
+  }
+  @keyframes blink {
+    to { visibility: hidden; }
+  }
+
+  /* ===================================================================
+     UI · buttons, forms, badges, table, code
+     =================================================================== */
+  .btn-on-video, .btn-ghost-on-video, .btn-light, .btn-ghost-light, .btn-solid-dark {
+    padding: 12px 22px;
+    font-family: var(--498-family-ui); font-size: 12px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 1.2px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    transition: background .2s, color .2s, border-color .2s;
+    white-space: nowrap;
+  }
+  .btn-on-video {
+    background: var(--498-white); color: var(--pg-text);
+    border: 1px solid var(--498-white);
+  }
+  .btn-on-video:hover { background: var(--498-green); color: var(--498-black); border-color: var(--498-green); }
+  .btn-ghost-on-video {
+    background: transparent; color: var(--498-white);
+    border: 1px solid rgba(255,255,255,.6);
+  }
+  .btn-ghost-on-video:hover { border-color: var(--498-green); color: var(--498-green); background: rgba(255,255,255,.06); }
+  .btn-light {
+    background: var(--pg-text); color: var(--498-white);
+    border: 1px solid var(--pg-text);
+  }
+  .btn-light:hover { background: var(--498-green-deep); border-color: var(--498-green-deep); }
+  .btn-ghost-light {
+    background: transparent; color: var(--pg-text);
+    border: 1px solid var(--pg-line-strong);
+  }
+  .btn-ghost-light:hover { border-color: var(--498-green-deep); color: var(--498-green-deep); }
+  .btn-solid-dark {
+    background: var(--498-black); color: var(--498-white);
+    border: 1px solid var(--498-black);
+  }
+  .btn-solid-dark:hover { background: var(--498-green-deep); border-color: var(--498-green-deep); }
+
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .btn-row--dark {
+    background: var(--498-black);
+    padding: 24px;
+  }
+
+  /* Forms */
+  .ui-form { display: grid; gap: 14px; max-width: 480px; }
+  .ui-form label {
+    font-family: var(--498-family-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--498-green-deep); font-weight: 500;
+  }
+  .ui-form input, .ui-form textarea {
+    width: 100%;
+    background: var(--498-white);
+    border: 1px solid var(--pg-line-strong);
+    border-radius: 0;
+    padding: 12px 14px;
+    color: var(--pg-text);
+    font-family: var(--498-family-body);
+    font-size: 14px;
+    transition: border-color .2s;
+  }
+  .ui-form input::placeholder, .ui-form textarea::placeholder {
+    color: var(--pg-text-faint); font-style: italic;
+  }
+  .ui-form input:focus, .ui-form textarea:focus {
+    outline: 0; border-color: var(--498-green-deep);
+  }
+  .ui-form textarea { min-height: 100px; resize: vertical; }
+  .ui-form .row { display: grid; gap: 6px; }
+  .ui-btn-submit {
+    background: linear-gradient(135deg, var(--498-green) 0%, var(--498-green-deep) 100%);
+    color: var(--498-white);
+    border: 0;
+    padding: 14px 20px;
+    font-family: var(--498-family-ui); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500;
+    cursor: pointer;
+    border-radius: 0;
+    transition: filter .2s;
+  }
+  .ui-btn-submit:hover { filter: brightness(1.08); }
+
+  /* Badges */
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center;
+    font-family: var(--498-family-mono); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 0;
+    line-height: 1;
+  }
+  .badge-flagship { background: var(--498-green); color: var(--498-black); }
+  .badge-dev { background: transparent; color: var(--498-green-deep); border: 1px solid var(--498-green-deep); }
+  .badge-legacy { background: var(--498-grey-100); color: var(--pg-text-muted); border: 1px solid var(--pg-line); }
+  .badge-critical { background: var(--498-alert); color: var(--498-white); }
+
+  /* Table */
+  .ui-table {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--498-family-body); font-size: 14px;
+  }
+  .ui-table th, .ui-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--pg-line);
+  }
+  .ui-table th {
+    font-family: var(--498-family-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--498-green-deep); font-weight: 500;
+    border-bottom: 1px solid var(--pg-line-strong);
+  }
+  .ui-table td { color: var(--pg-text); }
+  .ui-table tr:last-child td { border-bottom: 0; }
+  .ui-table tr:hover td { background: var(--498-green-50); }
+  .ui-table code {
+    font-family: var(--498-family-mono); font-size: 12px;
+    color: var(--498-green-deep);
+    background: var(--498-grey-100); padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  /* Code block · LIGHT */
+  .ui-code {
+    background: var(--498-grey-50);
+    border: 1px solid var(--pg-line-strong);
+    border-left: 3px solid var(--498-green-deep);
+    border-radius: 0;
+    padding: 22px 26px;
+    overflow-x: auto;
+    font-family: var(--498-family-mono); font-size: 12px;
+    line-height: 1.7;
+    color: var(--pg-text);
+  }
+  .ui-code .c-key { color: var(--498-green-deep); font-weight: 500; }
+  .ui-code .c-val { color: var(--pg-text-muted); }
+  .ui-code .c-com { color: var(--pg-text-faint); font-style: italic; }
+
+  /* Toggle switch */
+  .cookie-toggle {
+    position: relative; display: inline-block;
+    width: 44px; height: 24px; cursor: pointer;
+    flex-shrink: 0;
+  }
+  .cookie-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+  .cookie-toggle__track {
+    position: absolute; inset: 0;
+    background: var(--pg-line-mid);
+    border: 1px solid var(--pg-text);
+    transition: background .2s;
+  }
+  .cookie-toggle__track::before {
+    content: "";
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 18px; height: 18px;
+    background: var(--498-white);
+    border: 1px solid var(--pg-text);
+    transition: transform .2s;
+  }
+  .cookie-toggle input:checked + .cookie-toggle__track { background: var(--498-green-deep); }
+  .cookie-toggle input:checked + .cookie-toggle__track::before { transform: translateX(20px); }
+  .toggle-row {
+    display: flex; align-items: center; gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--pg-line);
+  }
+  .toggle-row:last-child { border-bottom: 0; }
+  .toggle-row__label {
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--pg-text); font-weight: 500;
+    flex: 1;
+  }
+
+  /* ===================================================================
+     PATTERNS · pattern band
+     =================================================================== */
+  .pattern-band {
+    height: 160px;
+    background: url('assets/patterns/grid-backprop.svg'), #0F1410;
+    background-repeat: repeat;
+    border-top: 1px solid var(--498-black);
+    border-bottom: 1px solid var(--498-black);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    animation: patternFlow 60s linear infinite;
+  }
+  .pattern-band::before {
+    content: "";
+    position: absolute; inset: -20%;
+    background: linear-gradient(115deg,
+      rgba(45, 214, 15, 0) 0%,
+      rgba(45, 214, 15, 0.18) 18%,
+      rgba(150, 150, 150, 0.10) 38%,
+      rgba(14, 122, 31, 0.22) 58%,
+      rgba(150, 150, 150, 0.08) 78%,
+      rgba(45, 214, 15, 0) 100%);
+    background-size: 280% 280%;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    animation: gradientDrift 22s ease-in-out infinite alternate;
+    z-index: 1;
+  }
+  .pattern-band::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg,
+      transparent 40%,
+      rgba(45, 214, 15, 0.08) 50%,
+      transparent 60%);
+    background-size: 300% 300%;
+    pointer-events: none;
+    animation: shimmer 14s linear infinite;
+    z-index: 2;
+  }
+  @keyframes shimmer {
+    from { background-position: -50% -50%; }
+    to   { background-position: 150% 150%; }
+  }
+  .pattern-band__label {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-family: var(--498-family-mono); font-size: 11px;
+    color: var(--498-green-deep); letter-spacing: 2px;
+    text-transform: uppercase; background: var(--498-white);
+    padding: 8px 16px; border: 1px solid var(--498-black);
+    z-index: 3;
+  }
+
+  /* ===================================================================
+     MARCAS GEOMÉTRICAS · pillar SVGs
+     =================================================================== */
+  .marks-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--pg-line-strong);
+  }
+  .marks-grid > div {
+    padding: 40px 24px 28px;
+    border-right: 1px solid var(--pg-line);
+    text-align: center;
+    background: var(--498-white);
+    transition: background .2s;
+  }
+  .marks-grid > div:last-child { border-right: 0; }
+  .marks-grid > div:hover { background: var(--pg-paper); }
+  .marks-grid svg {
+    width: 48px; height: 48px;
+    color: var(--498-green-deep);
+    margin: 0 auto 16px;
+    transition: transform .4s ease;
+  }
+  .marks-grid > div:hover svg { transform: rotate(45deg); color: var(--498-green); }
+  .marks-grid__label {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--pg-text-faint); letter-spacing: 1.5px;
+    text-transform: uppercase; font-weight: 500;
+  }
+
+  /* ===================================================================
+     ASSETS · catalog grids
+     =================================================================== */
+  .asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .asset-card {
+    background: var(--498-white);
+    border: 1px solid var(--pg-line);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .asset-card__thumb {
+    aspect-ratio: 4/3;
+    background: var(--pg-paper);
+    overflow: hidden;
+    border-bottom: 1px solid var(--pg-line);
+  }
+  .asset-card__thumb img,
+  .asset-card__thumb video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .asset-card__meta {
+    padding: 10px 12px;
+    flex: 1;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .asset-card__name {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--pg-text); letter-spacing: .5px;
+    word-break: break-all;
+    font-weight: 600;
+  }
+  .asset-card__concept {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 11px; line-height: 1.4;
+    color: var(--pg-text-muted);
+  }
+
+  /* Logos grid · diferentes fondos */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0;
+    border: 1px solid var(--pg-line-strong);
+  }
+  .logo-cell {
+    padding: 28px;
+    border-right: 1px solid var(--pg-line);
+    border-bottom: 1px solid var(--pg-line);
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    background: var(--498-white);
+  }
+  .logo-cell--dark { background: var(--498-black); }
+  .logo-cell--green { background: var(--498-green-50); }
+  .logo-cell img { max-height: 56px; max-width: 100%; width: auto; height: auto; }
+  .logo-cell__name {
+    font-family: var(--498-family-mono); font-size: 9px;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--pg-text-faint); font-weight: 500;
+  }
+  .logo-cell--dark .logo-cell__name { color: rgba(255,255,255,.7); }
+
+  /* Portraits grid */
+  .portrait-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--pg-line-strong);
+    border-left: 1px solid var(--pg-line-strong);
+  }
+  .portrait {
+    display: flex; flex-direction: column;
+    text-decoration: none; color: inherit;
+    background: var(--498-white);
+    border-right: 1px solid var(--pg-line-strong);
+    border-bottom: 1px solid var(--pg-line-strong);
+    transition: background .2s;
+  }
+  .portrait:hover { background: var(--pg-paper); }
+  .portrait__img {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--pg-paper);
+    border-bottom: 1px solid var(--pg-line);
+  }
+  .portrait__img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: saturate(.35) contrast(1.05);
+    transition: filter .55s var(--498-ease), transform .6s var(--498-ease);
+  }
+  .portrait:hover .portrait__img img {
+    filter: saturate(1) contrast(1);
+    transform: scale(1.04);
+  }
+  .portrait__caption {
+    padding: 12px 14px 14px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .portrait__num {
+    font-family: var(--498-family-mono); font-size: 10px;
+    color: var(--498-green-deep); letter-spacing: 1.5px;
+    font-weight: 500;
+  }
+  .portrait__name {
+    font-family: var(--498-family-body); font-weight: 400;
+    font-size: 13px; color: var(--pg-text); line-height: 1.3;
+  }
+  .portrait__role {
+    font-family: var(--498-family-mono); font-size: 9px;
+    color: var(--pg-text-faint); letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  /* ===================================================================
+     LEGAL cards
+     =================================================================== */
+  .legal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .legal-card {
+    background: var(--498-white);
+    border: 1px solid var(--pg-line-strong);
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color .2s, background .2s;
+  }
+  .legal-card:hover {
+    border-color: var(--498-green-deep);
+    background: var(--498-green-50);
+  }
+  .legal-card__title {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 20px; line-height: 1.25;
+    color: var(--pg-text);
+  }
+  .legal-card__desc {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 14px; line-height: 1.55;
+    color: var(--pg-text-muted);
+    flex: 1;
+  }
+  .legal-card__cta {
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--498-green-deep); font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid var(--498-green-deep);
+    align-self: flex-start;
+  }
+
+  /* ===================================================================
+     REFERENCIA · big cards
+     =================================================================== */
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .ref-card {
+    background: var(--498-black);
+    color: var(--498-white);
+    padding: 32px;
+    text-decoration: none;
+    display: flex; flex-direction: column; gap: 14px;
+    border: 1px solid var(--498-black);
+    transition: background .2s, border-color .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ref-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(60% 50% at 0% 0%, rgba(45,214,15,.12), transparent 60%);
+    pointer-events: none;
+  }
+  .ref-card > * { position: relative; }
+  .ref-card:hover {
+    background: var(--498-green-deep);
+    border-color: var(--498-green-deep);
+  }
+  .ref-card__eyebrow {
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--498-green); font-weight: 600;
+  }
+  .ref-card__title {
+    font-family: var(--498-family-body); font-weight: 300; font-style: italic;
+    font-size: 26px; line-height: 1.2;
+    color: var(--498-white);
+  }
+  .ref-card__desc {
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 14px; line-height: 1.55;
+    color: rgba(255,255,255,.75);
+  }
+  .ref-card__arrow {
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--498-green);
+    margin-top: auto;
+  }
+
+  /* ===================================================================
+     RESPONSIVE · mobile collapse sidebar
+     =================================================================== */
+  @media (max-width: 900px) {
+    .ds-sidebar {
+      transform: translateX(-100%);
+      transition: transform .25s var(--498-ease);
+      box-shadow: 0 4px 24px rgba(0,0,0,.18);
+    }
+    .ds-sidebar.is-open { transform: translateX(0); }
+    .ds-sidebar-toggle { display: inline-flex; }
+    .ds-main {
+      margin-left: 0;
+      padding: 32px 20px;
+    }
+    .ds-nav { padding: 0 16px; }
+    .ds-nav__title { display: none; }
+    .ds-intro__title { font-size: 36px; }
+    .vision-hero-card { grid-template-columns: 1fr; padding: 28px; }
+    .vision-hero-card__visual { margin: 0 -28px -28px -28px; min-height: 220px; }
+    .marks-grid { grid-template-columns: repeat(2, 1fr); }
+    .marks-grid > div:nth-child(2) { border-right: 0; }
+    .ref-grid { grid-template-columns: 1fr; }
+    .box-collection--4 { grid-template-columns: repeat(2, 1fr); }
+    .demo-nav { flex-wrap: wrap; }
+  }
+
+  /* Reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    .box-collection--persiana > * { transform: none; opacity: 1; transition: none; }
+    .box-pattern, .box-pattern::before,
+    .pattern-band, .pattern-band::before, .pattern-band::after { animation: none; }
+    .typewriter, .typewriter.is-typing { width: auto; border-right: 0; animation: none; }
+    .has-cursor::after { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Skip link -->
+<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+<!-- ===================================================================
+     NAV TOP · compact
+     =================================================================== -->
+<header class="ds-nav">
+  <a class="ds-nav__brand" href="#" aria-label="498 Advance">498 <em>A</em>DVANCE</a>
+  <span class="ds-nav__title"><strong>498Adesign Browser</strong> · v2.1 · Catálogo navegable</span>
+  <span class="ds-nav__spacer"></span>
+  <nav class="ds-nav__links" aria-label="Páginas relacionadas">
+    <a class="ds-nav__link" href="playground.html">Playground</a>
+    <a class="ds-nav__link" href="index.html">Home v4</a>
+    <a class="ds-nav__link" href="README.md">README</a>
+  </nav>
+</header>
+
+<button class="ds-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">Menu</button>
+
+<!-- ===================================================================
+     SIDEBAR · 280 px · scroll spy
+     =================================================================== -->
+<aside class="ds-sidebar" id="dsSidebar" aria-label="Catálogo del design system">
+
+  <h3>Foundations</h3>
+  <ul>
+    <li><a href="#foundations-color">Color · paleta completa</a></li>
+    <li><a href="#foundations-typography">Tipografía · escala</a></li>
+    <li><a href="#foundations-space">Espacios y radius</a></li>
+    <li><a href="#foundations-motion">Motion</a></li>
+  </ul>
+
+  <h3>Navegación</h3>
+  <ul>
+    <li><a href="#nav-top">Nav top · clusters</a></li>
+    <li><a href="#nav-lang">Lang grid 2×3</a></li>
+    <li><a href="#nav-skip">Skip link</a></li>
+  </ul>
+
+  <h3>Hero</h3>
+  <ul>
+    <li><a href="#hero-fullbleed">Hero full-bleed video</a></li>
+  </ul>
+
+  <h3>Cajas · Box Collections</h3>
+  <ul>
+    <li><a href="#box-persiana">Persiana (default)</a></li>
+    <li><a href="#box-frame-cross">Frame-cross corners</a></li>
+    <li><a href="#box-periodic">Periodic (tabla)</a></li>
+    <li><a href="#box-service-cards">Service cards 2×2</a></li>
+  </ul>
+
+  <h3>Cards · Tarjetas</h3>
+  <ul>
+    <li><a href="#card-vision">Vision hero card</a></li>
+    <li><a href="#card-box-pattern">Box pattern (FIFA callout)</a></li>
+    <li><a href="#card-blog">Blog post layout</a></li>
+    <li><a href="#card-manifesto">Manifesto gradient</a></li>
+  </ul>
+
+  <h3>Editorial</h3>
+  <ul>
+    <li><a href="#ed-eyebrow">Eyebrow (default)</a></li>
+    <li><a href="#ed-eyebrow-square">Eyebrow-square</a></li>
+    <li><a href="#ed-headlines">Display y headlines</a></li>
+    <li><a href="#ed-body">Body y lead</a></li>
+    <li><a href="#ed-pullquote">Pullquote inset</a></li>
+    <li><a href="#ed-cite-chats">Citas ChatGPT (3)</a></li>
+    <li><a href="#ed-frame-cross">Frame-cross marks</a></li>
+    <li><a href="#ed-typewriter">Typewriter reveal</a></li>
+    <li><a href="#ed-cursor">Has-cursor blink</a></li>
+  </ul>
+
+  <h3>UI</h3>
+  <ul>
+    <li><a href="#ui-buttons">Botones (5 variantes)</a></li>
+    <li><a href="#ui-forms">Forms · inputs</a></li>
+    <li><a href="#ui-badges">Badges</a></li>
+    <li><a href="#ui-code">Code block</a></li>
+    <li><a href="#ui-toggle">Toggle switch</a></li>
+    <li><a href="#ui-table">Tablas</a></li>
+  </ul>
+
+  <h3>Patterns</h3>
+  <ul>
+    <li><a href="#pattern-band">Grid backprop · banda oscura</a></li>
+    <li><a href="#pattern-box">Grid backprop · card light</a></li>
+  </ul>
+
+  <h3>Marcas geométricas</h3>
+  <ul>
+    <li><a href="#marks">4 SVG inline (pillars)</a></li>
+  </ul>
+
+  <h3>Assets · Catálogo</h3>
+  <ul>
+    <li><a href="#assets-visuals">Visuales · 26 archivos</a></li>
+    <li><a href="#assets-video">Vídeos · 11 archivos</a></li>
+    <li><a href="#assets-team">Equipo · 14 retratos</a></li>
+    <li><a href="#assets-logos">Logos · 6 variantes</a></li>
+  </ul>
+
+  <h3>Legal</h3>
+  <ul>
+    <li><a href="#legal">4 documentos</a></li>
+  </ul>
+
+  <h3>Referencia</h3>
+  <ul>
+    <li><a href="#ref">Playground · Index · Docs</a></li>
+  </ul>
+
+</aside>
+
+<!-- ===================================================================
+     MAIN CONTENT
+     =================================================================== -->
+<main class="ds-main" id="main-content">
+
+  <!-- PAGE INTRO -->
+  <section class="ds-intro">
+    <span class="ds-intro__eyebrow">498Adesign · Browser v2.1 · 2026-05-20</span>
+    <h1 class="ds-intro__title">Catálogo navegable del <em>design system</em>.</h1>
+    <p class="ds-intro__lead">
+      Storybook vanilla. Todos los elementos del sistema v2.1 con preview vivo y código de
+      referencia, organizados por categorías. Fuente de verdad visual:
+      <a class="link" href="playground.html">playground.html</a>. Fuente de verdad de tokens:
+      <a class="link" href="tokens.css">tokens.css</a>.
+    </p>
+    <div class="ds-intro__meta">
+      <span>67 assets · 41 MB</span>
+      <span>5 archivos core</span>
+      <span>Verde · gris · negro</span>
+      <span>Esquinas cuadradas</span>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       FOUNDATIONS · COLOR
+       =================================================================== -->
+  <section class="ds-section" id="foundations-color">
+    <header class="ds-section__header">
+      <span class="ds-section__category">FOUNDATIONS</span>
+      <h2 class="ds-section__title">Color · paleta completa</h2>
+      <p class="ds-section__description">
+        Monocromático verde + greys neutros + negro. Dos tonos clave: primary
+        <code>#2DD60F</code> y deep <code>#0E7A1F</code> (este pasa AA sobre blanco · el primary no).
+        Ratios de contraste calculados sobre <code>#FFFFFF</code>.
+      </p>
+    </header>
+
+    <div class="ds-preview ds-preview--flush">
+      <div class="swatch-grid">
+        <!-- VERDES -->
+        <div class="swatch"><div class="swatch__color" style="background:#E9F9EC"></div><div class="swatch__meta"><span class="swatch__name">--498-green-50</span><span class="swatch__hex">#E9F9EC</span><span class="swatch__ratio fail">decorative</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#D4F2D9"></div><div class="swatch__meta"><span class="swatch__name">--498-green-100</span><span class="swatch__hex">#D4F2D9</span><span class="swatch__ratio fail">decorative</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#A8E5B4"></div><div class="swatch__meta"><span class="swatch__name">--498-green-200</span><span class="swatch__hex">#A8E5B4</span><span class="swatch__ratio fail">decorative</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#74D898"></div><div class="swatch__meta"><span class="swatch__name">--498-green-300</span><span class="swatch__hex">#74D898</span><span class="swatch__ratio fail">decorative</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#2DD60F"></div><div class="swatch__meta"><span class="swatch__name">--498-green (primary)</span><span class="swatch__hex">#2DD60F</span><span class="swatch__ratio fail">3:1 · UI only</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#1FAA17"></div><div class="swatch__meta"><span class="swatch__name">--498-green-500</span><span class="swatch__hex">#1FAA17</span><span class="swatch__ratio fail">3.8:1 · UI</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#0E7A1F"></div><div class="swatch__meta"><span class="swatch__name">--498-green-deep</span><span class="swatch__hex">#0E7A1F</span><span class="swatch__ratio">6.1:1 · AA</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#0A5418"></div><div class="swatch__meta"><span class="swatch__name">--498-green-900</span><span class="swatch__hex">#0A5418</span><span class="swatch__ratio">10.6:1 · AAA</span></div></div>
+
+        <!-- GREYS -->
+        <div class="swatch"><div class="swatch__color" style="background:#FFFFFF;border-bottom:1px solid var(--pg-line)"></div><div class="swatch__meta"><span class="swatch__name">--498-white</span><span class="swatch__hex">#FFFFFF</span><span class="swatch__ratio fail">surface</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#F7F7F7"></div><div class="swatch__meta"><span class="swatch__name">--498-grey-50</span><span class="swatch__hex">#F7F7F7</span><span class="swatch__ratio fail">paper</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#ECECEC"></div><div class="swatch__meta"><span class="swatch__name">--498-grey-100</span><span class="swatch__hex">#ECECEC</span><span class="swatch__ratio fail">bg light</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#D9D9D9"></div><div class="swatch__meta"><span class="swatch__name">--498-grey-200</span><span class="swatch__hex">#D9D9D9</span><span class="swatch__ratio fail">decorative</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#BFBFBF"></div><div class="swatch__meta"><span class="swatch__name">--498-grey-300</span><span class="swatch__hex">#BFBFBF</span><span class="swatch__ratio fail">decorative</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#999999"></div><div class="swatch__meta"><span class="swatch__name">--498-grey-400</span><span class="swatch__hex">#999999</span><span class="swatch__ratio fail">2.8:1 · UI</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#7A7A7A"></div><div class="swatch__meta"><span class="swatch__name">--498-grey-500</span><span class="swatch__hex">#7A7A7A</span><span class="swatch__ratio">4.5:1 · AA</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#5C5C5C"></div><div class="swatch__meta"><span class="swatch__name">--498-grey-600</span><span class="swatch__hex">#5C5C5C</span><span class="swatch__ratio">7.4:1 · AAA</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#404040"></div><div class="swatch__meta"><span class="swatch__name">--498-grey-700</span><span class="swatch__hex">#404040</span><span class="swatch__ratio">10.6:1 · AAA</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#2D2D2D"></div><div class="swatch__meta"><span class="swatch__name">--498-grey-800</span><span class="swatch__hex">#2D2D2D</span><span class="swatch__ratio">14.5:1 · AAA</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#1A1A1A"></div><div class="swatch__meta"><span class="swatch__name">--498-grey-900</span><span class="swatch__hex">#1A1A1A</span><span class="swatch__ratio">17.4:1 · AAA</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#000000"></div><div class="swatch__meta"><span class="swatch__name">--498-black</span><span class="swatch__hex">#000000</span><span class="swatch__ratio">21:1 · AAA</span></div></div>
+
+        <!-- ALERT -->
+        <div class="swatch"><div class="swatch__color" style="background:#E84B3C"></div><div class="swatch__meta"><span class="swatch__name">--498-alert</span><span class="swatch__hex">#E84B3C</span><span class="swatch__ratio">4.4:1 · AA</span></div></div>
+      </div>
+    </div>
+
+    <details class="ds-code">
+      <summary>Ver tokens</summary>
+<pre><code>--498-green:      #2DD60F;  /* primary · decorative */
+--498-green-deep: #0E7A1F;  /* AA · uso editorial */
+--498-grey-900:   #1A1A1A;  /* text strong */
+--498-grey-500:   #7A7A7A;  /* text muted */
+--498-alert:      #E84B3C;</code></pre>
+    </details>
+  </section>
+
+  <!-- ===================================================================
+       FOUNDATIONS · TYPOGRAPHY
+       =================================================================== -->
+  <section class="ds-section" id="foundations-typography">
+    <header class="ds-section__header">
+      <span class="ds-section__category">FOUNDATIONS</span>
+      <h2 class="ds-section__title">Tipografía · escala completa</h2>
+      <p class="ds-section__description">
+        6 familias activas. Hepta Slab para body italic editorial,
+        Roboto Mono para tags/UI/code, Bebas Neue para displays UPPER,
+        Dela Gothic One para acentos rotundos, Roboto y Poppins para UI funcional.
+      </p>
+    </header>
+
+    <div class="ds-preview">
+      <div class="type-row">
+        <div class="type-row__meta"><strong>Display 1</strong>Bebas Neue · 70px / 77px / -2px<br>UPPER</div>
+        <div class="type-row__sample" style="font-family:var(--498-family-display);font-weight:600;font-size:70px;line-height:1.1;letter-spacing:-2px;text-transform:uppercase">498 Advance</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__meta"><strong>Display 2 (editorial)</strong>Hepta Slab · italic 200 · 44px / 1.15</div>
+        <div class="type-row__sample" style="font-family:var(--498-family-body);font-style:italic;font-weight:200;font-size:44px;line-height:1.15;letter-spacing:-.5px">Hacemos pública nuestra ciencia.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__meta"><strong>Display 3</strong>Hepta Slab · 300 · 36px / 1.25</div>
+        <div class="type-row__sample" style="font-family:var(--498-family-body);font-weight:300;font-size:36px;line-height:1.25">Ciencia abierta del rendimiento empresarial con IA.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__meta"><strong>h2 editorial</strong>Hepta Slab · 300 · 28px / 1.3</div>
+        <div class="type-row__sample" style="font-family:var(--498-family-body);font-weight:300;font-size:28px;line-height:1.3">El lab que mide cómo la IA habla de tu marca.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__meta"><strong>h3 editorial</strong>Hepta Slab · 300 · 22px / 1.35</div>
+        <div class="type-row__sample" style="font-family:var(--498-family-body);font-weight:300;font-size:22px;line-height:1.35">GEORadar · auditoría completa multi-LLM en 90 días.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__meta"><strong>Lead</strong>Hepta Slab · 300 · 22px / 1.55</div>
+        <div class="type-row__sample" style="font-family:var(--498-family-body);font-weight:300;font-size:22px;line-height:1.55;color:var(--pg-text)">Auditamos cómo ChatGPT, Gemini, Claude, Perplexity y Copilot perciben tu marca.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__meta"><strong>Body</strong>Hepta Slab · 300 · 16px / 1.7</div>
+        <div class="type-row__sample" style="font-family:var(--498-family-body);font-weight:300;font-size:16px;line-height:1.7;color:var(--pg-text-muted)">Stack canónico de seis módulos: GEOAtlas, motor multi-LLM, GEOdesk, S.A.M., DOC y LEO. Más una capa de servicio estratégico que conecta dato con plan de acción.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__meta"><strong>Small</strong>Hepta Slab · 300 · 14px / 1.65</div>
+        <div class="type-row__sample" style="font-family:var(--498-family-body);font-weight:300;font-size:14px;line-height:1.65;color:var(--pg-text-muted)">3.000 a 30.000 prompts personalizados por estudio. 10× el estándar SaaS GEO.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__meta"><strong>Tag L</strong>Roboto Mono · 500 · 14px · UPPER</div>
+        <div class="type-row__sample" style="font-family:var(--498-family-mono);font-weight:500;font-size:14px;letter-spacing:1.1px;text-transform:uppercase;color:var(--498-green-deep)">Sectio · 04 · Method</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__meta"><strong>Tag S</strong>Roboto Mono · 500 · 12px · UPPER</div>
+        <div class="type-row__sample" style="font-family:var(--498-family-mono);font-weight:500;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--498-green-deep)">Open Science · 2026</div>
+      </div>
+      <div class="type-row">
+        <div class="type-row__meta"><strong>Code inline</strong>Roboto Mono · 400 · 13px</div>
+        <div class="type-row__sample" style="font-family:var(--498-family-body);font-size:16px">Usa <code style="background:var(--498-grey-100);color:var(--498-green-deep);padding:1px 6px;border:1px solid var(--pg-line);font-family:var(--498-family-mono);font-size:.92em">--498-green-deep</code> para hyperlinks editoriales.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       FOUNDATIONS · SPACES + RADIUS
+       =================================================================== -->
+  <section class="ds-section" id="foundations-space">
+    <header class="ds-section__header">
+      <span class="ds-section__category">FOUNDATIONS</span>
+      <h2 class="ds-section__title">Espacios y radius</h2>
+      <p class="ds-section__description">
+        Sistema angular. Radius máximo <code>4px</code> reservado a forms, badges y code. Botones,
+        cards y boxes usan <code>0</code> explícito. Spacing baseline 8px implícito.
+      </p>
+    </header>
+
+    <div class="ds-preview">
+      <h4 style="font-family:var(--498-family-mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--498-green-deep);margin-bottom:16px">Radius</h4>
+      <div class="space-grid" style="margin-bottom:32px">
+        <div class="space-box">
+          <div class="space-box__visual" style="width:64px;height:64px;border-radius:0"></div>
+          <div class="space-box__label"><strong>--498-radius-0</strong>0 · cards, boxes, CTAs</div>
+        </div>
+        <div class="space-box">
+          <div class="space-box__visual" style="width:64px;height:64px;border-radius:2px"></div>
+          <div class="space-box__label"><strong>--498-radius-1</strong>2px · cite-chat, micro UI</div>
+        </div>
+        <div class="space-box">
+          <div class="space-box__visual" style="width:64px;height:64px;border-radius:4px"></div>
+          <div class="space-box__label"><strong>--498-radius-2</strong>4px · forms, badges, code</div>
+        </div>
+      </div>
+
+      <h4 style="font-family:var(--498-family-mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--498-green-deep);margin-bottom:16px">Layout tokens</h4>
+      <table class="ui-table">
+        <thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><code>--498-content-max</code></td><td>1440px</td><td>Container principal</td></tr>
+          <tr><td><code>--498-content-narrow</code></td><td>760px</td><td>Reading column editorial</td></tr>
+          <tr><td><code>--498-page-pad</code></td><td>8vw</td><td>Padding horizontal page</td></tr>
+          <tr><td><code>--498-section-pad-y</code></td><td>96px</td><td>Padding vertical section</td></tr>
+          <tr><td><code>--498-nav-h</code></td><td>72px</td><td>Altura nav superior</td></tr>
+          <tr><td><code>--498-rail-width</code></td><td>148px</td><td>Raíl derecho CTA + lang</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       FOUNDATIONS · MOTION
+       =================================================================== -->
+  <section class="ds-section" id="foundations-motion">
+    <header class="ds-section__header">
+      <span class="ds-section__category">FOUNDATIONS</span>
+      <h2 class="ds-section__title">Motion · transiciones</h2>
+      <p class="ds-section__description">
+        Curva canónica <code>cubic-bezier(.2, .8, .2, 1)</code> (ease-out fluido). Tres duraciones.
+        Pasa el cursor por cada caja para sentir el ritmo. Honra <code>prefers-reduced-motion</code>.
+      </p>
+    </header>
+
+    <div class="ds-preview">
+      <div class="motion-row">
+        <div class="motion-box fast">Fast<br>150ms</div>
+        <div class="motion-box mid">Mid<br>280ms</div>
+        <div class="motion-box slow">Slow<br>600ms</div>
+      </div>
+      <p style="margin-top:20px;font-family:var(--498-family-body);font-size:14px;line-height:1.55;color:var(--pg-text-muted)">
+        <strong>Fast</strong> para feedback inmediato (hover sutil, focus).
+        <strong>Mid</strong> para cambios de estado (color, background, border).
+        <strong>Slow</strong> para reveals editoriales (filter, transform).
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       NAVEGACIÓN
+       =================================================================== -->
+  <section class="ds-section" id="nav-top">
+    <header class="ds-section__header">
+      <span class="ds-section__category">NAVEGACIÓN</span>
+      <h2 class="ds-section__title">Nav top · clusters de cajas contiguas</h2>
+      <p class="ds-section__description">
+        Una sola strip horizontal. Brand box negra + links contiguos (border-left 0) + spacer flex + CTA aislada.
+        Bordes 1 px compartidos. Hover empuja border-color a verde-deep y eleva con z-index 1.
+      </p>
+    </header>
+
+    <div class="ds-preview ds-preview--flush" style="padding:24px;background:var(--pg-paper)">
+      <nav class="demo-nav" aria-label="Demo navigation">
+        <a class="demo-nav__brand-box" href="#">498 <em>A</em>DVANCE</a>
+        <a class="demo-nav__link-box" href="#"><span class="num">01</span>Vision</a>
+        <a class="demo-nav__link-box" href="#"><span class="num">02</span>Pillars</a>
+        <a class="demo-nav__link-box" href="#"><span class="num">03</span>Science</a>
+        <a class="demo-nav__link-box" href="#"><span class="num">04</span>News</a>
+        <a class="demo-nav__cta-box" href="#">Hablemos →</a>
+      </nav>
+    </div>
+
+    <details class="ds-code">
+      <summary>Ver HTML</summary>
+<pre><code>&lt;nav class="nav"&gt;
+  &lt;a class="nav__brand-box" href="#"&gt;498 &lt;em&gt;A&lt;/em&gt;DVANCE&lt;/a&gt;
+  &lt;div class="nav__links"&gt;
+    &lt;a class="nav__link-box" href="#vision"&gt;
+      &lt;span class="num"&gt;01&lt;/span&gt;Vision
+    &lt;/a&gt;
+    ...
+  &lt;/div&gt;
+  &lt;div class="nav__spacer"&gt;&lt;/div&gt;
+  &lt;a class="nav__cta-box" href="#contact"&gt;Hablemos →&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+    </details>
+  </section>
+
+  <section class="ds-section" id="nav-lang">
+    <header class="ds-section__header">
+      <span class="ds-section__category">NAVEGACIÓN</span>
+      <h2 class="ds-section__title">Lang grid 2×3 · selector de idioma</h2>
+      <p class="ds-section__description">
+        Matriz 3 columnas × 2 filas con bordes compartidos. Hover verde-50, estado activo verde-deep.
+        Soporta glifo CJK (中) con tracking 0 y reset case. Touch targets 44px mínimo en pointer:coarse.
+      </p>
+    </header>
+
+    <div class="ds-preview">
+      <nav class="lang-grid" aria-label="Idioma">
+        <a class="lang-grid__cell" href="#" hreflang="ca">CAT</a>
+        <a class="lang-grid__cell is-active" href="#" hreflang="es" aria-current="true">ES</a>
+        <a class="lang-grid__cell" href="#" hreflang="en">EN</a>
+        <a class="lang-grid__cell" href="#" hreflang="fr">FR</a>
+        <a class="lang-grid__cell" href="#" hreflang="de">DE</a>
+        <a class="lang-grid__cell lang-cjk" href="#" hreflang="zh" aria-label="中文">中</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="ds-section" id="nav-skip">
+    <header class="ds-section__header">
+      <span class="ds-section__category">NAVEGACIÓN</span>
+      <h2 class="ds-section__title">Skip link · WCAG 2.4.1</h2>
+      <p class="ds-section__description">
+        Oculto fuera de viewport hasta que recibe focus por Tab. Salta directo al
+        <code>&lt;main id="main-content"&gt;</code>. Pulsa Tab al cargar esta página para verlo.
+      </p>
+    </header>
+
+    <div class="ds-preview" style="text-align:center">
+      <a href="#main-content" style="position:static;transform:none;padding:14px 22px;background:var(--498-black);color:var(--498-white);font-family:var(--498-family-mono);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;text-decoration:none;border:2px solid var(--498-green);display:inline-block">Saltar al contenido principal</a>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       HERO
+       =================================================================== -->
+  <section class="ds-section" id="hero-fullbleed">
+    <header class="ds-section__header">
+      <span class="ds-section__category">HERO</span>
+      <h2 class="ds-section__title">Hero full-bleed con video</h2>
+      <p class="ds-section__description">
+        Video MP4 cubre 100vh con <code>object-fit: cover</code>. Overlay gradient inferior asegura
+        legibilidad. Texto blanco con <code>text-shadow</code> sutil. CTA + ghost sobre fondo oscuro.
+        Reducido a 360px aquí para preview catálogo.
+      </p>
+    </header>
+
+    <div class="ds-preview ds-preview--flush">
+      <div class="demo-hero">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="assets/video/hero-loop.mp4" type="video/mp4">
+        </video>
+        <div class="demo-hero__content">
+          <span class="demo-hero__eyebrow">498A · Innovation Lab · 2026</span>
+          <h3 class="demo-hero__display">Ciencia abierta del rendimiento empresarial <em>con IA</em>.</h3>
+          <p class="demo-hero__lead">Auditamos cómo la IA percibe, compara y recomienda tu marca. 3.000 a 30.000 prompts por estudio.</p>
+          <div class="btn-row">
+            <a class="btn-on-video" href="#">Ver método →</a>
+            <a class="btn-ghost-on-video" href="#">Hablemos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       BOX COLLECTIONS · PERSIANA
+       =================================================================== -->
+  <section class="ds-section" id="box-persiana">
+    <header class="ds-section__header">
+      <span class="ds-section__category">CAJAS · BOX COLLECTIONS</span>
+      <h2 class="ds-section__title">Persiana · default con animación</h2>
+      <p class="ds-section__description">
+        4 cajas en contacto compartiendo bordes 1 px. Al entrar en viewport, animación scale-Y
+        desde top, escalonada cada 100 ms. Honra <code>prefers-reduced-motion</code>.
+      </p>
+    </header>
+
+    <div class="ds-preview ds-preview--flush">
+      <div class="box-collection box-collection--4 box-collection--persiana in-view">
+        <article class="box">
+          <span class="box__mark" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="1.5" y="1.5" width="25" height="25"/>
+              <rect x="6.5" y="6.5" width="15" height="15"/>
+              <rect x="11.5" y="11.5" width="5" height="5"/>
+            </svg>
+          </span>
+          <span class="box__num">01 / 04</span>
+          <span class="box__tag">Capacidad</span>
+          <h3 class="box__title">Auditoría GEO multi-LLM</h3>
+          <p class="box__desc">5 superficies IA. ChatGPT, Gemini, Claude, Perplexity, Copilot.</p>
+          <a class="link" href="#">Ver método →</a>
+        </article>
+        <article class="box">
+          <span class="box__mark" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1">
+              <line x1="2" y1="20" x2="20" y2="2"/>
+              <line x1="8" y1="26" x2="26" y2="8"/>
+              <line x1="14" y1="26" x2="26" y2="14"/>
+            </svg>
+          </span>
+          <span class="box__num">02 / 04</span>
+          <span class="box__tag">Capacidad</span>
+          <h3 class="box__title">AI Overviews · SERP generativa</h3>
+          <p class="box__desc">Google AIO production-ready. ~21% búsquedas globales.</p>
+          <a class="link" href="#">Ver dato →</a>
+        </article>
+        <article class="box">
+          <span class="box__mark" aria-hidden="true">
+            <svg viewBox="0 0 28 28" stroke="currentColor" stroke-width="1">
+              <g fill="currentColor">
+                <circle cx="4" cy="4" r="1.2"/><circle cx="14" cy="4" r="1.2"/><circle cx="24" cy="4" r="1.2"/>
+                <circle cx="4" cy="14" r="1.2"/><circle cx="14" cy="14" r="2"/><circle cx="24" cy="14" r="1.2"/>
+                <circle cx="4" cy="24" r="1.2"/><circle cx="14" cy="24" r="1.2"/><circle cx="24" cy="24" r="1.2"/>
+              </g>
+              <line x1="14" y1="14" x2="4" y2="4" fill="none"/>
+              <line x1="14" y1="14" x2="24" y2="4" fill="none"/>
+              <line x1="14" y1="14" x2="4" y2="24" fill="none"/>
+              <line x1="14" y1="14" x2="24" y2="24" fill="none"/>
+            </svg>
+          </span>
+          <span class="box__num">03 / 04</span>
+          <span class="box__tag">Capacidad</span>
+          <h3 class="box__title">S.A.M. · alineamiento semántico</h3>
+          <p class="box__desc">Validación de contenidos contra prompts target del estudio.</p>
+          <a class="link" href="#">Probar SAM →</a>
+        </article>
+        <article class="box">
+          <span class="box__mark" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="4" y="4" width="20" height="20"/>
+              <line x1="14" y1="0" x2="14" y2="8"/>
+              <line x1="14" y1="20" x2="14" y2="28"/>
+              <line x1="0" y1="14" x2="8" y2="14"/>
+              <line x1="20" y1="14" x2="28" y2="14"/>
+            </svg>
+          </span>
+          <span class="box__num">04 / 04</span>
+          <span class="box__tag">Capacidad</span>
+          <h3 class="box__title">DOC · Agent Experience</h3>
+          <p class="box__desc">Auditoría técnica de crawlers IA. GPTBot, ClaudeBot, PerplexityBot.</p>
+          <a class="link" href="#">Auditar AX →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       BOX · FRAME-CROSS
+       =================================================================== -->
+  <section class="ds-section" id="box-frame-cross">
+    <header class="ds-section__header">
+      <span class="ds-section__category">CAJAS · BOX COLLECTIONS</span>
+      <h2 class="ds-section__title">Frame-cross · marcas de registro print</h2>
+      <p class="ds-section__description">
+        Cards independientes con <code>gap: 20px</code> visible y "+" en cada uno de los 4 vértices.
+        Heritage 498AS · hoja técnica / lab notebook. SVG inline en pseudo-element.
+      </p>
+    </header>
+
+    <div class="ds-preview ds-preview--flush" style="padding:24px">
+      <div class="box-collection box-collection--3 box-collection--frame-cross">
+        <article class="box">
+          <span class="box__tag">Verticales</span>
+          <h3 class="box__title">Civic</h3>
+          <p class="box__desc">8 KPIs proprietary. NAS composite final.</p>
+        </article>
+        <article class="box">
+          <span class="box__tag">Verticales</span>
+          <h3 class="box__title">Travel</h3>
+          <p class="box__desc">LRP local recommendation position.</p>
+        </article>
+        <article class="box">
+          <span class="box__tag">Verticales</span>
+          <h3 class="box__title">Health</h3>
+          <p class="box__desc">YMYL · 30%+ búsquedas con AIO.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       BOX · PERIODIC
+       =================================================================== -->
+  <section class="ds-section" id="box-periodic">
+    <header class="ds-section__header">
+      <span class="ds-section__category">CAJAS · BOX COLLECTIONS</span>
+      <h2 class="ds-section__title">Periodic · grid tabla periódica</h2>
+      <p class="ds-section__description">
+        Truco CSS: background negro + gap 1px crea hairlines uniformes sin double-border.
+        Cada celda con número atómico TL, tag verde TR, símbolo central Bebas Neue 56px,
+        divider 1px y descripción con cuadradito verde.
+      </p>
+    </header>
+
+    <div class="ds-preview ds-preview--flush">
+      <div class="box-collection box-collection--4 box-collection--periodic">
+        <article>
+          <div class="periodic__meta"><span class="periodic__num">01</span><span class="periodic__tag">GEO</span></div>
+          <div class="periodic__symbol">GR</div>
+          <div class="periodic__divider"></div>
+          <p class="periodic__desc">GEORadar · auditoría multi-LLM</p>
+        </article>
+        <article>
+          <div class="periodic__meta"><span class="periodic__num">02</span><span class="periodic__tag">SAM</span></div>
+          <div class="periodic__symbol">Sm</div>
+          <div class="periodic__divider"></div>
+          <p class="periodic__desc">Semantic Alignment Machine</p>
+        </article>
+        <article>
+          <div class="periodic__meta"><span class="periodic__num">03</span><span class="periodic__tag">DOC</span></div>
+          <div class="periodic__symbol">Dc</div>
+          <div class="periodic__divider"></div>
+          <p class="periodic__desc">Diagnostic Optimization Checker</p>
+        </article>
+        <article>
+          <div class="periodic__meta"><span class="periodic__num">04</span><span class="periodic__tag">LEO</span></div>
+          <div class="periodic__symbol">Le</div>
+          <div class="periodic__divider"></div>
+          <p class="periodic__desc">Ultimate Content Factory</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       BOX · SERVICE CARDS 2×2
+       =================================================================== -->
+  <section class="ds-section" id="box-service-cards">
+    <header class="ds-section__header">
+      <span class="ds-section__category">CAJAS · BOX COLLECTIONS</span>
+      <h2 class="ds-section__title">Service cards · 2×2 doble línea</h2>
+      <p class="ds-section__description">
+        Grid arquitectónico 498as.com style. Imagen full-width, divider negro, título mono UPPER centrado
+        y cuadradito verde + descripción. Inner frame 1px (hombro blanco 18px). Ideal para servicios.
+      </p>
+    </header>
+
+    <div class="ds-preview ds-preview--flush">
+      <div class="box-collection box-collection--2 box-collection--service-cards">
+        <article>
+          <div class="service-card__image"><img src="assets/visuals/sc-geo-visibility.jpg" alt="GEO visibility"></div>
+          <h3 class="service-card__title">GEO Visibility</h3>
+          <p class="service-card__desc">Share of Voice multi-LLM. Auditamos qué porcentaje de respuestas IA te mencionan vs competidores.</p>
+        </article>
+        <article>
+          <div class="service-card__image"><img src="assets/visuals/sc-multiagent-flow.jpg" alt="Multiagent flow"></div>
+          <h3 class="service-card__title">Multiagent Simulation</h3>
+          <p class="service-card__desc">Orquestación 5 motores LLM + AIO. Hasta 30.000 prompts personalizados por estudio.</p>
+        </article>
+        <article>
+          <div class="service-card__image"><img src="assets/visuals/sc-simulation-cube.jpg" alt="Simulation cube"></div>
+          <h3 class="service-card__title">Brand Simulation</h3>
+          <p class="service-card__desc">Modelos de demanda personalizados. Cubrimos el 100% del mercado según completitud semántica.</p>
+        </article>
+        <article>
+          <div class="service-card__image"><img src="assets/visuals/sc-datasets-layers.jpg" alt="Datasets layers"></div>
+          <h3 class="service-card__title">Curated Datasets</h3>
+          <p class="service-card__desc">Prompt Atlas + GEOdesk. Datasets estratégicos estructurados por persona, funnel y product line.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       CARDS · VISION HERO
+       =================================================================== -->
+  <section class="ds-section" id="card-vision">
+    <header class="ds-section__header">
+      <span class="ds-section__category">CARDS · TARJETAS</span>
+      <h2 class="ds-section__title">Vision hero card · gradient + visual a bordes</h2>
+      <p class="ds-section__description">
+        Hero-card Isomorphic-style. Grid 2 columnas, gradient verde-100 → blanco diagonal,
+        eyebrow-square + claim italic + btn-split. Visual derecha sangra a los bordes del card
+        cancelando padding con margin negativo.
+      </p>
+    </header>
+
+    <div class="ds-preview">
+      <article class="vision-hero-card">
+        <div class="vision-hero-card__content">
+          <span class="eyebrow-square">Our Goal</span>
+          <h3 class="vision-hero-card__claim">Hacemos pública nuestra ciencia.</h3>
+          <a class="btn-split" href="#">
+            <span class="btn-split__label">Work with us</span>
+            <span class="btn-split__arrow">→</span>
+          </a>
+        </div>
+        <div class="vision-hero-card__visual">
+          <img src="assets/visuals/vision-organism.jpg" alt="Sistema vivo en transformación">
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       CARDS · BOX PATTERN
+       =================================================================== -->
+  <section class="ds-section" id="card-box-pattern">
+    <header class="ds-section__header">
+      <span class="ds-section__category">CARDS · TARJETAS</span>
+      <h2 class="ds-section__title">Box pattern · trama animada (FIFA callout)</h2>
+      <p class="ds-section__description">
+        Card con trama backprop animada (patternFlow 90s + gradientDrift 28s + multiply blend).
+        Pensada para callouts editoriales destacados, no para body. Honra reduced-motion.
+      </p>
+    </header>
+
+    <div class="ds-preview">
+      <article class="box-pattern">
+        <span class="eyebrow">News · Mayo 2026</span>
+        <h3 class="ed-h2" style="margin:14px 0 14px">498A presenta GEORadar v2.1 con AI Overviews integrado.</h3>
+        <p class="ed-body" style="font-size:15px">
+          Production-ready desde 2026-05-07. Equivalencia operativa: 1 consulta LLM ≈ 3-4 búsquedas Google con bloques AIO.
+          Coherencia narrativa GEORadar ↔ AIO sobre los mismos prompts validados.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       CARDS · BLOG POST simplificado
+       =================================================================== -->
+  <section class="ds-section" id="card-blog">
+    <header class="ds-section__header">
+      <span class="ds-section__category">CARDS · TARJETAS</span>
+      <h2 class="ds-section__title">Blog post · layout simplificado</h2>
+      <p class="ds-section__description">
+        Versión compacta del blog post completo. Hero ratio 21:9 con border negro, meta mono UPPER,
+        title italic Hepta Slab 200 con highlight verde-deep, lead 21px con border-bottom.
+      </p>
+    </header>
+
+    <div class="ds-preview">
+      <article class="blog-mini">
+        <div class="blog-mini__hero">
+          <img src="assets/visuals/blog-hero.jpg" alt="Lab notebook">
+        </div>
+        <div class="blog-mini__body">
+          <div class="blog-mini__meta">
+            <span>Sectio · 05 · Methodology</span>
+            <span>17 May 2026</span>
+            <span>4 min</span>
+          </div>
+          <h3 class="blog-mini__title">El error de medir GEO con <em>una sola IA</em>.</h3>
+          <p class="blog-mini__lead">
+            Las cinco superficies generativas (ChatGPT, Gemini, Claude, Perplexity, Copilot) responden con sesgos
+            distintos al mismo prompt. Sin multi-LLM, una auditoría GEO es una foto de un solo ojo.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       CARDS · MANIFESTO
+       =================================================================== -->
+  <section class="ds-section" id="card-manifesto">
+    <header class="ds-section__header">
+      <span class="ds-section__category">CARDS · TARJETAS</span>
+      <h2 class="ds-section__title">Manifesto gradient card</h2>
+      <p class="ds-section__description">
+        Card sólido verde-deep con doble radial gradient (verde+negro en esquinas opuestas).
+        Reservada para declaraciones de manifiesto o callouts de máxima intensidad de marca.
+      </p>
+    </header>
+
+    <div class="ds-preview">
+      <article class="manifesto-card">
+        <span class="manifesto-card__eyebrow">Manifesto · 2026</span>
+        <h3 class="manifesto-card__claim">"La IA ya está hablando de tu marca. La pregunta es: ¿con qué argumentos?"</h3>
+        <p class="manifesto-card__body">
+          Cada día que esperas, las superficies generativas consolidan una narrativa sobre tu marca.
+          GEORadar te entrega el mapa para corregirla con prompts validados, contenido alineado y
+          plan de acción de 90 días.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       EDITORIAL · EYEBROW
+       =================================================================== -->
+  <section class="ds-section" id="ed-eyebrow">
+    <header class="ds-section__header">
+      <span class="ds-section__category">EDITORIAL</span>
+      <h2 class="ds-section__title">Eyebrow · default</h2>
+      <p class="ds-section__description">
+        Etiqueta editorial corta. Roboto Mono 500, 11-14px, letter-spacing 1.5px UPPER, color verde-deep
+        (ratio 6.1:1 sobre blanco · pasa AA). Va siempre antes del headline.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <span class="eyebrow">Sectio · 04 · Method</span>
+      <h3 class="ed-h2" style="margin-top:14px">El método de auditoría 498A.</h3>
+    </div>
+  </section>
+
+  <section class="ds-section" id="ed-eyebrow-square">
+    <header class="ds-section__header">
+      <span class="ds-section__category">EDITORIAL</span>
+      <h2 class="ds-section__title">Eyebrow-square · cuadradito negro</h2>
+      <p class="ds-section__description">
+        Variante Isomorphic-style con cuadrado 8×8 negro a la izquierda. Color de texto negro (más fuerte
+        que verde-deep). Reservada al Vision hero-card y hitos editoriales puntuales.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <span class="eyebrow-square">Our Goal</span>
+      <h3 class="ed-display-3" style="margin-top:18px">Make the gap between intent and outcome <em style="color:var(--498-green-deep);font-style:italic">measurable</em>.</h3>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       EDITORIAL · HEADLINES
+       =================================================================== -->
+  <section class="ds-section" id="ed-headlines">
+    <header class="ds-section__header">
+      <span class="ds-section__category">EDITORIAL</span>
+      <h2 class="ds-section__title">Display y headlines · h1-h3</h2>
+      <p class="ds-section__description">
+        Display 1 Bebas Neue UPPER para hero principal. Display 2/3 y h1-h3 en Hepta Slab Light italic
+        (variante editorial) o Light recto (Heading). Italic se reserva a hooks emocionales.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <h3 style="font-family:var(--498-family-display);font-weight:600;font-size:64px;line-height:1.05;letter-spacing:-1.6px;text-transform:uppercase;margin-bottom:24px;color:var(--pg-text)">498 Advance</h3>
+      <h3 class="ed-display-2" style="margin-bottom:20px;color:var(--pg-text)">Hacemos pública nuestra <em style="color:var(--498-green-deep);font-style:italic">ciencia</em>.</h3>
+      <h3 class="ed-display-3" style="margin-bottom:18px;color:var(--pg-text)">Auditamos cómo la IA habla de tu marca.</h3>
+      <h4 class="ed-h2" style="margin-bottom:14px;color:var(--pg-text)">5 superficies IA. 30.000 prompts. Plan de 90 días.</h4>
+      <h5 class="ed-h3" style="color:var(--pg-text)">GEORadar es un servicio, no un SaaS.</h5>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       EDITORIAL · BODY + LEAD
+       =================================================================== -->
+  <section class="ds-section" id="ed-body">
+    <header class="ds-section__header">
+      <span class="ds-section__category">EDITORIAL</span>
+      <h2 class="ds-section__title">Body y lead</h2>
+      <p class="ds-section__description">
+        Lead Hepta Slab 300, 22px, line-height 1.55, color texto. Body Hepta Slab 300, 16-17px,
+        line-height 1.7, color muted (#5C5C5C · 7.4:1 AAA). Hyperlinks verde-deep con border-bottom 35%.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <p class="ed-lead" style="margin-bottom:24px">
+        Auditamos cómo ChatGPT, Gemini, Claude, Perplexity y Copilot perciben, comparan y recomiendan tu marca.
+      </p>
+      <p class="ed-body" style="margin-bottom:20px">
+        El stack canónico GEORadar combina seis módulos<a class="cite-chat" href="#">1</a>: GEOAtlas (modelado de demanda),
+        motor multi-LLM, <a class="link" href="#">GEOdesk</a>, S.A.M., DOC y LEO. Más una capa de
+        servicio estratégico que conecta el dato con el plan de acción.
+      </p>
+      <p class="ed-body">
+        Production-ready desde 2026-05-07: Google AI Overviews aparece en ~21% de búsquedas globales
+        (>30% en YMYL: salud, finanzas, legal) y crece >70% YoY<a class="cite-chat cite-chat--green" href="#">2</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       EDITORIAL · PULLQUOTE INSET
+       =================================================================== -->
+  <section class="ds-section" id="ed-pullquote">
+    <header class="ds-section__header">
+      <span class="ds-section__category">EDITORIAL</span>
+      <h2 class="ds-section__title">Pullquote inset · acento verde italic</h2>
+      <p class="ds-section__description">
+        Border-left 2px verde-deep, padding-left 24px, texto Hepta Slab italic 200, 26px.
+        Inset dentro del body, no break out. Para citas internas dentro de artículos.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <aside class="pullquote-inset">
+        <p class="pullquote-inset__text">
+          "No vendemos visibilidad en IA. Vendemos coherencia narrativa entre cómo te ven cinco
+          superficies y cómo quieres que te vean."
+        </p>
+        <div class="pullquote-inset__attr">— Carlos Ortet · founder · 2026</div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       EDITORIAL · CITE CHATS
+       =================================================================== -->
+  <section class="ds-section" id="ed-cite-chats">
+    <header class="ds-section__header">
+      <span class="ds-section__category">EDITORIAL</span>
+      <h2 class="ds-section__title">Citas ChatGPT · 3 variantes</h2>
+      <p class="ds-section__description">
+        Píldoras verticales superscript estilo ChatGPT. <strong>Negro</strong>: referencias críticas externas autoritativas.
+        <strong>Gris</strong>: contexto auxiliar. <strong>Verde</strong>: referencias internas brand / papers propios.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <p class="ed-body" style="font-size:17px;line-height:1.85">
+        Las superficies generativas crecen >70% YoY<a class="cite-chat" href="#">1</a> y aparecen en
+        ~21% de búsquedas globales<a class="cite-chat cite-chat--grey" href="#">2</a>. Nuestro estudio
+        interno detectó saturación semántica con 3.000 prompts personalizados<a class="cite-chat cite-chat--green" href="#">3</a>.
+      </p>
+      <div style="margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;font-family:var(--498-family-mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--pg-text-muted)">
+        <span><a class="cite-chat" href="#">1</a> Negro · crítica externa</span>
+        <span><a class="cite-chat cite-chat--grey" href="#">2</a> Gris · contexto auxiliar</span>
+        <span><a class="cite-chat cite-chat--green" href="#">3</a> Verde · interna brand</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       EDITORIAL · FRAME-CROSS
+       =================================================================== -->
+  <section class="ds-section" id="ed-frame-cross">
+    <header class="ds-section__header">
+      <span class="ds-section__category">EDITORIAL</span>
+      <h2 class="ds-section__title">Frame-cross · corner marks standalone</h2>
+      <p class="ds-section__description">
+        Aplicable a cualquier contenedor con <code>.frame-cross</code> + 4 spans <code>.cnr--tl/tr/bl/br</code>.
+        Las hairlines del borde se extienden 8px más allá del corner point, creando "+" sutil.
+        Signal de craft, heritage técnico.
+      </p>
+    </header>
+    <div class="ds-preview" style="padding:48px">
+      <div class="frame-cross" style="max-width:520px;margin:0 auto">
+        <span class="cnr cnr--tl" aria-hidden="true"></span>
+        <span class="cnr cnr--tr" aria-hidden="true"></span>
+        <span class="cnr cnr--bl" aria-hidden="true"></span>
+        <span class="cnr cnr--br" aria-hidden="true"></span>
+        <span class="eyebrow">Lab note · 2026.04.18</span>
+        <h3 class="ed-h3" style="margin:14px 0 10px">Bloque destacado con frame-cross.</h3>
+        <p class="ed-body" style="font-size:14px">
+          Fíjate en las cuatro esquinas. Las hairlines salen del borde y se cruzan en "+" sutil. Eco de marcas
+          de registro de imprenta y hojas de planos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       EDITORIAL · TYPEWRITER
+       =================================================================== -->
+  <section class="ds-section" id="ed-typewriter">
+    <header class="ds-section__header">
+      <span class="ds-section__category">EDITORIAL</span>
+      <h2 class="ds-section__title">Typewriter reveal · CLI heritage</h2>
+      <p class="ds-section__description">
+        Animación char-by-char al entrar en viewport. Cursor avanza, llega al final, desaparece.
+        Reserva: títulos de máxima importancia (Founder Voice). Nunca en body. Honra reduced-motion.
+      </p>
+    </header>
+    <div class="ds-preview" style="text-align:center;padding:48px">
+      <span class="eyebrow">Founder voice</span>
+      <h3 style="margin-top:16px;font-family:var(--498-family-display);font-size:42px;letter-spacing:-1px;text-transform:uppercase;color:var(--pg-text)">
+        <span class="typewriter is-typing" style="--chars: 13;">Carlos Ortet</span>
+      </h3>
+      <p class="ed-body" style="font-size:13px;margin-top:16px">
+        Atributo: <code>style="--chars: N"</code> · clase <code>.typewriter.is-typing</code> dispara la animación.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       EDITORIAL · HAS-CURSOR
+       =================================================================== -->
+  <section class="ds-section" id="ed-cursor">
+    <header class="ds-section__header">
+      <span class="ds-section__category">EDITORIAL</span>
+      <h2 class="ds-section__title">Has-cursor · static blink</h2>
+      <p class="ds-section__description">
+        Pseudo-element <code>::after</code> con cursor block ▍ verde-deep parpadeante (1.05s).
+        Sin animación de typing. Para enfatizar que un texto "está vivo" o "esperando input".
+      </p>
+    </header>
+    <div class="ds-preview" style="text-align:center;padding:48px">
+      <h3 style="font-family:var(--498-family-mono);font-size:18px;letter-spacing:1px;color:var(--pg-text)" class="has-cursor">
+        Esperando tu marca
+      </h3>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       UI · BOTONES
+       =================================================================== -->
+  <section class="ds-section" id="ui-buttons">
+    <header class="ds-section__header">
+      <span class="ds-section__category">UI</span>
+      <h2 class="ds-section__title">Botones · 5 variantes</h2>
+      <p class="ds-section__description">
+        Esquinas cuadradas. Mono UPPER 12-13px, letter-spacing 1.2-1.5px. Hover empuja a verde-deep.
+        Variantes según fondo: video oscuro (white solid + ghost), fondo claro (text solid + ghost),
+        sólido dark universal.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <h4 style="font-family:var(--498-family-mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--498-green-deep);margin-bottom:12px">Fondo claro</h4>
+      <div class="btn-row" style="margin-bottom:24px">
+        <a class="btn-light" href="#">Primary light →</a>
+        <a class="btn-ghost-light" href="#">Ghost light</a>
+        <a class="btn-solid-dark" href="#">Solid dark →</a>
+      </div>
+      <h4 style="font-family:var(--498-family-mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--498-green-deep);margin-bottom:12px">Fondo oscuro / video</h4>
+      <div class="btn-row btn-row--dark">
+        <a class="btn-on-video" href="#">Primary on video →</a>
+        <a class="btn-ghost-on-video" href="#">Ghost on video</a>
+      </div>
+      <h4 style="font-family:var(--498-family-mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--498-green-deep);margin:24px 0 12px">Botón split (Isomorphic-style)</h4>
+      <a class="btn-split" href="#">
+        <span class="btn-split__label">Work with us</span>
+        <span class="btn-split__arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       UI · FORMS
+       =================================================================== -->
+  <section class="ds-section" id="ui-forms">
+    <header class="ds-section__header">
+      <span class="ds-section__category">UI</span>
+      <h2 class="ds-section__title">Forms · inputs y textarea</h2>
+      <p class="ds-section__description">
+        Esquinas cuadradas explícitas (border-radius: 0). Label mono UPPER 10px verde-deep.
+        Focus border verde-deep, placeholder italic gris. Submit con gradient verde primary→deep.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <form class="ui-form" onsubmit="event.preventDefault()">
+        <div class="row">
+          <label for="ds-name">Nombre · empresa</label>
+          <input id="ds-name" type="text" placeholder="Marca y rol">
+        </div>
+        <div class="row">
+          <label for="ds-email">Email</label>
+          <input id="ds-email" type="email" placeholder="nombre@empresa.com">
+        </div>
+        <div class="row">
+          <label for="ds-message">Qué quieres saber</label>
+          <textarea id="ds-message" placeholder="Cuéntanos en qué estás pensando..."></textarea>
+        </div>
+        <button class="ui-btn-submit" type="submit">Enviar →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       UI · BADGES
+       =================================================================== -->
+  <section class="ds-section" id="ui-badges">
+    <header class="ds-section__header">
+      <span class="ds-section__category">UI</span>
+      <h2 class="ds-section__title">Badges · 4 variantes</h2>
+      <p class="ds-section__description">
+        Esquinas cuadradas. Mono UPPER 10px, padding 6px 10px. <strong>Flagship</strong> verde primary
+        sobre negro. <strong>Dev</strong> ghost verde-deep. <strong>Legacy</strong> grey. <strong>Critical</strong> alert.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <div class="badge-row">
+        <span class="badge badge-flagship">Flagship</span>
+        <span class="badge badge-dev">Dev / Beta</span>
+        <span class="badge badge-legacy">Legacy</span>
+        <span class="badge badge-critical">Critical</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       UI · CODE BLOCK
+       =================================================================== -->
+  <section class="ds-section" id="ui-code">
+    <header class="ds-section__header">
+      <span class="ds-section__category">UI</span>
+      <h2 class="ds-section__title">Code block · light variant</h2>
+      <p class="ds-section__description">
+        Background grey-50, border 1px line-strong, border-left 3px verde-deep. Esquinas cuadradas.
+        Roboto Mono 13px line-height 1.7. Tokens semánticos: <code>.c-key</code> verde-deep, <code>.c-val</code> muted, <code>.c-com</code> italic faint.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <pre class="ui-code"><span class="c-com">// 498Adesign · ejemplo de uso de tokens</span>
+.cta {
+  <span class="c-key">background</span>: <span class="c-val">var(--498-gradient-cta);</span>
+  <span class="c-key">color</span>: <span class="c-val">var(--498-black);</span>
+  <span class="c-key">border-radius</span>: <span class="c-val">var(--498-radius-2);</span>  <span class="c-com">/* 4px max */</span>
+  <span class="c-key">padding</span>: <span class="c-val">16px 28px;</span>
+  <span class="c-key">font-family</span>: <span class="c-val">var(--498-family-ui);</span>
+  <span class="c-key">text-transform</span>: <span class="c-val">uppercase;</span>
+}</pre>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       UI · TOGGLE
+       =================================================================== -->
+  <section class="ds-section" id="ui-toggle">
+    <header class="ds-section__header">
+      <span class="ds-section__category">UI</span>
+      <h2 class="ds-section__title">Toggle switch · cookie modal</h2>
+      <p class="ds-section__description">
+        44×24px, cuadrado, sin redondeos. Track grey con border 1px negro, knob blanco con border negro
+        que se desplaza 20px. Estado activo background verde-deep. Focus visible 2px verde primary.
+      </p>
+    </header>
+    <div class="ds-preview" style="max-width:520px">
+      <div class="toggle-row">
+        <span class="toggle-row__label">Cookies técnicas</span>
+        <label class="cookie-toggle">
+          <input type="checkbox" checked disabled>
+          <span class="cookie-toggle__track"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-row__label">Analítica</span>
+        <label class="cookie-toggle">
+          <input type="checkbox">
+          <span class="cookie-toggle__track"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-row__label">Marketing</span>
+        <label class="cookie-toggle">
+          <input type="checkbox">
+          <span class="cookie-toggle__track"></span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       UI · TABLE
+       =================================================================== -->
+  <section class="ds-section" id="ui-table">
+    <header class="ds-section__header">
+      <span class="ds-section__category">UI</span>
+      <h2 class="ds-section__title">Tablas · light + hairlines</h2>
+      <p class="ds-section__description">
+        Header mono UPPER 10px verde-deep, border-bottom strong. Rows con border-bottom hairline.
+        Row hover background verde-50. Code inline con border-radius 2px.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <table class="ui-table">
+        <thead>
+          <tr><th>Módulo</th><th>Función</th><th>Token</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>GEOAtlas</td><td>Modelado de demanda</td><td><code>--498-green-deep</code></td></tr>
+          <tr><td>Multi-LLM</td><td>Orquestación de 5 motores IA</td><td><code>--498-green</code></td></tr>
+          <tr><td>S.A.M.</td><td>Semantic alignment</td><td><code>--498-green-500</code></td></tr>
+          <tr><td>DOC</td><td>Agent Experience audit</td><td><code>--498-grey-700</code></td></tr>
+          <tr><td>LEO</td><td>Content factory</td><td><code>--498-black</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PATTERNS
+       =================================================================== -->
+  <section class="ds-section" id="pattern-band">
+    <header class="ds-section__header">
+      <span class="ds-section__category">PATTERNS</span>
+      <h2 class="ds-section__title">Grid backprop · banda oscura animada</h2>
+      <p class="ds-section__description">
+        Background grid-backprop.svg sobre #0F1410 (lab notebook nocturno). Tres capas animadas:
+        <code>patternFlow 60s</code> + <code>gradientDrift 22s</code> (soft-light) + <code>shimmer 14s</code>.
+        Label central blanco con border negro.
+      </p>
+    </header>
+    <div class="ds-preview ds-preview--flush">
+      <div class="pattern-band">
+        <span class="pattern-band__label">Open Science · 498A Lab</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="pattern-box">
+    <header class="ds-section__header">
+      <span class="ds-section__category">PATTERNS</span>
+      <h2 class="ds-section__title">Grid backprop · card light animada</h2>
+      <p class="ds-section__description">
+        Variante light de la trama dentro de una card. patternFlow 90s + multiply blend para que
+        el texto siga legible. Reservada a callouts editoriales destacados.
+      </p>
+    </header>
+    <div class="ds-preview">
+      <article class="box-pattern">
+        <span class="eyebrow">News · 2026</span>
+        <h3 class="ed-h3" style="margin:10px 0 10px">Mismo patrón, contexto editorial.</h3>
+        <p class="ed-body" style="font-size:14px">
+          La trama backprop se ralentiza a 90 segundos por loop y entra en modo multiply para no robar
+          atención al contenido. Mismo SVG fuente, contextos opuestos.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       MARCAS GEOMÉTRICAS
+       =================================================================== -->
+  <section class="ds-section" id="marks">
+    <header class="ds-section__header">
+      <span class="ds-section__category">MARCAS GEOMÉTRICAS</span>
+      <h2 class="ds-section__title">4 SVG inline · vocabulario del sistema</h2>
+      <p class="ds-section__description">
+        Cuadrados angulares, puntos, diagonales, frame-cross. 28×28px stroke 1px verde-deep.
+        Hover rota 45° y empuja a verde primary. Marker editorial, no icono corporativo.
+      </p>
+    </header>
+    <div class="ds-preview ds-preview--flush">
+      <div class="marks-grid">
+        <div>
+          <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="1.5" y="1.5" width="25" height="25"/>
+            <rect x="6.5" y="6.5" width="15" height="15"/>
+            <rect x="11.5" y="11.5" width="5" height="5"/>
+          </svg>
+          <span class="marks-grid__label">Nested squares</span>
+        </div>
+        <div>
+          <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1">
+            <line x1="2" y1="20" x2="20" y2="2"/>
+            <line x1="8" y1="26" x2="26" y2="8"/>
+            <line x1="14" y1="26" x2="26" y2="14"/>
+          </svg>
+          <span class="marks-grid__label">Diagonals</span>
+        </div>
+        <div>
+          <svg viewBox="0 0 28 28" stroke="currentColor" stroke-width="1">
+            <g fill="currentColor">
+              <circle cx="4" cy="4" r="1.2"/><circle cx="14" cy="4" r="1.2"/><circle cx="24" cy="4" r="1.2"/>
+              <circle cx="4" cy="14" r="1.2"/><circle cx="14" cy="14" r="2"/><circle cx="24" cy="14" r="1.2"/>
+              <circle cx="4" cy="24" r="1.2"/><circle cx="14" cy="24" r="1.2"/><circle cx="24" cy="24" r="1.2"/>
+            </g>
+            <line x1="14" y1="14" x2="4" y2="4" fill="none"/>
+            <line x1="14" y1="14" x2="24" y2="4" fill="none"/>
+            <line x1="14" y1="14" x2="4" y2="24" fill="none"/>
+            <line x1="14" y1="14" x2="24" y2="24" fill="none"/>
+          </svg>
+          <span class="marks-grid__label">Multiagent dots</span>
+        </div>
+        <div>
+          <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="4" y="4" width="20" height="20"/>
+            <line x1="14" y1="0" x2="14" y2="8"/>
+            <line x1="14" y1="20" x2="14" y2="28"/>
+            <line x1="0" y1="14" x2="8" y2="14"/>
+            <line x1="20" y1="14" x2="28" y2="14"/>
+          </svg>
+          <span class="marks-grid__label">Frame-cross</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       ASSETS · VISUALES
+       =================================================================== -->
+  <section class="ds-section" id="assets-visuals">
+    <header class="ds-section__header">
+      <span class="ds-section__category">ASSETS · CATÁLOGO</span>
+      <h2 class="ds-section__title">Visuales · 26 archivos · 3.3 MB</h2>
+      <p class="ds-section__description">
+        11 en uso en playground. 15 disponibles para sub-páginas (producto, blog, casos).
+        Conceptos: organismos vivos, redes, capas, cristales, paneles luminosos. Mezcla biomorfo + arquitectura.
+      </p>
+    </header>
+    <div class="ds-preview ds-preview--flush">
+      <div class="asset-grid">
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/vision-organism.jpg" alt="vision-organism"></div><div class="asset-card__meta"><span class="asset-card__name">vision-organism.jpg</span><span class="asset-card__concept">Vision hero card · sistema vivo</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/science-stacks.jpg" alt="science-stacks"></div><div class="asset-card__meta"><span class="asset-card__name">science-stacks.jpg</span><span class="asset-card__concept">Science · Layers</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/science-network.jpg" alt="science-network"></div><div class="asset-card__meta"><span class="asset-card__name">science-network.jpg</span><span class="asset-card__concept">Science · Ecosystem</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/sc-geo-visibility.jpg" alt="sc-geo-visibility"></div><div class="asset-card__meta"><span class="asset-card__name">sc-geo-visibility.jpg</span><span class="asset-card__concept">Service card · GEO</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/sc-multiagent-flow.jpg" alt="sc-multiagent-flow"></div><div class="asset-card__meta"><span class="asset-card__name">sc-multiagent-flow.jpg</span><span class="asset-card__concept">Service card · Multiagent</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/sc-simulation-cube.jpg" alt="sc-simulation-cube"></div><div class="asset-card__meta"><span class="asset-card__name">sc-simulation-cube.jpg</span><span class="asset-card__concept">Service card · Simulation</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/sc-datasets-layers.jpg" alt="sc-datasets-layers"></div><div class="asset-card__meta"><span class="asset-card__name">sc-datasets-layers.jpg</span><span class="asset-card__concept">Service card · Datasets</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/news-llm.jpg" alt="news-llm"></div><div class="asset-card__meta"><span class="asset-card__name">news-llm.jpg</span><span class="asset-card__concept">News card · LLM</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/manifesto-hands.jpg" alt="manifesto-hands"></div><div class="asset-card__meta"><span class="asset-card__name">manifesto-hands.jpg</span><span class="asset-card__concept">Manifesto gradient card</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/blog-hero.jpg" alt="blog-hero"></div><div class="asset-card__meta"><span class="asset-card__name">blog-hero.jpg</span><span class="asset-card__concept">Blog post hero</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/blog-figure.jpg" alt="blog-figure"></div><div class="asset-card__meta"><span class="asset-card__name">blog-figure.jpg</span><span class="asset-card__concept">Blog inline figure</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/biomorph-shell.webp" alt="biomorph-shell"></div><div class="asset-card__meta"><span class="asset-card__name">biomorph-shell.webp</span><span class="asset-card__concept">Forma biomorfa · multiagente</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/data-network.webp" alt="data-network"></div><div class="asset-card__meta"><span class="asset-card__name">data-network.webp</span><span class="asset-card__concept">Red de datos · clásica</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/data-network-alt.webp" alt="data-network-alt"></div><div class="asset-card__meta"><span class="asset-card__name">data-network-alt.webp</span><span class="asset-card__concept">Red de datos · variante</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/green-architecture.webp" alt="green-architecture"></div><div class="asset-card__meta"><span class="asset-card__name">green-architecture.webp</span><span class="asset-card__concept">Arquitectura modular · usado en index Tesis v3</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/library-garden.jpg" alt="library-garden"></div><div class="asset-card__meta"><span class="asset-card__name">library-garden.jpg</span><span class="asset-card__concept">Jardín experimental</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/library-grid.jpg" alt="library-grid"></div><div class="asset-card__meta"><span class="asset-card__name">library-grid.jpg</span><span class="asset-card__concept">Coral con grid · datos curados</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/method-panels.jpg" alt="method-panels"></div><div class="asset-card__meta"><span class="asset-card__name">method-panels.jpg</span><span class="asset-card__concept">Paneles verticales · IA privada</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/news-growth.jpg" alt="news-growth"></div><div class="asset-card__meta"><span class="asset-card__name">news-growth.jpg</span><span class="asset-card__concept">Cristal flotante · growth</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/news-rd.jpg" alt="news-rd"></div><div class="asset-card__meta"><span class="asset-card__name">news-rd.jpg</span><span class="asset-card__concept">Cerebro orgánico · I+D</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/stacked-layers.webp" alt="stacked-layers"></div><div class="asset-card__meta"><span class="asset-card__name">stacked-layers.webp</span><span class="asset-card__concept">Capas translúcidas · architecture</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/visual-ecosystem.webp" alt="visual-ecosystem"></div><div class="asset-card__meta"><span class="asset-card__name">visual-ecosystem.webp</span><span class="asset-card__concept">Ecosistema visual</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/visual-layers.webp" alt="visual-layers"></div><div class="asset-card__meta"><span class="asset-card__name">visual-layers.webp</span><span class="asset-card__concept">Capas</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/crystal-cluster.svg" alt="crystal-cluster"></div><div class="asset-card__meta"><span class="asset-card__name">crystal-cluster.svg</span><span class="asset-card__concept">Cubos isométricos · vision</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/isometric-cubes.svg" alt="isometric-cubes"></div><div class="asset-card__meta"><span class="asset-card__name">isometric-cubes.svg</span><span class="asset-card__concept">Cubos isométricos · multi-agent</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><img src="assets/visuals/tesis-frontier.svg" alt="tesis-frontier"></div><div class="asset-card__meta"><span class="asset-card__name">tesis-frontier.svg</span><span class="asset-card__concept">Diagrama estructural · descartado</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       ASSETS · VIDEOS
+       =================================================================== -->
+  <section class="ds-section" id="assets-video">
+    <header class="ds-section__header">
+      <span class="ds-section__category">ASSETS · CATÁLOGO</span>
+      <h2 class="ds-section__title">Vídeos · 11 archivos · 36 MB</h2>
+      <p class="ds-section__description">
+        Re-encode H.264 CRF 26, sin audio, faststart (-67% vs original). 4 en uso en playground,
+        8 en uso en home v4 (hero rotation pool). 3 en reserva.
+      </p>
+    </header>
+    <div class="ds-preview ds-preview--flush">
+      <div class="asset-grid">
+        <div class="asset-card"><div class="asset-card__thumb"><video src="assets/video/hero-loop.mp4" muted preload="metadata"></video></div><div class="asset-card__meta"><span class="asset-card__name">hero-loop.mp4</span><span class="asset-card__concept">3.4 MB · 1920×1080 · hero principal</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><video src="assets/video/hero-loop-mobile.mp4" muted preload="metadata"></video></div><div class="asset-card__meta"><span class="asset-card__name">hero-loop-mobile.mp4</span><span class="asset-card__concept">1.9 MB · 720×1280 · hero móvil</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><video src="assets/video/loop-productos.mp4" muted preload="metadata"></video></div><div class="asset-card__meta"><span class="asset-card__name">loop-productos.mp4</span><span class="asset-card__concept">1.9 MB · news card 1</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><video src="assets/video/loop-servicios.mp4" muted preload="metadata"></video></div><div class="asset-card__meta"><span class="asset-card__name">loop-servicios.mp4</span><span class="asset-card__concept">3.1 MB · news card 2</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><video src="assets/video/section-home.mp4" muted preload="metadata"></video></div><div class="asset-card__meta"><span class="asset-card__name">section-home.mp4</span><span class="asset-card__concept">4.1 MB · hero rotation home v4</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><video src="assets/video/section-services.mp4" muted preload="metadata"></video></div><div class="asset-card__meta"><span class="asset-card__name">section-services.mp4</span><span class="asset-card__concept">2.5 MB · hero rotation</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><video src="assets/video/section-vision-01.mp4" muted preload="metadata"></video></div><div class="asset-card__meta"><span class="asset-card__name">section-vision-01.mp4</span><span class="asset-card__concept">3.3 MB · hero rotation</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><video src="assets/video/section-vision-02.mp4" muted preload="metadata"></video></div><div class="asset-card__meta"><span class="asset-card__name">section-vision-02.mp4</span><span class="asset-card__concept">4.8 MB · hero rotation</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><video src="assets/video/section-news.mp4" muted preload="metadata"></video></div><div class="asset-card__meta"><span class="asset-card__name">section-news.mp4</span><span class="asset-card__concept">4.5 MB · vertical · reserva</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><video src="assets/video/section-products.mp4" muted preload="metadata"></video></div><div class="asset-card__meta"><span class="asset-card__name">section-products.mp4</span><span class="asset-card__concept">1.9 MB · reserva</span></div></div>
+        <div class="asset-card"><div class="asset-card__thumb"><video src="assets/video/section-product-dev.mp4" muted preload="metadata"></video></div><div class="asset-card__meta"><span class="asset-card__name">section-product-dev.mp4</span><span class="asset-card__concept">3.1 MB · reserva</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       ASSETS · TEAM
+       =================================================================== -->
+  <section class="ds-section" id="assets-team">
+    <header class="ds-section__header">
+      <span class="ds-section__category">ASSETS · CATÁLOGO</span>
+      <h2 class="ds-section__title">Equipo · 14 retratos</h2>
+      <p class="ds-section__description">
+        Todos en uso. Talent pool 498A + Zoopa Produccions. Tratamiento: filter saturate(.35) por defecto,
+        full color al hover + scale(1.04). Border-bottom 1px line entre foto y caption.
+      </p>
+    </header>
+    <div class="ds-preview ds-preview--flush">
+      <div class="portrait-grid">
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/carlos-ortet.webp" alt="Carlos Ortet"></div><div class="portrait__caption"><span class="portrait__num">01 / 14</span><span class="portrait__name">Carlos Ortet</span><span class="portrait__role">Founder · 498A</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/carles-ortet.png" alt="Carles Ortet"></div><div class="portrait__caption"><span class="portrait__num">02 / 14</span><span class="portrait__name">Carles Ortet</span><span class="portrait__role">CEO · Zoopa</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/dani-ebo.jpeg" alt="Daniel Ebo"></div><div class="portrait__caption"><span class="portrait__num">03 / 14</span><span class="portrait__name">Daniel Ebo</span><span class="portrait__role">Dirección de arte</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/mer-canet.jpeg" alt="Mer Canet"></div><div class="portrait__caption"><span class="portrait__num">04 / 14</span><span class="portrait__name">Mer Canet</span><span class="portrait__role">Producción</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/charly-fernandez.jpeg" alt="Charly Fernández"></div><div class="portrait__caption"><span class="portrait__num">05 / 14</span><span class="portrait__name">Charly Fernández</span><span class="portrait__role">Realizador</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/roger-de-gracia.jpg" alt="Roger de Gràcia"></div><div class="portrait__caption"><span class="portrait__num">06 / 14</span><span class="portrait__name">Roger de Gràcia</span><span class="portrait__role">Talent · presentador</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/irene-laprof.png" alt="Irene Laprof"></div><div class="portrait__caption"><span class="portrait__num">07 / 14</span><span class="portrait__name">Irene Laprof</span><span class="portrait__role">Talent · digital</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/carla-calvo.jpeg" alt="Carla Calvo"></div><div class="portrait__caption"><span class="portrait__num">08 / 14</span><span class="portrait__name">Carla Calvo</span><span class="portrait__role">Talent pool</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/mia-ortet.jpeg" alt="Mia Ortet"></div><div class="portrait__caption"><span class="portrait__num">09 / 14</span><span class="portrait__name">Mia Ortet</span><span class="portrait__role">Talent pool</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/esther-rodriguez.jpeg" alt="Esther Rodríguez"></div><div class="portrait__caption"><span class="portrait__num">10 / 14</span><span class="portrait__name">Esther Rodríguez</span><span class="portrait__role">Talent pool</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/matteo-remuzzi.jpeg" alt="Matteo Remuzzi"></div><div class="portrait__caption"><span class="portrait__num">11 / 14</span><span class="portrait__name">Matteo Remuzzi</span><span class="portrait__role">Talent pool</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/roger-adam.jpeg" alt="Roger Adam"></div><div class="portrait__caption"><span class="portrait__num">12 / 14</span><span class="portrait__name">Roger Adam</span><span class="portrait__role">Talent pool</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/juanjo-sanchez.jpeg" alt="Juanjo Sánchez"></div><div class="portrait__caption"><span class="portrait__num">13 / 14</span><span class="portrait__name">Juanjo Sánchez</span><span class="portrait__role">Técnico · digitallab</span></div></a>
+        <a class="portrait" href="#"><div class="portrait__img"><img src="assets/team/equipo-barcelona.webp" alt="Equipo Barcelona"></div><div class="portrait__caption"><span class="portrait__num">14 / 14</span><span class="portrait__name">Equipo Barcelona</span><span class="portrait__role">Grupo · foto</span></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       ASSETS · LOGOS
+       =================================================================== -->
+  <section class="ds-section" id="assets-logos">
+    <header class="ds-section__header">
+      <span class="ds-section__category">ASSETS · CATÁLOGO</span>
+      <h2 class="ds-section__title">Logos · 6 variantes</h2>
+      <p class="ds-section__description">
+        498A Advanced en black/green/white. GEORadar isotype + wordmark. Sello NextGenEU institucional.
+        SVG vectoriales (excepto sello en WebP). Cada uno mostrado sobre el fondo recomendado.
+      </p>
+    </header>
+    <div class="ds-preview ds-preview--flush">
+      <div class="logo-grid">
+        <div class="logo-cell"><img src="assets/logos/498A_ADVANCED_black.svg" alt="498A Advanced black"><span class="logo-cell__name">498A_ADVANCED_black.svg</span></div>
+        <div class="logo-cell logo-cell--green"><img src="assets/logos/498A_ADVANCED_green.svg" alt="498A Advanced green"><span class="logo-cell__name">498A_ADVANCED_green.svg</span></div>
+        <div class="logo-cell logo-cell--dark"><img src="assets/logos/498A_ADVANCED_white.svg" alt="498A Advanced white"><span class="logo-cell__name">498A_ADVANCED_white.svg</span></div>
+        <div class="logo-cell"><img src="assets/logos/georadar_isotype_black.svg" alt="GEORadar isotype"><span class="logo-cell__name">georadar_isotype_black.svg</span></div>
+        <div class="logo-cell logo-cell--dark"><img src="assets/logos/georadar_wordmark_white.svg" alt="GEORadar wordmark"><span class="logo-cell__name">georadar_wordmark_white.svg</span></div>
+        <div class="logo-cell"><img src="assets/logos/sello-NextGenEU.webp" alt="Sello NextGen EU"><span class="logo-cell__name">sello-NextGenEU.webp</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       LEGAL
+       =================================================================== -->
+  <section class="ds-section" id="legal">
+    <header class="ds-section__header">
+      <span class="ds-section__category">LEGAL</span>
+      <h2 class="ds-section__title">4 documentos legales · CA + ES + EN</h2>
+      <p class="ds-section__description">
+        Documentación completa en tres idiomas (algunos como borrador pendiente validación legal).
+        Índice general: <a class="link" href="legal/README.md">legal/README.md</a>.
+      </p>
+    </header>
+    <div class="ds-preview ds-preview--flush">
+      <div class="legal-grid">
+        <article class="legal-card">
+          <span class="eyebrow">Legal · 01</span>
+          <h3 class="legal-card__title">Aviso legal</h3>
+          <p class="legal-card__desc">Identificación del titular, datos registrales, responsabilidades y condiciones generales de uso del sitio.</p>
+          <a class="legal-card__cta" href="legal/aviso-legal.html">Ver documento →</a>
+        </article>
+        <article class="legal-card">
+          <span class="eyebrow">Legal · 02</span>
+          <h3 class="legal-card__title">Política de privacidad</h3>
+          <p class="legal-card__desc">Tratamiento de datos personales. Bases legales, finalidades, derechos del usuario, plazos de conservación.</p>
+          <a class="legal-card__cta" href="legal/politica-privacidad.html">Ver documento →</a>
+        </article>
+        <article class="legal-card">
+          <span class="eyebrow">Legal · 03</span>
+          <h3 class="legal-card__title">Política de cookies</h3>
+          <p class="legal-card__desc">Cookies técnicas, analítica y marketing. Configuración granular via cookie modal con toggles.</p>
+          <a class="legal-card__cta" href="legal/politica-cookies.html">Ver documento →</a>
+        </article>
+        <article class="legal-card">
+          <span class="eyebrow">Legal · 04</span>
+          <h3 class="legal-card__title">Declaración de accesibilidad</h3>
+          <p class="legal-card__desc">Compromiso WCAG 2.1 AA. Skip link, focus visible, contraste validado, soporte reduced-motion.</p>
+          <a class="legal-card__cta" href="legal/declaracion-accesibilidad.html">Ver documento →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       REFERENCIA
+       =================================================================== -->
+  <section class="ds-section" id="ref">
+    <header class="ds-section__header">
+      <span class="ds-section__category">REFERENCIA</span>
+      <h2 class="ds-section__title">Otras superficies del sistema</h2>
+      <p class="ds-section__description">
+        Esta página es el catálogo. Para ver los componentes en composición real, abre playground
+        (stress) o home v4 (producción). Para criterio editorial y arquitectura del sistema, abre README.
+      </p>
+    </header>
+    <div class="ds-preview ds-preview--flush">
+      <div class="ref-grid">
+        <a class="ref-card" href="playground.html">
+          <span class="ref-card__eyebrow">Stress page</span>
+          <h3 class="ref-card__title">playground.html</h3>
+          <p class="ref-card__desc">Todos los componentes con Lorem Ipsum, en composición editorial completa. Fuente de verdad visual del sistema · 136 KB · 3.523 líneas.</p>
+          <span class="ref-card__arrow">Abrir playground →</span>
+        </a>
+        <a class="ref-card" href="index.html">
+          <span class="ref-card__eyebrow">Home v4 · producción</span>
+          <h3 class="ref-card__title">index.html</h3>
+          <p class="ref-card__desc">Home oficial con copy real y todos los assets. Rotación de hero, secciones reales, footer institucional. 112 KB · 2.855 líneas.</p>
+          <span class="ref-card__arrow">Abrir home →</span>
+        </a>
+        <a class="ref-card" href="README.md">
+          <span class="ref-card__eyebrow">Documentación canónica</span>
+          <h3 class="ref-card__title">README.md</h3>
+          <p class="ref-card__desc">Criterio editorial, arquitectura del sistema, decisiones v2.1, taxonomía de componentes, reglas de accesibilidad. 27 KB · 603 líneas.</p>
+          <span class="ref-card__arrow">Abrir README →</span>
+        </a>
+        <a class="ref-card" href="INVENTORY.md">
+          <span class="ref-card__eyebrow">Inventario completo</span>
+          <h3 class="ref-card__title">INVENTORY.md</h3>
+          <p class="ref-card__desc">Fuente de verdad de qué hay y qué se usa. 67 assets en 6 carpetas. Cobertura por superficie. Acciones pendientes y deploy. 9.9 KB.</p>
+          <span class="ref-card__arrow">Abrir inventario →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- closing -->
+  <footer style="margin-top:96px;padding:32px 0 16px;border-top:1px solid var(--pg-line-strong);font-family:var(--498-family-mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--pg-text-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <span>498Adesign Browser · v2.1 · 2026-05-20</span>
+    <span><a class="link" href="playground.html">Playground</a> · <a class="link" href="index.html">Home</a> · <a class="link" href="README.md">Docs</a></span>
+  </footer>
+
+</main>
+
+<script>
+  // ===================================================================
+  // Sidebar mobile toggle
+  // ===================================================================
+  (function () {
+    var toggle  = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('dsSidebar');
+    if (!toggle || !sidebar) return;
+    toggle.addEventListener('click', function () {
+      sidebar.classList.toggle('is-open');
+    });
+    // Close on link click (mobile)
+    sidebar.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        if (window.innerWidth <= 900) sidebar.classList.remove('is-open');
+      });
+    });
+  })();
+
+  // ===================================================================
+  // Scroll spy · IntersectionObserver activa el item del sidebar visible
+  // ===================================================================
+  (function () {
+    var sections = document.querySelectorAll('.ds-section');
+    var links    = document.querySelectorAll('.ds-sidebar a');
+    if (!sections.length || !links.length) return;
+
+    var linkMap = {};
+    links.forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (href && href.charAt(0) === '#') linkMap[href.slice(1)] = a;
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          links.forEach(function (a) { a.classList.remove('is-active'); });
+          if (linkMap[id]) {
+            linkMap[id].classList.add('is-active');
+            // ensure visible in sidebar
+            var sb = document.getElementById('dsSidebar');
+            if (sb) {
+              var top  = linkMap[id].offsetTop;
+              var view = sb.scrollTop;
+              if (top < view || top > view + sb.clientHeight - 80) {
+                sb.scrollTo({ top: top - 100, behavior: 'smooth' });
+              }
+            }
+          }
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+</script>
+
+</body>
+</html>
