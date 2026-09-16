@@ -8,7 +8,7 @@ languages:
 entity: 498 Advanced Solutions SL
 cif: B64519622
 dpo_email: protecciondedatos@498as.com
-domain_legacy: www.498as.com
+domain_legacy: www.498advance.com
 domain_target: pendiente confirmación post-rebrand
 last_updated: 2026-05-18
 status: source canónico recibido del equipo legal (solo ES, legacy stack WordPress + Elementor)
@@ -16,7 +16,7 @@ status: source canónico recibido del equipo legal (solo ES, legacy stack WordPr
 
 # Política de Cookies · 498 Advance
 
-> **Nota de transición**: este texto procede del legacy publicado en `www.498as.com/politica-cookies`. Las referencias al nombre comercial se han actualizado de `498AS` a `498A` (rebrand) y el email DPO de `protecciondedatos@498as.com` a `protecciondedatos@498as.com`. La razón social legal **498 Advanced Solutions SL** (CIF B64519622) y el domicilio se mantienen íntegros. Pendientes las versiones en catalán e inglés. **Importante**: el inventario de cookies listado corresponde al stack legacy WordPress + Elementor + WooCommerce; deberá reescribirse cuando se confirme el stack técnico de la nueva web (ver nota técnica al final del documento).
+> **Nota de transición**: este texto procede del legacy publicado en `www.498advance.com/politica-cookies`. Las referencias al nombre comercial se han actualizado de `498AS` a `498A` (rebrand) y el email DPO de `protecciondedatos@498as.com` a `protecciondedatos@498as.com`. La razón social legal **498 Advanced Solutions SL** (CIF B64519622) y el domicilio se mantienen íntegros. Pendientes las versiones en catalán e inglés. **Importante**: el inventario de cookies listado corresponde al stack legacy WordPress + Elementor + WooCommerce; deberá reescribirse cuando se confirme el stack técnico de la nueva web (ver nota técnica al final del documento).
 
 ---
 
@@ -641,9 +641,9 @@ Cada bloque está marcado con un H2 que actúa como ancla:
 | Razón social | 498 Advanced Solutions SL |
 | CIF | B64519622 |
 | Domicilio | Calle Doctor Trueta, 158 · 08005 Barcelona · España |
-| Email contacto | info@498as.com |
+| Email contacto | info@498advance.com |
 | Email protección de datos (DPO) | **protecciondedatos@498as.com** |
-| Dominio legacy | www.498as.com |
+| Dominio legacy | www.498advance.com |
 | Dominio target post-rebrand | pendiente confirmación |
 | Autoridad de control | Agencia Española de Protección de Datos · [aepd.es](https://www.aepd.es) |
 
@@ -651,7 +651,7 @@ Cada bloque está marcado con un H2 que actúa como ancla:
 
 ## Nota técnica sobre el nuevo gestor de consent en el design system v2.1
 
-El inventario de cookies listado en la sección "Cookies específicas utilizadas" pertenece al **stack legacy** de `498as.com`: WordPress + Elementor + WooCommerce + Complianz + Sourcebuster + Stripe + Google Analytics + Google Fonts + Google Maps. Es el inventario que figura en la página vigente y se reproduce aquí por fidelidad al texto recibido del equipo legal.
+El inventario de cookies listado en la sección "Cookies específicas utilizadas" pertenece al **stack legacy** de `498advance.com`: WordPress + Elementor + WooCommerce + Complianz + Sourcebuster + Stripe + Google Analytics + Google Fonts + Google Maps. Es el inventario que figura en la página vigente y se reproduce aquí por fidelidad al texto recibido del equipo legal.
 
 La **nueva web 498A** implementa un **consent manager propio**, integrado en `playground.html` del design system v2.1:
 
@@ -671,4 +671,4 @@ Mientras tanto, el consent registrado en `localStorage` (`498a.cookie-consent.v1
 
 ---
 
-*Texto recibido del equipo legal el 2026-05-18 (fuente: legacy publicado en 498as.com/politica-cookies). Última actualización: 2026-05-18.*
+*Texto recibido del equipo legal el 2026-05-18 (fuente: legacy publicado en 498advance.com/politica-cookies). Última actualización: 2026-05-18.*

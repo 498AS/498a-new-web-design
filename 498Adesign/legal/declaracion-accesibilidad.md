@@ -8,7 +8,7 @@ languages:
 # CA y EN traducidas desde ES · borrador pendiente revisión legal
 entity: 498 Advanced Solutions SL
 cif: B64519622
-domain_target: www.498as.com
+domain_target: www.498advance.com
 last_updated: 2026-05-18
 conformance_level: parcialmente conforme
 standard: WCAG 2.1 nivel AA
@@ -23,9 +23,9 @@ status: borrador · pendiente audit externo profesional antes de publicación
 
 # Declaración de Accesibilidad · 498 Advance
 
-498 Advanced Solutions SL (en adelante, **498 Advance** o **498A**) se compromete a hacer accesible su sitio web `www.498as.com` de conformidad con el Real Decreto 1112/2018 de 7 de septiembre, sobre accesibilidad de los sitios web y aplicaciones para dispositivos móviles del sector público (transposición de la Directiva (UE) 2016/2102 al ordenamiento jurídico español) y la **Directiva (UE) 2019/882 — European Accessibility Act**, aplicable a productos y servicios privados desde el 28 de junio de 2025.
+498 Advanced Solutions SL (en adelante, **498 Advance** o **498A**) se compromete a hacer accesible su sitio web `www.498advance.com` de conformidad con el Real Decreto 1112/2018 de 7 de septiembre, sobre accesibilidad de los sitios web y aplicaciones para dispositivos móviles del sector público (transposición de la Directiva (UE) 2016/2102 al ordenamiento jurídico español) y la **Directiva (UE) 2019/882 — European Accessibility Act**, aplicable a productos y servicios privados desde el 28 de junio de 2025.
 
-La presente Declaración de Accesibilidad se aplica al sitio `www.498as.com`.
+La presente Declaración de Accesibilidad se aplica al sitio `www.498advance.com`.
 
 ---
 
@@ -121,7 +121,7 @@ Puedes realizar comunicaciones sobre requisitos de accesibilidad (Artículo 10.2
 - Transmitir otras dificultades de acceso al contenido.
 - Formular cualquier otra consulta o sugerencia de mejora relativa a la accesibilidad del sitio web.
 
-A través del correo electrónico: **accesibilidad@498as.com**
+A través del correo electrónico: **accesibilidad@498advance.com**
 
 Las comunicaciones serán recibidas y tratadas por 498 Advanced Solutions SL.
 
@@ -131,7 +131,7 @@ Las comunicaciones serán recibidas y tratadas por 498 Advanced Solutions SL.
 
 En el caso de que, una vez realizada una solicitud de información accesible o queja, ésta hubiera sido desestimada, no se estuviera de acuerdo con la decisión adoptada, o la respuesta no cumpliera los requisitos contemplados en el artículo 12.5 del RD 1112/2018, la persona interesada podrá iniciar una reclamación para conocer y oponerse a los motivos de la desestimación, instar la adopción de las medidas oportunas en el caso de no estar de acuerdo con la decisión adoptada, o exponer las razones por las que se considera que la respuesta no cumple con los requisitos exigidos.
 
-La reclamación puede presentarse a través del correo: **accesibilidad@498as.com**
+La reclamación puede presentarse a través del correo: **accesibilidad@498advance.com**
 
 ---
 
@@ -172,9 +172,9 @@ HTML5 · CSS3 · JavaScript (ES5 vanilla · `IntersectionObserver` · `localStor
 
 > **Esborrany**: traducció al català realitzada des de la versió castellana. Pendent de revisió i validació per l'equip legal de 498 Advance.
 
-498 Advanced Solutions SL (d'ara endavant, **498 Advance** o **498A**) es compromet a fer accessible el seu lloc web `www.498as.com` de conformitat amb el Reial Decret 1112/2018 de 7 de setembre, sobre accessibilitat dels llocs web i aplicacions per a dispositius mòbils del sector públic (transposició de la Directiva (UE) 2016/2102 a l'ordenament jurídic espanyol) i la **Directiva (UE) 2019/882 — European Accessibility Act**, aplicable a productes i serveis privats des del 28 de juny de 2025.
+498 Advanced Solutions SL (d'ara endavant, **498 Advance** o **498A**) es compromet a fer accessible el seu lloc web `www.498advance.com` de conformitat amb el Reial Decret 1112/2018 de 7 de setembre, sobre accessibilitat dels llocs web i aplicacions per a dispositius mòbils del sector públic (transposició de la Directiva (UE) 2016/2102 a l'ordenament jurídic espanyol) i la **Directiva (UE) 2019/882 — European Accessibility Act**, aplicable a productes i serveis privats des del 28 de juny de 2025.
 
-La present Declaració d'Accessibilitat s'aplica al lloc `www.498as.com`.
+La present Declaració d'Accessibilitat s'aplica al lloc `www.498advance.com`.
 
 ---
 
@@ -270,7 +270,7 @@ Pots realitzar comunicacions sobre requisits d'accessibilitat (Article 10.2.a de
 - Transmetre altres dificultats d'accés al contingut.
 - Formular qualsevol altra consulta o suggeriment de millora relativa a l'accessibilitat del lloc web.
 
-A través del correu electrònic: **accesibilidad@498as.com**
+A través del correu electrònic: **accesibilidad@498advance.com**
 
 Les comunicacions seran rebudes i tractades per 498 Advanced Solutions SL.
 
@@ -280,7 +280,7 @@ Les comunicacions seran rebudes i tractades per 498 Advanced Solutions SL.
 
 En el cas que, un cop realitzada una sol·licitud d'informació accessible o queixa, aquesta hagi estat desestimada, no s'estigui d'acord amb la decisió adoptada, o la resposta no compleixi els requisits previstos a l'article 12.5 del RD 1112/2018, la persona interessada podrà iniciar una reclamació per conèixer i oposar-se als motius de la desestimació, instar l'adopció de les mesures oportunes en cas de no estar d'acord amb la decisió adoptada, o exposar les raons per les quals es considera que la resposta no compleix els requisits exigits.
 
-La reclamació es pot presentar a través del correu: **accesibilidad@498as.com**
+La reclamació es pot presentar a través del correu: **accesibilidad@498advance.com**
 
 ---
 
@@ -321,9 +321,9 @@ HTML5 · CSS3 · JavaScript (ES5 vanilla · `IntersectionObserver` · `localStor
 
 > **Draft**: English translation from the Spanish version. Pending review and validation by 498 Advance's legal team.
 
-498 Advanced Solutions SL (hereinafter, **498 Advance** or **498A**) is committed to making its website `www.498as.com` accessible in accordance with Royal Decree 1112/2018 of 7 September, on the accessibility of public sector websites and mobile applications (transposition of Directive (EU) 2016/2102 into the Spanish legal system) and **Directive (EU) 2019/882 — European Accessibility Act**, applicable to private products and services since 28 June 2025.
+498 Advanced Solutions SL (hereinafter, **498 Advance** or **498A**) is committed to making its website `www.498advance.com` accessible in accordance with Royal Decree 1112/2018 of 7 September, on the accessibility of public sector websites and mobile applications (transposition of Directive (EU) 2016/2102 into the Spanish legal system) and **Directive (EU) 2019/882 — European Accessibility Act**, applicable to private products and services since 28 June 2025.
 
-This Accessibility Statement applies to the website `www.498as.com`.
+This Accessibility Statement applies to the website `www.498advance.com`.
 
 ---
 
@@ -419,7 +419,7 @@ You may submit communications regarding accessibility requirements (Article 10.2
 - Conveying other difficulties in accessing the content.
 - Submitting any other query or suggestion for improvement regarding the accessibility of the website.
 
-Through email: **accesibilidad@498as.com**
+Through email: **accesibilidad@498advance.com**
 
 Communications will be received and processed by 498 Advanced Solutions SL.
 
@@ -429,7 +429,7 @@ Communications will be received and processed by 498 Advanced Solutions SL.
 
 If, once a request for accessible information or a complaint has been made, it has been rejected, you do not agree with the decision adopted, or the response does not meet the requirements set out in Article 12.5 of Royal Decree 1112/2018, the interested party may initiate a claim to ascertain and contest the reasons for the rejection, request the adoption of appropriate measures if not in agreement with the decision adopted, or set out the reasons why the response is deemed not to meet the required standards.
 
-The claim may be submitted through email: **accesibilidad@498as.com**
+The claim may be submitted through email: **accesibilidad@498advance.com**
 
 ---
 

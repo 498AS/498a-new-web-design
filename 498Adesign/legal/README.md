@@ -29,11 +29,11 @@ Las dos versiones contienen el mismo texto; la HTML añade selector de idioma st
 | Razón social | 498 Advanced Solutions SL |
 | CIF | B64519622 |
 | Domicilio | Calle Doctor Trueta, 158 · 08005 Barcelona · España |
-| Email contacto | info@498as.com |
+| Email contacto | info@498advance.com |
 | Email DPO (cookies + RGPD) | protecciondedatos@498as.com |
-| Dominio target post-rebrand | www.498as.com (pendiente confirmación final) |
+| Dominio target post-rebrand | www.498advance.com (pendiente confirmación final) |
 
-> **Nota de transición aplicada**: el texto recibido del equipo legal usaba la nomenclatura legacy `498AS` y `www.498as.com`. Se ha sustituido por `498A` (nombre comercial post-rebrand) y `www.498as.com` (dominio target). La razón social legal (498 Advanced Solutions SL) y CIF (B64519622) no cambian. Validar con legal: (1) actualización de nombre comercial, (2) dominio final, (3) versiones castellana e inglesa de privacidad/cookies, (4) cierre de gaps RGPD identificados.
+> **Nota de transición aplicada**: el texto recibido del equipo legal usaba la nomenclatura legacy `498AS` y `www.498advance.com`. Se ha sustituido por `498A` (nombre comercial post-rebrand) y `www.498advance.com` (dominio target). La razón social legal (498 Advanced Solutions SL) y CIF (B64519622) no cambian. Validar con legal: (1) actualización de nombre comercial, (2) dominio final, (3) versiones castellana e inglesa de privacidad/cookies, (4) cierre de gaps RGPD identificados.
 
 ---
 
@@ -85,7 +85,7 @@ Como parte del cierre de la Declaración de Accesibilidad, se han aplicado las s
 3. **Tests con usuarios** de tecnologías de apoyo (NVDA + Firefox, VoiceOver + Safari).
 4. **Recibir versiones CA y EN** de Privacidad, Cookies y Accesibilidad del equipo legal.
 5. **Recibir versión ES** del Aviso legal.
-6. **Confirmar dominio target** (`www.498as.com` provisional) y propagar a todos los textos.
+6. **Confirmar dominio target** (`www.498advance.com` provisional) y propagar a todos los textos.
 7. **Reescribir inventario de cookies** cuando el nuevo stack esté en pre-producción.
 8. **Subtítulos del vídeo hero** cuando se sustituya por contenido productivo.
 9. **Validar conformidad** GDPR / LOPDGDD / LSSI-CE / EAA con asesoría legal antes de publicar.

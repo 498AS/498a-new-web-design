@@ -8,7 +8,7 @@ languages:
 # CA y EN traducidas desde ES · borrador pendiente revisión legal
 entity: 498 Advanced Solutions SL
 cif: B64519622
-domain_legacy: www.498as.com
+domain_legacy: www.498advance.com
 domain_target: pendiente confirmación post-rebrand
 last_updated: 2026-05-18
 source_date: 2025-04-24
@@ -17,21 +17,21 @@ status: source canónico recibido del equipo legal (solo ES)
 
 # Política de Privacidad · 498 Advance
 
-> **Nota de transición**: este texto procede del legacy publicado en `www.498as.com/politica-privacidad` (versión vigente con fecha 24 de abril de 2025). Las referencias al nombre comercial se han actualizado de `498AS` a `498A` (rebrand). La razón social legal **498 Advanced Solutions SL** (CIF B64519622) y el domicilio se mantienen íntegros. Pendientes las versiones en catalán e inglés, así como el cierre de gaps RGPD identificados al final del documento.
+> **Nota de transición**: este texto procede del legacy publicado en `www.498advance.com/politica-privacidad` (versión vigente con fecha 24 de abril de 2025). Las referencias al nombre comercial se han actualizado de `498AS` a `498A` (rebrand). La razón social legal **498 Advanced Solutions SL** (CIF B64519622) y el domicilio se mantienen íntegros. Pendientes las versiones en catalán e inglés, así como el cierre de gaps RGPD identificados al final del documento.
 
 ---
 
 ## ES · Política de Privacidad
 
-**Finalidad.** En 498as.com tratamos la información que nos facilitan las personas interesadas con el fin de gestionar el envío de la información que nos soliciten y prestarle los servicios que nos son encomendados. En 498as.com no elaboraremos perfiles comerciales en base a la información solicitada sin su consentimiento, por lo que le informamos que no se toman decisiones automatizadas.
+**Finalidad.** En 498advance.com tratamos la información que nos facilitan las personas interesadas con el fin de gestionar el envío de la información que nos soliciten y prestarle los servicios que nos son encomendados. En 498advance.com no elaboraremos perfiles comerciales en base a la información solicitada sin su consentimiento, por lo que le informamos que no se toman decisiones automatizadas.
 
-**Conservación de los datos.** Los datos personales proporcionados se conservarán mientras se mantenga la relación entre 498as.com y los interesados.
+**Conservación de los datos.** Los datos personales proporcionados se conservarán mientras se mantenga la relación entre 498advance.com y los interesados.
 
-**Legitimación.** La información facilitada por 498as.com y la prestación de sus servicios a los interesados y clientes está basada en el consentimiento solicitado previamente y aceptado por los interesados y usuarios.
+**Legitimación.** La información facilitada por 498advance.com y la prestación de sus servicios a los interesados y clientes está basada en el consentimiento solicitado previamente y aceptado por los interesados y usuarios.
 
 **Cuánto tiempo conservamos tus datos.** Los datos de los clientes se comunicarán únicamente, previa información y aceptación para la prestación del servicio, así como en caso de ser necesario a empresas del grupo y colaboradores, al encargado del tratamiento y a aquellas entidades con las que sea necesaria la comunicación, con la finalidad de cumplir con la prestación del servicio anteriormente mencionado o atender la solicitud de información.
 
-**Procedencia.** Los datos personales que tratamos en 498as.com proceden de sus solicitudes y/o de los formularios facilitados por los interesados.
+**Procedencia.** Los datos personales que tratamos en 498advance.com proceden de sus solicitudes y/o de los formularios facilitados por los interesados.
 
 Las categorías de datos que se tratan son:
 
@@ -53,15 +53,15 @@ Las categorías de datos que se tratan son:
 
 > **Esborrany**: traducció al català realitzada des de la versió castellana. Pendent de revisió i validació per l'equip legal de 498 Advance.
 
-**Finalitat.** A 498as.com tractem la informació que ens faciliten les persones interessades amb la finalitat de gestionar l'enviament de la informació que ens sol·licitin i prestar-los els serveis que ens són encomanats. A 498as.com no elaborarem perfils comercials en base a la informació sol·licitada sense el seu consentiment, per la qual cosa l'informem que no es prenen decisions automatitzades.
+**Finalitat.** A 498advance.com tractem la informació que ens faciliten les persones interessades amb la finalitat de gestionar l'enviament de la informació que ens sol·licitin i prestar-los els serveis que ens són encomanats. A 498advance.com no elaborarem perfils comercials en base a la informació sol·licitada sense el seu consentiment, per la qual cosa l'informem que no es prenen decisions automatitzades.
 
-**Conservació de les dades.** Les dades personals proporcionades es conservaran mentre es mantingui la relació entre 498as.com i les persones interessades.
+**Conservació de les dades.** Les dades personals proporcionades es conservaran mentre es mantingui la relació entre 498advance.com i les persones interessades.
 
-**Legitimació.** La informació facilitada per 498as.com i la prestació dels seus serveis a les persones interessades i clients està basada en el consentiment sol·licitat prèviament i acceptat per les persones interessades i usuàries.
+**Legitimació.** La informació facilitada per 498advance.com i la prestació dels seus serveis a les persones interessades i clients està basada en el consentiment sol·licitat prèviament i acceptat per les persones interessades i usuàries.
 
 **Quant de temps conservem les teves dades.** Les dades dels clients es comunicaran únicament, prèvia informació i acceptació per a la prestació del servei, així com en cas de ser necessari a empreses del grup i col·laboradors, a l'encarregat del tractament i a aquelles entitats amb les quals sigui necessària la comunicació, amb la finalitat de complir amb la prestació del servei anteriorment esmentat o atendre la sol·licitud d'informació.
 
-**Procedència.** Les dades personals que tractem a 498as.com procedeixen de les seves sol·licituds i/o dels formularis facilitats per les persones interessades.
+**Procedència.** Les dades personals que tractem a 498advance.com procedeixen de les seves sol·licituds i/o dels formularis facilitats per les persones interessades.
 
 Les categories de dades que es tracten són:
 
@@ -83,15 +83,15 @@ Les categories de dades que es tracten són:
 
 > **Draft**: English translation from the Spanish version. Pending review and validation by 498 Advance's legal team.
 
-**Purpose.** At 498as.com we process the information provided to us by data subjects in order to manage the delivery of the information they request and to provide them with the services entrusted to us. At 498as.com we will not build commercial profiles based on the information requested without your consent, and we therefore inform you that no automated decisions are taken.
+**Purpose.** At 498advance.com we process the information provided to us by data subjects in order to manage the delivery of the information they request and to provide them with the services entrusted to us. At 498advance.com we will not build commercial profiles based on the information requested without your consent, and we therefore inform you that no automated decisions are taken.
 
-**Data retention.** The personal data provided will be retained for as long as the relationship between 498as.com and the data subjects is maintained.
+**Data retention.** The personal data provided will be retained for as long as the relationship between 498advance.com and the data subjects is maintained.
 
-**Legal basis.** The information provided by 498as.com and the provision of its services to data subjects and clients is based on the consent previously requested and accepted by the data subjects and users.
+**Legal basis.** The information provided by 498advance.com and the provision of its services to data subjects and clients is based on the consent previously requested and accepted by the data subjects and users.
 
 **How long we keep your data.** Client data will be disclosed solely, subject to prior information and acceptance for the provision of the service, as well as where necessary to group companies and collaborators, to the data processor and to those entities with which communication is required, for the purpose of fulfilling the provision of the aforementioned service or attending to the request for information.
 
-**Source.** The personal data we process at 498as.com originate from your requests and/or from the forms provided by the data subjects.
+**Source.** The personal data we process at 498advance.com originate from your requests and/or from the forms provided by the data subjects.
 
 The categories of data processed are:
 
@@ -126,9 +126,9 @@ Cada bloque está marcado con un H2 que actúa como ancla:
 | Razón social | 498 Advanced Solutions SL |
 | CIF | B64519622 |
 | Domicilio | Calle Doctor Trueta, 158 · 08005 Barcelona · España |
-| Email contacto | info@498as.com |
+| Email contacto | info@498advance.com |
 | Email protección de datos (legacy, ver gaps) | protecciondedatos@498as.com |
-| Dominio legacy | www.498as.com |
+| Dominio legacy | www.498advance.com |
 | Dominio target post-rebrand | pendiente confirmación |
 
 ---
@@ -149,4 +149,4 @@ Estos gaps son herencia del texto legacy y requieren revisión con el equipo leg
 
 ---
 
-*Texto recibido del equipo legal el 2026-05-18 (fuente: legacy publicado el 2025-04-24 en 498as.com). Última actualización: 2026-05-18.*
+*Texto recibido del equipo legal el 2026-05-18 (fuente: legacy publicado el 2025-04-24 en 498advance.com). Última actualización: 2026-05-18.*
