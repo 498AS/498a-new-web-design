@@ -996,6 +996,30 @@
     isolation: isolate;
     animation: patternFlow 90s linear infinite;
   }
+  /* Bloque de estudio en curso · antes iba con estilos inline, que impedian
+     ajustarlo en movil y recortaban el titular a 375 px */
+  .study-card__inner {
+    display: grid;
+    /* minmax(0,1fr) evita que el CTA, que no parte linea, ensanche la columna */
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    max-width: 880px; margin: 0 auto;
+    padding: 24px 16px;
+  }
+  .study-card__title {
+    margin: 0; font-size: 38px; line-height: 1.2;
+    overflow-wrap: break-word;
+  }
+  .study-card__text {
+    font-size: 16px; line-height: 1.7;
+    color: var(--pg-text); margin: 0;
+  }
+  @media (max-width: 600px) {
+    .box-pattern { padding: 28px 16px; }
+    .study-card__inner { padding: 4px 0; gap: 18px; }
+    .study-card__title { font-size: 26px; }
+    .study-card__inner .btn-solid-dark { white-space: normal; text-align: center; }
+  }
   .box-pattern::before {
     content: "";
     position: absolute; inset: -10%;
@@ -2294,12 +2318,12 @@
     <span class="cnr cnr--tl"></span><span class="cnr cnr--tr"></span>
     <span class="cnr cnr--bl"></span><span class="cnr cnr--br"></span>
 
-    <div style="display:grid;gap:24px;max-width:880px;margin:0 auto;padding:24px 16px">
+    <div class="study-card__inner">
       <span class="eyebrow" style="margin-bottom:0">Estudio en curso · GEORadar · Mundial FIFA 2026</span>
-      <h3 class="ed-display-2" style="margin:0;font-size:38px;line-height:1.2">
+      <h3 class="ed-display-2 study-card__title">
         Cómo la IA narra el <em style="color:var(--498-green-deep)">Mundial FIFA 2026</em>.
       </h3>
-      <p class="ed-body" style="font-size:16px;line-height:1.7;color:var(--pg-text);margin:0">
+      <p class="ed-body study-card__text">
         Estamos auditando en tiempo real cómo ChatGPT, Claude, Gemini, Perplexity y
         Google AI Overviews construyen la narrativa del Mundial: qué marcas asocian
         a la competición, qué sedes destacan, qué riesgos perciben, qué fuentes
@@ -2494,6 +2518,7 @@
     </p>
     <div style="display:flex;gap:14px;flex-wrap:wrap">
       <a class="btn-light" href="mailto:hola@498as.com">Hablemos →</a>
+      <a class="btn-ghost-light" href="mailto:hola@498as.com?subject=Solicitud%20de%20credenciales%20498A%202026&amp;body=Hola%2C%0A%0AMe%20gustar%C3%ADa%20recibir%20las%20credenciales%20de%20498A%20en%20PDF.%0A%0ANombre%3A%0AEmpresa%3A%0ACargo%3A%0A%0AGracias.">Pedir las credenciales (PDF) →</a>
       <a class="btn-ghost-light" href="#perspectivas">Suscribirme a las perspectivas</a>
     </div>
   </div>
@@ -2630,6 +2655,7 @@
         <li><a href="#tesis">Sobre 498A</a></li>
         <li><a href="#equipo">Equipo</a></li>
         <li><a href="#contacto">Contacto</a></li>
+        <li><a href="mailto:hola@498as.com?subject=Solicitud%20de%20credenciales%20498A%202026&amp;body=Hola%2C%0A%0AMe%20gustar%C3%ADa%20recibir%20las%20credenciales%20de%20498A%20en%20PDF.%0A%0ANombre%3A%0AEmpresa%3A%0ACargo%3A%0A%0AGracias.">Credenciales 2026 (PDF)</a></li>
         <li><a href="mailto:hola@498as.com">Trabaja con nosotros</a></li>
       </ul>
     </div>
