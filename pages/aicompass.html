@@ -3,10 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>498A · Consultoría de IA aplicada · Investigación con horizonte Gerard · Barcelona</title>
-<meta name="description" content="498A es una consultora de IA aplicada con un programa de investigación a medio plazo orientado a la simulación de personas, grupos y sociedades. Barcelona, desde 2023.">
-<link rel="stylesheet" href="tokens.css">
+<title>AICompass · Itinerarios formativos de IA a medida · 498A</title>
+<meta name="description" content="AICompass convierte nombre, cargo y empresa en un plan formativo de IA curado y gratuito por diseño. 382 recursos verificados (cursos, libros, ensayos, papers, podcasts y documentales) de labs de IA, universidades y organismos internacionales. Un producto de 498 Advance.">
+<link rel="stylesheet" href="../498Adesign/tokens.css">
 <style>
+  /* ===================================================================
+     AICompass · pagina de producto · tema oscuro · 2026-07-06
+     Construida sobre 498Adesign v2.1. CSS de componentes reutilizado
+     del index.html canonico; retheme oscuro via variables --pg-*.
+     =================================================================== */
+
   /* ===================================================================
      498A · home pública v1 · 2026-05-19
      Reutiliza el CSS de componentes del playground v6.
@@ -34,7 +40,7 @@
     --pg-paper-green: #F4FAF3;
     --pg-section-pad-y: 120px;
 
-    --pg-pattern: url('assets/patterns/grid-backprop.svg');
+    --pg-pattern: url('../498Adesign/assets/patterns/grid-backprop.svg');
     --pg-rail-width: 148px;
   }
 
@@ -1380,8 +1386,6 @@
     overflow: visible;
     position: relative;
     aspect-ratio: 4/3;
-    width: 100%;
-    min-width: 0;
     background: var(--498-grey-100);
   }
   .team-photo img {
@@ -1770,6 +1774,342 @@
   }
   .cookie-toggle input:checked + .cookie-toggle__track { background: var(--498-green-deep); }
   .cookie-toggle input:checked + .cookie-toggle__track::before { transform: translateX(20px); background: var(--498-white); }
+
+  /* ===================================================================
+     pages/aicompass.html · extensiones de pagina (solo tokens)
+     1) Bloques recuperados del catalogo (index.html los elimino de su CSS):
+        ui-form, ui-table, has-cursor.
+     2) TEMA OSCURO: redefinicion de las variables --pg-* + .keep-light.
+     3) Paneles blancos para capturas de informes y diagramas.
+     =================================================================== */
+
+  /* Forms · catalogo v2.1 */
+  .ui-form { display: grid; gap: 14px; max-width: 480px; }
+  .ui-form label {
+    font-family: var(--498-family-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--498-green-deep); font-weight: 500;
+  }
+  .ui-form input, .ui-form textarea, .ui-form select {
+    width: 100%;
+    background: var(--498-white);
+    border: 1px solid var(--pg-line-strong);
+    border-radius: 0;
+    padding: 12px 14px;
+    color: var(--pg-text);
+    font-family: var(--498-family-body);
+    font-size: 14px;
+    transition: border-color .2s;
+  }
+  .ui-form input::placeholder, .ui-form textarea::placeholder {
+    color: var(--pg-text-faint); font-style: italic;
+  }
+  .ui-form input:focus, .ui-form textarea:focus, .ui-form select:focus {
+    outline: 0; border-color: var(--498-green);
+  }
+  .ui-form textarea { min-height: 100px; resize: vertical; }
+  .ui-form .row { display: grid; gap: 6px; }
+  .ui-btn-submit {
+    background: linear-gradient(135deg, var(--498-green) 0%, var(--498-green-deep) 100%);
+    color: var(--498-white);
+    border: 0;
+    padding: 14px 20px;
+    font-family: var(--498-family-ui); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500;
+    cursor: pointer;
+    border-radius: 0;
+    transition: filter .2s;
+  }
+  .ui-btn-submit:hover { filter: brightness(1.08); }
+  .ui-form--intake { max-width: 560px; }
+
+  /* Table · catalogo v2.1 */
+  .ui-table {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--498-family-body); font-size: 14px;
+  }
+  .ui-table th, .ui-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--pg-line);
+  }
+  .ui-table th {
+    font-family: var(--498-family-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--498-green-deep); font-weight: 500;
+    border-bottom: 1px solid var(--pg-line-strong);
+  }
+  .ui-table td { color: var(--pg-text); }
+  .ui-table tr:last-child td { border-bottom: 0; }
+  .table-wrap { overflow-x: auto; }
+
+  /* Has-cursor · catalogo v2.1 */
+  .has-cursor::after {
+    content: "\258D";
+    display: inline-block;
+    margin-left: 4px;
+    color: var(--498-green);
+    animation: blink 1.05s steps(2, start) infinite;
+  }
+  @keyframes blink { to { visibility: hidden; } }
+  @media (prefers-reduced-motion: reduce) {
+    .has-cursor::after { animation: none; }
+  }
+
+  /* ===================================================================
+     TEMA OSCURO · lenguaje del 498as.com en produccion
+     =================================================================== */
+  :root {
+    --pg-text:        #F2F2F2;
+    --pg-text-muted:  #C9C9C9;
+    --pg-text-faint:  #9C9C9C;
+    --pg-line:        rgba(255, 255, 255, .14);
+    --pg-line-strong: rgba(255, 255, 255, .26);
+    --pg-line-mid:    rgba(255, 255, 255, .20);
+    --pg-paper:       var(--498-surface-lab);
+    --pg-paper-green: #0D1508;
+  }
+  html, body { background: var(--498-black); color: var(--pg-text); }
+
+  /* Re-anclaje claro: componentes que siguen blancos sobre el shell oscuro */
+  .keep-light {
+    --pg-text:        #1A1A1A;
+    --pg-text-muted:  #5C5C5C;
+    --pg-text-faint:  #717171;
+    --pg-line:        rgba(0, 0, 0, .08);
+    --pg-line-strong: rgba(0, 0, 0, .14);
+    --pg-line-mid:    rgba(0, 0, 0, .11);
+    --pg-paper:       #FAFAFA;
+    --pg-paper-green: #F4FAF3;
+  }
+
+  /* Acento verde: primario sobre oscuro, deep dentro de lo claro */
+  main .eyebrow { color: var(--498-green); }
+  main .keep-light .eyebrow { color: var(--498-green-deep); }
+  main .pullquote-inset { border-left-color: var(--498-green); }
+  main a.link { color: var(--498-green); border-bottom-color: rgba(45, 214, 15, .35); }
+  main .keep-light a.link { color: var(--498-green-deep); border-bottom-color: rgba(14, 122, 31, .35); }
+  .ui-table th { color: var(--498-green); }
+  .ui-table tr:hover td { background: rgba(45, 214, 15, .07); }
+  .ui-form label { color: var(--498-green); }
+  .ui-form input, .ui-form textarea, .ui-form select {
+    color: #1A1A1A; border-color: rgba(255, 255, 255, .28);
+  }
+  .ui-form input::placeholder, .ui-form textarea::placeholder { color: #717171; }
+
+  /* Boton solido sobre video: texto siempre oscuro (asumia tema claro) */
+  .btn-on-video { color: #1A1A1A; }
+
+  /* Hero: display Bebas UPPER como el hero de produccion */
+  .hero-fullbleed__display {
+    font-family: var(--498-family-display);
+    font-style: normal; font-weight: 400;
+    text-transform: uppercase;
+    font-size: 62px; line-height: 1.02; letter-spacing: .5px;
+    max-width: 1000px;
+  }
+  .hero-fullbleed__display em { font-style: normal; }
+  .hero-sub {
+    font-family: var(--498-family-body);
+    font-style: italic; font-weight: 300;
+    color: var(--498-white);
+    font-size: 21px; line-height: 1.4;
+    margin-bottom: 14px;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, .4);
+  }
+  @media (max-width: 720px) {
+    .hero-fullbleed__display { font-size: 38px; }
+    .hero-sub { font-size: 16px; }
+  }
+
+  /* Lead del hero en dos columnas paralelas (una frase-bloque por columna) */
+  .hero-lead-cols {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px 40px;
+    max-width: 800px;
+    margin-bottom: 10px;
+  }
+  .hero-lead-cols .hero-fullbleed__lead { max-width: none; margin-bottom: 0; }
+  @media (max-width: 720px) {
+    .hero-lead-cols { grid-template-columns: 1fr; gap: 10px; }
+  }
+
+  /* Paneles blancos: capturas de informes y diagramas */
+  .panel-light {
+    background: var(--498-white);
+    border: 1px solid rgba(255, 255, 255, .26);
+    padding: 18px;
+  }
+  .panel-light__media { border: 1px solid rgba(0, 0, 0, .14); }
+  .panel-light__media img { display: block; width: 100%; height: auto; }
+  .panel-light__title {
+    margin-top: 14px; padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, .14);
+    font-family: var(--498-family-mono); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
+    color: #1A1A1A; text-align: center;
+  }
+  .panel-light__desc {
+    margin-top: 10px;
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 13px; line-height: 1.55; color: #5C5C5C;
+  }
+  .panel-light__desc::before {
+    content: ""; display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--498-green);
+    margin-right: 10px;
+  }
+  .shot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .panel-light { display: flex; flex-direction: column; }
+  .panel-light__media { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; }
+  .panel-light__media img, .panel-light__media svg { width: 100%; }
+  .panel-light figcaption { margin-top: auto; }
+  @media (max-width: 900px) { .shot-grid { grid-template-columns: 1fr; } }
+
+  /* ===================================================================
+     OPTIMIZACION · ritmo vertical, medida de linea y jerarquia
+     =================================================================== */
+  :root { --pg-section-pad-y: 92px; }
+  @media (max-width: 900px) { :root { --pg-section-pad-y: 56px; } }
+  main section { scroll-margin-top: 84px; }
+  .section-title-block { margin-bottom: 44px; }
+  .section-title-block h2 { margin-bottom: 0; max-width: 880px; text-wrap: balance; }
+  main .ed-display-3 em { color: var(--498-green); }
+  main .keep-light .ed-display-3 em { color: var(--498-green-deep); }
+  .narrow { max-width: 680px; }
+
+  /* Hero: display fluido y lead legible */
+  .hero-fullbleed__display { font-size: clamp(42px, 4.6vw, 64px); }
+  .hero-sub { font-size: clamp(17px, 1.5vw, 21px); }
+  .hero-fullbleed__lead { font-size: 15px; line-height: 1.7; max-width: 560px; }
+  @media (max-width: 720px) { .hero-fullbleed__lead { font-size: 14px; } }
+
+  /* Solicitud: formulario + que pasa despues */
+  .apply-grid { display: grid; grid-template-columns: minmax(0, 560px) minmax(260px, 380px); gap: 72px; align-items: start; }
+  @media (max-width: 900px) { .apply-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .apply-steps { list-style: none; padding: 0; margin: 0 0 20px; }
+  .apply-steps li {
+    display: flex; gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--pg-line);
+    font-family: var(--498-family-body); font-weight: 300;
+    font-size: 14px; line-height: 1.55; color: var(--pg-text-muted);
+  }
+  .apply-steps li:first-child { border-top: 1px solid var(--pg-line); }
+  .apply-steps li span {
+    font-family: var(--498-family-mono); font-size: 11px; letter-spacing: 1.5px;
+    color: var(--498-green); font-weight: 500; padding-top: 2px;
+  }
+  .apply-steps__title {
+    font-family: var(--498-family-mono); font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--498-green); font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  /* Medidas contenidas */
+  .references { max-width: 820px; }
+  .ui-table { max-width: 1080px; }
+
+  /* Eco de marca antes del footer, como en produccion */
+  footer { border-top: 3px solid var(--498-green); }
+
+  /* ===================================================================
+     COMPOSICION · eje de contenido y calidad de cajas
+     =================================================================== */
+  /* Eje maximo de contenido: en pantallas anchas nada se estira de lado a lado */
+  main section > * { max-width: 1240px; margin-left: auto; margin-right: auto; }
+  .section-title-block { max-width: 1240px; }
+  /* La intro se alinea a la izquierda, bajo el titulo, SOBRE el eje de 1240 */
+  .narrow,
+  main section > .references {
+    margin-left: max(0px, calc((100% - 1240px) / 2));
+    margin-right: auto;
+  }
+  .narrow { max-width: 640px; }
+
+  /* Costuras entre secciones: hairline verde tenue en las superficies lab */
+  .section-paper { border-top-color: rgba(45, 214, 15, .16); }
+  .section-paper-green { border-top-color: rgba(45, 214, 15, .16); }
+
+  /* Fila de stats · Bebas display para los numeros que venden */
+  .stat-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-bottom: 56px;
+  }
+  .stat { padding: 8px 32px 12px; border-left: 1px solid var(--pg-line); }
+  .stat:first-child { padding-left: 0; border-left: 0; }
+  .stat__num {
+    font-family: var(--498-family-display);
+    font-size: clamp(56px, 6.5vw, 96px);
+    line-height: .95; letter-spacing: .5px;
+    color: var(--pg-text);
+  }
+  .stat__num--green { color: var(--498-green); }
+  .stat__label {
+    margin-top: 10px;
+    font-family: var(--498-family-mono);
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--pg-text-faint); font-weight: 500;
+  }
+  @media (max-width: 900px) {
+    .stat-row { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
+    .stat { border-left: 0; padding: 0; }
+    .stat__num { font-size: 56px; }
+  }
+
+  /* Paneles de capturas: mas presencia, numeracion de archivo y hover con vida */
+  .shot-grid { gap: 28px; }
+  .panel-light {
+    padding: 22px;
+    transition: transform var(--498-dur-fast) var(--498-ease), border-color var(--498-dur-fast) var(--498-ease);
+  }
+  .panel-light:hover { border-color: var(--498-green); transform: translateY(-4px); }
+  @media (prefers-reduced-motion: reduce) { .panel-light:hover { transform: none; } }
+  .panel-light__kicker {
+    display: flex; justify-content: space-between;
+    margin-bottom: 14px;
+    font-family: var(--498-family-mono);
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #717171; font-weight: 500;
+  }
+  .panel-light__kicker b { color: var(--498-green-deep); font-weight: 500; }
+  .panel-light__media { border: 1px solid rgba(0, 0, 0, .16); }
+  @media (max-width: 720px) {
+    .panel-light { min-width: 0; }
+    .panel-light__media--scroll {
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      justify-content: flex-start;
+      min-width: 0; max-width: 100%;
+    }
+    .panel-light__media--scroll svg { min-width: 640px; }
+  }
+
+  /* Grafo animado: pulso de halos + flujo de aristas (se apaga con reduced-motion) */
+  .panel-light__media--anim circle[opacity="0.12"] {
+    transform-box: fill-box; transform-origin: center;
+    animation: nodeGlow 5s ease-in-out infinite;
+  }
+  .panel-light__media--anim circle[opacity="0.12"]:nth-of-type(3n) { animation-delay: 1.6s; }
+  .panel-light__media--anim circle[opacity="0.12"]:nth-of-type(3n+1) { animation-delay: 3.2s; }
+  .panel-light__media--anim line,
+  .panel-light__media--anim path {
+    stroke-dasharray: 5 7;
+    animation: edgeFlow 30s linear infinite;
+  }
+  @keyframes nodeGlow {
+    0%, 100% { transform: scale(1); opacity: .12; }
+    50% { transform: scale(1.35); opacity: .26; }
+  }
+  @keyframes edgeFlow { to { stroke-dashoffset: -360; } }
+  @media (prefers-reduced-motion: reduce) {
+    .panel-light__media--anim circle[opacity="0.12"],
+    .panel-light__media--anim line,
+    .panel-light__media--anim path { animation: none; stroke-dasharray: none; }
+  }
+  .panel-light__title { font-size: 12px; margin-top: 16px; }
+  .panel-light__desc { font-size: 14px; }
 </style>
 </head>
 <body>
@@ -1778,856 +2118,426 @@
 <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
 <!-- =================================================================
-     00 · NAV
+     00 · NAV (keep-light: cluster blanco sobre shell oscuro)
      ================================================================= -->
-<nav class="nav" aria-label="Navegación principal">
-  <a class="nav__brand-box" href="#" aria-label="498 Advance · home">
+<nav class="nav keep-light" aria-label="Navegación principal">
+  <a class="nav__brand-box" href="../498Adesign/index.html" aria-label="498 Advance · home">
     498 <em>A</em>DVANCE
   </a>
   <div class="nav__links">
-    <a class="nav__link-box" href="#capacidades"><span class="num">01</span>Capacidades</a>
-    <a class="nav__link-box" href="#productos"><span class="num">02</span>Productos</a>
-    <a class="nav__link-box" href="#investigacion"><span class="num">03</span>Investigación</a>
-    <a class="nav__link-box" href="#perspectivas"><span class="num">04</span>Perspectivas</a>
+    <a class="nav__link-box" href="#sistema"><span class="num">01</span>Sistema</a>
+    <a class="nav__link-box" href="#inventario"><span class="num">02</span>Inventario</a>
+    <a class="nav__link-box" href="#entregable"><span class="num">03</span>Informes</a>
+    <a class="nav__link-box" href="#itinerarios"><span class="num">04</span>Itinerarios</a>
   </div>
   <div class="nav__spacer" aria-hidden="true"></div>
-  <a class="nav__cta-box" href="#contacto">Hablemos →</a>
+  <a class="nav__cta-box" href="#solicitud">Pídelo →</a>
 </nav>
 
 <main id="main-content">
 
 <!-- =================================================================
-     01 · HERO
+     01 · HERO · display Bebas como el hero de produccion
      ================================================================= -->
 <header class="hero-fullbleed">
   <video class="hero-fullbleed__video" autoplay muted loop playsinline preload="auto"
-         aria-label="Loop ambiental · simulación 498A"
-         data-rotate="assets/video/hero-loop.mp4,assets/video/section-home.mp4,assets/video/section-services.mp4,assets/video/section-vision-01.mp4,assets/video/section-vision-02.mp4"
-         data-src-mobile="assets/video/hero-loop-mobile.mp4">
+         aria-label="Loop ambiental · AICompass"
+         data-src-desktop="../498Adesign/assets/video/section-services.mp4">
   </video>
 
-  <nav class="lang-grid" aria-label="Idioma">
-    <a class="lang-grid__cell" href="#" hreflang="ca">CAT</a>
-    <a class="lang-grid__cell is-active" href="#" hreflang="es" aria-current="true">ES</a>
-    <a class="lang-grid__cell" href="#" hreflang="en">EN</a>
-    <a class="lang-grid__cell" href="#" hreflang="fr">FR</a>
-    <a class="lang-grid__cell" href="#" hreflang="de">DE</a>
-    <a class="lang-grid__cell lang-cjk" href="#" hreflang="zh" aria-label="中文">中</a>
-  </nav>
-
   <div class="hero-fullbleed__content">
-    <!--
-      COPY ORIGINAL (preservado por trazabilidad · sustituido 2026-05-20):
-
-      EYEBROW: "Programa de investigación aplicada · Barcelona"
-
-      DISPLAY: "La simulación es la nueva interfaz con el futuro.
-                Con datos, IA y modelos, convertimos lo posible en algo
-                que se puede probar, medir y mejorar antes de hacerlo realidad."
-
-      LEAD: "498 segundos es el tiempo que tarda la luz del Sol en llegar a la Tierra.
-             Lo que ya está pasando en el Sol todavía no lo vemos. Nuestro trabajo es
-             construir los sistemas que permiten ver el comportamiento antes de que
-             llegue a la sociedad, el negocio, o la institución."
-
-      SUB:  "498A es una consultora de inteligencia artificial aplicada con un
-             programa de investigación a medio plazo orientado a la simulación de
-             personas, grupos y sociedades."
-    -->
     <div class="hero-fullbleed__eyebrow">
-      <span class="primary">El laboratorio de IA aplicada · Barcelona</span>
-      <span class="secondary">Simulación de agentes, personas, grupos y sociedades</span>
+      <span class="primary">AICompass · Producto 498 Advance</span>
+      <span class="secondary">Formación ejecutiva en IA · Barcelona</span>
     </div>
     <h1 class="hero-fullbleed__display">
-      La inteligencia artificial es la forma más natural de crear <em>el futuro</em>.
+      Itinerarios formativos de IA <em>personalizados</em>.
     </h1>
-    <p class="hero-fullbleed__lead">
-      Construimos sistemas que resuelven retos y capitalizan las oportunidades
-      que ofrece la IA. Nuestras soluciones ponen el poder de la IA al servicio de
-      tus objetivos y permiten evaluar escenarios futuros antes de que lleguen a la
-      sociedad, el negocio o la institución.
-    </p>
+    <p class="hero-sub">Obtén el plan gratuito y con garantía de máxima calidad que mejor se ajuste a tu perfil y a tus objetivos.</p>
+    <div class="hero-lead-cols">
+      <p class="hero-fullbleed__lead">
+        AICompass investiga la selección óptima y el itinerario ideal para tu cargo, tu
+        sector y las herramientas a tu disposición en tu lugar de trabajo. Compone tu
+        plan personalizado desde un inventario propio de 382 recursos verificados.
+      </p>
+      <p class="hero-fullbleed__lead">
+        Gratuito y pensado solo para que obtengas el mejor retorno por el tiempo
+        invertido y conocimientos valiosos a corto y largo plazo. Revisado por un
+        profesional especializado antes de la entrega.
+      </p>
+    </div>
     <div class="hero-fullbleed__cta">
-      <a class="btn-on-video" href="#contacto">Hablemos →</a>
-      <a class="btn-ghost-on-video" href="#capacidades">Ver capacidades</a>
+      <a class="btn-on-video" href="#solicitud">Pide tu itinerario →</a>
+      <a class="btn-ghost-on-video" href="#sistema">Conoce el sistema</a>
     </div>
   </div>
 </header>
 
 <!-- =================================================================
-     Pattern band entre Hero y Método · pausa atmosférica
+     Pattern band · pausa atmosférica
      ================================================================= -->
 <div class="pattern-band">
-  <span class="pattern-band__label" style="max-width:min(86vw,520px);text-align:center;line-height:1.9">498 segundos · Es el tiempo que tarda la luz del Sol en llegar a la Tierra</span>
+  <span class="pattern-band__label">Inventario vivo · 382 recursos · 21 perfiles · 3 idiomas</span>
 </div>
 
 <!-- =================================================================
-     02 · MÉTODO (antes 03 · renumerado tras eliminar Tesis)
+     02 · SISTEMA
      ================================================================= -->
-<section id="metodo" class="section-paper">
+<section id="sistema" class="section-paper">
   <div class="section-title-block">
-    <span class="eyebrow">Método · 01</span>
-    <h2 class="ed-display-3">Cuatro etapas que <em>se retroalimentan</em>.</h2>
+    <span class="eyebrow">Sistema · 01</span>
+    <h2 class="ed-display-3">A partir de tu nombre, cargo y objetivos obtienes un plan de estudio <em>en 72 horas</em>.</h2>
   </div>
 
-  <div class="box-collection box-collection--4 box-collection--persiana">
+  <div class="narrow" style="margin-bottom:48px">
+    <p class="ed-lead" style="margin-bottom:20px">
+      AICompass funciona como un servicio especializado, no como un catálogo. El motor
+      compone según tus objetivos; un especialista en IA revisa cada itinerario antes
+      de entregarlo.
+    </p>
+    <p class="ed-body">
+      El resultado cabe en una agenda real: entre 8 y 20 horas de formación por itinerario,
+      con la profundización marcada como opcional. Dos personas con el mismo cargo no
+      reciben el mismo plan.
+    </p>
+  </div>
+
+  <div class="box-collection box-collection--4 box-collection--persiana keep-light">
     <div class="method-cell">
       <div class="method-cell__circle">01</div>
-      <div class="method-cell__title">Dataset</div>
-      <div class="method-cell__desc">Corpus específicos del dominio: anotación experta, validación cruzada y trazabilidad metodológica.</div>
+      <div class="method-cell__title">Escucha</div>
+      <div class="method-cell__desc">Nombre, cargo, empresa y formación previa. Con tu permiso, investigamos el perfil público para calibrar el punto de partida real.</div>
     </div>
     <div class="method-cell">
       <div class="method-cell__circle">02</div>
-      <div class="method-cell__title">Modelo</div>
-      <div class="method-cell__desc">Entrenamiento o ajuste sobre modelos open-source o privados. Control sobre arquitectura, sesgos y comportamiento.</div>
+      <div class="method-cell__title">Decisión</div>
+      <div class="method-cell__desc">Dos preguntas fijan el rumbo: certificación oficial o solo aprender, y qué stack usa tu casa. El itinerario cambia con cada respuesta.</div>
     </div>
     <div class="method-cell">
       <div class="method-cell__circle">03</div>
-      <div class="method-cell__title">Despliegue</div>
-      <div class="method-cell__desc">Integración en el flujo real de trabajo: agentes conectados a las herramientas que tu equipo ya usa.</div>
+      <div class="method-cell__title">Composición</div>
+      <div class="method-cell__desc">Fundamentos, aplicación a tu función y profundización. Horas a ritmo ejecutivo: duración oficial menos un 40%. Siempre una pieza de gobernanza.</div>
     </div>
     <div class="method-cell">
       <div class="method-cell__circle">04</div>
-      <div class="method-cell__title">Medición</div>
-      <div class="method-cell__desc">Métricas operativas continuas. Cada ciclo retroalimenta el dataset y mejora el sistema completo.</div>
+      <div class="method-cell__title">Entrega</div>
+      <div class="method-cell__desc">HTML y PDF con calendario semanal, fichas de tres frases y grafo del itinerario. Cada URL se verifica de nuevo el día de la entrega.</div>
     </div>
   </div>
 </section>
 
 <!-- =================================================================
-     04 · CAPACIDADES (intro + 4 service-cards)
+     08 · SOLICITUD · intake form + referencias
      ================================================================= -->
-<section id="capacidades">
+<section id="solicitud">
   <div class="section-title-block">
-    <span class="eyebrow">Capacidades</span>
-    <h2 class="ed-display-3"><em>Soluciones con base científica, resolviendo problemas reales</em> Herramientas autosuficientes que pueden integrarse como plataforma</h2>
+    <span class="eyebrow">Solicitud</span>
+    <h2 class="ed-display-3">Cuéntanos quién eres. <em>El sistema hace el resto.</em></h2>
   </div>
 
-  <!-- 4 capacidades como zigzag · cards horizontales alternando imagen izq/der -->
-  <div class="box-collection box-collection--zigzag">
+  <div class="apply-grid">
+    <div>
+    <p class="has-cursor" style="font-family:var(--498-family-mono);font-size:13px;letter-spacing:1.2px;text-transform:uppercase;color:var(--pg-text-muted);margin-bottom:28px">Esperando tu solicitud</p>
 
-    <!-- Capacidad 01 · Sistemas multiagente · image LEFT (odd) -->
-    <article>
-      <div class="zigzag-card__image">
-        <img src="assets/visuals/science-network.jpg" alt="Red multiagente · agentes coordinados">
+    <form class="ui-form ui-form--intake" onsubmit="event.preventDefault();aicompassSend()">
+      <input id="i-honey" type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="row">
+        <label for="i-nombre">Nombre y apellidos</label>
+        <input id="i-nombre" type="text" placeholder="Como en tu LinkedIn">
       </div>
-      <div class="zigzag-card__content">
-        <span class="zigzag-card__num">Capacidad 01</span>
-        <h3 class="zigzag-card__title">Sistemas <em>multiagente</em>.</h3>
-        <p class="zigzag-card__headline">
-          Equipos digitales que deciden, colaboran y aprenden.
-        </p>
-        <p class="zigzag-card__body">
-          Agentes proactivos que orquestan tareas complejas y deciden dentro de
-          límites definidos, con el conocimiento propio de tu
-          organización<a class="cite-chat cite-chat--green" href="#ref-3" title="Ver fuente 3">3</a>.
-        </p>
-        <div class="zigzag-card__proof">+100.000 horas manuales liberadas en producción</div>
+      <div class="row">
+        <label for="i-cargo">Cargo</label>
+        <input id="i-cargo" type="text" placeholder="Dirección de Operaciones">
       </div>
-    </article>
+      <div class="row">
+        <label for="i-empresa">Empresa y sector</label>
+        <input id="i-empresa" type="text" placeholder="Empresa · sector">
+      </div>
+      <div class="row">
+        <label for="i-email">Tu email</label>
+        <input id="i-email" type="email" placeholder="nombre@empresa.com">
+      </div>
+      <div class="row">
+        <label for="i-cred">Certificación oficial o solo aprender</label>
+        <select id="i-cred">
+          <option>Solo aprender (certificados gratuitos)</option>
+          <option>Certificación oficial</option>
+          <option>No lo sé, recomendadme</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="i-idioma">Idioma del informe</label>
+        <select id="i-idioma">
+          <option>Castellano</option>
+          <option>Català</option>
+          <option>English</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="i-stack">Stack de la casa</label>
+        <input id="i-stack" type="text" placeholder="Microsoft, Google, Adobe, Salesforce…">
+      </div>
+      <div class="row">
+        <label for="i-nota">Notas</label>
+        <textarea id="i-nota" placeholder="Formación previa, objetivo y, si quieres, una afición para el extra personal."></textarea>
+      </div>
+      <button class="ui-btn-submit" id="btn-solicitud" type="submit">Enviar solicitud →</button>
+      <p id="form-estado" role="status" aria-live="polite" class="ed-body" style="font-size:13px;margin:0"></p>
+    </form>
 
-    <!-- Capacidad 02 · GEO · image RIGHT (even) -->
-    <article>
-      <div class="zigzag-card__image">
-        <img src="assets/visuals/sc-geo-visibility.jpg" alt="Mapa de visibilidad en motores generativos">
-      </div>
-      <div class="zigzag-card__content">
-        <span class="zigzag-card__num">Capacidad 02</span>
-        <h3 class="zigzag-card__title">GEO · <em>visibilidad en IA</em>.</h3>
-        <p class="zigzag-card__headline">
-          Tu cliente decide en ChatGPT, Claude, Gemini, Perplexity, Copilot y Google AIO.
-        </p>
-        <p class="zigzag-card__body">
-          <strong>GEORadar</strong> audita ese espacio con entre 3.000 y 30.000 prompts
-          por estudio en los seis motores. Cierra con un plan de acción de 90
-          días<a class="cite-chat" href="#ref-4" title="Ver fuente 4">4</a>.
-        </p>
-        <div class="verticals-chips" style="margin-top:4px">
-          <span>Travel</span><span>Finance</span><span>Health</span><span>Education</span>
-          <span>Corporate</span><span>Consumer</span><span>Energy</span><span>Mobility</span><span>Civic</span>
-        </div>
-        <div class="zigzag-card__proof">
-          Primera consultora europea especializada en GEO · 1M+ prompts simulados ·
-          10M+ menciones analizadas · 16+ marcas líderes en producción
-        </div>
-      </div>
-    </article>
+    <p class="ed-body" style="font-size:13px;margin-top:18px;max-width:560px">
+      La solicitud se envía directamente y la revisa un especialista de 498Advance.
+    </p>
+    </div>
 
-    <!-- Capacidad 03 · IA privada · image LEFT (odd) -->
-    <article>
-      <div class="zigzag-card__image">
-        <img src="assets/visuals/method-panels.jpg" alt="Modelos IA privados desplegados en infraestructura propia">
-      </div>
-      <div class="zigzag-card__content">
-        <span class="zigzag-card__num">Capacidad 03</span>
-        <h3 class="zigzag-card__title">IA <em>privada</em>.</h3>
-        <p class="zigzag-card__headline">
-          Modelos en tu infraestructura. Tu dato y tu conocimiento experto se queda en casa.
-        </p>
-        <p class="zigzag-card__body">
-          Modelos locales entrenados y ajustados a tu dominio y bajo tu control.
-          EU AI Act compliant, latencia baja, coste predecible y libertad frente al
-          vendor lock-in<a class="cite-chat cite-chat--grey" href="#ref-5" title="Ver fuente 5">5</a>.
-        </p>
-        <div class="zigzag-card__proof">Gobernanza alineada con EU AI Act y UNESCO</div>
-      </div>
-    </article>
-
-    <!-- Capacidad 04 · Datasets · image RIGHT (even) -->
-    <article>
-      <div class="zigzag-card__image">
-        <img src="assets/visuals/sc-datasets-layers.jpg" alt="Capas de datasets · corpus específicos por dominio">
-      </div>
-      <div class="zigzag-card__content">
-        <span class="zigzag-card__num">Capacidad 04</span>
-        <h3 class="zigzag-card__title">Datasets <em>a medida</em>.</h3>
-        <p class="zigzag-card__headline">
-          El cuello de botella de cualquier IA seria es el dato.
-        </p>
-        <p class="zigzag-card__body">
-          Corpus específicos para tu problema: anotación experta, validación cruzada
-          con centros académicos y trazabilidad metodológica auditable. La calidad del
-          dato es el techo de todo lo demás.
-        </p>
-        <div class="zigzag-card__proof">Acuerdo marco con la UAB desde 2023 · Colaboración activa con investigadores del CSIC</div>
-      </div>
-    </article>
-
+    <aside>
+      <p class="apply-steps__title">Después de enviar</p>
+      <ol class="apply-steps">
+        <li><span>01</span>Tu solicitud la lee una persona, no un CRM.</li>
+        <li><span>02</span>El motor compone el itinerario y lo valida contra la base de datos: cero URLs inventadas.</li>
+        <li><span>03</span>En unas 72 horas recibes el informe en HTML y PDF, con cada enlace verificado ese mismo día.</li>
+      </ol>
+      <p class="ed-body" style="font-size:13px">
+        Sin coste en los contenidos y sin compromiso. El primer itinerario es la mejor
+        demo del sistema.
+      </p>
+    </aside>
   </div>
 </section>
 
 <!-- =================================================================
-     Pattern band entre Capacidades y Productos
+     El gran cruce · orientación del panorama (diagrama dos caminos)
      ================================================================= -->
-<div class="pattern-band">
-  <span class="pattern-band__label">Stack 498A · plataformas propias</span>
-</div>
+<section id="caminos">
+  <div class="section-title-block">
+    <span class="eyebrow">El gran cruce</span>
+    <h2 class="ed-display-3">Solo hay dos caminos en la IA. <em>Tu itinerario sabe en cuál estás.</em></h2>
+  </div>
+  <div class="narrow" style="margin-bottom:40px">
+    <p class="ed-body">
+      Trabajar con la IA es sacar tu trabajo adelante con las herramientas que ya pagas.
+      Construir con la IA es hacer cosas que otros usan. No eliges hoy: cada itinerario te
+      sitúa en el camino que te toca y te lleva al siguiente cuando toca.
+    </p>
+  </div>
+  <figure class="panel-light" style="margin:0">
+    <div class="panel-light__media">
+      <svg style="width:100%;height:auto;display:block" viewBox="0 0 940 922" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Los dos caminos de la IA: trabajar con ella y construir con ella, estilo 498A"><text x="470.0" y="54" text-anchor="middle" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="10" font-weight="500" fill="#0E7A1F" letter-spacing="0.6px">CUANDO YA SABES TRABAJAR CON IA</text><line x1="430" y1="74" x2="501" y2="74" stroke="#2DD60F" stroke-width="2" stroke-linecap="square"/><path d="M501,69 L510,74 L501,79 Z" fill="#2DD60F"/><rect x="40" y="100" width="380" height="470" fill="#FFFFFF" stroke="#D9D9D9" stroke-width="1"/><path d="M33,100 L47,100 M40,93 L40,107" stroke="#1A1A1A" stroke-width="1"/><path d="M413,100 L427,100 M420,93 L420,107" stroke="#1A1A1A" stroke-width="1"/><path d="M33,570 L47,570 M40,563 L40,577" stroke="#1A1A1A" stroke-width="1"/><path d="M413,570 L427,570 M420,563 L420,577" stroke="#1A1A1A" stroke-width="1"/><text x="64" y="132" text-anchor="start" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="11" font-weight="500" fill="#0E7A1F" letter-spacing="1px">01</text><text x="396" y="132" text-anchor="end" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="10" font-weight="500" fill="#5C5C5C" letter-spacing="1.2px">BARRERA BAJA</text><line x1="64" y1="144" x2="396" y2="144" stroke="#D9D9D9" stroke-width="1"/><text x="64" y="180" text-anchor="start" font-family="'Bebas Neue', Impact, 'Arial Narrow', sans-serif" font-size="26" font-weight="400" fill="#1A1A1A" letter-spacing="0.5px">Trabajar con la IA</text><text x="64" y="210" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12.5" font-weight="300" fill="#5C5C5C">Delegas en las herramientas que ya pagas: la</text><text x="64" y="228" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12.5" font-weight="300" fill="#5C5C5C">IA hace lo mismo que tú, más rápido y a más volumen.</text><rect x="64" y="264" width="7" height="7" fill="#0E7A1F"/><text x="80" y="272" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12" font-weight="300" fill="#1A1A1A">Redactar y responder correos con criterio</text><rect x="64" y="291" width="7" height="7" fill="#0E7A1F"/><text x="80" y="299" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12" font-weight="300" fill="#1A1A1A">Preparar propuestas desde tu Drive</text><rect x="64" y="318" width="7" height="7" fill="#0E7A1F"/><text x="80" y="326" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12" font-weight="300" fill="#1A1A1A">Resumir reuniones y delegar la administración</text><rect x="64" y="345" width="7" height="7" fill="#0E7A1F"/><text x="80" y="353" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12" font-weight="300" fill="#1A1A1A">Investigar antes de una decisión</text><line x1="64" y1="500" x2="396" y2="500" stroke="#D9D9D9" stroke-width="1"/><text x="64" y="524" text-anchor="start" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="11" font-weight="500" fill="#1A1A1A" letter-spacing="0.6px">CLAUDE · CHATGPT · COPILOT · GEMINI</text><text x="64" y="550" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="10.5" font-weight="300" fill="#5C5C5C">Chat, Cowork y conectores. Empiezas aquí.</text><rect x="520" y="100" width="380" height="470" fill="#000000" stroke="#0E7A1F" stroke-width="1"/><path d="M513,100 L527,100 M520,93 L520,107" stroke="#2DD60F" stroke-width="1"/><path d="M893,100 L907,100 M900,93 L900,107" stroke="#2DD60F" stroke-width="1"/><path d="M513,570 L527,570 M520,563 L520,577" stroke="#2DD60F" stroke-width="1"/><path d="M893,570 L907,570 M900,563 L900,577" stroke="#2DD60F" stroke-width="1"/><text x="544" y="132" text-anchor="start" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="11" font-weight="500" fill="#2DD60F" letter-spacing="1px">02</text><text x="876" y="132" text-anchor="end" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="10" font-weight="500" fill="#BFBFBF" letter-spacing="1.2px">BARRERA ALTA</text><line x1="544" y1="144" x2="876" y2="144" stroke="#0E7A1F" stroke-width="1"/><text x="544" y="180" text-anchor="start" font-family="'Bebas Neue', Impact, 'Arial Narrow', sans-serif" font-size="26" font-weight="400" fill="#FFFFFF" letter-spacing="0.5px">Construir con la IA</text><text x="544" y="210" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12.5" font-weight="300" fill="#BFBFBF">Creas una herramienta, un dashboard o un agente</text><text x="544" y="228" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12.5" font-weight="300" fill="#BFBFBF">que usan otras personas. Más técnico, más alcance.</text><rect x="544" y="264" width="7" height="7" fill="#2DD60F"/><text x="560" y="272" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12" font-weight="300" fill="#FFFFFF">Generadores de imagen y vídeo a escala</text><rect x="544" y="291" width="7" height="7" fill="#2DD60F"/><text x="560" y="299" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12" font-weight="300" fill="#FFFFFF">Automatizaciones robustas sobre tus datos</text><rect x="544" y="318" width="7" height="7" fill="#2DD60F"/><text x="560" y="326" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12" font-weight="300" fill="#FFFFFF">Agentes que ejecutan procesos punta a punta</text><rect x="544" y="345" width="7" height="7" fill="#2DD60F"/><text x="560" y="353" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12" font-weight="300" fill="#FFFFFF">Dashboards y prototipos sin código a mano</text><line x1="544" y1="500" x2="876" y2="500" stroke="#0E7A1F" stroke-width="1"/><text x="544" y="524" text-anchor="start" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="11" font-weight="500" fill="#FFFFFF" letter-spacing="0.6px">CLAUDE CODE · CODEX · LOVABLE · ELEVENLABS</text><text x="544" y="550" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="10.5" font-weight="300" fill="#BFBFBF">Entras en las APIs. Llegas aquí, no empiezas aquí.</text><rect x="40" y="598" width="860" height="78" fill="#E9F9EC" stroke="#0E7A1F" stroke-width="1"/><path d="M33,598 L47,598 M40,591 L40,605" stroke="#0E7A1F" stroke-width="1"/><path d="M893,598 L907,598 M900,591 L900,605" stroke="#0E7A1F" stroke-width="1"/><path d="M33,676 L47,676 M40,669 L40,683" stroke="#0E7A1F" stroke-width="1"/><path d="M893,676 L907,676 M900,669 L900,683" stroke="#0E7A1F" stroke-width="1"/><rect x="64" y="624" width="10" height="10" fill="#0E7A1F"/><text x="84" y="633" text-anchor="start" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="12" font-weight="500" fill="#0E7A1F" letter-spacing="1px">EL CRUCE</text><text x="84" y="655" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12.5" font-weight="300" fill="#1A1A1A">La misma suscripción paga las dos columnas. Lovable, Claude Code y los agentes de research ya viven en ambas a la vez.</text><rect x="40" y="716" width="860" height="176" fill="#F7F7F7" stroke="#D9D9D9" stroke-width="1"/><text x="64" y="756" text-anchor="start" font-family="'Bebas Neue', Impact, 'Arial Narrow', sans-serif" font-size="21" font-weight="400" fill="#1A1A1A" letter-spacing="0.3px">NO ES UNA CAJA DE CHAT. ES UN TALLER.</text><text x="64" y="780" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="12.5" font-weight="300" fill="#5C5C5C">El error de la primera semana es creer que la IA es la ventana de chat. Es un taller entero, y lo recoges pieza a pieza:</text><rect x="64.0" y="798" width="191.0" height="76" fill="#FFFFFF" stroke="#D9D9D9" stroke-width="1"/><rect x="78.0" y="814" width="7" height="7" fill="#2DD60F"/><text x="94.0" y="820" text-anchor="start" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="11.5" font-weight="500" fill="#0E7A1F" letter-spacing="0.8px">COWORK</text><text x="78.0" y="842" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="11" font-weight="300" fill="#5C5C5C">Delegar tareas enteras,</text><text x="78.0" y="858" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="11" font-weight="300" fill="#5C5C5C">no frases sueltas</text><rect x="271.0" y="798" width="191.0" height="76" fill="#FFFFFF" stroke="#D9D9D9" stroke-width="1"/><rect x="285.0" y="814" width="7" height="7" fill="#2DD60F"/><text x="301.0" y="820" text-anchor="start" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="11.5" font-weight="500" fill="#0E7A1F" letter-spacing="0.8px">CONECTORES</text><text x="285.0" y="842" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="11" font-weight="300" fill="#5C5C5C">Enchufarla a tu Drive,</text><text x="285.0" y="858" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="11" font-weight="300" fill="#5C5C5C">correo y calendario</text><rect x="478.0" y="798" width="191.0" height="76" fill="#FFFFFF" stroke="#D9D9D9" stroke-width="1"/><rect x="492.0" y="814" width="7" height="7" fill="#2DD60F"/><text x="508.0" y="820" text-anchor="start" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="11.5" font-weight="500" fill="#0E7A1F" letter-spacing="0.8px">SKILLS</text><text x="492.0" y="842" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="11" font-weight="300" fill="#5C5C5C">Enseñarle tus procesos</text><text x="492.0" y="858" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="11" font-weight="300" fill="#5C5C5C">para no repetir contexto</text><rect x="685.0" y="798" width="191.0" height="76" fill="#FFFFFF" stroke="#D9D9D9" stroke-width="1"/><rect x="699.0" y="814" width="7" height="7" fill="#2DD60F"/><text x="715.0" y="820" text-anchor="start" font-family="'Roboto Mono', ui-monospace, Menlo, monospace" font-size="11.5" font-weight="500" fill="#0E7A1F" letter-spacing="0.8px">CODE</text><text x="699.0" y="842" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="11" font-weight="300" fill="#5C5C5C">Construir tus propias</text><text x="699.0" y="858" text-anchor="start" font-family="'Hepta Slab', Georgia, serif" font-size="11" font-weight="300" fill="#5C5C5C">herramientas, sin IT</text></svg>
+    </div>
+    <figcaption>
+      <p class="panel-light__title">Trabajar con la IA · Construir con la IA</p>
+      <p class="panel-light__desc">El mapa del panorama que enmarca cada plan: de la barrera baja (chat, Cowork, conectores) a la barrera alta (las APIs), con el cruce donde ambas se mezclan.</p>
+    </figcaption>
+  </figure>
+</section>
 
 <!-- =================================================================
-     05 · PRODUCTOS
+     03 · INVENTARIO · periodic (colecciones) + diagrama de tipos
      ================================================================= -->
-<section id="productos" class="section-paper-green">
+<section id="inventario" class="section-paper-green">
   <div class="section-title-block">
-    <span class="eyebrow">Productos · Plataformas propias del stack 498A</span>
-    <h2 class="ed-display-3"><em>Soluciones tecnológicas para superar los retos actuales.</em> Convertimos el futuro inmediato en tu gran oportunidad.</h2>
-    <p>
-      Cuatro ámbitos de trabajo: visibilidad en IA, alineamiento semántico,
-      gestión reputacional y agentes companion.
+    <span class="eyebrow">Inventario · 02</span>
+    <h2 class="ed-display-3">382 recursos <em>actualizados constantemente</em>. Sin pasatiempos ni cursos que caducan en pocas semanas.</h2>
+  </div>
+
+  <div class="narrow" style="margin-bottom:48px">
+    <p class="ed-body">
+      El criterio de admisión es fijo: solo entran los laboratorios que construyen la
+      tecnología, las universidades que la investigan, los organismos que la regulan y los
+      divulgadores de referencia internacional. Las academias que disfrazan de curso
+      gratuito un embudo de venta se quedan fuera<a class="cite-chat cite-chat--green" href="#ref-1" aria-label="Referencia 1">1</a>.
+    </p>
+    <p class="ed-body" style="margin-top:16px">
+      Y no solo cursos en vídeo: el inventario incluye libros, ensayos y papers de fuente
+      primaria, podcasts, entrevistas y documentales. Cada itinerario cierra con los
+      materiales que un curso no da y que marcan la diferencia.
     </p>
   </div>
 
-  <!-- 4 DESTACADOS · service-cards 2x2 -->
-  <div class="box-collection box-collection--2 box-collection--service-cards">
-
-    <!-- Destacado 01 · GEORadar -->
-    <article class="box">
-      <span class="service-card__badge" style="background:var(--498-green);color:var(--498-black)">Flagship</span>
-      <div class="service-card__image">
-        <img src="assets/visuals/sc-geo-visibility.jpg" alt="GEORadar · plataforma de visibilidad en IA">
-      </div>
-      <div class="service-card__num">Visibilidad en IA · Flagship</div>
-      <h3 class="service-card__title">GEORadar</h3>
-      <p class="service-card__headline">La primera plataforma europea para auditar y mejorar cómo te ven los motores generativos.</p>
-      <p class="service-card__desc">
-        Audita ChatGPT, Claude, Gemini, Perplexity, Copilot y Google AIO con 3.000 a
-        30.000 prompts por estudio. Nueve verticales con KPIs propios, plan de acción
-        de 90 días. 16+ marcas líderes en producción.
-      </p>
-      <div style="padding:0 32px 28px;text-align:center">
-        <a class="btn-split" href="https://georadar.app" target="_blank" rel="noopener">
-          <span class="btn-split__label">georadar.app</span>
-          <span class="btn-split__arrow">→</span>
-        </a>
-      </div>
-    </article>
-
-    <!-- Destacado 02 · S.A.M. -->
-    <article class="box">
-      <div class="service-card__image">
-        <img src="assets/visuals/sc-multiagent-flow.jpg" alt="S.A.M. · Semantic Alignment Machine">
-      </div>
-      <div class="service-card__num">Visibilidad en IA · Alineamiento semántico</div>
-      <h3 class="service-card__title">S.A.M. · Semantic Alignment Machine</h3>
-      <p class="service-card__headline">Alinea tu contenido con los prompts reales que tus clientes hacen a la IA.</p>
-      <p class="service-card__desc">
-        Detecta qué páginas reescribir, qué mensajes faltan y qué territorios semánticos
-        puedes ocupar para que la IA recomiende tu marca antes que la de tu competencia.
-        Validado contra consultas reales en cinco LLMs.
-      </p>
-      <div style="padding:0 32px 28px;text-align:center">
-        <a class="btn-split" href="#contacto">
-          <span class="btn-split__label">Ver cómo funciona</span>
-          <span class="btn-split__arrow">→</span>
-        </a>
-      </div>
-    </article>
-
-    <!-- Destacado 03 · Stardesk -->
-    <article class="box">
-      <div class="service-card__image">
-        <img src="assets/visuals/data-network.webp" alt="Stardesk · Reputation OS">
-      </div>
-      <div class="service-card__num">Gestión reputacional · Reputation OS</div>
-      <h3 class="service-card__title">Stardesk · Reputation OS</h3>
-      <p class="service-card__headline">Plataforma configurable de gestión reputacional con tres capas y tres modos de uso.</p>
-      <p class="service-card__desc">
-        Tres capas y tres modos de uso: operativo, estratégico y forense.
-        Trazabilidad completa de tu reputación digital.
-      </p>
-      <div style="padding:0 32px 28px;text-align:center">
-        <a class="btn-split" href="#contacto">
-          <span class="btn-split__label">Ver módulos</span>
-          <span class="btn-split__arrow">→</span>
-        </a>
-      </div>
-    </article>
-
-    <!-- Destacado 04 · ROBIN -->
-    <article class="box">
-      <span class="service-card__badge">En desarrollo</span>
-      <div class="service-card__image">
-        <img src="assets/visuals/biomorph-shell.webp" alt="ROBIN · Companion agent">
-      </div>
-      <div class="service-card__num">Human-centered · Companion agent</div>
-      <h3 class="service-card__title">ROBIN · Companion agent</h3>
-      <p class="service-card__headline">Agente que acompaña a personas con TEA, TDAH y otros perfiles cognitivos.</p>
-      <p class="service-card__desc">
-        Diseñado para personas con espectro autista, TDAH y otros. Asiste, acompaña,
-        traduce contextos sociales y aprende del usuario a lo largo del tiempo.
-        Actualmente en fase de recogida masiva de datos. Pensado para uso B2C directo
-        y para despliegue institucional en entornos educativos y sanitarios.
-      </p>
-      <div style="padding:0 32px 28px;text-align:center">
-        <a class="btn-split" href="#contacto">
-          <span class="btn-split__label">Sumarse al programa</span>
-          <span class="btn-split__arrow">→</span>
-        </a>
-      </div>
-    </article>
-
-  </div>
-
-  <!-- Portfolio completo · 6 mini · periodic grid -->
-  <div style="margin-top:80px">
-    <div class="section-title-block" style="margin-bottom:32px">
-      <span class="eyebrow">Portfolio completo · seis productos más</span>
-      <h3 class="ed-h2">El ecosistema extendido del stack.</h3>
+<div class="stat-row">
+    <div class="stat">
+      <div class="stat__num">8</div>
+      <div class="stat__label">Dimensiones por perfil</div>
     </div>
-
-    <div class="box-collection box-collection--3 box-collection--periodic box-collection--persiana">
-
-      <article>
-        <div class="periodic__meta">
-          <span class="periodic__num">05</span>
-          <span class="periodic__tag">Visibilidad en IA</span>
-        </div>
-        <div class="periodic__symbol">LEO</div>
-        <div class="periodic__divider"></div>
-        <p class="periodic__desc"><strong>LEO · The Ultimate Content Factory.</strong> Content factory agentic-first. Genera y adapta contenidos para 30+ plataformas con focus group nativo y multi-autor con NPCs éticos.</p>
-      </article>
-
-      <article>
-        <div class="periodic__meta">
-          <span class="periodic__num">06</span>
-          <span class="periodic__tag">Visibilidad en IA</span>
-        </div>
-        <div class="periodic__symbol">GD</div>
-        <div class="periodic__divider"></div>
-        <p class="periodic__desc"><strong>GEO_DOCTOR.</strong> Audita la Agent Experience (AX) técnica de tu web ante los crawlers IA: bloqueos CDN, robots.txt, llms.txt, indexabilidad.</p>
-      </article>
-
-      <article>
-        <div class="periodic__meta">
-          <span class="periodic__num">07</span>
-          <span class="periodic__tag">Privacidad &amp; Integridad</span>
-        </div>
-        <div class="periodic__symbol">CMP</div>
-        <div class="periodic__divider"></div>
-        <p class="periodic__desc"><strong>COMPLY.</strong> Software propio on-premise para gestión remota de datos en entornos corporate. Privacidad por diseño, soberanía del dato, cumplimiento normativo.</p>
-      </article>
-
-      <article>
-        <div class="periodic__meta">
-          <span class="periodic__num">08</span>
-          <span class="periodic__tag">En desarrollo · UAB</span>
-        </div>
-        <div class="periodic__symbol">HM</div>
-        <div class="periodic__divider"></div>
-        <p class="periodic__desc"><strong>HUMANMADE.</strong> Sistema integrado en el workflow de creación que certifica que un contenido ha sido producido íntegramente por personas.</p>
-      </article>
-
-      <article>
-        <div class="periodic__meta">
-          <span class="periodic__num">09</span>
-          <span class="periodic__tag">Insight &amp; Data tools</span>
-        </div>
-        <div class="periodic__symbol">PA</div>
-        <div class="periodic__divider"></div>
-        <p class="periodic__desc"><strong>Prompt Atlas.</strong> Datasets estratégicos de prompts diseñados para sectores específicos. La base sobre la que GEORadar construye sus estudios.</p>
-      </article>
-
-      <article>
-        <div class="periodic__meta">
-          <span class="periodic__num">10</span>
-          <span class="periodic__tag">Insight &amp; Data tools</span>
-        </div>
-        <div class="periodic__symbol">ID</div>
-        <div class="periodic__divider"></div>
-        <p class="periodic__desc"><strong>InsightDesk.</strong> Análisis NPS asistido por IA. Convierte respuestas abiertas en jerarquías de insight accionable.</p>
-      </article>
-
+    <div class="stat">
+      <div class="stat__num">375+</div>
+      <div class="stat__label">Configuraciones distintas</div>
     </div>
-
-    <div style="margin-top:48px;text-align:center">
-      <a class="btn-ghost-light" href="#contacto">Ver portfolio completo →</a>
+    <div class="stat">
+      <div class="stat__num stat__num--green">100.000</div>
+      <div class="stat__label">Itinerarios posibles</div>
     </div>
   </div>
+
+
+  <figure class="panel-light" style="margin:0">
+    <div class="panel-light__media panel-light__media--scroll">
+      <svg style="width:100%;height:auto;display:block" viewBox="0 0 780 448" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol del inventario AICompass agrupado por origen de la fuente"><rect width="780" height="448" rx="8" fill="#ffffff"/><rect x="16" y="172" width="210" height="64" rx="8" fill="#151515"/><text x="121.0" y="198" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Inventario AICompass</text><text x="121.0" y="217" text-anchor="middle" font-size="10" fill="#cfcfcf" font-family="-apple-system,Segoe UI,Roboto,sans-serif">357+ assets verificados</text><path d="M226,204.0 C 256,204.0 238,74.0 268,74.0" fill="none" stroke="#c9ced6" stroke-width="1.6"/><rect x="268" y="52" width="200" height="44" rx="7" fill="#0f9d8f"/><text x="368.0" y="79" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Industria</text><path d="M468,74.0 C 492,74.0 488,46.0 512,46.0" fill="none" stroke="#dfe3e9" stroke-width="1.3"/><rect x="512" y="20" width="252" height="52" rx="6" fill="#ffffff" stroke="#0f9d8f" stroke-width="1.6"/><text x="524" y="41" font-size="10.5" font-weight="600" fill="#1f2937" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Labs y creadores de IA</text><text x="524" y="58" font-size="8.8" fill="#6b7280" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Anthropic · OpenAI · Google · Mistral</text><path d="M468,74.0 C 492,74.0 488,112.0 512,112.0" fill="none" stroke="#dfe3e9" stroke-width="1.3"/><rect x="512" y="86" width="252" height="52" rx="6" fill="#ffffff" stroke="#0f9d8f" stroke-width="1.6"/><text x="524" y="107" font-size="10.5" font-weight="600" fill="#1f2937" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Cloud, datos y herramientas</text><text x="524" y="124" font-size="8.8" fill="#6b7280" font-family="-apple-system,Segoe UI,Roboto,sans-serif">AWS · Microsoft · NVIDIA · IBM · Hugging Face…</text><path d="M226,204.0 C 256,204.0 238,218.0 268,218.0" fill="none" stroke="#c9ced6" stroke-width="1.6"/><rect x="268" y="196" width="200" height="44" rx="7" fill="#e0a80d"/><text x="368.0" y="223" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Academia e instituciones</text><path d="M468,218.0 C 492,218.0 488,186.0 512,186.0" fill="none" stroke="#dfe3e9" stroke-width="1.3"/><rect x="512" y="160" width="252" height="52" rx="6" fill="#ffffff" stroke="#e0a80d" stroke-width="1.6"/><text x="524" y="181" font-size="10.5" font-weight="600" fill="#1f2937" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Universidades de referencia</text><text x="524" y="198" font-size="8.8" fill="#6b7280" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Harvard · MIT · Stanford · Berkeley · Helsinki…</text><path d="M468,218.0 C 492,218.0 488,252.0 512,252.0" fill="none" stroke="#dfe3e9" stroke-width="1.3"/><rect x="512" y="226" width="252" height="52" rx="6" fill="#ffffff" stroke="#e0a80d" stroke-width="1.6"/><text x="524" y="247" font-size="10.5" font-weight="600" fill="#1f2937" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Organismos públicos</text><text x="524" y="264" font-size="8.8" fill="#6b7280" font-family="-apple-system,Segoe UI,Roboto,sans-serif">ONU · UNESCO+Oxford · BID · Generalitat</text><path d="M226,204.0 C 256,204.0 238,352.0 268,352.0" fill="none" stroke="#c9ced6" stroke-width="1.6"/><rect x="268" y="330" width="200" height="44" rx="7" fill="#e64980"/><text x="368.0" y="357" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Divulgadores de prestigio</text><path d="M468,352.0 C 492,352.0 488,322.0 512,322.0" fill="none" stroke="#dfe3e9" stroke-width="1.3"/><rect x="512" y="296" width="252" height="52" rx="6" fill="#ffffff" stroke="#e64980" stroke-width="1.6"/><text x="524" y="317" font-size="10.5" font-weight="600" fill="#1f2937" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Científicos-educadores</text><text x="524" y="334" font-size="8.8" fill="#6b7280" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Karpathy · Ng · Raschka · Silver</text><path d="M468,352.0 C 492,352.0 488,382.0 512,382.0" fill="none" stroke="#dfe3e9" stroke-width="1.3"/><rect x="512" y="356" width="252" height="52" rx="6" fill="#ffffff" stroke="#e64980" stroke-width="1.6"/><text x="524" y="377" font-size="10.5" font-weight="600" fill="#1f2937" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Divulgación de referencia</text><text x="524" y="394" font-size="8.8" fill="#6b7280" font-family="-apple-system,Segoe UI,Roboto,sans-serif">3Blue1Brown · StatQuest · DotCSV</text><rect x="16" y="420" width="748" height="20" rx="4" fill="#f3f4f6"/><text x="390.0" y="434" text-anchor="middle" font-size="9.2" fill="#4b5563" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Formatos: cursos · vídeos · series · libros · audio · repositorios · certificaciones — actualización periódica por olas</text></svg>
+    </div>
+    <figcaption>
+      <p class="panel-light__title">El mapa de fuentes del inventario</p>
+      <p class="panel-light__desc">Tres familias y solo tres: la industria que construye la IA, la academia y las instituciones que la investigan y regulan, y los divulgadores de prestigio internacional.</p>
+    </figcaption>
+  </figure>
 </section>
 
 <!-- =================================================================
-     06 · INVESTIGACIÓN · Gerard
+     05 · ENTREGABLE · capturas reales del informe + grafo
      ================================================================= -->
-<section id="investigacion" class="section-paper">
-  <div class="vision-grid">
-
-    <aside class="vision-meta">
-      <div class="vision-meta__num">06</div>
-      <div class="vision-meta__label">Programa I+D · Gerard</div>
-      <div class="vision-meta__line">Horizonte 2026 – 2028</div>
-      <div class="vision-meta__line">Piloto privado · 2026</div>
-      <div class="vision-meta__line">3 clientes del grupo</div>
-
-      <div class="author-block">
-        <img class="author-block__photo" src="assets/team/carlos-ortet-bw-900.webp" alt="Carlos Ortet">
-        <div>
-          <span class="author-block__name">Carlos Ortet</span>
-          <span class="author-block__role">Director · 498A</span>
-        </div>
-      </div>
-    </aside>
-
-    <div class="vision-main">
-      <span class="eyebrow">Programa de I+D · Gerard · Horizonte 2026–2028</span>
-      <h2 class="ed-display-2" style="margin-bottom:24px">
-        <em>Generative Research<br><span style="color:var(--498-green-deep)">And</span> Rapid Development.</em>
-      </h2>
-      <p class="ed-lead" style="margin-bottom:32px;color:var(--pg-text)">
-        <strong>Construyendo Gerard: investigación sintética empoderada por IA.</strong>
-      </p>
-
-      <p class="ed-body" style="font-size:17px;line-height:1.7;margin-bottom:20px;color:var(--pg-text)">
-        Las cuatro capacidades anteriores no son un catálogo cerrado. Son la
-        infraestructura sobre la que estamos construyendo <strong>Gerard</strong>
-        — <em>The Generative R&amp;D Platform</em> — un sistema que simula el
-        comportamiento de personas, agentes, grupos y poblaciones como entornos
-        seguros donde una empresa puede ensayar un producto, una institución puede
-        probar una política, o la negociación de su agente con otro y un equipo
-        puede observar el efecto cascada de una decisión antes de aplicarla<a class="cite-chat cite-chat--green" href="#ref-6" title="Ver fuente 6">6</a>.
-      </p>
-
-      <p class="ed-body" style="font-size:17px;line-height:1.7;margin-bottom:24px;color:var(--pg-text)">
-        Es un horizonte cercano. El piloto privado arranca en 2026 con tres clientes
-        actuales del grupo. Es la razón por la que cada agente que entregamos, cada
-        dataset que construimos y cada modelo privado que desplegamos hoy está pensado
-        para escalar mañana hacia algo más grande: ensayar el futuro y mejorarlo antes
-        de que ocurra.
-      </p>
-
-      <!-- CONNECTOR VISUAL · presente → futuro -->
-      <div class="gerard-connector" aria-label="Conexión capacidades presentes con horizonte Gerard">
-        <div class="gerard-connector__row">
-          <span class="gerard-connector__from">Sistemas multiagente</span>
-          <span class="gerard-connector__arrow" aria-hidden="true">→</span>
-          <span class="gerard-connector__to">Agent-Based Research</span>
-        </div>
-        <div class="gerard-connector__row">
-          <span class="gerard-connector__from">Datasets a medida</span>
-          <span class="gerard-connector__arrow" aria-hidden="true">→</span>
-          <span class="gerard-connector__to">Poblaciones sintéticas validadas</span>
-        </div>
-        <div class="gerard-connector__row">
-          <span class="gerard-connector__from">Visibilidad GEO</span>
-          <span class="gerard-connector__arrow" aria-hidden="true">→</span>
-          <span class="gerard-connector__to">Personas sintéticas para test de marca</span>
-        </div>
-        <div class="gerard-connector__row">
-          <span class="gerard-connector__from">IA privada</span>
-          <span class="gerard-connector__arrow" aria-hidden="true">→</span>
-          <span class="gerard-connector__to">Sandbox soberano de simulación</span>
-        </div>
-      </div>
-
-      <!-- META LINE -->
-      <p class="ed-small" style="margin-top:32px;padding-top:20px;border-top:1px solid var(--pg-line);font-style:italic">
-        Gerard se construye sobre el stack de <strong>GEORadar</strong> (GEOAtlas,
-        GEOdesk, SAM, LEO, DOC) integrado con un Research Agent Orchestrator
-        multiagente, un Participant Simulator de personas sintéticas y un Insight
-        Synthesizer con RAG sobre datos propietarios. Stack europeo, GDPR by design,
-        infraestructura AWS Frankfurt<a class="cite-chat cite-chat--grey" href="#ref-7" title="Ver fuente 7">7</a>.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- =================================================================
-     07 · PRUEBA · evidencia
-     ================================================================= -->
-<section id="prueba">
+<section id="entregable" class="section-paper">
   <div class="section-title-block">
-    <span class="eyebrow">Evidencia · Caso en curso</span>
+    <span class="eyebrow">Entregable · 03</span>
+    <h2 class="ed-display-3">Así se ve. <em>Capturas reales</em>, datos anonimizados.</h2>
   </div>
 
-  <!-- FEATURED CALLOUT · Mundial FIFA -->
-  <article class="box-pattern frame-cross" style="max-width:1180px;margin:0 auto 80px;border:1px solid var(--pg-line-strong)">
-    <span class="cnr cnr--tl"></span><span class="cnr cnr--tr"></span>
-    <span class="cnr cnr--bl"></span><span class="cnr cnr--br"></span>
-
-    <div style="display:grid;gap:24px;max-width:880px;margin:0 auto;padding:24px 16px">
-      <span class="eyebrow" style="margin-bottom:0">Estudio en curso · GEORadar · Mundial FIFA 2026</span>
-      <h3 class="ed-display-2" style="margin:0;font-size:38px;line-height:1.2">
-        Cómo la IA narra el <em style="color:var(--498-green-deep)">Mundial FIFA 2026</em>.
-      </h3>
-      <p class="ed-body" style="font-size:16px;line-height:1.7;color:var(--pg-text);margin:0">
-        Estamos auditando en tiempo real cómo ChatGPT, Claude, Gemini, Perplexity y
-        Google AI Overviews construyen la narrativa del Mundial: qué marcas asocian
-        a la competición, qué sedes destacan, qué riesgos perciben, qué fuentes
-        alimentan las respuestas. La fotografía completa de cómo la mayor cita
-        deportiva del año vive en la mente de los modelos generativos.
-      </p>
-      <div>
-        <a class="btn-solid-dark" href="#contacto">Recibir el informe al publicarse →</a>
+  <div class="shot-grid">
+    <figure class="panel-light" style="margin:0">
+      <p class="panel-light__kicker"><b>Doc 01 / 04</b><span>HTML + PDF</span></p>
+      <div class="panel-light__media">
+        <img src="assets/captura-portada.jpg" alt="Portada de un informe AICompass real, con nombre anonimizado" loading="lazy">
       </div>
+      <figcaption>
+        <p class="panel-light__title">Portada del informe</p>
+        <p class="panel-light__desc">Objetivo, horas ya descontadas al ritmo ejecutivo y las capacidades que te llevas. HTML y PDF.</p>
+      </figcaption>
+    </figure>
+    <figure class="panel-light" style="margin:0">
+      <p class="panel-light__kicker"><b>Doc 02 / 04</b><span>Grafo</span></p>
+      <div class="panel-light__media panel-light__media--anim panel-light__media--scroll">
+        <svg style="width:100%;height:auto;display:block" viewBox="0 0 700 352" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ejemplo de itinerario para Dirección de Marketing como grafo"><defs><marker id="car" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#adb5bd"/></marker></defs><rect width="700" height="352" rx="8" fill="#ffffff"/><line x1="330" y1="180" x2="128" y2="86" stroke="#dee2e6" stroke-width="1.2"/><line x1="330" y1="180" x2="474" y2="74" stroke="#dee2e6" stroke-width="1.2"/><line x1="330" y1="180" x2="196" y2="300" stroke="#dee2e6" stroke-width="1.2"/><line x1="330" y1="180" x2="492" y2="300" stroke="#dee2e6" stroke-width="1.2"/><line x1="128" y1="86" x2="56" y2="140" stroke="#dee2e6" stroke-width="1.2"/><line x1="128" y1="86" x2="150" y2="32" stroke="#dee2e6" stroke-width="1.2"/><line x1="474" y1="74" x2="592" y2="116" stroke="#dee2e6" stroke-width="1.2"/><line x1="474" y1="74" x2="568" y2="32" stroke="#dee2e6" stroke-width="1.2"/><line x1="474" y1="74" x2="388" y2="20" stroke="#dee2e6" stroke-width="1.2"/><line x1="474" y1="74" x2="626" y2="196" stroke="#dee2e6" stroke-width="1.2"/><path d="M128,86 Q301,58 474,74" fill="none" stroke="#b9c0c9" stroke-width="1.8" marker-end="url(#car)"/><path d="M474,74 Q483,165 492,300" fill="none" stroke="#b9c0c9" stroke-width="1.8" marker-end="url(#car)"/><circle cx="330" cy="180" r="38" fill="#151515" opacity="0.12"/><circle cx="330" cy="180" r="20" fill="#151515" stroke="#ffffff" stroke-width="1.5"/><circle cx="330" cy="180" r="8" fill="#ffffff" opacity="0.9"/><circle cx="128" cy="86" r="23" fill="#0f9d8f" opacity="0.12"/><circle cx="128" cy="86" r="12" fill="#0f9d8f" stroke="#ffffff" stroke-width="1.5"/><circle cx="56" cy="140" r="15" fill="#0f9d8f" opacity="0.12"/><circle cx="56" cy="140" r="8" fill="#0f9d8f" stroke="#ffffff" stroke-width="1.5"/><circle cx="150" cy="32" r="15" fill="#0f9d8f" opacity="0.12"/><circle cx="150" cy="32" r="8" fill="#0f9d8f" stroke="#ffffff" stroke-width="1.5"/><circle cx="474" cy="74" r="25" fill="#e0a80d" opacity="0.12"/><circle cx="474" cy="74" r="13" fill="#e0a80d" stroke="#ffffff" stroke-width="1.5"/><circle cx="592" cy="116" r="15" fill="#e0a80d" opacity="0.12"/><circle cx="592" cy="116" r="8" fill="#e0a80d" stroke="#ffffff" stroke-width="1.5"/><circle cx="568" cy="32" r="15" fill="#e0a80d" opacity="0.12"/><circle cx="568" cy="32" r="8" fill="#e0a80d" stroke="#ffffff" stroke-width="1.5"/><circle cx="388" cy="20" r="15" fill="#e0a80d" opacity="0.12"/><circle cx="388" cy="20" r="8" fill="#e0a80d" stroke="#ffffff" stroke-width="1.5"/><circle cx="626" cy="196" r="15" fill="#e0a80d" opacity="0.12"/><circle cx="626" cy="196" r="8" fill="#e0a80d" stroke="#ffffff" stroke-width="1.5"/><circle cx="196" cy="300" r="19" fill="#e8590c" opacity="0.12"/><circle cx="196" cy="300" r="10" fill="#e8590c" stroke="#ffffff" stroke-width="1.5"/><circle cx="492" cy="300" r="21" fill="#2f9e44" opacity="0.12"/><circle cx="492" cy="300" r="11" fill="#2f9e44" stroke="#ffffff" stroke-width="1.5"/><text x="330" y="215" text-anchor="middle" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="11.5" font-weight="700" fill="#111">Itinerario IA · Dirección de Marketing</text><text x="116" y="78" text-anchor="end" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="10" font-weight="600" fill="#1f2937">Fundamentos</text><text x="48" y="158" text-anchor="start" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="9.2" font-weight="400" fill="#565c66">GenAI for Everyone (Ng)</text><text x="142" y="20" text-anchor="start" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="9.2" font-weight="400" fill="#565c66">AI Fundamentals (Salesforce)</text><text x="488" y="66" text-anchor="start" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="10" font-weight="600" fill="#1f2937">Aplicado a su función</text><text x="584" y="134" text-anchor="start" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="9.2" font-weight="400" fill="#565c66">AI-Powered Ads (Google)</text><text x="560" y="20" text-anchor="start" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="9.2" font-weight="400" fill="#565c66">AI for Marketing (HubSpot)</text><text x="396" y="38" text-anchor="start" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="9.2" font-weight="400" fill="#565c66">Visibilidad en LLMs · GEO (Semrush)</text><text x="618" y="214" text-anchor="start" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="9.2" font-weight="400" fill="#565c66">GenAI Ads (Meta)</text><text x="184" y="318" text-anchor="start" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="10" font-weight="600" fill="#1f2937">Gobernanza · AI Act</text><text x="480" y="318" text-anchor="start" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="10" font-weight="600" fill="#1f2937">Certificado · Google AI Essentials</text></svg>
+      </div>
+      <figcaption>
+        <p class="panel-light__title">Grafo del itinerario</p>
+        <p class="panel-light__desc">Caso real de una Dirección de Marketing: fases y dependencias de un vistazo. En el informe entregado, cada nodo es un enlace: clicas y vas al recurso, también desde el PDF.</p>
+      </figcaption>
+    </figure>
+    <figure class="panel-light" style="margin:0">
+      <p class="panel-light__kicker"><b>Doc 03 / 04</b><span>Ficha</span></p>
+      <div class="panel-light__media">
+        <img src="assets/captura-ficha.jpg" alt="Ficha de un recurso del itinerario" loading="lazy">
+      </div>
+      <figcaption>
+        <p class="panel-light__title">Ficha de recurso · tres frases</p>
+        <p class="panel-light__desc">Qué te llevas, dónde lo aplicas y por qué es de fiar. Cada recurso justifica su plaza en el plan.</p>
+      </figcaption>
+    </figure>
+    <figure class="panel-light" style="margin:0">
+      <p class="panel-light__kicker"><b>Doc 04 / 04</b><span>Credenciales</span></p>
+      <div class="panel-light__media">
+        <img src="assets/captura-linkedin.jpg" alt="Instrucciones para publicar los certificados en LinkedIn" loading="lazy">
+      </div>
+      <figcaption>
+        <p class="panel-light__title">Certificados en LinkedIn</p>
+        <p class="panel-light__desc">Instrucciones exactas para publicar cada credencial. El aprendizaje también se tiene que ver.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- =================================================================
+     07 · ITINERARIOS · track record + CTA card
+     ================================================================= -->
+<section id="itinerarios">
+  <div class="section-title-block">
+    <span class="eyebrow">Itinerarios · 04</span>
+    <h2 class="ed-display-3">Siete ejemplos de itinerarios entregados. <em>Siete planes totalmente originales.</em></h2>
+  </div>
+
+  <div class="table-wrap" style="margin-bottom:24px">
+    <table class="ui-table">
+      <thead>
+        <tr><th>Perfil</th><th>Sector</th><th>Idioma</th><th>Rama</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Dirección de Sostenibilidad y Operaciones</td><td>Gran consumo</td><td>ES</td><td>Certificados gratuitos</td></tr>
+        <tr><td>Chief Growth &amp; Digital Sales Officer</td><td>Banca digital</td><td>ES</td><td>Certificados gratuitos + stack de la casa</td></tr>
+        <tr><td>CEO</td><td>Producción audiovisual</td><td>ES</td><td>Certificados gratuitos + creatividad IA</td></tr>
+        <tr><td>Dirección de Publicidad institucional</td><td>Administración pública</td><td>CA</td><td>Informe íntegro en catalán + extra personal</td></tr>
+        <tr><td>Producto y diseño · equipo interno</td><td>Agencia de IA</td><td>ES</td><td>Certificación oficial · NVIDIA</td></tr>
+        <tr><td>Dirección de Marketing global (CMO)</td><td>Hospitality · real estate · wellness</td><td>EN</td><td>Solo aprender + creatividad audiovisual</td></tr>
+        <tr><td>Socio de fondo deep-tech · físico</td><td>IA × ciencia avanzada</td><td>ES</td><td>Ruta técnica de frontera · fuentes primarias</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="ed-body" style="max-width:680px;margin-bottom:56px">
+    Los itinerarios son confidenciales por defecto. Uno es público, con permiso de la
+    persona, y se puede leer entero<a class="cite-chat cite-chat--green" href="#ref-2" aria-label="Referencia 2">2</a>.
+  </p>
+
+  <article class="vision-hero-card keep-light">
+    <div class="vision-hero-card__content">
+      <span class="eyebrow-square">El siguiente paso</span>
+      <h3 class="vision-hero-card__claim">Tu itinerario está a un solo click. Descúbrelo.</h3>
+      <a class="btn-split" href="#solicitud">
+        <span class="btn-split__label">Pide tu itinerario</span>
+        <span class="btn-split__arrow">→</span>
+      </a>
+    </div>
+    <div class="vision-hero-card__visual">
+      <img src="../498Adesign/assets/visuals/library-garden.jpg" alt="Jardín experimental con estructura geométrica" loading="lazy">
     </div>
   </article>
 
-  <div class="section-title-block">
-    <h2 class="ed-display-3">Vivimos en la frontera entre <em>investigación</em> y negocio.</h2>
-  </div>
-
-  <div class="proof-three-cols">
-    <div>
-      <h3>Investigación</h3>
-      <ul>
-        <li><em>UAB</em> Universitat Autònoma de Barcelona · acuerdo marco, 2023</li>
-        <li><em>CSIC</em> Investigadores colaboradores</li>
-        <li><em>UNESCO</em> AI Governance Working Group</li>
-        <li><em>EU</em> EU AI Act alignment</li>
-        <li><em>GitHub</em> 498AS/docs-geo · 498AS/ai-overviews-research</li>
-        <li><em>Output</em> Papers, no decks</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Producción · Cartera GEORadar</h3>
-      <ul>
-        <li><em>Banca/Seguros</em> Banco Sabadell · Fundació laCaixa · Imagin · Adeslas · AXA</li>
-        <li><em>Gran consumo</em> Coca-Cola · Danone · NAOS · Selena</li>
-        <li><em>Mobility</em> Ford</li>
-        <li><em>Travel</em> Iberostar · PortAventura</li>
-        <li><em>Health/Pharma</em> AstraZeneca · Dexeus Mujer</li>
-        <li><em>Energy</em> Veolia</li>
-        <li><em>Corporate</em> Nestlé</li>
-        <li><em>Media/Institucional</em> 3Cat (CCMA) · Generalitat de Catalunya · UE/INTPA · Mataró</li>
-        <li><em>Educación</em> UAB · UVic</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Escala</h3>
-      <ul>
-        <li><em>Proyectos</em> 40+ desde 2023</li>
-        <li><em>Sectores</em> 6 · farmacia · salud · banca · instituciones · gran consumo · medios</li>
-        <li><em>Verticales</em> 9 GEORadar con KPIs propietarios cerrados</li>
-        <li><em>Prompts</em> 1.000.000+ simulados acumulados</li>
-        <li><em>Menciones</em> 10.000.000+ de marca analizadas</li>
-        <li><em>Motores</em> ChatGPT · Claude · Gemini · Perplexity · Copilot · AIO</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- =================================================================
-     08 · EQUIPO
-     ================================================================= -->
-<section id="equipo" class="team-section">
-  <div class="section-title-block">
-    <span class="eyebrow">Quiénes somos · Barcelona · Desde 2023</span>
-    <h2 class="ed-display-3"><em>Un laboratorio independiente único</em> que resuelve grandes retos globales.</h2>
-  </div>
-
-  <div class="team-split">
-    <figure class="team-photo frame-cross">
-      <span class="cnr cnr--tl"></span><span class="cnr cnr--tr"></span>
-      <span class="cnr cnr--bl"></span><span class="cnr cnr--br"></span>
-      <img src="assets/visuals/science-stacks.jpg" alt="Estructura sintética · sistema generado con reglas visibles">
-      <figcaption class="team-photo__caption">Sistema sintético · 498A · 2026</figcaption>
-    </figure>
-
-    <div class="team-content">
-      <p>
-        Nuestra misión es dotar a la sociedad con herramientas avanzadas de decisión
-        que posibiliten un futuro próspero.
-      </p>
-      <p>
-        498A nace en 2023 en conexión con la <strong>Universitat Autònoma de Barcelona</strong>
-        y en colaboración con el entorno científico del <strong>CSIC</strong>.
-        Como división de I+D en inteligencia artificial del grupo Zoopa, trabaja en
-        la frontera entre investigación avanzada, estrategia e implementación real<a class="cite-chat cite-chat--green" href="#ref-8" title="Ver fuente 8">8</a>.
-      </p>
-      <p>
-        Dirigida por <strong>Carlos Ortet</strong> —Senior Innovation Engineer, uno de
-        los primeros investigadores de IA agéntica y consultor GEO operando en Europa—,
-        498A funciona con un equipo deliberadamente compacto. Cada proyecto, liderado por
-        un verdadero especialista. Criterio experto, visión de continuidad a largo plazo y
-        responsabilidad directa en cada fase.
-      </p>
-      <p>
-        Esta forma de trabajar define también los proyectos que asumimos: sistemas
-        donde la inteligencia artificial permite crear conocimiento propio, resolver
-        problemas reales y construir ventaja para el progreso de las personas, antes
-        de que la tecnología se limite a decidir por ellas.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- =================================================================
-     09 · VOCES · testimoniales
-     ================================================================= -->
-<section id="voces">
-  <div class="section-title-block">
-    <span class="eyebrow">Voces · Testimonios reales</span>
-    <h2 class="ed-display-3">Lo que nos cuentan <em>desde dentro</em>.</h2>
-  </div>
-
-  <div class="box-collection box-collection--3 box-collection--persiana">
-
-    <article class="testimonial-box">
-      <span class="eyebrow-square">Client Voice · Specialisterne · International</span>
-      <p class="testimonial-box__quote">
-        <em>"As a multinational specialised in cognitively diverse profiles, we needed
-        frontier solutions that were truly personalised. We don't know of any other
-        consultancy that knows how to work in that thin line between research and
-        applied solutions."</em>
-      </p>
-      <div class="testimonial-box__attr">
-        <span class="testimonial-box__name">Daniel Reyes</span>
-        <span class="testimonial-box__org">Specialisterne</span>
-      </div>
-    </article>
-
-    <article class="testimonial-box">
-      <span class="eyebrow-square">Client Voice · imagin bank · Banca digital</span>
-      <p class="testimonial-box__quote">
-        <em>"498A ideó un sistema basado en intención que no creíamos posible y que
-        impulsó nuestra reputación en las app stores durante cuatro años."</em>
-      </p>
-      <div class="testimonial-box__attr">
-        <span class="testimonial-box__name">Christian M.</span>
-        <span class="testimonial-box__org">imagin bank</span>
-      </div>
-    </article>
-
-    <article class="testimonial-box">
-      <span class="eyebrow-square">Client Voice · NAOS · Gran consumo</span>
-      <p class="testimonial-box__quote">
-        <em>"498A nos ha abierto las puertas a un escenario de innovación basado en
-        IA realmente aplicado a nuestro negocio."</em>
-      </p>
-      <div class="testimonial-box__attr">
-        <span class="testimonial-box__name">Héctor Menéndez</span>
-        <span class="testimonial-box__org">CEO · NAOS</span>
-      </div>
-    </article>
-
-  </div>
-
-  <!--
-    Cita destacada del fundador · merge ex-sección "Founder Quote" dentro de Voces
-    Mantiene el typewriter en el eyebrow + foto Carlos + tamaño visualmente mayor
-  -->
-  <div class="founder-quote founder-quote--in-voces">
-    <div class="founder-quote__inner">
-      <span class="eyebrow-square">
-        <span class="sr-only">Founder Voice</span>
-        <span class="typewriter" style="--chars: 13;" aria-hidden="true">Founder Voice</span>
-      </span>
-      <p class="founder-quote__text">
-        <em>"Una organización próspera es la que sabe anticiparse, entender y adaptarse
-        a nuevos entornos. Para ello debe construir desde la incertidumbre y a través del
-        conocimiento y la empatía."</em>
-      </p>
-      <div class="founder-quote__attr">
-        <img src="assets/team/carlos-ortet-bw-900.webp" alt="Carlos Ortet">
-        <div>
-          <span class="founder-quote__attr-name">Carlos Ortet</span>
-          <span class="founder-quote__attr-role">Fundador · 498A</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =================================================================
-     11 · INVITACIÓN · CTA final
-     ================================================================= -->
-<section id="contacto" class="section-paper">
-  <div class="narrow">
-    <span class="eyebrow">Contacto</span>
-    <h2 class="ed-display-3" style="margin-bottom:24px">
-      Si tu organización cree en la innovación, <em>hablemos</em>.
-    </h2>
-    <p class="ed-body" style="font-size:18px;line-height:1.7;margin-bottom:40px;max-width:600px;color:var(--pg-text)">
-      Trabajamos con un número limitado de proyectos cada trimestre para garantizar
-      profundidad. La primera conversación es una llamada de 30 minutos sin compromiso.
-      Si encajamos, lo sabremos al final de esa llamada.
-    </p>
-    <div style="display:flex;gap:14px;flex-wrap:wrap">
-      <a class="btn-light" href="mailto:hola@498a.com">Hablemos →</a>
-      <a class="btn-ghost-light" href="#perspectivas">Suscribirme a las perspectivas</a>
-    </div>
-  </div>
-</section>
-
-<!-- =================================================================
-     12 · PERSPECTIVAS
-     ================================================================= -->
-<section id="perspectivas">
-  <div class="section-title-block" style="margin-bottom:32px">
-    <span class="eyebrow">Perspectivas</span>
-    <h2 class="ed-display-3"><em>Lo que publicamos.</em></h2>
-  </div>
-
-  <div class="box-collection box-collection--3 box-collection--persiana">
-
-    <a class="blog-card blog-card--mini" href="#" target="_blank" rel="noopener">
-      <span class="blog-card__tag">Paper · Académico · 1993</span>
-      <h3 class="blog-card__title">Performance Prediction of Parallel Systems by Simulation.</h3>
-      <span class="blog-card__link">academia.edu →</span>
-    </a>
-
-    <a class="blog-card blog-card--mini" href="https://medium.com/@carlosortet" target="_blank" rel="noopener">
-      <span class="blog-card__tag">Essay · Medium · EN</span>
-      <h3 class="blog-card__title">Beyond LLMs: in search of the next AI beast.</h3>
-      <span class="blog-card__link">medium.com/@carlosortet →</span>
-    </a>
-
-    <a class="blog-card blog-card--mini" href="https://zoopa.es/es/geo-ia-visibilidad/geo-no-es-seo-argumentos/" target="_blank" rel="noopener">
-      <span class="blog-card__tag">Blog · Zoopa</span>
-      <h3 class="blog-card__title">El GEO no es SEO: 11 argumentos irrefutables.</h3>
-      <span class="blog-card__link">zoopa.es →</span>
-    </a>
-
-  </div>
-
-  <div style="margin-top:32px;text-align:center">
-    <a class="btn-ghost-light" href="#">Ver biblioteca completa →</a>
-  </div>
-
-  <!-- References at the bottom of perspectivas -->
-  <div class="narrow" style="margin-top:80px">
     <ol class="references">
-      <li id="ref-1">
-        498A. <em>Posicionamiento institucional 2026</em>. Documento interno, mayo 2026.
-        <a href="#">498as.com/posicionamiento</a>
-      </li>
-      <li id="ref-2">
-        498A. <em>Método espiral: dataset · modelo · despliegue · medición</em>. Whitepaper técnico, 2026.
-        <a href="#">498as.com/metodo</a>
-      </li>
-      <li id="ref-3">
-        498A. <em>Sistemas multiagente en producción · cartera 2023–2026</em>. Reporte interno, 2026.
-        <a href="#">498as.com/multiagente</a>
-      </li>
-      <li id="ref-4">
-        498A. <em>State of GEO 2026</em>. Reporte de cartera GEORadar, 2026.
-        <a href="https://georadar.app/research">georadar.app/research</a>
-      </li>
-      <li id="ref-5">
-        UNESCO. <em>AI Governance Working Group · Principles for trustworthy AI</em>. 2024–2026.
-        <a href="#">unesco.org/ai-governance</a>
-      </li>
-      <li id="ref-6">
-        Ortet, C. <em>Generative Research and Rapid Development · Gerard whitepaper</em>. 498A, 2026.
-        <a href="#">498as.com/gerard</a>
-      </li>
-      <li id="ref-7">
-        498A · UAB. <em>Acuerdo marco de colaboración en investigación aplicada</em>. Bellaterra, 2023.
-        <a href="#">uab.cat/498a-marco</a>
-      </li>
-      <li id="ref-8">
-        Ortet, C. <em>Performance Prediction of Parallel Systems by Simulation</em>. Paper académico, 1993.
-        <a href="#">academia.edu/carlosortet</a>
-      </li>
+      <li id="ref-1">Base de datos AICompass · 382 recursos (cursos, libros, ensayos, podcasts, documentales) · repositorio privado <a href="https://github.com/498AS/aicompass-db" target="_blank" rel="noopener">498AS/aicompass-db</a> · GitHub.</li>
+      <li id="ref-2">Itinerario público de ejemplo · <a href="https://zoopa-smart-agency.github.io/roadmap-ia/" target="_blank" rel="noopener">zoopa-smart-agency.github.io/roadmap-ia</a>.</li>
+      <li id="ref-3">Página canónica del producto · <a href="https://carlosortet.com/aicompass/" target="_blank" rel="noopener">carlosortet.com/aicompass</a> · <a href="https://carlosortet.com/aicompass/ca" target="_blank" rel="noopener">versió en català</a>.</li>
     </ol>
-  </div>
 </section>
 
 </main>
-<!-- /Main content landmark -->
 
 <!-- =================================================================
-     13 · FOOTER
+     09 · FOOTER · claro, como el de produccion (keep-light)
      ================================================================= -->
-<footer>
+<footer class="keep-light">
   <div class="footer-top">
     <div class="footer-brand">
-      <img src="assets/logos/498A_ADVANCED_black.svg" alt="498A">
+      <img src="../498Adesign/assets/logos/498A_ADVANCED_black.svg" alt="498A">
       <p>
-        Una compañía del grupo Zoopa · Barcelona · Co-fundada en 2023.
+        AICompass es un producto de 498 Advance · Grupo Zoopa · Barcelona.
       </p>
       <div class="meta-line">
-        hola@498a.com<br>
-        +34 932 24 77 44
+        carlos.ortet@zoopa.es<br>
+        498as.com
       </div>
     </div>
     <div class="footer-col">
-      <div class="footer-col__title">Capacidades</div>
+      <div class="footer-col__title">Producto</div>
       <ul>
-        <li><a href="#capacidades">Sistemas multiagente</a></li>
-        <li><a href="#capacidades">GEO en motores IA</a></li>
-        <li><a href="#capacidades">IA privada</a></li>
-        <li><a href="#capacidades">Datasets a medida</a></li>
+        <li><a href="#sistema">Sistema</a></li>
+        <li><a href="#inventario">Inventario</a></li>
+        <li><a href="#entregable">Informes</a></li>
+        <li><a href="#itinerarios">Itinerarios</a></li>
+        <li><a href="#solicitud">Pide el tuyo</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <div class="footer-col__title">Productos</div>
+      <div class="footer-col__title">Superficies</div>
       <ul>
-        <li><a href="https://georadar.app" target="_blank" rel="noopener">GEORadar</a></li>
-        <li><a href="#productos">S.A.M.</a></li>
-        <li><a href="#productos">LEO</a></li>
-        <li><a href="#productos">DOC</a></li>
-        <li><a href="#productos">COMPLY</a></li>
-        <li><a href="#productos">HUMANMADE</a></li>
-        <li><a href="#productos">ROBIN</a></li>
-        <li><a href="#productos">Stardesk</a></li>
-        <li><a href="#productos">Prompt Atlas</a></li>
-        <li><a href="#productos">InsightDesk</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col__title">Investigación</div>
-      <ul>
-        <li><a href="#investigacion">Gerard</a></li>
-        <li><a href="#perspectivas">Papers</a></li>
-        <li><a href="#prueba">UAB · CSIC</a></li>
-        <li><a href="#perspectivas">Perspectivas</a></li>
+        <li><a href="https://carlosortet.com/aicompass/" target="_blank" rel="noopener">Página canónica (ES)</a></li>
+        <li><a href="https://carlosortet.com/aicompass/ca" target="_blank" rel="noopener">Versió en català</a></li>
+        <li><a href="https://zoopa-smart-agency.github.io/roadmap-ia/" target="_blank" rel="noopener">Itinerario de ejemplo</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <div class="footer-col__title">Compañía</div>
       <ul>
-        <li><a href="#tesis">Sobre 498A</a></li>
-        <li><a href="#equipo">Equipo</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-        <li><a href="mailto:hola@498a.com">Trabaja con nosotros</a></li>
+        <li><a href="../498Adesign/index.html">498 Advance</a></li>
+        <li><a href="https://zoopa.es" target="_blank" rel="noopener">Zoopa</a></li>
+        <li><a href="https://498as.com" target="_blank" rel="noopener">498as.com</a></li>
+        <li><a href="mailto:carlos.ortet@zoopa.es">Contacto</a></li>
       </ul>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <div class="footer-meta">498 segundos · La distancia a un futuro lleno de oportunidades.</div>
-    <div class="footer-social">
+    <div class="footer-meta">498 segundos · La distancia entre el futuro y el presente.</div>
+    <div class="footer-social" style="display:flex;align-items:center;gap:18px">
+      <img src="../498Adesign/assets/logos/sello-NextGenEU.webp" alt="Financiado por la Unión Europea · NextGenerationEU" style="height:34px;width:auto">
       <a href="#" aria-label="LinkedIn">
-        <img src="assets/icons/icon-linkedin.png" alt="LinkedIn">
+        <img src="../498Adesign/assets/icons/icon-linkedin.png" alt="LinkedIn">
       </a>
     </div>
   </div>
@@ -2635,118 +2545,18 @@
   <div class="footer-strip">
     <span>© 2026 498A · Todos los derechos reservados</span>
     <span>
-      <a href="legal/aviso-legal.html">Aviso legal</a> ·
-      <a href="legal/politica-privacidad.html">Política de privacidad</a> ·
-      <a href="legal/politica-cookies.html">Política de cookies</a> ·
-      <a href="#" data-cookie-open>Gestionar cookies</a> ·
-      <a href="legal/declaracion-accesibilidad.html">Declaración de accesibilidad</a>
+      <a href="../498Adesign/legal/aviso-legal.html">Aviso legal</a> ·
+      <a href="../498Adesign/legal/politica-privacidad.html">Política de privacidad</a> ·
+      <a href="../498Adesign/legal/declaracion-accesibilidad.html">Declaración de accesibilidad</a>
     </span>
   </div>
 </footer>
 
 <!-- =================================================================
-     COOKIE BANNER
-     ================================================================= -->
-<aside id="cookie-banner" class="cookie-banner" role="dialog"
-       aria-labelledby="cookie-banner__title" hidden>
-  <div class="cookie-banner__inner">
-    <div class="cookie-banner__copy">
-      <h2 id="cookie-banner__title" class="cookie-banner__title">
-        Cookies y privacidad
-      </h2>
-      <p class="cookie-banner__body">
-        Usamos cookies esenciales para que la web funcione y, con tu permiso,
-        cookies analíticas para entender cómo se navega. No compartimos datos
-        con terceros sin tu consentimiento explícito.
-        <a href="#" data-cookie-config>Configurar preferencias</a>
-      </p>
-    </div>
-    <div class="cookie-banner__actions">
-      <button type="button" class="btn-ghost-light" data-cookie-reject>Rechazar opcionales</button>
-      <button type="button" class="btn-solid-dark"  data-cookie-accept>Aceptar todas</button>
-    </div>
-  </div>
-</aside>
-
-<!-- =================================================================
-     COOKIE MODAL
-     ================================================================= -->
-<div id="cookie-modal" class="cookie-modal" role="dialog" aria-modal="true"
-     aria-labelledby="cookie-modal__title" hidden>
-  <div class="cookie-modal__backdrop" data-cookie-close></div>
-  <div class="cookie-modal__panel">
-    <header class="cookie-modal__header">
-      <span class="eyebrow">Cookies · 498A</span>
-      <h2 id="cookie-modal__title" class="ed-display-3" style="margin:8px 0 0">
-        Tus <em>preferencias</em>.
-      </h2>
-      <button type="button" class="cookie-modal__close" data-cookie-close aria-label="Cerrar">×</button>
-    </header>
-
-    <div class="cookie-modal__body">
-      <p class="ed-body" style="margin-bottom:24px">
-        Tres categorías de cookies. Las esenciales no se pueden desactivar
-        porque sin ellas la web no funciona. El resto las controlas tú.
-      </p>
-
-      <div class="cookie-cat">
-        <div class="cookie-cat__row">
-          <div>
-            <h3 class="cookie-cat__name">Esenciales</h3>
-            <p class="cookie-cat__desc">
-              Necesarias para navegación, sesión y preferencias básicas.
-              Sin ellas la página no funciona.
-            </p>
-          </div>
-          <span class="cookie-cat__pill cookie-cat__pill--locked">Siempre activas</span>
-        </div>
-      </div>
-
-      <div class="cookie-cat">
-        <div class="cookie-cat__row">
-          <div>
-            <h3 class="cookie-cat__name">Analíticas</h3>
-            <p class="cookie-cat__desc">
-              Nos ayudan a entender qué secciones se leen y dónde mejorar.
-              Datos agregados, sin identificación personal.
-            </p>
-          </div>
-          <label class="cookie-toggle">
-            <input type="checkbox" id="cookie-analytics" checked>
-            <span class="cookie-toggle__track"></span>
-          </label>
-        </div>
-      </div>
-
-      <div class="cookie-cat">
-        <div class="cookie-cat__row">
-          <div>
-            <h3 class="cookie-cat__name">Marketing</h3>
-            <p class="cookie-cat__desc">
-              Permiten medir campañas externas y personalización.
-              Por defecto desactivadas.
-            </p>
-          </div>
-          <label class="cookie-toggle">
-            <input type="checkbox" id="cookie-marketing">
-            <span class="cookie-toggle__track"></span>
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <footer class="cookie-modal__footer">
-      <button type="button" class="btn-ghost-light" data-cookie-reject>Rechazar opcionales</button>
-      <button type="button" class="btn-solid-dark"  data-cookie-save>Guardar preferencias</button>
-    </footer>
-  </div>
-</div>
-
-<!-- =================================================================
-     JS · persiana + typewriter + cookies + responsive video
+     JS · persiana + video responsive + solicitud mailto
      ================================================================= -->
 <script>
-  // 1) Persiana animation on scroll
+  // 1) Persiana animation on scroll (idéntico a index.html)
   (function () {
     var collections = document.querySelectorAll('.box-collection--persiana');
     if (!('IntersectionObserver' in window)) {
@@ -2764,134 +2574,13 @@
     collections.forEach(function (el) { obs.observe(el); });
   })();
 
-  // 2) Typewriter reveal
-  (function () {
-    var els = document.querySelectorAll('.typewriter');
-    if (!els.length) return;
-    if (!('IntersectionObserver' in window)) {
-      els.forEach(function (el) { el.classList.add('is-typing'); });
-      return;
-    }
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-typing');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.6 });
-    els.forEach(function (el) { obs.observe(el); });
-  })();
-
-  // 3) Cookie banner + modal · localStorage + focus trap
-  (function () {
-    var KEY = '498a.cookie-consent.v1';
-    var banner = document.getElementById('cookie-banner');
-    var modal  = document.getElementById('cookie-modal');
-    var inputAnalytics = document.getElementById('cookie-analytics');
-    var inputMarketing = document.getElementById('cookie-marketing');
-    if (!banner || !modal) return;
-
-    function load() {
-      try { return JSON.parse(localStorage.getItem(KEY) || 'null'); }
-      catch (e) { return null; }
-    }
-    function save(prefs) {
-      try { localStorage.setItem(KEY, JSON.stringify(prefs)); } catch (e) {}
-    }
-
-    var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
-    var lastTrigger = null;
-
-    function getFocusable(root) {
-      return Array.prototype.slice.call(root.querySelectorAll(FOCUSABLE))
-        .filter(function (el) { return el.offsetParent !== null; });
-    }
-    function trapTab(e) {
-      if (e.key !== 'Tab' || modal.hidden) return;
-      var items = getFocusable(modal);
-      if (!items.length) return;
-      var first = items[0], last = items[items.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-
-    function showBanner() {
-      banner.hidden = false;
-      document.body.classList.add('has-cookie-banner');
-    }
-    function hideBanner() {
-      banner.hidden = true;
-      document.body.classList.remove('has-cookie-banner');
-    }
-    function openModal() {
-      lastTrigger = document.activeElement;
-      var prefs = load() || { analytics: true, marketing: false };
-      inputAnalytics.checked = !!prefs.analytics;
-      inputMarketing.checked = !!prefs.marketing;
-      modal.hidden = false;
-      document.documentElement.style.overflow = 'hidden';
-      var firstFocusable = getFocusable(modal)[0];
-      if (firstFocusable) setTimeout(function () { firstFocusable.focus(); }, 50);
-      document.addEventListener('keydown', trapTab);
-    }
-    function closeModal() {
-      modal.hidden = true;
-      document.documentElement.style.overflow = '';
-      document.removeEventListener('keydown', trapTab);
-      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
-    }
-
-    function acceptAll() {
-      save({ essential: true, analytics: true, marketing: true, ts: Date.now() });
-      hideBanner(); closeModal();
-    }
-    function rejectOptional() {
-      save({ essential: true, analytics: false, marketing: false, ts: Date.now() });
-      hideBanner(); closeModal();
-    }
-    function saveCustom() {
-      save({
-        essential: true,
-        analytics: !!inputAnalytics.checked,
-        marketing: !!inputMarketing.checked,
-        ts: Date.now()
-      });
-      hideBanner(); closeModal();
-    }
-
-    if (!load()) showBanner();
-
-    document.querySelectorAll('[data-cookie-accept]').forEach(function (el) { el.addEventListener('click', acceptAll); });
-    document.querySelectorAll('[data-cookie-reject]').forEach(function (el) { el.addEventListener('click', rejectOptional); });
-    document.querySelectorAll('[data-cookie-save]').forEach(function (el) { el.addEventListener('click', saveCustom); });
-    document.querySelectorAll('[data-cookie-config]').forEach(function (el) {
-      el.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
-    });
-    document.querySelectorAll('[data-cookie-open]').forEach(function (el) {
-      el.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
-    });
-    document.querySelectorAll('[data-cookie-close]').forEach(function (el) {
-      el.addEventListener('click', closeModal);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !modal.hidden) closeModal();
-    });
-  })();
-
-  // 4) Responsive video source + hero rotation
-  //    - data-src-desktop / data-src-mobile · selección por viewport
-  //    - data-rotate (lista separada por comas) · random en cada visita/refresh
+  // 2) Responsive video source (idéntico a index.html, sin rotación)
   (function () {
     var videos = document.querySelectorAll('video[data-src-desktop], video[data-rotate]');
     var isMobile = window.matchMedia('(max-width: 900px)').matches;
     videos.forEach(function (v) {
       var src;
-      if (v.dataset.rotate && !isMobile) {
-        var pool = v.dataset.rotate.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
-        src = pool[Math.floor(Math.random() * pool.length)];
-      } else if (isMobile && v.dataset.srcMobile) {
+      if (isMobile && v.dataset.srcMobile) {
         src = v.dataset.srcMobile;
       } else {
         src = v.dataset.srcDesktop;
@@ -2904,6 +2593,58 @@
       v.load();
     });
   })();
+
+  // 3) Solicitud → email real (FormSubmit AJAX, sin claves) con fallback a mailto
+  function _val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+  function _datos() {
+    return {
+      Nombre: _val('i-nombre'), Cargo: _val('i-cargo'), Empresa: _val('i-empresa'),
+      Email: _val('i-email'), Credencial: _val('i-cred'), Idioma: _val('i-idioma'),
+      Stack: _val('i-stack'), Notas: _val('i-nota')
+    };
+  }
+  function aicompassMail() {
+    var d = _datos();
+    var body = Object.keys(d).map(function (k) { return k + ': ' + encodeURIComponent(d[k]); }).join('%0D%0A');
+    window.location.href = 'mailto:carlos.ortet@zoopa.es?subject='
+      + encodeURIComponent('peticion urgente de itinerario IA') + '&body=' + body;
+  }
+  function aicompassSend() {
+    var btn = document.getElementById('btn-solicitud');
+    var nota = document.getElementById('form-estado');
+    var d = _datos();
+    if (document.getElementById('i-honey').value) { return; }
+    if (!d.Nombre || !d.Email) {
+      nota.textContent = 'Faltan el nombre o el email.';
+      nota.style.color = 'var(--498-alert)';
+      return;
+    }
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    var payload = {
+      _subject: 'peticion urgente de itinerario IA',
+      _template: 'table', _captcha: 'false', _replyto: d.Email
+    };
+    for (var k in d) { payload[k] = d[k]; }
+    fetch('https://formsubmit.co/ajax/carlos.ortet@zoopa.es', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (j && (j.success === true || j.success === 'true')) {
+          btn.textContent = 'Solicitud enviada ✓';
+          nota.textContent = 'Recibida. Una persona la revisa y te respondemos en unas 72 horas.';
+          nota.style.color = 'var(--498-green)';
+        } else { throw new Error('formsubmit'); }
+      })
+      .catch(function () {
+        btn.disabled = false; btn.textContent = 'Enviar solicitud →';
+        nota.textContent = 'El envío automático no respondió; se abre tu correo como alternativa.';
+        nota.style.color = 'var(--pg-text-muted)';
+        aicompassMail();
+      });
+  }
 </script>
 
 </body>
