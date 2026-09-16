@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>{{TITULO}} · 498A</title>
+<meta name="description" content="{{DESCRIPCION}}">
+<meta name="author" content="{{AUTOR}}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://498advance.com/blog/{{SLUG}}.html">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<link rel="alternate" type="application/rss+xml" title="498A · Perspectivas" href="https://498advance.com/feed.xml">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{TITULO}}">
+<meta property="og:description" content="{{DESCRIPCION}}">
+<meta property="og:url" content="https://498advance.com/blog/{{SLUG}}.html">
+<meta property="og:site_name" content="498A · 498 Advance">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://498advance.com/assets/og/{{SLUG}}.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="{{FECHA_ISO}}">
+<meta property="article:author" content="{{AUTOR}}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{TITULO}}">
+<meta name="twitter:description" content="{{DESCRIPCION}}">
+<meta name="twitter:image" content="https://498advance.com/assets/og/{{SLUG}}.jpg">
+
+<link rel="stylesheet" href="/tokens.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{TITULO}}",
+  "description": "{{DESCRIPCION}}",
+  "image": "https://498advance.com/assets/og/{{SLUG}}.jpg",
+  "datePublished": "{{FECHA_ISO}}",
+  "dateModified": "{{FECHA_ISO}}",
+  "author": { "@type": "Person", "name": "{{AUTOR}}" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "498A",
+    "url": "https://498advance.com",
+    "logo": { "@type": "ImageObject", "url": "https://498advance.com/apple-touch-icon.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://498advance.com/blog/{{SLUG}}.html" },
+  "isPartOf": { "@type": "Blog", "@id": "https://498advance.com/blog/" },
+  "inLanguage": "es-ES"
+}
+</script>
+
+<style>
+  /* El post hereda tokens.css. Estilos minimos propios del articulo. */
+  body { margin:0; background:var(--498-white); color:var(--498-black);
+         font-family:var(--498-family-body); font-weight:300; }
+  .post { max-width:720px; margin:0 auto; padding:80px 24px 120px; }
+  .post__meta { font-family:var(--498-family-mono); font-size:11px; letter-spacing:2px;
+                text-transform:uppercase; color:var(--498-green-deep); margin-bottom:24px; }
+  .post__title { font-family:var(--498-family-display); font-style:italic; font-weight:300;
+                 font-size:clamp(30px,5.5vw,52px); line-height:1.15; margin:0 0 28px; }
+  .post__lead { font-size:19px; line-height:1.7; margin:0 0 48px; }
+  .post__body { font-size:17px; line-height:1.8; }
+  .post__body h2 { font-family:var(--498-family-display); font-style:italic; font-weight:300;
+                   font-size:30px; line-height:1.25; margin:56px 0 18px; }
+  .post__body p { margin:0 0 22px; }
+  .post__body img { max-width:100%; display:block; margin:36px 0; }
+  .post__back { display:inline-block; margin-top:64px; font-family:var(--498-family-mono);
+                font-size:12px; letter-spacing:1.5px; text-transform:uppercase;
+                color:var(--498-black); text-decoration:none; border-bottom:1px solid var(--498-green); }
+</style>
+</head>
+<body>
+  <article class="post">
+    <div class="post__meta">{{CATEGORIA}} · {{FECHA_LEGIBLE}} · {{MINUTOS}} min de lectura</div>
+    <h1 class="post__title">{{TITULO}}</h1>
+    <p class="post__lead">{{ENTRADILLA}}</p>
+
+    <div class="post__body">
+      <!-- Cuerpo del articulo -->
+    </div>
+
+    <a class="post__back" href="/blog/">← Volver a Perspectivas</a>
+  </article>
+</body>
+</html>

@@ -1,0 +1,104 @@
+# =====================================================================
+# 498A · 498advance.com · Apache (Dinahosting)
+# Dominio canonico: 498advance.com
+#
+# AVISO · Antes de activar este fichero hay que INVERTIR la redireccion
+# que hoy existe en Cloudflare (498advance.com -> 498as.com). Si no se
+# invierte, Cloudflare manda a 498as.com, Apache devuelve a
+# 498advance.com y se produce un bucle de redirecciones.
+# =====================================================================
+
+Options -Indexes
+DirectoryIndex index.html
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # --- HTTPS ---------------------------------------------------------
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://498advance.com%{REQUEST_URI} [L,R=301]
+
+  # --- Host canonico · www y 498as.com hacia 498advance.com ----------
+  RewriteCond %{HTTP_HOST} !^498advance\.com$ [NC]
+  RewriteRule ^ https://498advance.com%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# --- Pagina de error ------------------------------------------------
+ErrorDocument 404 /404.html
+
+# --- Compresion -----------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml application/rss+xml
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml application/rss+xml
+</IfModule>
+
+# --- Cache ----------------------------------------------------------
+# Los assets no llevan hash en el nombre, asi que no se cachean "forever":
+# 30 dias en imagenes y video, 7 dias en CSS, y HTML siempre revalidado.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                          "access plus 1 week"
+  ExpiresByType text/html                 "access plus 0 seconds"
+  ExpiresByType text/css                  "access plus 7 days"
+  ExpiresByType application/javascript    "access plus 7 days"
+  ExpiresByType image/jpeg                "access plus 30 days"
+  ExpiresByType image/png                 "access plus 30 days"
+  ExpiresByType image/webp                "access plus 30 days"
+  ExpiresByType image/svg+xml             "access plus 30 days"
+  ExpiresByType image/x-icon              "access plus 30 days"
+  ExpiresByType video/mp4                 "access plus 30 days"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType text/plain                "access plus 1 day"
+  ExpiresByType application/xml           "access plus 1 day"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|webp|svg|ico|mp4|woff2)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(txt|xml)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+
+  # --- Seguridad ----------------------------------------------------
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # llms.txt y robots.txt legibles por agentes externos
+  <FilesMatch "^(llms|robots)\.txt$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+# --- Tipos MIME correctos -------------------------------------------
+<IfModule mod_mime.c>
+  AddType text/plain                      .txt
+  AddType application/xml                 .xml
+  AddType application/rss+xml             .rss
+  AddType image/webp                      .webp
+  AddType image/svg+xml                   .svg
+  AddType video/mp4                       .mp4
+  AddType font/woff2                      .woff2
+  AddDefaultCharset UTF-8
+</IfModule>
+
+# --- Ficheros internos que no deben servirse ------------------------
+<FilesMatch "\.(md|log|bak|sh|py)$">
+  Require all denied
+</FilesMatch>

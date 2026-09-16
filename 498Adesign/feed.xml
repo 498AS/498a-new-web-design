@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>498A · Perspectivas</title>
+    <link>https://498advance.com/blog/</link>
+    <atom:link href="https://498advance.com/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Investigación y notas de 498A, laboratorio de IA aplicada. Barcelona.</description>
+    <language>es-ES</language>
+    <copyright>498 Advanced Solutions SL</copyright>
+    <lastBuildDate>Wed, 16 Sep 2026 15:00:26 +0000</lastBuildDate>
+    <!-- Los <item> se anaden al publicar cada post. Ver blog/README.md -->
+  </channel>
+</rss>
