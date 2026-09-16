@@ -244,7 +244,7 @@ Trabajamos con un número limitado de proyectos cada trimestre para garantizar p
 ## Footer
 
 Una compañía del grupo Zoopa · Barcelona · Co-fundada en 2023.
-hola@498a.com · +34 932 24 77 44
+hola@498as.com · +34 932 24 77 44
 
 **Capacidades** · Sistemas multiagente · GEO en motores IA · IA privada · Datasets a medida
 **Productos** · GEORadar · S.A.M. · LEO · DOC · COMPLY · HUMANMADE · ROBIN · Stardesk · Prompt Atlas · InsightDesk
