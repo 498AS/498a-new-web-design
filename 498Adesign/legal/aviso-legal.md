@@ -7,7 +7,7 @@ languages:
   - es  # ES traducida desde CA · borrador pendiente revisión legal
 entity: 498 Advanced Solutions SL
 cif: B64519622
-domain_legacy: www.498a.com
+domain_legacy: www.498as.com
 domain_target: pendiente confirmación post-rebrand
 last_updated: 2026-05-18
 status: source canónico recibido del equipo legal
@@ -15,17 +15,17 @@ status: source canónico recibido del equipo legal
 
 # Aviso legal · 498 Advance
 
-> **Nota de transición**: el texto original recibido del equipo legal usaba la nomenclatura legacy `498AS` y `www.498as.com`. Se ha sustituido por `498A` (nombre comercial post-rebrand) y `www.498a.com` (dominio target pendiente de confirmación). La razón social (**498 Advanced Solutions SL**, CIF B64519622) no cambia. Antes de publicar en producción, validar con el equipo legal: (1) que la actualización de nombre comercial no requiere documentos nuevos, (2) el dominio final, (3) que llega la versión castellana (la EN y CA están en este documento).
+> **Nota de transición**: el texto original recibido del equipo legal usaba la nomenclatura legacy `498AS` y `www.498as.com`. Se ha sustituido por `498A` (nombre comercial post-rebrand) y `www.498as.com` (dominio target pendiente de confirmación). La razón social (**498 Advanced Solutions SL**, CIF B64519622) no cambia. Antes de publicar en producción, validar con el equipo legal: (1) que la actualización de nombre comercial no requiere documentos nuevos, (2) el dominio final, (3) que llega la versión castellana (la EN y CA están en este documento).
 
 ---
 
 ## CA · Avís legal
 
-Aquest Avís Legal regula les condicions generals d'accés i utilització del lloc web accessible a l'adreça URL [www.498a.com](https://www.498a.com) (d'ara endavant, el lloc web), que posa a disposició dels usuaris d'Internet. La utilització del lloc web implica l'acceptació plena i sense reserves de totes i cadascuna de les disposicions incloses en aquest Avís Legal. En conseqüència, l'usuari del lloc web ha de llegir atentament aquest Avís Legal en cadascuna de les ocasions en què es proposi utilitzar el web, ja que el text podria patir modificacions a criteri del titular del web, o a causa d'un canvi legislatiu, jurisprudencial o a la pràctica empresarial.
+Aquest Avís Legal regula les condicions generals d'accés i utilització del lloc web accessible a l'adreça URL [www.498as.com](https://www.498as.com) (d'ara endavant, el lloc web), que posa a disposició dels usuaris d'Internet. La utilització del lloc web implica l'acceptació plena i sense reserves de totes i cadascuna de les disposicions incloses en aquest Avís Legal. En conseqüència, l'usuari del lloc web ha de llegir atentament aquest Avís Legal en cadascuna de les ocasions en què es proposi utilitzar el web, ja que el text podria patir modificacions a criteri del titular del web, o a causa d'un canvi legislatiu, jurisprudencial o a la pràctica empresarial.
 
 ### Pàgina web
 
-**Titularitat de la pàgina web.** El nom del domini [www.498A.com](https://www.498A.com) està registrat a favor de 498 Advanced Solutions SL (498A), amb domicili al carrer Doctor Trueta, 158, 08005 Barcelona, Espanya, CIF número B64519622. Correu electrònic de contacte: info@498a.com
+**Titularitat de la pàgina web.** El nom del domini [www.498A.com](https://www.498A.com) està registrat a favor de 498 Advanced Solutions SL (498A), amb domicili al carrer Doctor Trueta, 158, 08005 Barcelona, Espanya, CIF número B64519622. Correu electrònic de contacte: info@498as.com
 
 ### Propietat intel·lectual de la web
 
@@ -67,11 +67,11 @@ Tant l'accés a la web com l'ús no consentit que es pugui efectuar de la inform
 
 ## EN · Legal Notice
 
-This Legal Notice governs the general terms and conditions of access to and use of the website accessible at the URL [www.498a.com](https://www.498a.com) (hereinafter, the website), which is made available to internet users. Use of the website implies full and unreserved acceptance of each and every one of the provisions included in this Legal Notice. Consequently, website users should carefully read this Legal Notice each time they intend to use the website, as the text may be modified at the discretion of the website owner, or due to changes in legislation, case law, or business practices.
+This Legal Notice governs the general terms and conditions of access to and use of the website accessible at the URL [www.498as.com](https://www.498as.com) (hereinafter, the website), which is made available to internet users. Use of the website implies full and unreserved acceptance of each and every one of the provisions included in this Legal Notice. Consequently, website users should carefully read this Legal Notice each time they intend to use the website, as the text may be modified at the discretion of the website owner, or due to changes in legislation, case law, or business practices.
 
 ### Web page
 
-**Website Ownership.** The domain name [www.498A.com](https://www.498A.com) is registered to 498 Advanced Solutions SL (498A), with registered office at Calle Doctor Trueta, 158, 08005 Barcelona, Spain, Tax Identification Number (CIF) B64519622. Contact email: info@498a.com
+**Website Ownership.** The domain name [www.498A.com](https://www.498A.com) is registered to 498 Advanced Solutions SL (498A), with registered office at Calle Doctor Trueta, 158, 08005 Barcelona, Spain, Tax Identification Number (CIF) B64519622. Contact email: info@498as.com
 
 ### Intellectual property of the website
 
@@ -115,11 +115,11 @@ Access to this website and any unauthorized use of the information contained her
 
 > **Borrador**: traducción al castellano realizada desde la versión catalana. Pendiente de revisión y validación por el equipo legal de 498 Advance.
 
-Este Aviso Legal regula las condiciones generales de acceso y utilización del sitio web accesible en la dirección URL [www.498a.com](https://www.498a.com) (en adelante, el sitio web), que se pone a disposición de los usuarios de Internet. La utilización del sitio web implica la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en este Aviso Legal. En consecuencia, el usuario del sitio web debe leer atentamente este Aviso Legal en cada una de las ocasiones en que se proponga utilizar el sitio, ya que el texto podría sufrir modificaciones a criterio del titular del sitio, o como consecuencia de un cambio legislativo, jurisprudencial o de la práctica empresarial.
+Este Aviso Legal regula las condiciones generales de acceso y utilización del sitio web accesible en la dirección URL [www.498as.com](https://www.498as.com) (en adelante, el sitio web), que se pone a disposición de los usuarios de Internet. La utilización del sitio web implica la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en este Aviso Legal. En consecuencia, el usuario del sitio web debe leer atentamente este Aviso Legal en cada una de las ocasiones en que se proponga utilizar el sitio, ya que el texto podría sufrir modificaciones a criterio del titular del sitio, o como consecuencia de un cambio legislativo, jurisprudencial o de la práctica empresarial.
 
 ### Página web
 
-**Titularidad de la página web.** El nombre del dominio [www.498A.com](https://www.498A.com) está registrado a favor de 498 Advanced Solutions SL (498A), con domicilio en la calle Doctor Trueta, 158, 08005 Barcelona, España, CIF número B64519622. Correo electrónico de contacto: info@498a.com
+**Titularidad de la página web.** El nombre del dominio [www.498A.com](https://www.498A.com) está registrado a favor de 498 Advanced Solutions SL (498A), con domicilio en la calle Doctor Trueta, 158, 08005 Barcelona, España, CIF número B64519622. Correo electrónico de contacto: info@498as.com
 
 ### Propiedad intelectual de la web
 
@@ -175,8 +175,8 @@ Cada bloque está marcado con un H2 que actúa como ancla:
 | Razón social | 498 Advanced Solutions SL |
 | CIF | B64519622 |
 | Domicilio | Calle Doctor Trueta, 158 · 08005 Barcelona · España |
-| Email contacto | info@498a.com |
-| Dominio legacy | www.498a.com |
+| Email contacto | info@498as.com |
+| Dominio legacy | www.498as.com |
 | Dominio target post-rebrand | pendiente confirmación |
 
 ---

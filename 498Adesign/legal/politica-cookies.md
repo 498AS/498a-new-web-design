@@ -7,7 +7,7 @@ languages:
   - en  # traducción borrador desde castellano · pendiente de revisión legal
 entity: 498 Advanced Solutions SL
 cif: B64519622
-dpo_email: protecciondedatos@498a.com
+dpo_email: protecciondedatos@498as.com
 domain_legacy: www.498as.com
 domain_target: pendiente confirmación post-rebrand
 last_updated: 2026-05-18
@@ -16,7 +16,7 @@ status: source canónico recibido del equipo legal (solo ES, legacy stack WordPr
 
 # Política de Cookies · 498 Advance
 
-> **Nota de transición**: este texto procede del legacy publicado en `www.498as.com/politica-cookies`. Las referencias al nombre comercial se han actualizado de `498AS` a `498A` (rebrand) y el email DPO de `protecciondedatos@498as.com` a `protecciondedatos@498a.com`. La razón social legal **498 Advanced Solutions SL** (CIF B64519622) y el domicilio se mantienen íntegros. Pendientes las versiones en catalán e inglés. **Importante**: el inventario de cookies listado corresponde al stack legacy WordPress + Elementor + WooCommerce; deberá reescribirse cuando se confirme el stack técnico de la nueva web (ver nota técnica al final del documento).
+> **Nota de transición**: este texto procede del legacy publicado en `www.498as.com/politica-cookies`. Las referencias al nombre comercial se han actualizado de `498AS` a `498A` (rebrand) y el email DPO de `protecciondedatos@498as.com` a `protecciondedatos@498as.com`. La razón social legal **498 Advanced Solutions SL** (CIF B64519622) y el domicilio se mantienen íntegros. Pendientes las versiones en catalán e inglés. **Importante**: el inventario de cookies listado corresponde al stack legacy WordPress + Elementor + WooCommerce; deberá reescribirse cuando se confirme el stack técnico de la nueva web (ver nota técnica al final del documento).
 
 ---
 
@@ -111,7 +111,7 @@ Conforme al RGPD, puede ejercer:
 
 #### Ejercicio de derechos
 
-Correo: **protecciondedatos@498a.com**
+Correo: **protecciondedatos@498as.com**
 
 Puede requerirse identificación (DNI o análogos).
 
@@ -214,7 +214,7 @@ Sujeta a cambios por:
 
 ### Contacto y más información
 
-**Email**: protecciondedatos@498a.com
+**Email**: protecciondedatos@498as.com
 
 **Referencias adicionales**: Aviso Legal, Política de Privacidad, Declaración de Accesibilidad.
 
@@ -313,7 +313,7 @@ Conformement al RGPD, pot exercir:
 
 #### Exercici de drets
 
-Correu: **protecciondedatos@498a.com**
+Correu: **protecciondedatos@498as.com**
 
 Pot requerir-se identificació (DNI o anàlegs).
 
@@ -416,7 +416,7 @@ Subjecta a canvis per:
 
 ### Contacte i més informació
 
-**Email**: protecciondedatos@498a.com
+**Email**: protecciondedatos@498as.com
 
 **Referències addicionals**: Avís Legal, Política de Privacitat, Declaració d'Accessibilitat.
 
@@ -515,7 +515,7 @@ In accordance with the GDPR, you may exercise:
 
 #### Exercise of rights
 
-Email: **protecciondedatos@498a.com**
+Email: **protecciondedatos@498as.com**
 
 Identification (national ID or equivalent) may be required.
 
@@ -618,7 +618,7 @@ Subject to changes due to:
 
 ### Contact and further information
 
-**Email**: protecciondedatos@498a.com
+**Email**: protecciondedatos@498as.com
 
 **Additional references**: Legal Notice, Privacy Policy, Accessibility Statement.
 
@@ -642,7 +642,7 @@ Cada bloque está marcado con un H2 que actúa como ancla:
 | CIF | B64519622 |
 | Domicilio | Calle Doctor Trueta, 158 · 08005 Barcelona · España |
 | Email contacto | info@498as.com |
-| Email protección de datos (DPO) | **protecciondedatos@498a.com** |
+| Email protección de datos (DPO) | **protecciondedatos@498as.com** |
 | Dominio legacy | www.498as.com |
 | Dominio target post-rebrand | pendiente confirmación |
 | Autoridad de control | Agencia Española de Protección de Datos · [aepd.es](https://www.aepd.es) |
