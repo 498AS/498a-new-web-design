@@ -647,6 +647,8 @@
     padding: 1px;
     border: 0;
     overflow: visible;
+    /* meta | simbolo | linea | descripcion · el ciclo se repite cada 4 filas */
+    grid-auto-rows: auto minmax(clamp(170px, 17vw, 290px), 1fr) 1px auto;
   }
   .box-collection--periodic > * {
     border: 0 !important;
@@ -660,6 +662,16 @@
     overflow: hidden;
     cursor: default;
     transition: background .2s;
+  }
+  /* Las 4 filas internas las define el contenedor: asi la linea divisoria
+     cae a la misma altura en todas las casillas de la banda. */
+  @supports (grid-template-rows: subgrid) {
+    .box-collection--periodic > * {
+      grid-row: span 4;
+      grid-template-rows: subgrid;
+      min-height: 0;
+      aspect-ratio: auto;
+    }
   }
   .box-collection--periodic > *:hover { background: var(--498-green-50); }
   .periodic__meta {
